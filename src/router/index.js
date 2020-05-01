@@ -7,8 +7,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'plant-page',
-      component: require('../pages/PlantPage').default
+      name: 'dashboard-page',
+      component: require('../pages/DashboardPage').default
     },
     {
       path: '*',
