@@ -1,7 +1,5 @@
 # HOMEPANORAMA
 
-## Project Description
-
 The panorama dashboard should be a solution to overview important information and control automated tasks quickly.
 
 ## Intention
