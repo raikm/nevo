@@ -1,4 +1,4 @@
-# PANORAMA _[Homedashboard]_
+# HOMEPANORAMA _[Homedashboard]_
 
 
 TODOs:
