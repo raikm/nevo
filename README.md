@@ -68,7 +68,7 @@ Even though I am about to finish my master degree in medical informatics I feel 
 
 Since one year I am passionated about python (writing automation scripts) and web developing. I started with vue.js at the beginning of 2020 and I love it. I am also using it in my current master-thesis to work on a recruitment tool, where medical staff can analyse patient-data to get an overview about potential patients.
 
-Since half a year I finally motivated myself to invest way more time in software developing and my learning curve rises steadily. The topics I am working on every week are web developing (vue.js), [FHIR](https://hl7.org/FHIR/) (standard for health care data exchange) and Python (Django Server impl. in my master thesis).
+Since half a year I finally motivated myself to invest way more time in software developing and my learning curve rises steadily. The topics I am working on a daily basis are web developing (vue.js), [FHIR](https://hl7.org/FHIR/) (standard for health care data exchange) and Python (Django Server impl. in my master thesis).
 
 🔗 [Github](https://github.com/raikm) | ✉️ osproject@raik-mueller.com
 
