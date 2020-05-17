@@ -1,4 +1,13 @@
-# homeapp
+# PANORAMA _[Homedashboard]_
+
+
+TODOs:
+- [ ] Was macht dieses Projekt?
+- [ ] Wozu nützt es?
+- [ ] Wie kann ich anfangen, es zu nutzen oder etwas beizutragen?
+- [ ] Wo wird mir geholfen, wenn ich Hilfe benötige?
+
+
 
 ## Project setup
 ```
