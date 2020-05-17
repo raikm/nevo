@@ -2,10 +2,11 @@
 
 
 TODOs:
-- [ ] Was macht dieses Projekt?
-- [ ] Wozu nützt es?
+- [ ] Project description
+- [ ] use
 - [ ] Wie kann ich anfangen, es zu nutzen oder etwas beizutragen?
 - [ ] Wo wird mir geholfen, wenn ich Hilfe benötige?
+- [ ] Goals
 
 
 
