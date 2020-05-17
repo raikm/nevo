@@ -1,46 +1,40 @@
 <template>
-    <div>
-        <PlantCard v-bind:plants="plants" />
-
-    </div>
+  <div>
+    <PlantCard v-bind:plantInformation="plantInformation" />
+  </div>
 </template>
 
 <script>
-import PlantCard from './PlantCard'
+import PlantCard from "./PlantCard";
 
 export default {
-    name:'PlantPage',
-    components: {
-        PlantCard
+  name: "PlantPage",
+  components: {
+    PlantCard,
+  },
+  created: function() {
+    {
+      this.$axios
+        .get("http://192.168.0.33:8181/HomeAPI/rest/plants/allLastData/", {
+        })
+        .then((response) => {
+          this.plantInformation = response.data;
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        });
+    }
+  },
+  data() {
+    return {
+      plantInformation: {},
+    };
+  },
+  methods: {
+    imagePath(image) {
+      return require(image.url.default);
     },
-   data() {
-        return {
-            plants: [
-            {
-                id: 1,
-                name: "Monstera",
-                imgurl: "../img/plants//Monstera-Banner.png"
-
-            },
-            {
-                id: 2,
-                name: "Banana Tree",
-                imgurl: "../img/plants/Banana.png"
-
-            },
-            {
-                id: 3,
-                name: "Dracarena",
-                imgurl: "../img/plants/Drac.png"
-
-            }
-            ]
-    } 
-},
-   methods: {
-            imagePath(image) {
-                return require(image.url.default);
-            }
-   }
-}
+  },
+};
 </script>

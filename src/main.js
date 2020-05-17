@@ -7,11 +7,14 @@ import './registerServiceWorker'
 import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import VueAxios from './plugins/axios'
 
+Vue.use(VueAxios)
 
 Vue.config.productionTip = false
 Vue.http = Vue.prototype.$http = axios
 Vue.use(Buefy)
+
 
 new Vue({
   router,

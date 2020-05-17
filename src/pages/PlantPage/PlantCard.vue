@@ -1,28 +1,30 @@
 <template>
+<main>
   <div>
-    <div id="plantCard" v-bind:key="plant.id" v-for="plant in plants">
-      <h1 id="plantTitle">{{ plant.name }}</h1>
-      <PlantInfoIcon id="plantCardLayer" :plantIcons="plantIcons" :plantInfos="plantInfos" />
-      <img id="plantImage" :src="plant.imgurl" />
+    <div id="plantCard" v-bind:key="plant._id.counter" v-for="plant in plantInformation">
+      <h1 id="plantTitle">{{ plant.name.replace(/[_-]/g, " ") }}</h1>
+      <PlantInfo id="plantCardLayer" :plantIcons="plantIcons" :plant="plant" />
+      <img id="plantImage" :src="'../img/plants/' + plant.name + '.png'" />
     </div>
   </div>
+  </main>
 </template>
 <script>
-import PlantInfoIcon from "./PlantInfoIcon";
+import PlantInfo from "./PlantInfo";
 
 export default {
   name: "PlantCard",
   components: {
-    PlantInfoIcon,
+    PlantInfo,
   },
-  props: ["plants"],
+  props: ["plantInformation"],
   data() {
     return {
-      plantIcons: [
+       plantIcons: [
         {
           id: 1,
           //  test if @ works
-          url: "../img/plantinfoicons/drop.svg",
+          url: "../img/plantinfoicons/mercury.svg",
         },
         {
           id: 2,
@@ -37,49 +39,36 @@ export default {
           url: "../img/plantinfoicons/sun.svg",
         },
       ],
-      plantInfos: [
-        {
-          id: 1,
-          text: "20%"
-        },
-        {
-          id: 2,
-          text: "70%"
-        },
-        {
-          id: 3,
-          text: "60%"
-        },
-        {
-          id: 4,
-          text: "50%"
-        },
-      ]
+      plant: {}
     };
+    
   },
 };
 </script>
 
 <style scoped>
-body {
-  /* display: inline-flex; */
+main {
+  float: left;
 }
 
+
 #plantCard {
-  /* float: left; */
+  float: left;
   border-radius: 15px;
-  height: 180px;
-  width: 180px;
+  height: 28vh;
+  width: 28vh;
   margin: 20px;
   box-shadow: 0 14px 28px;
   position: relative; /* import for the right corner image */
 }
+
 #plantTitle {
   height: 48px;
-  margin: 20px 20px 0px 20px;
+  margin: 6px 20px 0px 20px;
   padding-top: 5px;
-  font-weight: 600;
-  font-size: 25px;
+  font-weight: 800;
+  font-size: 22px;
+  color: rgba(25, 103, 25, 0.681);
 
   /* background-color: darksalmon; */
 }
@@ -89,8 +78,8 @@ body {
   /* background-color: darksalmon; */
   border-radius: 15px;
   /* testing */
-  height: 100px;
-  width: 100px;
+  height: 13vh;
+  width: 13vh;
   position: absolute;
   right: 0;
   bottom: 0;
