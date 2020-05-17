@@ -3,21 +3,21 @@
 The panorama dashboard should be a solution to overview important information and control automated tasks quickly.
 
 ## Intention
-Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowed or not well designed (personal opinion).
+Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
 
-With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not well designed (again, personal opinion) but very customisable related to home automation control.
+With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
 
-This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about design, related to this topic. The problem is, that they are often just design-concepts or limited in there features.
-
-The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see information about them. If you consider to hang it on your wall as a control-center, you have to buy a very expensive “screen” (so an iPad).
+The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
 
 SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
+
+This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
 
 To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
 
 ## Goals
 
-My goal and dream is to create an application, were we develop new functionally together and integrate services to one platform. I will mention later some ideas.
+My goal and dream is to create a dashboard for which we develop together new functionally and integrate services to one platform.
 
 ### First concept
 
@@ -25,20 +25,20 @@ First of all the idea is to have a touchscreen mounted on the wall (for example 
 
 The advantage of a web-based solution would be to control and overview information on your computer or other device as well e.g. overview your plant sensors from the couch. Furthermore you could use it on a (not used) tablet, raspberry pi with screen etc..
 
-I created a quick first concept to get an idea about the structure idea. The color for this sketch is missing yet.
+I drafted a quick first concept to give you an idea about the structure planned. The colors for the sketch below are still missing.
 
 ![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
 
-### Some ideas
+### Some integration ideas
 
 To just name a few for the dashboard:
 
-- Integration of a package tracker: see upcoming deliveries and if “delivery today” show it in your *inbox* = start page (tracking [api](https://extcall.17track.net/de))
+- Integration of a package tracker: see upcoming deliveries and if “delivery today” show it in your *inbox* (tracking [api](https://extcall.17track.net/de))
 - Integration of a plant-overview-board (works with [xiaomi plant sensors](https://de.gearbest.com/other-garden-supplies/pp_373947.html) to get current plant information)
 - Integration of scene control: control common scenes like “coming home”, “start cleaning” (e.g. integrate with openhab)
-- Integration of public transport information: show upcoming trains or buses: e.g.: create routines for mornings to see schedules (use public transport apis from local city)
+- Integration of public transport information: show upcoming trains or buses: e.g.: create routines for mornings to see schedules (use public transport apis from local cities)
 
-*see [Kanbanboard](https://github.com/raikm/homepanorama/projects/2) on Github for more ideas.*
+*see the [Kanbanboard](https://github.com/raikm/homepanorama/projects/2) for more ideas.*
 
 Solutions of this examples exist for sure but they are mostly isolated solutions and are a good start.
 
