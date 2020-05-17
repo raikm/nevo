@@ -1,5 +1,4 @@
-# HOMEPANORAMA 
-###### Homedashboard
+# HOMEPANORAMA
 
 ## Project Description
 
