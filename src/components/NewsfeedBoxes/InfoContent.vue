@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    content
+    
   </div>
 </template>
 
@@ -12,7 +12,5 @@ export default {
 script
 
 <style scoped>
-.content {
-  background-color: red;
-}
+
 </style>

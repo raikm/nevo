@@ -1,105 +1,130 @@
-
-
 <template>
-
   <main>
-    <div id="header" class="columns">
-      <div id="leftheader" class="column"></div>
-      <div id="middleheader" column="column"><h1>DASHBOARD</h1></div>
-      <div id="rightheader" column="column"></div>
+    <div class="columns">
+      <div id="leftheader" class="column header is-1"></div>
+      <div id="middleheader" class="column header "><h1 id="dashboard-title">DASHBOARD</h1></div>
+      <div id="rightheader" class="column header is-3"></div>
     </div>
     <div class="columns">
-      <div id="menu" class="column">
-        <DashboardButton />
-      </div>
-      <div id="mainControl" column="column"></div>
-      <div id="newsfeed" column="column">
-        <InfoBox />
+      <div id="menu" class="main-menu column is-1">
+        <div :key="menu.id" v-for="menu in menus">
+          {{menu.title}}
+        </div>
 
+      </div>
+      <div id="mainControl" class="main-menu column"></div>
+      <div id="newsfeed" class="main-menu column is-3">
+        <div id="info-box" :key="infoBoxContent.id" v-for="infoBoxContent in infoBoxContentList">
+          <InfoBox :infoBoxContent="infoBoxContent"/>
+        </div>
       </div>
     </div>
   </main>
 </template>
 
 <script>
-import DashboardButton from "./DashboardButton";
-import InfoBox from "../../components/NewsfeedBoxes/InfoBox"
+import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
 export default {
-  components: { DashboardButton, InfoBox },
+  name: "DashboardPage",
+  components: { InfoBox },
+  data() {
+    return { 
+      infoBoxContentList: [
+        {
+          id: 1,
+          iconSource: '/img/icons/shipping-and-delivery.svg',
+          title: 'Package Tracking',
+          contentType: 'package'
+        },
+        {
+          id: 2,
+          iconSource: '/img/icons/plant.svg',
+          title: 'Plant Alert',
+          contentType: 'plant'
+        }
+      ],
+      menus: [
+        {
+          id: 1,
+          title: 'Home',
+          iconSrc: '',
+          link: ''
+        },
+        {
+          id: 2,
+          title: 'Devices',
+          iconSrc: '',
+          link: ''
+        },
+        {
+          id: 3,
+          title: 'Lights',
+          iconSrc: '',
+          link: ''
+        },
+        {
+          id: 4,
+          title: 'Plants',
+          iconSrc: '',
+          link: ''
+        },
+        {
+          id: 5,
+          title: 'Packages',
+          iconSrc: '',
+          link: ''
+        },
+        {
+          id: 6,
+          title: 'Settings',
+          iconSrc: '',
+          link: ''
+        },
+
+
+      ]
+  }
+  }
 };
 </script>
 
 <style lang="scss">
-@import "~bulma/sass/utilities/_all";
-
-main {
-  display: block;
-  background-color: white;
+.header {
+  // background-color: yellow;
+  // min-height: 15vh;
 }
 
-#header {
-  min-height: 10vh;
-}
+#dashboard-title{
+  font-size: 7vh;
+  line-height: 9vh;
+  height: 9vh;
 
-#leftheader {
-  /* background-color: rgba(255, 255, 240, 0.345); */
-  width: 10%;
-  margin-right: 2vh;
 }
 
 #middleheader {
-  /* background-color: rgba(230, 230, 250, 0.441); */
-  width: 60%;
-  padding-top: 25px;
-  padding-left: 25px;
-  font-size: 55px;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 72px;
-  text-transform: uppercase;
+  margin: 0 2vh;
+  // padding: 4vh;
 }
 
-#rightheader {
-  /* background-color: rgba(211, 211, 211, 0.283); */
-  width: 30%;
-  margin-left: 2vh;
+.main-menu {
+  min-height: 150vh;
+  margin-top: 2vh;
 }
 
 #menu {
-  width: 10%;
-  min-height: 100vh;
-  margin-top: 2vh;
   border-radius: 0px 40px;
-  margin-right: 2vh;
-  // border-style: dotted;
-  border-width: 2px;
-  background-color: rgba(250, 98, 33, 0.504);
+  background-color: rgb(226, 109, 55);
 }
 
 #mainControl {
-  width: 60%;
-  min-height: 100vh;
-  margin-top: 2vh;
-  border-radius: 40px;
-  // border-style: dotted;
-  border-width: 2px;
+  margin-left: 2vh;
+  margin-right: 2vh;
 }
 
 #newsfeed {
-  width: 30%;
-  min-height: 100vh;
-  margin-top: 2vh;
   border-radius: 40px 0px;
-  margin-left: 2vh;
-  // border-style: dotted;
-  border-width: 2px;
-  background-color: rgba(245, 245, 245, 0.379);
-  padding: 4vh 4vh;
-  
+  padding: 4vh;
+  background-color: rgba(224, 224, 224, 0.353);
 }
-
-// Import Bulma and Buefy styles
-@import "~bulma";
-@import "~buefy/src/scss/buefy";
 </style>

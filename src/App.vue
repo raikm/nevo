@@ -11,6 +11,8 @@
   }
 </script>
 
-<style>
-  /* CSS */
+<style lang="scss"> 
+$base-color: #008f83;
+
+
 </style>

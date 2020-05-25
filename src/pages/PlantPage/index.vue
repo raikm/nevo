@@ -1,6 +1,6 @@
 <template>
   <div>
-    <PlantCard v-bind:plantInformation="plantInformation" />
+    <PlantCard :plantInformation="plantInformation" />
   </div>
 </template>
 

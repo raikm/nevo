@@ -10,16 +10,16 @@
 
 <script>
 export default {
-  name: "DashboardButton",
+  name: "DashboardMenuButton",
 };
 </script>
 
 <style lang="scss">
 
 .buttoncontainer {
+    height: 60px;
     margin-top: 15px;
     margin-left: 20%;
-    height: 60px;
     width: 60px;
     
 }

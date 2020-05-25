@@ -52,9 +52,7 @@ main {
 }
 
 .right {
-  margin-left: 2vh;
-  
-  
+  margin-left: 2vh;  
   width: 75px;
   height: 20vh;
   overflow: hidden;
