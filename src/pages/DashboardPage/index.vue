@@ -2,20 +2,25 @@
   <main>
     <div class="columns">
       <div id="leftheader" class="column header is-1"></div>
-      <div id="middleheader" class="column header "><h1 id="dashboard-title">DASHBOARD</h1></div>
+      <div id="middleheader" class="column header ">
+        <h1 id="dashboard-title">DASHBOARD</h1>
+      </div>
       <div id="rightheader" class="column header is-3"></div>
     </div>
     <div class="columns">
       <div id="menu" class="main-menu column is-1">
-        <div :key="menu.id" v-for="menu in menus">
-          {{menu.title}}
+        <div class="menu-button" :key="menu.id" v-for="menu in menus">
+          {{ menu.title }}
         </div>
-
       </div>
       <div id="mainControl" class="main-menu column"></div>
       <div id="newsfeed" class="main-menu column is-3">
-        <div id="info-box" :key="infoBoxContent.id" v-for="infoBoxContent in infoBoxContentList">
-          <InfoBox :infoBoxContent="infoBoxContent"/>
+        <div
+          id="info-box"
+          :key="infoBoxContent.id"
+          v-for="infoBoxContent in infoBoxContentList"
+        >
+          <InfoBox :infoBoxContent="infoBoxContent" />
         </div>
       </div>
     </div>
@@ -29,63 +34,61 @@ export default {
   name: "DashboardPage",
   components: { InfoBox },
   data() {
-    return { 
+    return {
       infoBoxContentList: [
         {
           id: 1,
-          iconSource: '/img/icons/shipping-and-delivery.svg',
-          title: 'Package Tracking',
-          contentType: 'package'
+          iconSource: "/img/icons/shipping-and-delivery.svg",
+          title: "Package Tracking",
+          contentType: "package",
         },
         {
           id: 2,
-          iconSource: '/img/icons/plant.svg',
-          title: 'Plant Alert',
-          contentType: 'plant'
-        }
+          iconSource: "/img/icons/plant.svg",
+          title: "Plant Alert",
+          contentType: "plant",
+        },
       ],
       menus: [
         {
           id: 1,
-          title: 'Home',
-          iconSrc: '',
-          link: ''
+          title: "Home",
+          iconSrc: "",
+          link: "",
         },
         {
           id: 2,
-          title: 'Devices',
-          iconSrc: '',
-          link: ''
+          title: "Devices",
+          iconSrc: "",
+          link: "",
         },
         {
           id: 3,
-          title: 'Lights',
-          iconSrc: '',
-          link: ''
+          title: "Lights",
+          iconSrc: "",
+          link: "",
         },
         {
           id: 4,
-          title: 'Plants',
-          iconSrc: '',
-          link: ''
+          title: "Plants",
+          iconSrc: "",
+          link: "",
         },
         {
           id: 5,
-          title: 'Packages',
-          iconSrc: '',
-          link: ''
+          title: "Packages",
+          iconSrc: "",
+          link: "",
         },
         {
           id: 6,
-          title: 'Settings',
-          iconSrc: '',
-          link: ''
+          title: "Settings",
+          iconSrc: "",
+          link: "",
         },
-
-
-      ]
-  }
-  }
+      ],
+    };
+  },
 };
 </script>
 
@@ -95,11 +98,10 @@ export default {
   // min-height: 15vh;
 }
 
-#dashboard-title{
+#dashboard-title {
   font-size: 7vh;
   line-height: 9vh;
   height: 9vh;
-
 }
 
 #middleheader {
@@ -115,6 +117,23 @@ export default {
 #menu {
   border-radius: 0px 40px;
   background-color: rgb(226, 109, 55);
+  padding-top: 4vh;
+}
+
+.menu-button {
+  border-color: grey;
+  border-style: dotted;
+  border-radius: 10px;
+  border-width: 1px;
+  width: 8vh;
+  height: 8vh;
+  max-width: 100%;
+  margin-bottom: 1vh;
+  max-width: 10vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  background-color: rgba(243, 240, 240, 0.2);
 }
 
 #mainControl {
