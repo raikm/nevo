@@ -10,7 +10,7 @@
     <div class="columns">
       <div id="menu" class="main-menu column is-1">
         <div class="menu-button" :key="menu.id" v-for="menu in menus">
-          {{ menu.title }}
+          <img class="menu-icon" :src="menu.iconSource" />
         </div>
       </div>
       <div id="mainControl" class="main-menu column">
@@ -18,6 +18,7 @@
         <HumidityMainInfoBox />
         <LightIntensityMainInfoBox />
         <PublicTransportMainInfoBox />
+        <CalendarMainInfoBox />
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -37,6 +38,7 @@ import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMa
 import HumidityMainInfoBox from "../../components/MainInfoBoxes/HumidityMainInfoBox";
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
 import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
+import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
 
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
@@ -47,7 +49,8 @@ export default {
     TemperatureMainInfoBox,
     HumidityMainInfoBox,
     LightIntensityMainInfoBox,
-    PublicTransportMainInfoBox
+    PublicTransportMainInfoBox,
+    CalendarMainInfoBox
   },
   data() {
     return {
@@ -69,37 +72,31 @@ export default {
         {
           id: 1,
           title: "Home",
-          iconSrc: "",
+          iconSource: "/img/menuicons/dashboard.svg",
           link: "",
         },
         {
           id: 2,
-          title: "Devices",
-          iconSrc: "",
-          link: "",
-        },
-        {
-          id: 3,
           title: "Lights",
-          iconSrc: "",
+          iconSource: "/img/menuicons/lights.svg",
           link: "",
         },
+        // {
+        //   id: 3,
+        //   title: "Devices",
+        //   iconSource: "/img/menuicons/devices.svg",
+        //   link: "",
+        // },
         {
           id: 4,
           title: "Plants",
-          iconSrc: "",
+          iconSource: "/img/menuicons/plants.svg",
           link: "",
         },
         {
           id: 5,
           title: "Packages",
-          iconSrc: "",
-          link: "",
-        },
-        {
-          id: 6,
-          title: "Settings",
-          iconSrc: "",
+          iconSource: "/img/menuicons/packages.svg",
           link: "",
         },
       ],
@@ -121,30 +118,37 @@ export default {
 }
 
 .main-menu {
-  min-height: 150vh;
+  min-height: 100vh;
   margin-top: 2vh;
 }
 
 #menu {
   border-radius: 0px 40px;
-  background-color: rgb(226, 109, 55);
+  background-color: #2980b9;
   padding-top: 4vh;
 }
 
 .menu-button {
-  border-color: grey;
-  border-style: dotted;
-  border-radius: 10px;
-  border-width: 1px;
-  width: 8vh;
+  // background-color: rgba(243, 240, 240, 1);
+  // border-color: grey;
+  // border-style: dotted;
+  // border-radius: 10px;
+  // border-width: 1px;
+  display: flex;
   height: 8vh;
-  max-width: 100%;
-  margin-bottom: 1vh;
-  max-width: 10vh;
+  width: 8vh;
+  margin-bottom: 1.5vh;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  background-color: rgba(243, 240, 240, 0.2);
+
+}
+
+.menu-icon {
+  // fill: red;
+  margin: auto;
+  width: 70%;
+ 
 }
 
 #mainControl {
@@ -155,38 +159,36 @@ export default {
 }
 
 .main-info-box {
-  border-color: grey;
-  border-style: solid;
+  // border-color: grey;
+  // border-style: solid;
   border-radius: 10px;
-  border-width: 1px;
+  // border-width: 1px;
   float: left;
-  
+
   width: 30%;
   margin: 1.6% 1.6%;
   padding: 1vh;
+  box-shadow: 0 1px 2px 0 
 }
 
-.main-info-box-small{
+.main-info-box-small {
   height: 15vh;
 }
 
-.main-info-box-big{
+.main-info-box-big {
   height: 25vh;
-
 }
 .main-info-header {
-  
   display: inline-flex;
   font-size: 2.8vh;
   height: 3vh;
   line-height: 3vh;
-  
+
   overflow: hidden;
 }
 .main-info-icon {
   float: left;
   height: 3vh;
-  
 }
 .main-info-title {
   padding-left: 1vh;

@@ -67,7 +67,8 @@ td {
   height: 5vh;
   line-height: 5vh;
 }
-#sender-information{  width : 50%;
+#sender-information{  
+  width : 50%;
   overflow:hidden;
   padding-right: 1%;
   text-overflow: ellipsis;

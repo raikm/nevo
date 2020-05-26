@@ -97,11 +97,7 @@ export default {
   width: 100%;
 }
 
-.main-info-icon {
-  float: left;
-  height: 3vh;
-  
-}
+
 
 #table-titles {
     font-weight: bold
@@ -126,7 +122,7 @@ export default {
 }
 
 .public-transport-line-content{
-     background-color: yellow;
+     background-color: rgba(240, 97, 36, 0.6);
 }
 
 .public-transport-direction{
