@@ -53,10 +53,10 @@ export default {
 }
 
 #temperature-controller {
-  border-color: rgb(216, 212, 212);
-  border-style: solid;
+  
+  background-color: rgba(234, 48, 48, 0.274);
+  
   border-radius: 10px;
-  border-width: 1px;
   height: 100%;
   overflow: hidden;
 }
