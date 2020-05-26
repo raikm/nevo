@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info-box">
+  <div class="main-info-box main-info-box-small">
     <div id="light-intensity-info-box" :lightintensityInfo="lightintensityInfo">
       <div class="main-info-header">
         <img
@@ -37,6 +37,9 @@ export default {
 </script>
 
 <style lang="scss">
+
+
+
 #light-intensity-info-box {
   float: left;
   margin-right: 10px;

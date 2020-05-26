@@ -17,6 +17,7 @@
         <TemperatureMainInfoBox />
         <HumidityMainInfoBox />
         <LightIntensityMainInfoBox />
+        <PublicTransportMainInfoBox />
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -35,6 +36,8 @@
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
 import HumidityMainInfoBox from "../../components/MainInfoBoxes/HumidityMainInfoBox";
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
+import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
+
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
 export default {
@@ -44,6 +47,7 @@ export default {
     TemperatureMainInfoBox,
     HumidityMainInfoBox,
     LightIntensityMainInfoBox,
+    PublicTransportMainInfoBox
   },
   data() {
     return {
@@ -156,12 +160,20 @@ export default {
   border-radius: 10px;
   border-width: 1px;
   float: left;
-  height: 15vh;
+  
   width: 30%;
-  margin: 0 1.6%;
+  margin: 1.6% 1.6%;
   padding: 1vh;
 }
 
+.main-info-box-small{
+  height: 15vh;
+}
+
+.main-info-box-big{
+  height: 25vh;
+
+}
 .main-info-header {
   // background-color: yellowgreen;
   display: inline-flex;
