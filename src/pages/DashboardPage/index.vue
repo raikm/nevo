@@ -15,6 +15,7 @@
       </div>
       <div id="mainControl" class="main-menu column">
         <TemperatureMainInfoBox />
+        <HumidityMainInfoBox />
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -31,11 +32,12 @@
 
 <script>
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
+import HumidityMainInfoBox from  "../../components/MainInfoBoxes/HumidityMainInfoBox";
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
 export default {
   name: "DashboardPage",
-  components: { InfoBox, TemperatureMainInfoBox },
+  components: { InfoBox, TemperatureMainInfoBox, HumidityMainInfoBox },
   data() {
     return {
       infoBoxContentList: [

@@ -1,6 +1,6 @@
 <template>
   <div class="main-info-box">
-    <div id="temperautre-info-box" :temperatureInfo="temperatureInfo">
+    <div id="temperature-info-box" :temperatureInfo="temperatureInfo">
       <div class="main-info-header">
         <img
           id="temperature-icon"
@@ -38,9 +38,10 @@ export default {
 </script>
 
 <style lang="scss">
-#temperautre-info-box {
+#temperature-info-box {
   float: left;
   margin-right: 10px;
+  width: 85%;
 }
 
 #temperature-icon {
