@@ -3,7 +3,7 @@
     <div id="temperature-info-box" :temperatureInfo="temperatureInfo">
       <div class="main-info-header">
         <img
-          id="temperature-icon"
+          class="main-info-icon"
           src="../../../public/img/icons/thermometer.svg"
         />
         <h1 class="main-info-title" id="temperature-header">
@@ -42,11 +42,6 @@ export default {
   float: left;
   margin-right: 10px;
   width: 85%;
-}
-
-#temperature-icon {
-  float: left;
-  height: 3vh;
 }
 
 #temperature-value {

@@ -175,14 +175,19 @@ export default {
 
 }
 .main-info-header {
-  // background-color: yellowgreen;
+  
   display: inline-flex;
   font-size: 2.8vh;
   height: 3vh;
   line-height: 3vh;
+  
   overflow: hidden;
 }
-
+.main-info-icon {
+  float: left;
+  height: 3vh;
+  
+}
 .main-info-title {
   padding-left: 1vh;
 }

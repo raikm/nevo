@@ -3,7 +3,7 @@
     <div id="humidity-info-box" :humidityInfo="humidityInfo">
       <div class="main-info-header">
         <img
-          id="humidity-icon"
+          class="main-info-icon"
           src="../../../public/img/icons/humidity.svg"
         />
         <h1 class="main-info-title" id="humidity-header">
@@ -44,10 +44,6 @@ export default {
   width: 85%;
 }
 
-#humidity-icon {
-  float: left;
-  height: 3vh;
-}
 
 #humidity-value {
   font-size: 7vh;

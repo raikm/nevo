@@ -6,7 +6,7 @@
     >
       <div class="main-info-header">
         <img
-          id="public-transport-icon"
+          class="main-info-icon"
           src="../../../public/img/icons/subway.svg"
         />
         <h1 class="main-info-title" id="public-transport-header">
@@ -97,7 +97,7 @@ export default {
   width: 100%;
 }
 
-#public-transport-icon {
+.main-info-icon {
   float: left;
   height: 3vh;
   

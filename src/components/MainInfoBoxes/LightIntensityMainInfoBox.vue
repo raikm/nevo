@@ -3,7 +3,7 @@
     <div id="light-intensity-info-box" :lightintensityInfo="lightintensityInfo">
       <div class="main-info-header">
         <img
-          id="light-intensity-icon"
+          class="main-info-icon"
           src="../../../public/img/icons/bulb.svg"
         />
         <h1 class="main-info-title" id="light-intensity-header">
@@ -44,11 +44,6 @@ export default {
   float: left;
   margin-right: 10px;
   width: 100%;
-}
-
-#light-intensity-icon {
-  float: left;
-  height: 3vh;
 }
 
 #light-intensity-bar-border {
