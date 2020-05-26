@@ -51,7 +51,7 @@ export default {
 
 #humidity-value {
   font-size: 7vh;
-  padding-left: 2vh;
+  padding-left: 3vh;
 }
 
 #humidity-controller {

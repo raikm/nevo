@@ -14,7 +14,7 @@
         <span id="temperature-value">+{{ temperatureInfo.value }}°C</span>
       </div>
       <div v-else>
-        <span id="temperature-value" style="padding-left: 2vh">--</span>
+        <span id="temperature-value" style="padding-left: 3vh">--</span>
       </div>
     </div>
     <div id="temperature-controller"></div>
