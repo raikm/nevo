@@ -1,0 +1,63 @@
+<template>
+  <div class="main-info-box">
+    <div id="light-intensity-info-box" :lightintensityInfo="lightintensityInfo">
+      <div class="main-info-header">
+        <img
+          id="light-intensity-icon"
+          src="../../../public/img/icons/bulb.svg"
+        />
+        <h1 class="main-info-title" id="light-intensity-header">
+          Light intensity
+        </h1>
+      </div>
+      <div id="light-intensity-bar-border">
+        <div
+          id="light-intensity-bar"
+          :style="{ width: lightintensityInfo.value + '%' }"
+        ></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "LightIntensityMainInfoBox",
+  components: {},
+  props: [],
+  data() {
+    return {
+      lightintensityInfo: {
+        id: 1,
+        value: 70,
+      },
+    };
+  },
+};
+</script>
+
+<style lang="scss">
+#light-intensity-info-box {
+  float: left;
+  margin-right: 10px;
+  width: 100%;
+}
+
+#light-intensity-icon {
+  float: left;
+  height: 3vh;
+}
+
+#light-intensity-bar-border {
+  background-color: rgba(245, 245, 245, 0.571);
+  border-radius: 10px;
+  width: 100%;
+}
+
+#light-intensity-bar {
+  background-color: rgba(234, 67, 48, 0.648);
+  border-radius: 10px;
+  height: 5vh;
+  margin-top: 4vh;
+}
+</style>

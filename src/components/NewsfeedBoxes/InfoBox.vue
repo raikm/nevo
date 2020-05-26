@@ -32,7 +32,7 @@ export default {
 <style scoped>
 .info-box {
   border-color: grey;
-  border-style: dotted;
+  border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   margin-bottom: 1vh;

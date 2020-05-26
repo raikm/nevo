@@ -16,6 +16,7 @@
       <div id="mainControl" class="main-menu column">
         <TemperatureMainInfoBox />
         <HumidityMainInfoBox />
+        <LightIntensityMainInfoBox />
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -32,12 +33,18 @@
 
 <script>
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
-import HumidityMainInfoBox from  "../../components/MainInfoBoxes/HumidityMainInfoBox";
+import HumidityMainInfoBox from "../../components/MainInfoBoxes/HumidityMainInfoBox";
+import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
 export default {
   name: "DashboardPage",
-  components: { InfoBox, TemperatureMainInfoBox, HumidityMainInfoBox },
+  components: {
+    InfoBox,
+    TemperatureMainInfoBox,
+    HumidityMainInfoBox,
+    LightIntensityMainInfoBox,
+  },
   data() {
     return {
       infoBoxContentList: [
@@ -145,26 +152,28 @@ export default {
 
 .main-info-box {
   border-color: grey;
-  border-style: dotted;
+  border-style: solid;
   border-radius: 10px;
   border-width: 1px;
   float: left;
   height: 15vh;
   width: 30%;
-  margin: 0 2.5%;
+  margin: 0 1.6%;
   padding: 1vh;
 }
 
 .main-info-header {
   // background-color: yellowgreen;
-  font-size: 3vh;  
+  display: inline-flex;
+  font-size: 2.8vh;
   height: 3vh;
   line-height: 3vh;
   overflow: hidden;
-  display: inline-flex;
 }
 
-
+.main-info-title {
+  padding-left: 1vh;
+}
 
 #newsfeed {
   border-radius: 40px 0px;
