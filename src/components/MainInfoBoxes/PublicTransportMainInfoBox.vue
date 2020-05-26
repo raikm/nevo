@@ -24,7 +24,7 @@
 
         <table :key="transport.id" v-for="transport in publicTransportInfos">
           <tr>
-            <td class="public-transport-line">{{ transport.line }}</td>
+            <td class="public-transport-line public-transport-line-content">{{ transport.line }}</td>
             <td class="public-transport-direction">
               {{ transport.direction }}
             </td>
@@ -100,6 +100,7 @@ export default {
 #public-transport-icon {
   float: left;
   height: 3vh;
+  
 }
 
 #table-titles {
@@ -120,6 +121,12 @@ export default {
 .public-transport-line{
     text-align: center;
     width: 15%;
+   
+    border-radius: 6px;
+}
+
+.public-transport-line-content{
+     background-color: yellow;
 }
 
 .public-transport-direction{
@@ -135,8 +142,8 @@ export default {
 
 
 table {
+  margin-bottom: 3px;
   width: 100%;
-  
 }
 
 td {
