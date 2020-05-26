@@ -13,7 +13,9 @@
           {{ menu.title }}
         </div>
       </div>
-      <div id="mainControl" class="main-menu column"></div>
+      <div id="mainControl" class="main-menu column">
+        <TemperatureMainInfoBox />
+      </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
           id="info-box"
@@ -28,11 +30,12 @@
 </template>
 
 <script>
+import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
 export default {
   name: "DashboardPage",
-  components: { InfoBox },
+  components: { InfoBox, TemperatureMainInfoBox },
   data() {
     return {
       infoBoxContentList: [
@@ -93,11 +96,6 @@ export default {
 </script>
 
 <style lang="scss">
-.header {
-  // background-color: yellow;
-  // min-height: 15vh;
-}
-
 #dashboard-title {
   font-size: 7vh;
   line-height: 9vh;
@@ -139,7 +137,32 @@ export default {
 #mainControl {
   margin-left: 2vh;
   margin-right: 2vh;
+  overflow: hidden;
+  padding: 4vh;
 }
+
+.main-info-box {
+  border-color: grey;
+  border-style: dotted;
+  border-radius: 10px;
+  border-width: 1px;
+  float: left;
+  height: 15vh;
+  width: 30%;
+  margin: 0 2.5%;
+  padding: 1vh;
+}
+
+.main-info-header {
+  // background-color: yellowgreen;
+  font-size: 3vh;  
+  height: 3vh;
+  line-height: 3vh;
+  overflow: hidden;
+  display: inline-flex;
+}
+
+
 
 #newsfeed {
   border-radius: 40px 0px;

@@ -1,5 +1,5 @@
 <template>
-  <div class="box" :data="infoBoxContent">
+  <div class="info-box" :data="infoBoxContent">
       
       <img class="info-icon" :src="infoBoxContent.iconSource" />
       <h1 class="info-title">{{infoBoxContent.title}}</h1>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-.box {
+.info-box {
   border-color: grey;
   border-style: dotted;
   border-radius: 10px;
