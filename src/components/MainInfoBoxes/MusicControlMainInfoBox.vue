@@ -28,15 +28,18 @@ export default {
 #volume-control {
   box-shadow: 0 1px 2px 0;
   border-radius: 10px;
+  
 }
 
 #music-control {
   height: 70%;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
+  padding: 5%;
 }
 
 #volume-control {
   height: 6vh;
   padding: 1.6%;
+  
 }
 </style>

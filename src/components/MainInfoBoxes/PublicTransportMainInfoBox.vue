@@ -112,8 +112,22 @@ export default {
 
 </style>
 
+
+// ----- scoped ------
 <style lang="scss" scoped>
 
+
+table {
+  margin-bottom: 3px;
+  width: 100%;
+}
+
+td {
+  display: inline-block;
+  font-size: 1.8vh;
+  height: 3vh;
+  line-height: 3vh;
+}
 .public-transport-line{
     text-align: center;
     width: 15%;
@@ -136,16 +150,4 @@ export default {
 }
 
 
-
-table {
-  margin-bottom: 3px;
-  width: 100%;
-}
-
-td {
-  display: inline-block;
-  font-size: 1.8vh;
-  height: 3vh;
-  line-height: 3vh;
-}
 </style>

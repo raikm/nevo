@@ -1,11 +1,11 @@
 <template>
   <main>
     <div class="columns">
-      <div id="leftheader" class="column header is-1"></div>
-      <div id="middleheader" class="column header ">
+      <div id="left-header" class="column header is-1"></div>
+      <div id="middle-header" class="column header ">
         <h1 id="dashboard-title">DASHBOARD</h1>
       </div>
-      <div id="rightheader" class="column header is-3"></div>
+      <div id="right-header" class="column header is-3"></div>
     </div>
     <div class="columns">
       <div id="menu" class="main-menu column is-1">
@@ -13,13 +13,15 @@
           <img class="menu-icon" :src="menu.iconSource" />
         </div>
       </div>
-      <div id="mainControl" class="main-menu column">
+      <div id="main-control" class="main-menu column">
         <TemperatureMainInfoBox />
         <HumidityMainInfoBox />
         <LightIntensityMainInfoBox />
         <PublicTransportMainInfoBox />
         <CalendarMainInfoBox />
         <MusicControlMainInfoBox />
+        <MainSceneBox id="scene-buttons"/>
+
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -41,6 +43,7 @@ import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightInten
 import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
+import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
 
 
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
@@ -54,7 +57,8 @@ export default {
     LightIntensityMainInfoBox,
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
-    MusicControlMainInfoBox
+    MusicControlMainInfoBox,
+    MainSceneBox
   },
   data() {
     return {
@@ -116,7 +120,7 @@ export default {
   height: 9vh;
 }
 
-#middleheader {
+#middle-header {
   margin: 0 2vh;
   // padding: 4vh;
 }
@@ -155,20 +159,20 @@ export default {
  
 }
 
-#mainControl {
+#main-control {
   margin-left: 2vh;
   margin-right: 2vh;
-  overflow: hidden;
+  // overflow: hidden;
   padding: 4vh;
 }
 
 .main-info-box {
   border-radius: 10px;
+  box-shadow: 0 1px 2px 0;
   float: left;
   width: 30%;
   margin: 1.6% 1.6%;
   padding: 1vh;
-  box-shadow: 0 1px 2px 0 
 }
 
 .main-info-box-small {
@@ -193,6 +197,16 @@ export default {
 .main-info-title {
   padding-left: 1vh;
 }
+
+#scene-buttons{
+  // overflow: hidden;
+  float:left;
+  margin-top: 1.6%;
+  height: 16vh;
+  width: 100%;
+  // background-color: pink;
+}
+
 
 #newsfeed {
   border-radius: 40px 0px;
