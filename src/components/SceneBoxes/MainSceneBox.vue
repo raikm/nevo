@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="scene-button" :key="scene.id" v-for="scene in scenes">
+    <div class="scene-button click-element" :key="scene.id" v-for="scene in scenes">
       
         <StandardSceneBox :scene="scene" />
       <!-- {{ scene.title }} -->
@@ -57,11 +57,13 @@ export default {
 .scene-button {
 
  display: inline-block;
-  box-shadow: 0 1px 2px 0;
+  background-color: white;
   border-radius: 10px;
-
+  border-color: rgb(243, 244, 254);
+  border-width: 1px;
+  border-style: solid;
   height: 15vh;
-  margin: 0 2%;
-  width: 12.3vh;
+  margin: 0 1.05%;
+  width: 14.5%;
 }
 </style>

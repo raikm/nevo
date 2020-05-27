@@ -1,5 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import DevicessPage from '../pages/DevicesPage'
+import LampsPage from '../pages/LampsPage'
+import PlantsPage from '../pages/PlantsPage'
+import PackagesPage from '../pages/PackagesPage'
+import SettingsPage from '../pages/SettingsPage'
+import DashboardPage from '../pages/DashboardPage'
 
 Vue.use(Router)
 
@@ -8,11 +14,37 @@ export default new Router({
     {
       path: '/',
       name: 'dashboard-page',
-      component: require('../pages/DashboardPage').default
+      component: DashboardPage
     },
     {
-      path: '*',
-      redirect: '/'
-    }
+      path: '/DashboardPage',
+      name: 'dashboard-page',
+      component: DashboardPage
+    },
+    {
+      path: '/LampsPage',
+      name: 'lamps-page',
+      component: LampsPage,
+    },
+    {
+      path: '/DevicessPage',
+      name: 'devices-page',
+      component: DevicessPage,
+    },
+    {
+      path: '/PlantsPage',
+      name: 'plants-page',
+      component: PlantsPage,
+    },
+    {
+      path: '/PackagesPage',
+      name: 'packages-page',
+      component: PackagesPage,
+    },
+    {
+      path: '/SettingsPage',
+      name: 'settings-page',
+      component: SettingsPage,
+    },
   ]
 })

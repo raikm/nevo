@@ -31,10 +31,11 @@ export default {
 
 <style scoped>
 .info-box {
-  border-color: grey;
-  border-style: solid;
+  background-color: white;
   border-radius: 10px;
+  border-color: rgb(243, 244, 254);
   border-width: 1px;
+  border-style: solid;
   margin-bottom: 1vh;
   width: 100%;
   padding: 10px;

@@ -1,38 +1,14 @@
 <template>
   <main>
-    <div class="columns">
-      <div id="left-header" class="column header is-1"></div>
-      <div id="middle-header" class="column header ">
-        <h1 id="dashboard-title">DASHBOARD</h1>
-      </div>
-      <div id="right-header" class="column header is-3"></div>
-    </div>
-    <div class="columns">
-      <div id="menu" class="main-menu column is-1">
-        <div class="menu-button" :key="menu.id" v-for="menu in menus">
-          <img class="menu-icon" :src="menu.iconSource" />
-        </div>
-      </div>
-      <div id="main-control" class="main-menu column">
+      <div class="column">
         <TemperatureMainInfoBox />
         <HumidityMainInfoBox />
         <LightIntensityMainInfoBox />
         <PublicTransportMainInfoBox />
         <CalendarMainInfoBox />
         <MusicControlMainInfoBox />
-        <MainSceneBox id="scene-buttons"/>
-
+        <MainSceneBox id="scene-buttons" />
       </div>
-      <div id="newsfeed" class="main-menu column is-3">
-        <div
-          id="info-box"
-          :key="infoBoxContent.id"
-          v-for="infoBoxContent in infoBoxContentList"
-        >
-          <InfoBox :infoBoxContent="infoBoxContent" />
-        </div>
-      </div>
-    </div>
   </main>
 </template>
 
@@ -46,19 +22,16 @@ import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControl
 import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
 
 
-import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
-
 export default {
   name: "DashboardPage",
   components: {
-    InfoBox,
     TemperatureMainInfoBox,
     HumidityMainInfoBox,
     LightIntensityMainInfoBox,
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
-    MainSceneBox
+    MainSceneBox,
   },
   data() {
     return {
@@ -114,61 +87,23 @@ export default {
 </script>
 
 <style lang="scss">
-#dashboard-title {
-  font-size: 7vh;
-  line-height: 9vh;
-  height: 9vh;
-}
 
-#middle-header {
-  margin: 0 2vh;
+
+
+#main-control {
+  // margin-left: 2vh;
+  // margin-right: 2vh;
+  // // overflow: hidden;
   // padding: 4vh;
 }
 
-.main-menu {
-  min-height: 100vh;
-  margin-top: 2vh;
-}
-
-#menu {
-  border-radius: 0px 40px;
-  background-color: #2980b9;
-  padding-top: 4vh;
-}
-
-.menu-button {
-  // background-color: rgba(243, 240, 240, 1);
-  // border-color: grey;
-  // border-style: dotted;
-  // border-radius: 10px;
-  // border-width: 1px;
-  display: flex;
-  height: 8vh;
-  width: 8vh;
-  margin-bottom: 1.5vh;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-
-}
-
-.menu-icon {
-  // fill: red;
-  margin: auto;
-  width: 70%;
- 
-}
-
-#main-control {
-  margin-left: 2vh;
-  margin-right: 2vh;
-  // overflow: hidden;
-  padding: 4vh;
-}
-
 .main-info-box {
+  background-color: white;
   border-radius: 10px;
-  box-shadow: 0 1px 2px 0;
+  border-color: rgb(243, 244, 254);
+  border-width: 1px;
+  border-style: solid;
+  // box-shadow: 0 1px 2px 0;
   float: left;
   width: 30%;
   margin: 1.6% 1.6%;
@@ -198,7 +133,7 @@ export default {
   padding-left: 1vh;
 }
 
-#scene-buttons{
+#scene-buttons {
   // background-color: pink;
   margin-top: 1.6%;
   height: 16vh;
@@ -210,9 +145,4 @@ export default {
 }
 
 
-#newsfeed {
-  border-radius: 40px 0px;
-  padding: 4vh;
-  background-color: rgba(224, 224, 224, 0.353);
-}
 </style>

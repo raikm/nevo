@@ -136,7 +136,7 @@ td {
 }
 
 .public-transport-line-content{
-     background-color: rgba(240, 97, 36, 0.6);
+    //  background-color: rgba(240, 97, 36, 0.6);
 }
 
 .public-transport-direction{

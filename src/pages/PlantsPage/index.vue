@@ -8,7 +8,7 @@
 import PlantCard from "./PlantCard";
 
 export default {
-  name: "PlantPage",
+  name: "PlantsPage",
   components: {
     PlantCard,
   },

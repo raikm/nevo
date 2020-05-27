@@ -28,7 +28,7 @@ export default {
 }
 
 .scene-name{
-  margin-top: 4vh;
+  margin-top: 60%;
   margin-right: 1vh;
   float: right;
   font-size: 1.5vh;

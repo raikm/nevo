@@ -26,9 +26,11 @@ export default {
 
 #music-control,
 #volume-control {
-  box-shadow: 0 1px 2px 0;
+   background-color: white;
   border-radius: 10px;
-  
+  border-color: rgb(243, 244, 254);
+  border-width: 1px;
+  border-style: solid;
 }
 
 #music-control {
@@ -39,7 +41,7 @@ export default {
 
 #volume-control {
   height: 6vh;
-  padding: 1.6%;
+  padding: 1.2%;
   
 }
 </style>
