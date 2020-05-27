@@ -199,12 +199,14 @@ export default {
 }
 
 #scene-buttons{
-  // overflow: hidden;
-  float:left;
+  // background-color: pink;
   margin-top: 1.6%;
   height: 16vh;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding: 0.5vh;
+  white-space: nowrap;
   width: 100%;
-  // background-color: pink;
 }
 
 

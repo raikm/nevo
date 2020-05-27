@@ -50,13 +50,13 @@ export default {
 
 <style lang="scss">
 .scene-button {
+
+ display: inline-block;
   box-shadow: 0 1px 2px 0;
   border-radius: 10px;
-  display: flex;
-  float: left;
-  height: 15vh;
-  margin: 0 2.3vh;
 
-  width: 13.3vh;
+  height: 15vh;
+  margin: 0 2%;
+  width: 12.3vh;
 }
 </style>
