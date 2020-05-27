@@ -7,7 +7,7 @@
           src="../../../public/img/icons/calendar.svg"
         />
         <h1 class="main-info-title" id="calendar-header">
-          Next up
+          Up next
         </h1>
       </div>
 

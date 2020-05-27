@@ -19,6 +19,7 @@
         <LightIntensityMainInfoBox />
         <PublicTransportMainInfoBox />
         <CalendarMainInfoBox />
+        <MusicControlMainInfoBox />
       </div>
       <div id="newsfeed" class="main-menu column is-3">
         <div
@@ -39,6 +40,8 @@ import HumidityMainInfoBox from "../../components/MainInfoBoxes/HumidityMainInfo
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
 import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
+import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
+
 
 import InfoBox from "../../components/NewsfeedBoxes/InfoBox";
 
@@ -50,7 +53,8 @@ export default {
     HumidityMainInfoBox,
     LightIntensityMainInfoBox,
     PublicTransportMainInfoBox,
-    CalendarMainInfoBox
+    CalendarMainInfoBox,
+    MusicControlMainInfoBox
   },
   data() {
     return {
@@ -159,12 +163,8 @@ export default {
 }
 
 .main-info-box {
-  // border-color: grey;
-  // border-style: solid;
   border-radius: 10px;
-  // border-width: 1px;
   float: left;
-
   width: 30%;
   margin: 1.6% 1.6%;
   padding: 1vh;
