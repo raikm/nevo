@@ -1,45 +1,50 @@
 <template>
   <div>
     <div class="scene-button" :key="scene.id" v-for="scene in scenes">
+      
+        <StandardSceneBox :scene="scene" />
       <!-- {{ scene.title }} -->
     </div>
   </div>
 </template>
 
 <script>
+import StandardSceneBox from './StandardSceneBox'
+
 export default {
   name: "MainSceneBox",
+  components: {StandardSceneBox},
   data() {
     return {
       scenes: [
         {
           id: 1,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/morning.svg",
           title: "Start Morning",
         },
         {
           id: 2,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/moon.svg",
           title: "Night Mode",
         },
         {
           id: 3,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/back.png",
           title: "Back Home",
         },
         {
           id: 4,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/leave.png",
           title: "Leave Home",
         },
         {
           id: 5,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/clean.png",
           title: "Cleanup",
         },
         {
           id: 6,
-          iconSource: "/img/icons/scenes/___",
+          iconSource: "/img/sceneicons/projector.png",
           title: "Movie Mode",
         },
       ],
