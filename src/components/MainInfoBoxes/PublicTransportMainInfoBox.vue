@@ -2,7 +2,7 @@
   <div class="main-info-box main-info-box-big">
     <div
       id="public-transport-info-box"
-      :publicTransportInfo="publicTransportInfo"
+      
     >
       <div class="main-info-header">
         <img
