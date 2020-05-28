@@ -1,46 +1,59 @@
 <template>
   <div id="app">
-  <main>
-    <div class="columns">
-      <div id="left-header" class="column header is-1"></div>
-      <div id="middle-header" class="column header ">
-        <h1 id="dashboard-title">DASHBOARD</h1>
+    <main>
+      <div class="columns">
+        <div id="left-header" class="column header is-1"></div>
+        <div id="middle-header" class="column header ">
+          <h1 id="dashboard-title">DASHBOARD</h1>
+        </div>
+        <div id="right-header" class="column header is-3"></div>
       </div>
-      <div id="right-header" class="column header is-3"></div>
-    </div>
-    <div class="columns">
-      <div id="menu" class="main-menu column is-1">
-        <div class="menu-button" :key="menu.id" v-for="menu in menus">
-           <router-link :to="menu.link">
-          <img class="menu-icon" :src="menu.iconSource" />
-         </router-link>
+      <div class="columns">
+        <div id="menu" class="main-menu column is-1">
+          <div class="menu-button" :key="menu.id" v-for="menu in menus">
+          
+              <object
+                class="menu-icon"
+                :data="menu.iconSource"
+                type="image/svg+xml"
+                @click="changePage('menulink')"
+                
+              >
+              </object>
+              <!-- <img class="menu-icon" :src="menu.iconSource" /> -->
+            
+          </div>
+        </div>
+        <div id="main-control" class="main-menu column">
+          <router-view></router-view>
+        </div>
+        <div id="newsfeed" class="main-menu column is-3">
+          <div
+            id="info-box"
+            :key="infoBoxContent.id"
+            v-for="infoBoxContent in infoBoxContentList"
+          >
+            <InfoBox :infoBoxContent="infoBoxContent" />
+          </div>
         </div>
       </div>
-      <div id="main-control" class="main-menu column">
-        <router-view></router-view>
-      </div>
-      <div id="newsfeed" class="main-menu column is-3">
-        <div
-          id="info-box"
-          :key="infoBoxContent.id"
-          v-for="infoBoxContent in infoBoxContentList"
-        >
-          <InfoBox :infoBoxContent="infoBoxContent" />
-        </div>
-      </div>
-    </div>
-  </main>
+    </main>
   </div>
 </template>
-
 
 <script>
 import InfoBox from "./components/NewsfeedBoxes/InfoBox";
 
 export default {
-  name: 'homeapp',
+  name: "homeapp",
   components: {
-    InfoBox
+    InfoBox,
+  },
+  methods: {
+    changePage(path){
+      console.log("change")
+      this.$router.push(path)
+    }
   },
   data() {
     return {
@@ -89,7 +102,7 @@ export default {
           iconSource: "/img/menuicons/packages.svg",
           link: "/PackagesPage",
         },
-      ],
+      ] 
     };
   },
 };
@@ -151,12 +164,17 @@ body {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+
 }
 
 .menu-icon {
-  // fill: red;
+  
   margin: auto;
   width: 70%;
+}
+
+.menu-icon:active {
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
 
 #newsfeed {

@@ -35,67 +35,13 @@ export default {
   },
   data() {
     return {
-      infoBoxContentList: [
-        {
-          id: 1,
-          iconSource: "/img/icons/shipping-and-delivery.svg",
-          title: "Package Tracking",
-          contentType: "package",
-        },
-        {
-          id: 2,
-          iconSource: "/img/icons/plant.svg",
-          title: "Plant Alert",
-          contentType: "plant",
-        },
-      ],
-      menus: [
-        {
-          id: 1,
-          title: "Home",
-          iconSource: "/img/menuicons/dashboard.svg",
-          link: "",
-        },
-        {
-          id: 2,
-          title: "Lights",
-          iconSource: "/img/menuicons/lights.svg",
-          link: "",
-        },
-        // {
-        //   id: 3,
-        //   title: "Devices",
-        //   iconSource: "/img/menuicons/devices.svg",
-        //   link: "",
-        // },
-        {
-          id: 4,
-          title: "Plants",
-          iconSource: "/img/menuicons/plants.svg",
-          link: "",
-        },
-        {
-          id: 5,
-          title: "Packages",
-          iconSource: "/img/menuicons/packages.svg",
-          link: "",
-        },
-      ],
+      temperature: 99.9,     
     };
   },
 };
 </script>
 
 <style lang="scss">
-
-
-
-#main-control {
-  // margin-left: 2vh;
-  // margin-right: 2vh;
-  // // overflow: hidden;
-  // padding: 4vh;
-}
 
 .main-info-box {
   background-color: white;
