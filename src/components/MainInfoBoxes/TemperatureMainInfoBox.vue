@@ -10,7 +10,7 @@
           Indoor temperature
         </h1>
       </div>
-      <div v-if="temperatureInfo != 92.9">
+      <div v-if="temperatureInfo != 99.9">
         <span id="temperature-value"
           >+{{ temperatureInfo }}°C</span
         >
@@ -34,11 +34,11 @@ export default {
   data() {return {
       temperatureInfo:  99.9,
   }},
-  created() {
+  mounted() {
         // Return the axios promise so we can daisy chain .then() in our previous call
         this.$axios
           .get(serverAddress + "/HomeAPI/rest/plants/allLastData")
-          .then(function(response) {
+          .then((response) => {
             // handle success
             var temperatureData = response.data.map(el => el.temperature).map(Number);
             const sum = temperatureData.reduce((a, b) => a + b, 0);
