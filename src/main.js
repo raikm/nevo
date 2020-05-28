@@ -13,8 +13,10 @@ Vue.use(VueAxios)
 
 Vue.config.productionTip = false
 Vue.http = Vue.prototype.$http = axios
-Vue.use(Buefy)
+window.axios = require('axios')
 
+
+Vue.use(Buefy)
 
 new Vue({
   router,

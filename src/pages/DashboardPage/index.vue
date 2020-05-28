@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      temperature: 99.9,     
+    
     };
   },
 };

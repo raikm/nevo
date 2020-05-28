@@ -10,8 +10,10 @@
           Indoor temperature
         </h1>
       </div>
-      <div v-if="temperatureInfo.value != 99">
-        <span id="temperature-value">+{{ temperatureInfo.value }}°C</span>
+      <div v-if="temperatureInfo != 92.9">
+        <span id="temperature-value"
+          >+{{ temperatureInfo }}°C</span
+        >
       </div>
       <div v-else>
         <span id="temperature-value" style="padding-left: 3vh">--</span>
@@ -22,18 +24,39 @@
 </template>
 
 <script>
+var serverAddress = "http://192.168.0.22:8181";
+
+
 export default {
   name: "TemperatureMainInfoBox",
   components: {},
-  props: [],
-  data() {
-    return {
-      temperatureInfo: {
-        id: 1,
-        value: 21.2,
-      },
-    };
-  },
+  props: ['serverAddress', 'temp'],
+  data() {return {
+      temperatureInfo:  99.9,
+  }},
+  created() {
+        // Return the axios promise so we can daisy chain .then() in our previous call
+        this.$axios
+          .get(serverAddress + "/HomeAPI/rest/plants/allLastData")
+          .then(function(response) {
+            // handle success
+            var temperatureData = response.data.map(el => el.temperature).map(Number);
+            const sum = temperatureData.reduce((a, b) => a + b, 0);
+            const avg = (sum / temperatureData.length) || 0;
+            this.temperatureInfo = avg.toFixed(1)
+          
+          })
+          .catch(function(error) {
+            // handle error
+            console.log(error);
+          })
+          .then(function() {
+            // always executed
+          });
+          
+    },
+
+
 };
 </script>
 
@@ -49,9 +72,8 @@ export default {
 }
 
 #temperature-controller {
-  
   background-color: rgba(234, 48, 48, 0.274);
-  
+
   border-radius: 10px;
   height: 100%;
   overflow: hidden;
