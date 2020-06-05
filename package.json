@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "buefy": "^0.8.17",
+    "config.json": "0.0.4",
     "core-js": "^3.6.4",
     "register-service-worker": "^1.7.1",
     "vue": "^2.6.11",

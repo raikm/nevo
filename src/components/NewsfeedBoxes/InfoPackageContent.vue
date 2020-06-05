@@ -14,7 +14,7 @@
     </table>
   </div>
 </template>
-
+<script type="text/javascript" src="//www.17track.net/externalcall.js"></script>
 <script>
 export default {
   name: "InfoPackageContent",
@@ -25,18 +25,21 @@ export default {
           id: 1,
           supplier: "UPS",
           sender: "Zalando",
+          trackingnumber: 123,
           status: "del_today",
         },
         {
           id: 2,
           supplier: "DHL",
           sender: "Mediamarkt Salzburg Apple Bla",
+          trackingnumber: 123,
           status: "del_today",
         },
         {
           id: 3,
           supplier: "POST",
           sender: "Apple",
+          trackingnumber: 123,
           status: "del_pending",
         },
       ],
@@ -49,6 +52,12 @@ export default {
       });
     },
   },
+  methods: {
+    getCurrentPackages() {
+   
+    },
+  },
+  mounted() {},
 };
 </script>
 
@@ -57,19 +66,18 @@ export default {
 @import "~bulma/sass/utilities/_all";
 
 table {
-   width: 100%;
-
+  width: 100%;
 }
 
 td {
-  display:inline-block;
+  display: inline-block;
   font-size: 1.8vh;
   height: 5vh;
   line-height: 5vh;
 }
-#sender-information{  
-  width : 50%;
-  overflow:hidden;
+#sender-information {
+  width: 50%;
+  overflow: hidden;
   padding-right: 1%;
   text-overflow: ellipsis;
   white-space: nowrap;

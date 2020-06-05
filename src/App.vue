@@ -12,16 +12,10 @@
         <div id="menu" class="main-menu column is-1">
           <div class="menu-button" :key="menu.id" v-for="menu in menus">
           
-              <object
-                class="menu-icon"
-                :data="menu.iconSource"
-                type="image/svg+xml"
-                @click="changePage('menulink')"
-                
-              >
-              </object>
-              <!-- <img class="menu-icon" :src="menu.iconSource" /> -->
-            
+              
+              <img class="menu-icon"  @click="changePage(menu.link)" :src="menu.iconSource" />
+
+
           </div>
         </div>
         <div id="main-control" class="main-menu column">
@@ -177,6 +171,18 @@ body {
 .menu-icon:active {
   filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
 }
+
+#svgbackground{
+  fill:rgb(252, 252, 252);
+  width: 100%;
+  height: 100%;
+}
+
+#svgbackground.path{
+  
+  
+}
+
 
 #newsfeed {
   border-radius: 40px 0px;
