@@ -8,6 +8,9 @@ import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import VueAxios from './plugins/axios'
+import './mixins/helpersMixin'
+
+
 
 Vue.use(VueAxios)
 

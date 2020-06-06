@@ -24,7 +24,7 @@
 </template>
 
 <script>
-var serverAddress = "http://192.168.0.22:8181";
+// var serverAddress = "http://192.168.0.22:8181";
 
 
 export default {
@@ -36,23 +36,23 @@ export default {
   }},
   mounted() {
         // Return the axios promise so we can daisy chain .then() in our previous call
-        this.$axios
-          .get(serverAddress + "/HomeAPI/rest/plants/allLastData")
-          .then((response) => {
-            // handle success
-            var temperatureData = response.data.map(el => el.temperature).map(Number);
-            const sum = temperatureData.reduce((a, b) => a + b, 0);
-            const avg = (sum / temperatureData.length) || 0;
-            this.temperatureInfo = avg.toFixed(1)
+        // this.$axios
+        //   .get(serverAddress + "/HomeAPI/rest/plants/allLastData")
+        //   .then((response) => {
+        //     // handle success
+        //     var temperatureData = response.data.map(el => el.temperature).map(Number);
+        //     const sum = temperatureData.reduce((a, b) => a + b, 0);
+        //     const avg = (sum / temperatureData.length) || 0;
+        //     this.temperatureInfo = avg.toFixed(1)
           
-          })
-          .catch(function(error) {
-            // handle error
-            console.log(error);
-          })
-          .then(function() {
-            // always executed
-          });
+        //   })
+        //   .catch(function(error) {
+        //     // handle error
+        //     console.log(error);
+        //   })
+        //   .then(function() {
+        //     // always executed
+        //   });
           
     },
 

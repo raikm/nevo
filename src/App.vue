@@ -4,7 +4,7 @@
       <div class="columns">
         <div id="left-header" class="column header is-1"></div>
         <div id="middle-header" class="column header ">
-          <h1 id="dashboard-title">DASHBOARD</h1>
+          <h1 id="dashboard-title"></h1>
         </div>
         <div id="right-header" class="column header is-3"></div>
       </div>
@@ -45,10 +45,8 @@ export default {
     InfoBox,
   },
   methods: {
-    changePage(path){
-      console.log("change")
-      this.$router.push(path)
-    }
+   
+    
   },
   data() {
     return {

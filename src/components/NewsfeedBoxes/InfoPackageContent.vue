@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click='changePage("/PackagesPage");'>
     <table :key="p.id" v-for="p in packagesToday">
       <tr>
         <td width="30%">{{ p.supplier }}</td>
@@ -52,10 +52,8 @@ export default {
       });
     },
   },
-  methods: {
-    getCurrentPackages() {
-   
-    },
+ methods: {
+    
   },
   mounted() {},
 };
