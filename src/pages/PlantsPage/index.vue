@@ -14,16 +14,16 @@ export default {
   },
   created: function() {
     {
-      this.$axios
-        .get("http://192.168.0.22:8181/HomeAPI/rest/plants/allLastData/", {
-        })
-        .then((response) => {
-          this.plantInformation = response.data;
-        })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
-        });
+      // this.$axios
+      //   .get("http://192.168.0.22:8181/HomeAPI/rest/plants/allLastData/", {
+      //   })
+      //   .then((response) => {
+      //     this.plantInformation = response.data;
+      //   })
+      //   .catch(function(error) {
+      //     // handle error
+      //     console.log(error);
+      //   });
     }
   },
   data() {
