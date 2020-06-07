@@ -72,7 +72,7 @@ export default {
 }
 
 #temperature-controller {
-  background-color: rgba(234, 48, 48, 0.274);
+  background-color: rgba(255, 163, 132, 0.797);
 
   border-radius: 10px;
   height: 100%;

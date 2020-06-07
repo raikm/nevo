@@ -10,20 +10,23 @@
           Light intensity
         </h1>
       </div>
-      <div id="light-intensity-bar-border">
+      <!-- <div id="light-intensity-bar-border">
         <div
           id="light-intensity-bar"
           :style="{ width: lightintensityInfo.value + '%' }"
         ></div>
-      </div>
+      </div> -->
+      <HorizontalBarController id="light-intensity-control" />
     </div>
   </div>
 </template>
 
 <script>
+import HorizontalBarController from "../InteractionController/HorizontalBarController";
+
 export default {
   name: "LightIntensityMainInfoBox",
-  components: {},
+  components: {HorizontalBarController},
   props: [],
   data() {
     return {
@@ -52,9 +55,8 @@ export default {
   width: 100%;
 }
 
-#light-intensity-bar {
-  background-color: rgba(234, 67, 48, 0.648);
-  border-radius: 10px;
+#light-intensity-control {
+  width: 100%;
   height: 5vh;
   margin-top: 4vh;
 }

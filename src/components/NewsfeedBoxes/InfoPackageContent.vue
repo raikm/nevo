@@ -1,5 +1,5 @@
 <template>
-  <div @click='changePage("/PackagesPage");'>
+  <div>
     <table :key="p.id" v-for="p in packagesToday">
       <tr>
         <td width="30%">{{ p.supplier }}</td>

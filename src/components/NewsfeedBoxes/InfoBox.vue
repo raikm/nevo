@@ -1,5 +1,5 @@
 <template>
-  <div class="info-box" :data="infoBoxContent">
+  <div @click='changePage("/PackagesPage");' class="info-box" :data="infoBoxContent">
       
       <img class="info-icon" :src="infoBoxContent.iconSource" />
       <h1 class="info-title">{{infoBoxContent.title}}</h1>

@@ -52,7 +52,7 @@ export default {
 
 #humidity-controller {
   
-  background-color: rgba(48, 169, 234, 0.274);
+  background-color: rgba(116, 188, 203, 0.456);
   
   border-radius: 10px;
   height: 100%;

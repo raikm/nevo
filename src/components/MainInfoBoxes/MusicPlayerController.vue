@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="playlist-table">
-      <table :key="playlist.id" v-for="playlist in playlists.slice(0, 3)">
+      <table  class="click-element" :key="playlist.id" v-for="playlist in playlists.slice(0, 3)">
         <tr>
           <td class="cover"></td>
           <td class="playlist-name">
@@ -11,7 +11,7 @@
       </table>
     </div>
     <div class="playlist-table">
-      <table :key="playlist.id" v-for="playlist in playlists.slice(3, 6)">
+      <table class="click-element" :key="playlist.id" v-for="playlist in playlists.slice(3, 6)">
         <tr>
           <td class="cover"></td>
           <td class="playlist-name">
@@ -68,7 +68,7 @@ export default {
 <style lang="scss">
 .cover {
   width: 4vh;
-  background-color: rgba(255, 192, 203, 0.211);
+  background-color: rgba(116, 188, 203, 0.456);
 }
 
 .playlist-name {
@@ -83,8 +83,8 @@ export default {
 <style lang="scss" scoped>
 .playlist-table {
     float: left;
-    width: 45%;
-    margin: 1%;
+    width: 50%;
+    // margin: 1%;
     
 }
 

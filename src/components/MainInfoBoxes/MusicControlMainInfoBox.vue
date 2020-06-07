@@ -1,17 +1,17 @@
 <template>
-  <div class="music-control-box">
+  <div class="main-info-box main-info-box-big music-control-box">
     <MusicPlayerController id="music-control" />
-    <VolumeController id="volume-control" />
+    <HorizontalBarController id="volume-control" />
   </div>
 </template>
 
 <script>
 import MusicPlayerController from "./MusicPlayerController";
-import VolumeController from "./VolumeController";
+import HorizontalBarController from "../InteractionController/HorizontalBarController";
 
 export default {
   name: "MusicControlMainInfoBox",
-  components: { MusicPlayerController, VolumeController },
+  components: { MusicPlayerController, HorizontalBarController },
 };
 </script>
 
@@ -22,26 +22,26 @@ export default {
   margin: 1.6% 1.6%;
   
   width: 30%;
-}
-
-#music-control,
-#volume-control {
-   background-color: white;
+  background-color: white;
   border-radius: 10px;
   border-color: rgb(243, 244, 254);
   border-width: 1px;
   border-style: solid;
 }
 
+#music-control,
+#volume-control {
+
+}
+
 #music-control {
   height: 70%;
   margin-bottom: 4%;
-  padding: 5%;
+  // padding: 5%;
 }
 
 #volume-control {
-  height: 6vh;
-  padding: 1.2%;
-  
+  height: 5vh;
+  width: 100%;
 }
 </style>
