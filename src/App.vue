@@ -10,12 +10,8 @@
       </div>
       <div class="columns">
         <div id="menu" class="main-menu column is-1">
-          <div class="menu-button" :key="menu.id" v-for="menu in menus">
-          
-              
+          <div class="menu-button" :key="menu.id" v-for="menu in menus">  
               <img class="menu-icon"  @click="changePage(menu.link)" :src="menu.iconSource" />
-
-
           </div>
         </div>
         <div id="main-control" class="main-menu column">
@@ -27,7 +23,7 @@
             :key="infoBoxContent.id"
             v-for="infoBoxContent in infoBoxContentList"
           >
-            <InfoBox :infoBoxContent="infoBoxContent" />
+            <InfoBox  class="click-element" :infoBoxContent="infoBoxContent" />
           </div>
         </div>
       </div>
@@ -102,12 +98,32 @@ export default {
 </script>
 
 <style lang="scss">
+
+$text-color: #373737bd;
+$main-red: #53c66ebd;
+$main-orange: #FFA384;
+$main-blue: #E7F2F8;
+$main-yellow: #EFE7BC;
+$main-green: #74BDCB;
+$main-background-color: rgb(252, 252, 252);
+
+
 body {
-  background-color: rgb(252, 252, 252);
+  background-color: $main-background-color;
 }
 
 .click-element:active {
   animation: bounce-in 0.5s;
+}
+
+body {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 @keyframes bounce-in {
@@ -140,8 +156,8 @@ body {
 
 #menu {
   border-radius: 0px 40px;
-  background-color: #1c0bfe;
-  padding-top: 4vh;
+  background-color: $main-orange;
+  padding-top: 6vh;
 }
 
 .menu-button {
@@ -151,9 +167,9 @@ body {
   // border-radius: 10px;
   // border-width: 1px;
   display: flex;
-  height: 6vh;
-  width: 6vh;
-  margin-bottom: 1.5vh;
+  height: 8vh;
+  width: 8vh;
+  margin-bottom: 2.5vh;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
