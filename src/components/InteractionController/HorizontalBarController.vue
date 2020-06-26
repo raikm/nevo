@@ -4,8 +4,9 @@
     type="range"
     min="0"
     max="100"
-    v-model="value"
-  />
+  
+  /> 
+  <!--   v-model="value" -->
 </template>
 
 <script>
