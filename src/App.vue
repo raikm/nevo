@@ -10,8 +10,12 @@
       </div>
       <div class="columns">
         <div id="menu" class="main-menu column is-1">
-          <div class="menu-button" :key="menu.id" v-for="menu in menus">  
-              <img class="menu-icon"  @click="changePage(menu.link)" :src="menu.iconSource" />
+          <div class="menu-button" :key="menu.id" v-for="menu in menus">
+            <img
+              class="menu-icon"
+              @click="changePage(menu.link)"
+              :src="menu.iconSource"
+            />
           </div>
         </div>
         <div id="main-control" class="main-menu column">
@@ -23,7 +27,7 @@
             :key="infoBoxContent.id"
             v-for="infoBoxContent in infoBoxContentList"
           >
-            <InfoBox  class="click-element" :infoBoxContent="infoBoxContent" />
+            <InfoBox class="click-element" :infoBoxContent="infoBoxContent" />
           </div>
         </div>
       </div>
@@ -34,16 +38,12 @@
 <script>
 import InfoBox from "./components/NewsfeedBoxes/InfoBox";
 
-
 export default {
   name: "homeapp",
   components: {
     InfoBox,
   },
-  methods: {
-   
-    
-  },
+  methods: {},
   data() {
     return {
       infoBoxContentList: [
@@ -91,22 +91,22 @@ export default {
           iconSource: "/img/menuicons/packages.svg",
           link: "/PackagesPage",
         },
-      ] 
+      ],
     };
   },
 };
 </script>
 
 <style lang="scss">
-
 $text-color: #373737bd;
 $main-red: #53c66ebd;
-$main-orange: #FFA384;
-$main-blue: #E7F2F8;
-$main-yellow: #EFE7BC;
-$main-green: #74BDCB;
+$main-orange: #ffa384;
+$main-blue: #e7f2f8;
+$main-yellow: #efe7bc;
+$main-green: #74bdcb;
+$main-blue: #1976d2;
 $main-background-color: rgb(252, 252, 252);
-
+$standard-border-radius: 5px;
 
 body {
   background-color: $main-background-color;
@@ -118,11 +118,11 @@ body {
 
 body {
   -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
 
@@ -173,34 +173,47 @@ body {
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-
 }
 
 .menu-icon {
-  
   margin: auto;
   width: 70%;
 }
 
 .menu-icon:active {
-  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg) brightness(104%) contrast(97%);
+  filter: invert(27%) sepia(51%) saturate(2878%) hue-rotate(346deg)
+    brightness(104%) contrast(97%);
 }
 
-#svgbackground{
-  fill:rgb(252, 252, 252);
+#svgbackground {
+  fill: rgb(252, 252, 252);
   width: 100%;
   height: 100%;
 }
 
-#svgbackground.path{
-  
-  
+#svgbackground.path {
 }
-
 
 #newsfeed {
   border-radius: 40px 0px;
   padding: 4vh;
   background-color: rgba(247, 246, 249, 1);
+}
+
+button {
+  background-color: white;
+  border-radius: 10px;
+  border-color: rgb(237, 238, 250);
+  border-width: 1px;
+  border-style: solid;
+  color: $main-blue;
+  font-size: large;
+  font-weight: bold;
+  height: 50%;
+}
+
+button:hover {
+  background-color: $main-blue;
+  color: white;
 }
 </style>
