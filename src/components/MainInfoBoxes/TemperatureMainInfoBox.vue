@@ -19,7 +19,7 @@
         <span id="temperature-value" style="padding-left: 3vh">--</span>
       </div>
     </div>
-    <div id="temperature-controller"></div>
+    <!-- <div id="temperature-controller"></div> -->
   </div>
 </template>
 

@@ -17,7 +17,7 @@
         <span id="humidity-value">--</span>
       </div>
     </div>
-    <div id="humidity-controller"></div>
+   
   </div>
 </template>
 
