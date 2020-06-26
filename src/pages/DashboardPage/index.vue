@@ -68,7 +68,6 @@ export default {
   font-size: 2.8vh;
   height: 3vh;
   line-height: 3vh;
-
   overflow: hidden;
 }
 .main-info-icon {
