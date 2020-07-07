@@ -1,9 +1,9 @@
 <template>
   <div>
-    <table :key="p.id" v-for="p in packagesToday">
+    <table :key="p.id" v-for="p in packages">
       <tr>
-        <td width="30%">{{ p.supplier }}</td>
-        <td id="sender-information">{{ p.sender }}</td>
+        <td id="supplier-information" >{{ p.supplier_short }}</td>
+        <td id="sender-information">{{ p.package_information }}</td>
         <td width="15%">
           <img
             class="delivery-icon"
@@ -20,42 +20,22 @@ export default {
   name: "InfoPackageContent",
   data() {
     return {
-      packages: [
-        {
-          id: 1,
-          supplier: "UPS",
-          sender: "Zalando",
-          trackingnumber: 123,
-          status: "del_today",
-        },
-        {
-          id: 2,
-          supplier: "DHL",
-          sender: "Mediamarkt Salzburg Apple Bla",
-          trackingnumber: 123,
-          status: "del_today",
-        },
-        {
-          id: 3,
-          supplier: "POST",
-          sender: "Apple",
-          trackingnumber: 123,
-          status: "del_pending",
-        },
-      ],
+      packages: [],
     };
   },
-  computed: {
-    packagesToday: function() {
-      return this.packages.filter(function(p) {
-        return p.status == "del_today";
-      });
-    },
-  },
- methods: {
+  mounted() {
+    this.getPackageInfos(this.packages);
+    console.log(this.packages)
+    this.sortPackages();
     
+  },  
+ methods: {
+    sortPackages(){
+       return this.packages.filter(function(p) {
+        return p.status == "OutForDelivery";
+      });
+    }
   },
-  mounted() {},
 };
 </script>
 
@@ -73,10 +53,18 @@ td {
   height: 5vh;
   line-height: 5vh;
 }
+#supplier-information{
+  overflow: hidden;
+  padding-right: 1%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 30%;
+}
+
 #sender-information {
   width: 50%;
   overflow: hidden;
-  padding-right: 1%;
+  padding: 0 1%;
   text-overflow: ellipsis;
   white-space: nowrap;
 }

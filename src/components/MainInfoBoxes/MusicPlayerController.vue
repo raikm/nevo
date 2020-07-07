@@ -3,7 +3,7 @@
     <div class="main-info-header">
       <img class="main-info-icon" src="../../../public/img/icons/spotify.svg" />
       <h1 class="main-info-title" id="public-transport-header">
-        Musik
+        Music
       </h1>
     </div>
     <div class="main-playlist-shortcuts">
@@ -95,7 +95,8 @@ export default {
 }
 
 .playlist-button {
-  height: 4vh;
+  height: 3.5vh;
   width: 100%;
+  font-size:  larger;
 }
 </style>
