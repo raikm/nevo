@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info-box main-info-box-big music-control-box">
+  <div class="basic-card  main-info-box-big music-control-box">
     <MusicPlayerController id="music-control" />
     <HorizontalBarController id="volume-control" />
   </div>

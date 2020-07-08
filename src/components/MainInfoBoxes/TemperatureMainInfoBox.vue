@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info-box main-info-box-small">
+  <div class="basic-card main-info-box main-info-box-small">
     <div id="temperature-info-box" :temperatureInfo="temperatureInfo">
       <div class="main-info-header">
         <img

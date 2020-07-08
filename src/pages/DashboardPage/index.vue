@@ -44,16 +44,8 @@ export default {
 <style lang="scss">
 
 .main-info-box {
-  background-color: white;
-  border-radius: 10px;
-  border-color: rgb(243, 244, 254);
-  border-width: 1px;
-  border-style: solid;
-  // box-shadow: 0 1px 2px 0;
   float: left;
   width: 30%;
-  margin: 1.6% 1.6%;
-  padding: 1vh;
 }
 
 .main-info-box-small {
@@ -64,11 +56,12 @@ export default {
   height: 25vh;
 }
 .main-info-header {
-  display: inline-flex;
+  // display: inline-flex;
   font-size: 2.8vh;
   height: 3vh;
   line-height: 3vh;
-  overflow: hidden;
+  margin-bottom: 1.6%;
+  // overflow: hidden;
 }
 .main-info-icon {
   float: left;

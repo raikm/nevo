@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info-box main-info-box-big">
+  <div class="basic-card main-info-box main-info-box-big">
     <div
       id="public-transport-info-box"
       

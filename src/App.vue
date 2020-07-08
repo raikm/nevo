@@ -185,14 +185,23 @@ body {
     brightness(104%) contrast(97%);
 }
 
+.basic-card{
+  background-color: white;
+  border-radius: 10px;
+  border-color: rgb(243, 244, 254);
+  border-width: 1px;
+  border-style: solid;
+  padding: 1vh;
+  margin: 1.6% 1.6%;
+}
+
+
 #svgbackground {
   fill: rgb(252, 252, 252);
   width: 100%;
   height: 100%;
 }
 
-#svgbackground.path {
-}
 
 #newsfeed {
   border-radius: 40px 0px;
@@ -209,7 +218,7 @@ button {
   color: $main-blue;
   font-size: large;
   font-weight: bold;
-  height: 50%;
+  // height: 50%;
 }
 
 button:hover {

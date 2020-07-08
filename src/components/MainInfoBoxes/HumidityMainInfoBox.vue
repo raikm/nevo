@@ -1,5 +1,5 @@
 <template>
-  <div class="main-info-box main-info-box-small">
+  <div class="basic-card main-info-box main-info-box-small">
     <div id="humidity-info-box" :humidityInfo="humidityInfo">
       <div class="main-info-header">
         <img
