@@ -38,6 +38,7 @@
 <script>
 import InfoBox from "./components/NewsfeedBoxes/InfoBox";
 
+
 export default {
   name: "homeapp",
   components: {

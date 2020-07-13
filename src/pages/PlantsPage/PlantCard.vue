@@ -4,7 +4,7 @@
       class="basic-card plant-card click-element"
       v-bind:key="plant.plant_id"
       v-for="plant in plantInformation"
-      @click="getCurrentPlantData(plant.plant_id); showModal = true; currentPlant = plant;"
+      @click="showModal = true; currentPlant = plant;"
     >
       <h1 class="main-info-header">{{ plant.name.replace(/[_-]/g, " ") }}</h1>
       <PlantInfo :plant="plant" />
@@ -20,13 +20,14 @@
 
       <transition name="slide" appear>
         <div class="basic-card plant-popup-window" v-if="showModal">
-          <PlantHistoryPage :currentPlantInformationHistory="currentPlantInformationHistory" />
+          <PlantHistoryPage :currentPlant="currentPlant" />
 
         </div>
       </transition>
     </div>
   </div>
 </template>
+
 <script>
 import PlantInfo from "./PlantInfo";
 import PlantHistoryPage from "./PlantHistoryPage";
@@ -41,26 +42,11 @@ export default {
   data() {
     return {
       currentPlant: {},
-      currentPlantInformationHistory: {},
       showModal: false,
     };
   },
   methods: {
-    getCurrentPlantData(plant_id) {
-        console.log(plant_id)
-        this.$axios
-        .get("http://localhost:8000/planthistory/" + plant_id + "/",
-         {
-        })
-        .then((response) => {
-          this.currentPlantInformationHistory = response.data;
-          console.log(this.currentPlantInformationHistory)
-        })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
-        });
-    }
+    
   }
 };
 </script>
@@ -92,12 +78,12 @@ export default {
 }
 .plant-popup-window {
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 99;
-  height: 40%;
-  width: 80%;
+  height: 50%;
+  width: 90%;
 }
 .fade-enter-active,
 fade-leave-active {

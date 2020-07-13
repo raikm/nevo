@@ -11,11 +11,11 @@ Vue.mixin({
       this.$router.push(path);
     },
     showToastError: function() {},
-    defineSupplierShort(supplier){
-      if (supplier.includes("AUSTRIAN")){
-        return supplier.replace('AUSTRIAN ','');
+    defineSupplierShort(supplier) {
+      if (supplier.includes("AUSTRIAN")) {
+        return supplier.replace("AUSTRIAN ", "");
       }
-      return supplier
+      return supplier;
     },
     defineStatusTagColor(status) {
       var green = "#53c66ebd";
@@ -40,7 +40,6 @@ Vue.mixin({
       return backgroundColor;
     },
     getPackageInfos(packages) {
-
       if (packages.length > 1) {
         packages = [];
       }
@@ -65,7 +64,7 @@ Vue.mixin({
             var backgroundColor = this.defineStatusTagColor(status);
             var delivery_date = new Date(delivery_date_string);
             var supplier = info.slug.replace("-", " ").toUpperCase();
-            var supplierShort = this.defineSupplierShort(supplier)
+            var supplierShort = this.defineSupplierShort(supplier);
             var p = {
               id: i,
               supplier: supplier,
@@ -84,8 +83,84 @@ Vue.mixin({
           // handle error
           console.log(error);
         });
+    },
+    cleanUpTimeStamp(timestamp) {
+      var hour = timestamp.getHours();
+      var minutes = timestamp.getMinutes();
+      if (!Number.isInteger(hour / 2)) {
+        if (minutes > 30) {
+          hour = hour + 1;
+        } else {
+          hour += 1;
+        }
+      }
+      timestamp.setMinutes(0);
+      timestamp.setSeconds(0);
+      timestamp.setHours(hour);
+      return timestamp;
+    },
+    cleanUpOldData(plantDataTimestamp, plantDetailArray) {
+      for (var i = 0; i < plantDetailArray.length; i++) {
+        if (
+          plantDetailArray[i].timestamp.getDate() ===
+            plantDataTimestamp.getDate() &&
+            plantDetailArray[i].timestamp.getTime() ===
+            plantDataTimestamp.getTime()
+        ) {
+          plantDetailArray.splice(i);
+        }
+        
+      }
+    },
+    preparePlantChart(labels, data, min, max) {
+      return {
+        type: "line",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              data: data,
+              borderWidth: 1,
+              backgroundColor: "rgba(32.0, 99.0, 155.0, 0.7)",
+              pointRadius: 0,
+            },
+          ],
+        },
+        options: {
+          responsive: true,
+          lineTension: 1,
+          legend: {
+            display: false,
+          },
+          scales: {
+            yAxes: [
+              {
+                gridLines: {
+                  color: "rgba(0, 0, 0, 0)",
+                },
+                ticks: {
+                  max: max,
+                  min: min,
+                  display: false,
+                },
+              },
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  color: "rgba(0, 0, 0, 0)",
+                  display: false,
+                },
+                ticks: {
+                  fontSize: 15,
+                },
+              },
+            ],
+          },
+        },
+      };
+    },
   },
-}
 });
 
 //TODO: showToast Methode

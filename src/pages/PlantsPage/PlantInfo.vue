@@ -142,7 +142,7 @@
       <div class="info-bar-background">
         <div
           class="info-bar"
-          v-if="plant.sunlight / plant.sunlight_intensity_borders.max > 1"
+          v-if="plant.sunlight / plant.sunlight_intensity_borders.max > 0.1"
           :style="{
             width:
               (plant.sunlight / plant.sunlight_intensity_borders.max) * 100 +
@@ -151,7 +151,7 @@
         ></div>
         <div
           class="info-bar"
-          v-if="plant.sunlight / plant.sunlight_intensity_borders.max < 1"
+          v-if="plant.sunlight / plant.sunlight_intensity_borders.max < 0.1"
           :style="{
             width: 0 + '%',
           }"
@@ -216,5 +216,6 @@ export default {
 .info-bar-background {
   background-color: rgba(245, 245, 245, 0.639);
   border-radius: 5px;
+  
 }
 </style>

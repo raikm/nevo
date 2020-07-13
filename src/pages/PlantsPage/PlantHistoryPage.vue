@@ -1,10 +1,39 @@
 <template>
-  <div class="plant-detail-main-container">
-    <h1 class="main-info-header plant-header">
-      {{ currentPlantInformationHistory[0].name }}
-    </h1>
+  <div>
+    <div class="plant-header">
+      <h1 class="plant-title">
+        {{ currentPlant.name }}
+      </h1>
+
+      <PlantTimeChanger
+        :borderRange="borderRange"
+        @update-range="updateRange"
+      />
+
+      <div class="temperature-info">
+        {{ currentPlant.temperature.split(".")[0] }}°C
+      </div>
+      <div class="batterry-bar-container">
+        <div class="info-bar-background">
+          <div
+            class="baterry-info-bar"
+            :style="[
+              currentPlant.battery < 15
+                ? {
+                    backgroundColor: '#ff0000',
+                    width: currentPlant.battery + '%',
+                  }
+                : {
+                    backgroundColor: 'rgb(25, 197, 68)',
+                    width: currentPlant.battery + '%',
+                  },
+            ]"
+          ></div>
+        </div>
+      </div>
+    </div>
     <div class="plant-detail-container">
-      <div class="detail-header">
+      <div class="current-data-container">
         <svg
           class="icon-detail-svg"
           height="512"
@@ -18,12 +47,44 @@
             />
           </g>
         </svg>
+        <div class="bar-container">
+          <div class="info-bar-background">
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.soil_moisture /
+                  currentPlant.soil_moisture_borders.max >
+                  0.1
+              "
+              :style="{
+                width:
+                  (currentPlant.soil_moisture /
+                    currentPlant.soil_moisture_borders.max) *
+                    100 +
+                  '%',
+              }"
+            ></div>
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.soil_moisture /
+                  currentPlant.soil_moisture_borders.max <
+                  0.1
+              "
+              :style="{
+                width: 0 + '%',
+              }"
+            ></div>
+          </div>
+        </div>
       </div>
-      <PlantTimeChanger />
-      <div class="diagram-container"></div>
+      <div class="diagram-container">
+        <canvas id="moisture-chart"></canvas>
+      </div>
     </div>
-    <div class="plant-detail-container">
-      <div class="detail-header">
+
+    <div id="fertilizer-container" class="plant-detail-container">
+      <div class="current-data-container">
         <svg
           class="icon-detail-svg"
           height="512"
@@ -107,12 +168,44 @@
             </g>
           </g>
         </svg>
+        <div class="bar-container">
+          <div class="info-bar-background">
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.soil_fertility /
+                  currentPlant.soil_fertitlity_borders.max >
+                  0.1
+              "
+              :style="{
+                width:
+                  (currentPlant.soil_fertility /
+                    currentPlant.soil_fertitlity_borders.max) *
+                    100 +
+                  '%',
+              }"
+            ></div>
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.soil_fertility /
+                  currentPlant.soil_fertitlity_borders.max <
+                  0.1
+              "
+              :style="{
+                width: 0 + '%',
+              }"
+            ></div>
+          </div>
+        </div>
       </div>
-      <PlantTimeChanger />
-      <div class="diagram-container"></div>
+      <div class="diagram-container">
+        <canvas id="fertilizer-chart"></canvas>
+      </div>
     </div>
+
     <div class="plant-detail-container">
-      <div class="detail-header">
+      <div class="current-data-container">
         <svg
           class="icon-detail-svg"
           height="512"
@@ -147,70 +240,289 @@
             d="m104.742188 118.882812c2.519531 2.542969 6.210937 3.546876 9.675781 2.625 3.460937-.925781 6.164062-3.628906 7.089843-7.089843.921876-3.464844-.082031-7.15625-2.625-9.675781l-35.472656-35.472657c-3.910156-3.878906-10.21875-3.863281-14.109375.03125-3.894531 3.890625-3.910156 10.199219-.03125 14.109375zm0 0"
           />
         </svg>
+        <div class="bar-container">
+          <div class="info-bar-background">
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.sunlight /
+                  currentPlant.sunlight_intensity_borders.max >
+                  0.1
+              "
+              :style="{
+                width:
+                  (currentPlant.sunlight /
+                    currentPlant.sunlight_intensity_borders.max) *
+                    100 +
+                  '%',
+              }"
+            ></div>
+            <div
+              class="info-bar-big"
+              v-if="
+                currentPlant.sunlight /
+                  currentPlant.sunlight_intensity_borders.max <
+                  0.1
+              "
+              :style="{
+                width: 0 + '%',
+              }"
+            ></div>
+          </div>
+        </div>
       </div>
-      <PlantTimeChanger />
-      <div class="diagram-container"></div>
+
+      <div class="diagram-container">
+        <canvas id="sunlight-chart"></canvas>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import PlantTimeChanger from "./PlantTimeChanger";
+import Chart from "chart.js";
 
 export default {
   name: "PlantHistoryPage",
   components: { PlantTimeChanger },
-  props: ["currentPlantInformationHistory"],
+  props: ["currentPlant"],
+  created: function() {
+    this.getCurrentPlantData(this.currentPlant.plant_id);
+  },
+  watch: {
+    borderRange: function() {
+      this.updateDisplayArrays();
+      this.createCharts();
+    },
+  },
   data() {
     return {
       soilfertitlityArray: [],
       soilmoistureArray: [],
-      sunlightintensityborders: [],
+      sunlightIntensityArray: [],
+      soilfertitlityBorders: [],
+      soilmoistureBorders: [],
+      sunlightIntensityBorders: [],
+      soilferilityDisplayArray: [],
+      soilmoisutreDisplayArray: [],
+      sunlightDisplayArray: [],
+
+      borderRange: {
+        start: new Date().setHours(new Date().getHours() - 24),
+        end: Date.now(),
+      },
     };
+  },
+  methods: {
+    updateDisplayArrays() {
+      this.soilferilityDisplayArray = this.soilfertitlityArray.filter(
+        (value) =>
+          value.timestamp >= this.borderRange.start &&
+          value.timestamp <= this.borderRange.end
+      );
+      this.soilmoisutreDisplayArray = this.soilmoistureArray.filter(
+        (value) =>
+          value.timestamp >= this.borderRange.start &&
+          value.timestamp <= this.borderRange.end
+      );
+      this.sunlightDisplayArray = this.sunlightIntensityArray.filter(
+        (value) =>
+          value.timestamp >= this.borderRange.start &&
+          value.timestamp <= this.borderRange.end
+      );
+    },
+    updateRange(borderRange) {
+      this.borderRange = borderRange;
+    },
+    getCurrentPlantData(plant_id) {
+      this.$axios
+        .get("http://localhost:8000/planthistory/" + plant_id + "/", {})
+        .then((response) => {
+          this.prepareHistoryData(response.data);
+        })
+        .catch(function(error) {
+          // handle error
+          console.log(error);
+        });
+    },
+    createChart(chartId, planDetailArray, plantDetailValueBorder) {
+      var _labels = planDetailArray.map((value) => value.timestamp);
+      var labels = _labels.map((value) => value.getHours());
+      var data = null;
+      switch (chartId) {
+        case "fertilizer-chart":
+          data = planDetailArray.map((value) => value.soil_fertility);
+          break;
+        case "moisture-chart":
+          data = planDetailArray.map((value) => value.soil_moisture);
+          break;
+        case "sunlight-chart":
+          data = planDetailArray.map((value) => value.sunlight);
+          break;
+      }
+
+      const ctx = document.getElementById(chartId);
+      var plantChart = this.preparePlantChart(
+        labels,
+        data,
+        plantDetailValueBorder.min,
+        plantDetailValueBorder.max
+      );
+
+      const myChart = new Chart(ctx, {
+        type: plantChart.type,
+        data: plantChart.data,
+        options: plantChart.options,
+      });
+      console.log(myChart);
+    },
+    createCharts() {
+      this.createChart(
+        "fertilizer-chart",
+        this.soilferilityDisplayArray,
+        this.soilfertitlityBorders
+      );
+      this.createChart(
+        "moisture-chart",
+        this.soilmoisutreDisplayArray,
+        this.soilmoistureBorders
+      );
+      this.createChart(
+        "sunlight-chart",
+        this.sunlightDisplayArray,
+        this.sunlightIntensityBorders
+      );
+    },
+    prepareHistoryData(historyData) {
+      Object.keys(historyData).forEach((key) => {
+        var plantData = historyData[key];
+        var plantDataTimestamp = new Date(plantData.timestamp);
+
+        // --- SOIL FERTILITY
+        var _plantSoilfertility = {
+          timestamp: plantDataTimestamp,
+          soil_fertility: plantData.soil_fertility,
+        };
+        this.soilfertitlityArray.push(_plantSoilfertility);
+        // --- SOIL MOISTURE
+        var _plantSoilMoisture = {
+          timestamp: plantDataTimestamp,
+          soil_moisture: plantData.soil_moisture,
+        };
+        this.soilmoistureArray.push(_plantSoilMoisture);
+        // --- SUNLIGHT
+        var _plantsunlight = {
+          timestamp: plantDataTimestamp,
+          sunlight: plantData.sunlight,
+        };
+        this.sunlightIntensityArray.push(_plantsunlight);
+      });
+      this.soilfertitlityBorders = historyData[0].soil_fertitlity_borders;
+      this.soilmoistureBorders = historyData[0].soil_moisture_borders;
+      this.sunlightIntensityBorders = historyData[0].sunlight_intensity_borders;
+
+      //TODO: cleanUpArrays -> convert to 2h intervals
+
+      //TODO: define time range (24hl, 7d, 30d)
+
+      //TODO: extract specifc time range
+      this.updateDisplayArrays();
+      this.createCharts();
+    },
   },
 };
 </script>
 
 <style lang="scss">
 .plant-header {
-  margin: 0 1%;
-  font-weight: bold;
-}
-.plant-detail-main-container {
-  height: 100%;
+  height: 13%;
   width: 100%;
+  padding: 0.6%;
+  .plant-title {
+    font-weight: bold;
+    float: left;
+    width: 72%; //<--------------
+    font-size: 2.8vh;
+    height: 3vh;
+    line-height: 3vh;
+  }
+  .time-button-container {
+    float: left;
+    height: 4vh;
+    width: 20%; //<--------------
+    .time-button {
+      margin: 0 1.6%;
+      width: 30%;
+      height: 80%;
+    }
+  }
+  .temperature-info {
+    border: rgba(0, 0, 0, 0.8);
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 3%; //<--------------
+    float: left;
+    text-align: center;
+    line-height: 3vh;
+    font-size: 1vh;
+  }
+  .batterry-bar-container {
+
+    width: 3%; //<--------------
+    float: left;
+    .baterry-info-bar {
+      height: 1.5vh;
+      background-color: rgb(25, 197, 68);
+      border-radius: 5px;
+    }
+  }
 }
 
-.detail-header { 
-//   background-color: salmon;
+.current-data-container {
+  .icon-detail-svg {
+    display: flex;
+    border: rgba(0, 0, 0, 0.8);
+    border-style: solid;
+    border-width: 0.4px;
+    border-radius: 4px;
+    height: 8%;
+    width: 8%;
+    padding: 1%;
+    margin: 1.6%;
+    fill: rgb(0, 0, 0);
+    float: left;
+  }
+
+  .bar-container {
+    width: 87.4%;
+    height: 8%;
+    float: left;
+    margin: 2.6% 0;
+  }
+
+  .info-bar-big {
+    height: 2vh;
+    background-color: rgba(247, 143, 79, 0.585);
+    border-radius: 5px;
+  }
 }
-.icon-detail-svg {
-  display: flex;
-  border: rgba(0, 0, 0, 0.8);
-  border-style: solid;
-  border-width: 0.4px;
-//   background-color: rgba(40, 119, 48, 1);
-  border-radius: 4px;
-  height: 8%;
-  width: 8%;
-  padding: 1%;
-  margin: 1.6%;
-  fill: rgb(0, 0, 0);
-}
+
 .plant-detail-container {
   float: left;
-//   background-color: #ffae03;
-  min-height: 55%;
-  width: 31.3%;
-  margin: -1% 1%;
-}
-
-.diagram-container {
-  background-color: snow;
-  border-radius: 10px;
-  margin: 1.6% 1.6%;
-  min-height: 20vh;
-  overflow: hidden;
-  width: 96.8%;
+  min-height: 65%;
+  width: 33.3%;
+  .diagram-container {
+    background-color: white;
+    border-radius: 10px;
+    border-color: rgb(243, 244, 254);
+    border-width: 1px;
+    border-style: solid;
+    margin: 1.6% 1.6%;
+    max-height: 38vh;
+    overflow: hidden;
+    width: 96.8%;
+  }
 }
 </style>

@@ -25,7 +25,6 @@ export default {
   },
   mounted() {
     this.getPackageInfos(this.packages);
-    console.log(this.packages)
     this.sortPackages();
     
   },  
