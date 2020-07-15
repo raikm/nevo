@@ -13,24 +13,6 @@
       <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
       </div>
-      <div class="batterry-bar-container">
-        <div class="info-bar-background">
-          <div
-            class="baterry-info-bar"
-            :style="[
-              currentPlant.battery < 15
-                ? {
-                    backgroundColor: '#ff0000',
-                    width: currentPlant.battery + '%',
-                  }
-                : {
-                    backgroundColor: 'rgb(25, 197, 68)',
-                    width: currentPlant.battery + '%',
-                  },
-            ]"
-          ></div>
-        </div>
-      </div>
     </div>
     <div class="plant-detail-container">
       <div class="current-data-container">
@@ -276,6 +258,28 @@
         <canvas id="sunlight-chart"></canvas>
       </div>
     </div>
+    <div class="plant-history-footer">
+
+      <div class="batterry-bar-container">
+        <div class="battery-bar-background">
+          <div
+            class="baterry-info-bar"
+            :style="[
+              currentPlant.battery < 15
+                ? {
+                    backgroundColor: '#ff0000',
+                    width: currentPlant.battery + '%',
+                  }
+                : {
+                    backgroundColor: 'rgb(25, 197, 68)',
+                    width: currentPlant.battery + '%',
+                  },
+            ]"
+          ></div>
+        </div>
+      </div>
+      <p class="update-text">last updated: {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}</p>
+    </div>
   </div>
 </template>
 
@@ -341,13 +345,13 @@ export default {
         .then((response) => {
           this.prepareHistoryData(response.data);
         })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
+        .catch((error) => {
+          this.showToastError(error.toString());
         });
     },
     createChart(chartId, planDetailArray, plantDetailValueBorder) {
       var _labels = planDetailArray.map((value) => value.timestamp);
+
       var labels = _labels.map((value) => value.getHours());
       var data = null;
       switch (chartId) {
@@ -370,17 +374,19 @@ export default {
         plantDetailValueBorder.max
       );
 
+      
+      /* eslint-disable no-unused-vars */
       const myChart = new Chart(ctx, {
         type: plantChart.type,
         data: plantChart.data,
         options: plantChart.options,
-      });
-      console.log(myChart);
+      });/* eslint-disable no-unused-vars */
+      // console.log(myChart);
     },
     createCharts() {
       this.createChart(
         "fertilizer-chart",
-        this.soilferilityDisplayArray,
+        this.simplifyArray(this.soilferilityDisplayArray),
         this.soilfertitlityBorders
       );
       this.createChart(
@@ -422,11 +428,7 @@ export default {
       this.soilmoistureBorders = historyData[0].soil_moisture_borders;
       this.sunlightIntensityBorders = historyData[0].sunlight_intensity_borders;
 
-      //TODO: cleanUpArrays -> convert to 2h intervals
 
-      //TODO: define time range (24hl, 7d, 30d)
-
-      //TODO: extract specifc time range
       this.updateDisplayArrays();
       this.createCharts();
     },
@@ -442,7 +444,7 @@ export default {
   .plant-title {
     font-weight: bold;
     float: left;
-    width: 72%; //<--------------
+    width: 75.5%; //<--------------
     font-size: 2.8vh;
     height: 3vh;
     line-height: 3vh;
@@ -462,22 +464,14 @@ export default {
     border-style: solid;
     border-width: 2px;
     border-radius: 10px;
-    width: 3%; //<--------------
+    width: 4%; //<--------------
     float: left;
     text-align: center;
     line-height: 3vh;
-    font-size: 1vh;
+    font-size: 1.5vh;
+    margin-left: 0.5%;
   }
-  .batterry-bar-container {
-
-    width: 3%; //<--------------
-    float: left;
-    .baterry-info-bar {
-      height: 1.5vh;
-      background-color: rgb(25, 197, 68);
-      border-radius: 5px;
-    }
-  }
+ 
 }
 
 .current-data-container {
@@ -523,6 +517,40 @@ export default {
     max-height: 38vh;
     overflow: hidden;
     width: 96.8%;
+  }
+}
+
+.plant-history-footer {
+  
+  
+  
+
+    .update-text{
+      float: right;
+      text-align: center;
+      line-height: 1.4vh;
+      font-size: 1vh;
+      top: 50%;
+      margin-right: 0.4vh;
+    }
+
+   .batterry-bar-container {
+    width: 3vh; //<--------------
+    margin: 0 1%;
+    float: right;
+    .baterry-info-bar {
+      
+      height: 1.1vh;
+      background-color: rgb(25, 197, 68);
+      border-radius: 0.3vh;
+    }
+    .battery-bar-background {
+      background-color: rgba(245, 245, 245, 0.639);
+      padding: 1px;
+      border-radius: 0.4vh;
+      border-style: solid;
+      border-width: 1px;
+    }
   }
 }
 </style>
