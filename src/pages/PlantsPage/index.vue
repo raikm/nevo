@@ -20,9 +20,8 @@ export default {
         .then((response) => {
           this.plantInformation = response.data;
         })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
+        .catch((error) => {
+           this.showToastError(error.toString())
         });
     }
   },
