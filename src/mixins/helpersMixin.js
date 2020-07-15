@@ -10,7 +10,15 @@ Vue.mixin({
     changePage: function(path) {
       this.$router.push(path);
     },
-    showToastError: function() {},
+    showToastError(text) {
+      this.$buefy.toast.open({
+        duration: 5000,
+        message: text,
+        position: 'is-bottom',
+        type: 'is-danger'
+    })
+
+    },
     defineSupplierShort(supplier) {
       if (supplier.includes("AUSTRIAN")) {
         return supplier.replace("AUSTRIAN ", "");
@@ -79,25 +87,39 @@ Vue.mixin({
             this.packages.push(p);
           }
         })
-        .catch(function(error) {
-          // handle error
-          console.log(error);
+        .catch((error) => {
+          this.showToastError(error)
         });
     },
-    cleanUpTimeStamp(timestamp) {
-      var hour = timestamp.getHours();
-      var minutes = timestamp.getMinutes();
-      if (!Number.isInteger(hour / 2)) {
-        if (minutes > 30) {
-          hour = hour + 1;
-        } else {
-          hour += 1;
+    simplifyArray(displayArray) {
+      // var simpliedArray = []
+      
+
+      
+    
+      displayArray.forEach(element => {
+
+        var duplicates = displayArray.filter(e => e.timestamp.getHours() == element.timestamp.getHours())
+        if (duplicates.length > 1){
+          var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
+          console.log(newestDate)
+          //delete now all from the duplicated who dont have this date
         }
       }
-      timestamp.setMinutes(0);
-      timestamp.setSeconds(0);
-      timestamp.setHours(hour);
-      return timestamp;
+        )
+      // var hour = timestamp.getHours();
+      // var minutes = timestamp.getMinutes();
+      // if (!Number.isInteger(hour / 2)) {
+      //   if (minutes > 30) {
+      //     hour = hour + 1;
+      //   } else {
+      //     hour += 1;
+      //   }
+      // }
+      // timestamp.setMinutes(0);
+      // timestamp.setSeconds(0);
+      // timestamp.setHours(hour);
+      return displayArray;
     },
     cleanUpOldData(plantDataTimestamp, plantDetailArray) {
       for (var i = 0; i < plantDetailArray.length; i++) {
