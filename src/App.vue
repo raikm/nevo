@@ -10,8 +10,8 @@
       </div>
       <div class="columns">
         <div id="menu" class="main-menu column is-1">
-          <div class="menu-button click-element" @click="changePage('/DashboardPage')">
-            <svg id="dashboard-icon" class="menu-icon" viewBox="0 0 512 512">
+          <div class="menu-button click-element" @click="changePage('/DashboardPage', 'dashboard-icon')">
+            <svg class="menu-icon dashboard-icon active" viewBox="0 0 512 512">
               <path
                 class="box-1"
                 d="m197.332031 0h-160c-20.585937 0-37.332031 16.746094-37.332031 37.332031v96c0 20.589844 16.746094 37.335938 37.332031 37.335938h160c20.589844 0 37.335938-16.746094 37.335938-37.335938v-96c0-20.585937-16.746094-37.332031-37.335938-37.332031zm0 0"
@@ -30,8 +30,8 @@
               />
             </svg>
           </div>
-          <div class="menu-button click-element" @click="changePage('/LampsPage')">
-            <svg id="lamp-icon" class="menu-icon" viewBox="0 0 512 512">
+          <div class="menu-button click-element" @click="changePage('/LampsPage', 'lamp-icon')">
+            <svg class="menu-icon lamp-icon" viewBox="0 0 512 512">
               <g>
                 <path
                   id="light"
@@ -77,10 +77,10 @@
               </g>
             </svg>
           </div>
-          <div class="menu-button click-element" @click="changePage('/PlantsPage')">
-            <svg id="plant-icon" class="menu-icon" viewBox="0 0 512 512">
+          <div class="menu-button click-element" @click="changePage('/PlantsPage', 'plant-icon')">
+            <svg class="menu-icon plant-icon" viewBox="0 0 512 512">
               <path
-                id="XMLID_25_"
+                
                 d="M452.65,244.269c-3.161-3.162-7.571-4.75-12.019-4.327c-1.117,0.105-27.724,2.669-59.144,9.733
                 c-43.759,9.838-74.447,23.329-91.214,40.095c-27.698,27.698-40.937,64.047-35.546,95.497c-10.095,7.182-29.778,20.24-55.574,32.792
                 c35.565-59.821,49.55-108.522,41.603-145.143c-5.457-25.145-19.795-35.79-23.26-38.039c-0.106-0.069-0.212-0.137-0.32-0.204
@@ -98,15 +98,15 @@
               />
             </svg>
           </div>
-          <div class="menu-button click-element" @click="changePage('/PlantsPage')">
-            <svg id="device-icon" class="menu-icon" viewBox="0 0 512 512">
+          <div class="menu-button click-element" @click="changePage('/PlantsPage', 'device-icon')">
+            <svg class="menu-icon device-icon" viewBox="0 0 512 512">
               <path
                 d="m380.362 150.71c.005-3.704-2.495-6.905-6.084-7.819-9.506-2.42-16.663-10.526-17.861-20.294-.497-4.058-3.861-7.148-7.95-7.148h-308.467c-22.091 0-40 17.909-40 40 0 .196-.001 82.074.001 82.27.087 13.188 11.044 23.73 24.232 23.73h383.534c13.048 0 24.233-10.397 24.233-24v-49.829c0-5.459-5.363-9.361-10.524-7.584-20.138 6.934-41.143-7.975-41.114-29.326zm-288.362 62.739c-14.888 0-27-12.112-27-27s12.112-27 27-27 27 12.112 27 27-12.112 27-27 27zm103-19h-31c-4.418 0-8-3.582-8-8s3.582-8 8-8h31c4.418 0 8 3.582 8 8s-3.582 8-8 8zm164 0h-126c-4.418 0-8-3.582-8-8s3.582-8 8-8h126c4.418 0 8 3.582 8 8s-3.582 8-8 8zm48.767 83h-383.534c-13.188 0-24.145 10.542-24.232 23.73-.002.196-.001 82.073-.001 82.27 0 22.091 17.909 40 40 40h352c22.091 0 40-17.909 40-40v-82c0-13.641-11.222-24-24.233-24zm-315.767 102c-14.888 0-27-12.112-27-27s12.112-27 27-27 27 12.112 27 27-12.112 27-27 27zm203-19h-131c-4.418 0-8-3.582-8-8s3.582-8 8-8h131c4.418 0 8 3.582 8 8s-3.582 8-8 8zm64 0h-26c-4.418 0-8-3.582-8-8s3.582-8 8-8h26c4.418 0 8 3.582 8 8s-3.582 8-8 8zm113.16-262.52c-2.05 0-4.1-.78-5.66-2.34-30.41-30.41-79.9-30.41-110.31 0-3.12 3.12-8.19 3.12-11.31 0-3.13-3.12-3.13-8.19 0-11.31 36.724-36.745 96.199-36.752 132.93 0 5.061 5.045 1.41 13.65-5.65 13.65zm-50.21 42.21c9.456 9.457 2.663 25.6-10.61 25.6-13.319 0-20.009-16.19-10.6-25.6 5.884-5.884 15.354-5.857 21.21 0zm26.16-26.16c3.13 3.12 3.13 8.19 0 11.31-3.125 3.125-8.197 3.114-11.31 0-14.058-14.057-36.838-14.072-50.91 0-3.13 3.12-8.19 3.12-11.32 0-3.12-3.12-3.12-8.19 0-11.31 20.15-20.151 53.076-20.485 73.54 0z"
               />
             </svg>
           </div>
-          <div class="menu-button click-element" @click="changePage('/PackagesPage')">
-            <svg id="package-icon" class="menu-icon" viewBox="0 0 512 512">
+          <div class="menu-button click-element" @click="changePage('/PackagesPage', 'package-icon')">
+            <svg class="menu-icon package-icon" viewBox="0 0 512 512">
               <path
                 id="package-top"
                 d="M248.768,1.654L19.499,112.336c-2.875,1.388-4.701,4.298-4.701,7.49v272.348

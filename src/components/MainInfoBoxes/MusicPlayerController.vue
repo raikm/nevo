@@ -1,9 +1,7 @@
 <template>
   <div>
     <div class="main-info-header">
-       <div class="main-info-icon-container">
-         
-       </div>
+      <div class="main-info-icon-container"></div>
       <h1 class="main-info-title" id="public-transport-header">
         Music
       </h1>
@@ -16,7 +14,24 @@
             :key="playlist.id"
             v-for="playlist in playlists.slice(3, 6)"
           >
-            <button class="playlist-button">{{ playlist.name }}</button>
+            <button class="playlist-button">
+              <svg class="playlist-icon" viewBox="0 0 50 50">
+                <path
+                  fill="#231F20"
+                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
+                />
+                <path
+                  fill="#231F20"
+                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
+                />
+                <path
+                  fill="#231F20"
+                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
+                />
+              </svg>
+
+              {{ playlist.name }}
+            </button>
           </div>
         </div>
         <div class="column is-paddingless">
@@ -25,7 +40,22 @@
             :key="playlist.id"
             v-for="playlist in playlists.slice(0, 3)"
           >
-            <button class="playlist-button">{{ playlist.name }}</button>
+            <button class="playlist-button">
+              <svg class="playlist-icon" viewBox="0 0 50 50">
+                <path
+                  fill="#231F20"
+                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
+                />
+                <path
+                  fill="#231F20"
+                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
+                />
+                <path
+                  fill="#231F20"
+                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
+                /></svg
+              >{{ playlist.name }}
+            </button>
           </div>
         </div>
       </div>
@@ -87,18 +117,29 @@ export default {
   // background: yellow;
   // overflow: hidden;
   height: 100%;
-  padding: 2vh 2%;
+  padding: 2vh 2.5%;
+}
+
+.playlist-icon {
+  float: left;
+  padding: 0.25vh;
+  height: 3vh;
+  width: 3vh;
 }
 
 .playlist-shortcuts {
-  text-align: center;
+  text-align: left;
   width: 100%;
-  padding: 0.1vh;
+  padding: 0.3vh;
 }
 
 .playlist-button {
   height: 3.5vh;
   width: 100%;
-  font-size:  larger;
+  font-size: 2vh;
+  text-align: left;
+  display: flex;
+
+  align-items: center;
 }
 </style>

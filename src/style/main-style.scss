@@ -64,13 +64,13 @@ $standard-border-radius: 5px;
 
   button {
     background-color: white;
-    border-radius: 10px;
+    border-radius: 0.5vh;
     border-color: rgb(237, 238, 250);
     border-width: 1px;
     border-style: solid;
-    color: $main-blue;
-    font-size: large;
-    font-weight: bold;
+    color: $text-color;
+    font-size: x-small;
+    font-weight: 300;
     // height: 50%;
   }
   

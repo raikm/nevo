@@ -7,8 +7,15 @@ Vue.mixin({
       var config = require("../../config.json");
       return config;
     },
-    changePage: function(path) {
+    changePage: function(path, name) {
       this.$router.push(path);
+      var elements = document.getElementsByClassName("active");
+      for(var i = 0; i < elements.length; i++)
+      {
+        elements[0].classList.remove("active");
+      }
+      document.getElementsByClassName(name)[0].classList.add("active");
+
     },
     showToastError(text) {
       this.$buefy.toast.open({
