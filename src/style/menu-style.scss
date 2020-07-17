@@ -1,6 +1,22 @@
-@import "/main-colors";
+@import "/main-colors", "main-style";
 
 $inactive-color: $main-gray;
+
+.active {
+  animation: bounce-in 0.5s;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.98);
+  }
+  100% {
+    transform: scale(1.02);
+  }
+}
 
 .menu-button {
   background-color: white;
@@ -105,7 +121,7 @@ $inactive-color: $main-gray;
 }
 
 .device-icon.active {
-    fill: $main-yellow-color-2;
+  fill: $main-yellow-color-2;
 }
 
 .package-icon {
@@ -131,26 +147,45 @@ $inactive-color: $main-gray;
 }
 
 .package-icon.active {
-    stroke: transparent;
-    stroke-width: 0;
-    //TODO: access main defined colors from COLOR PALLETTE
-    $package-color: $main-yellow-color;
-    $package-second-color: $main-yellow-color-2;
-    #package-top {
-      fill: $package-color;
-    }
-    .package-tape {
-      fill: #ff8087;
-    }
-    .package-stripes {
-      fill: #fff6d8;
-    }
+  stroke: transparent;
+  stroke-width: 0;
+  //TODO: access main defined colors from COLOR PALLETTE
+  $package-color: $main-yellow-color;
+  $package-second-color: $main-yellow-color-2;
+  #package-top {
+    fill: $package-color;
+  }
+  .package-tape {
+    fill: #ff8087;
+  }
+  .package-stripes {
+    fill: #fff6d8;
+  }
 
-    #package-right-front {
-      fill: $package-color;
-    }
-    #package-left-front {
-      fill: $package-second-color;
-    }
-  
+  #package-right-front {
+    fill: $package-color;
+  }
+  #package-left-front {
+    fill: $package-second-color;
+  }
+}
+
+.calendar-icon {
+  #calendar-day {
+    color: $inactive-color;
+    font-weight: 500;
+  }
+  #calendar-date {
+    height: 70%;
+    // line-height: 90%;
+    font-size: 2.8vh;
+    line-height: 3vh;
+    top: -50%;
+  }
+}
+
+.calendar-icon.active {
+  #calendar-day {
+    color: $main-red;
+  }
 }

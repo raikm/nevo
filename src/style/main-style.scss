@@ -46,7 +46,7 @@ $standard-border-radius: 5px;
   }
 
 
-  .click-element:active {
+  .click-element.active {
     animation: bounce-in 0.5s;
   }
   
