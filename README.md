@@ -28,7 +28,7 @@ I drafted a quick first concept to give you an idea about the structure planned.
 
 ### Current Statues
 
-![https://github.com/raikm/homepanorama/blob/master/doc/current_statues.png?raw=true]()
+![](/doc/current_statues.png?)
 
 ### Some integration ideas
 
