@@ -127,22 +127,9 @@ $inactive-color: $main-gray;
 .package-icon {
   stroke: $inactive-color;
   stroke-width: 0.4em;
-  $package-color: white;
-  #package-top {
-    fill: $package-color;
-  }
-  .package-tape {
-    fill: $package-color;
-  }
-  .package-stripes {
-    fill: $package-color;
-  }
-
-  #package-right-front {
-    fill: $package-color;
-  }
-  #package-left-front {
-    fill: $package-color;
+  fill: white;
+  .package-tape, .package-stripes {
+    fill: $inactive-color;
   }
 }
 
@@ -187,5 +174,33 @@ $inactive-color: $main-gray;
 .calendar-icon.active {
   #calendar-day {
     color: $main-red;
+  }
+}
+.automation-icon{
+  
+  fill: $inactive-color;
+  .automation-ball, .automation-ball-2, .automation-arrow{
+    stroke: $inactive-color;
+    stroke-width: 0.05em;
+  }
+}
+
+.automation-icon.active{
+  stroke: transparent;
+  stroke-width: 0;
+  .automation-ball{
+    fill:$main-yellow-color;
+  }
+  .automation-ball-2{
+    fill: $main-orange;
+  }
+  .automation-ball-shadow{
+    fill:$main-yellow-color-2;
+  }
+  .automation-ball-2-shadow{
+    fill: $main-orange-2;
+  }
+  .automation-arrow{
+    fill: #465a61;
   }
 }
