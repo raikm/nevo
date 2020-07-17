@@ -1,0 +1,80 @@
+$standard-border-radius: 5px;
+.basic-card {
+    background-color: white;
+    border-radius: 10px;
+    border-color: rgb(243, 244, 254);
+    border-width: 1px;
+    border-style: solid;
+    padding: 1vh;
+    margin: 1.6% 1.6%;
+  }
+
+  .main-info-icon-container {
+    border-radius: $standard-border-radius;
+    border-style: solid;
+    border-width: .1vh;
+    float: left;
+    height: 3vh;
+    width: 3vh;
+    background-color: $main-black-transparent;
+    .info-icon{
+      margin: 10%;
+      height: 80%;
+      width: 80%;
+  }
+    .info-icon-text{
+      //TODO: box is 1px to much right
+      // margin: 10%;
+      font-weight: 400;
+      height: 100%;
+      // width: 100%;
+      font-size: 80%;
+      line-height: 80%;
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  
+
+  //OLD
+  .main-info-icon{
+    float: left;
+    height: 3vh;
+  }
+
+
+  .click-element:active {
+    animation: bounce-in 0.5s;
+  }
+  
+  @keyframes bounce-in {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.98);
+    }
+    100% {
+      transform: scale(1.02);
+    }
+  }
+
+  button {
+    background-color: white;
+    border-radius: 10px;
+    border-color: rgb(237, 238, 250);
+    border-width: 1px;
+    border-style: solid;
+    color: $main-blue;
+    font-size: large;
+    font-weight: bold;
+    // height: 50%;
+  }
+  
+  button:hover {
+    background-color: $main-blue;
+    color: white;
+  }

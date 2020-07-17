@@ -1,0 +1,134 @@
+
+.menu-button {
+    background-color: white;
+    border-color: rgb(243, 244, 254);
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 0.1vh;
+  
+    display: flex;
+    height: 7.5vh;
+   
+    width: 7.5vh;
+    margin-bottom: 2.5vh;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  
+  .menu-icon {
+    margin: 12%;
+    width: 78%;
+    height: 78%;
+  }
+  #dashboard-icon{
+    margin: 15%;
+    width: 70%;
+    height: 70%;
+    .box-1{
+       fill: #4b585f;
+    }
+    .box-2{
+      fill: #7a8c98
+    }
+  }
+  
+  #lamp-icon{
+    $light-color: transparent;
+    #lampcable{
+      fill: #465a61
+    }
+    #lampshade-holder{
+      fill: #596c76
+    }
+    #lampshade{
+      fill: #7a8c98
+    }
+    #lampshade-shadow{
+      fill: #596c76
+    }
+    #light{
+      fill: $light-color
+    }
+    .light-shine{
+      fill: $light-color
+    }
+  }
+  
+  #lamp-icon:active{
+      $light-color: #fec165;
+    $light-color-2:#fdb441;
+    #light{
+      fill: $light-color
+    }
+    .light-shine{
+      fill: $light-color-2
+    }
+  
+  }
+  
+  #plant-icon {
+    fill: #4b585f;
+    margin-left: 12%;
+    margin-right: 8%;
+  }
+  #plant-icon:active {
+    fill: #639a67;
+  }
+  
+  #device-icon {
+    fill: #4b585f;
+    margin-left: 17%;
+    margin-right: 3%;
+  }
+  
+  #package-icon{
+        stroke: #4b585f;
+        stroke-width: 0.4em;
+        $package-color: white;
+    #package-top{
+     fill:$package-color;
+      
+    }
+    .package-tape{
+      fill: $package-color;
+  
+    }
+    .package-stripes{
+      fill:$package-color;
+    }
+  
+    #package-right-front{
+      fill:$package-color;
+    }
+    #package-left-front{
+      fill:$package-color;
+    }
+  }
+  
+  #package-icon:active{
+        stroke: transparent;
+        stroke-width: 0;
+        //TODO: access main defined colors from COLOR PALLETTE
+        $package-color: #FFE17D;
+        $package-second-color: #FFC350;
+    #package-top{
+     fill:$package-color;
+      
+    }
+    .package-tape{
+      fill: #FF8087;
+  
+    }
+    .package-stripes{
+      fill:#FFF6D8
+    }
+  
+    #package-right-front{
+      fill:$package-color;
+    }
+    #package-left-front{
+      fill:$package-second-color;
+    }
+  }
+  

@@ -2,10 +2,9 @@
   <div class="basic-card main-info-box main-info-box-big">
     <div id="calendar-info-box" :calendarInfos="calendarInfos">
       <div class="main-info-header">
-        <img
-          class="main-info-icon"
-          src="../../../public/img/icons/calendar.svg"
-        />
+         <div class="main-info-icon-container">
+            <div class="info-icon-text">13</div>
+           </div>
         <h1 class="main-info-title" id="calendar-header">
           Up next
         </h1>

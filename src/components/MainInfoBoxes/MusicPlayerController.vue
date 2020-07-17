@@ -1,7 +1,9 @@
 <template>
   <div>
     <div class="main-info-header">
-      <img class="main-info-icon" src="../../../public/img/icons/spotify.svg" />
+       <div class="main-info-icon-container">
+         
+       </div>
       <h1 class="main-info-title" id="public-transport-header">
         Music
       </h1>

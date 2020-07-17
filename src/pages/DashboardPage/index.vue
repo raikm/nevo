@@ -63,12 +63,9 @@ export default {
   margin-bottom: 1.6%;
   // overflow: hidden;
 }
-.main-info-icon {
-  float: left;
-  height: 3vh;
-}
+
 .main-info-title {
-  padding-left: 1vh;
+  margin-left: 13%;
 }
 
 #scene-buttons {

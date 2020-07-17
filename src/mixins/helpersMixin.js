@@ -103,7 +103,7 @@ Vue.mixin({
         if (duplicates.length > 1){
           var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
           console.log(newestDate)
-          //delete now all from the duplicated who dont have this date
+          //TODO: delete now all from the duplicated who dont have this date
         }
       }
         )
