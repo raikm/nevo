@@ -8,6 +8,7 @@ import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import VueAxios from './plugins/axios'
+import VueSVGIcon from 'vue-svgicon'
 import './mixins/helpersMixin'
 import aftership from './plugins/aftership'
 
@@ -22,7 +23,7 @@ Vue.config.productionTip = false
 Vue.http = Vue.prototype.$http = axios
 window.axios = require('axios')
 window.aftership = require('aftership')
-
+Vue.use(VueSVGIcon)
 Vue.use(Buefy)
 
 new Vue({

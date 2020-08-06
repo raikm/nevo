@@ -7,6 +7,7 @@
         <PublicTransportMainInfoBox />
         <CalendarMainInfoBox />
         <MusicControlMainInfoBox />
+        <MusicControlMainInfoBox />
         <MainSceneBox id="scene-buttons" />
       </div>
   </main>
