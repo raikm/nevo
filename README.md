@@ -26,6 +26,10 @@ I drafted a quick first concept to give you an idea about the structure planned.
 
 ![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
 
+### Current Statues
+
+![](/doc/current_statues.png?)
+
 ### Some integration ideas
 
 To just name a few for the dashboard:
