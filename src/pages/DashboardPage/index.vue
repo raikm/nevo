@@ -7,7 +7,7 @@
         <PublicTransportMainInfoBox />
         <CalendarMainInfoBox />
         <MusicControlMainInfoBox />
-        <MusicControlMainInfoBox />
+        <RoomControlBox />
         <MainSceneBox id="scene-buttons" />
       </div>
   </main>
@@ -21,6 +21,7 @@ import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTra
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
 import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
+import RoomControlBox from "../../components/ShortcutBoxes/RoomControlBox"
 
 
 export default {
@@ -32,6 +33,7 @@ export default {
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
+    RoomControlBox,
     MainSceneBox,
   },
   data() {
