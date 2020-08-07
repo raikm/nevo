@@ -1,17 +1,17 @@
 <template>
   <input
+    :value="sliderValue"
     class="horizontal-slider-control click-element"
     type="range"
     min="0"
     max="100"
-  
-  /> 
-  <!--   v-model="value" -->
+  />
 </template>
 
 <script>
 export default {
   name: "HorizontalBarController",
+  props: ['value']
 };
 </script>
 
@@ -34,16 +34,13 @@ input:focus {
   outline-width: 0;
 }
 
-::-ms-thumb{
+::-ms-thumb {
   width: 2px;
 }
 
-::-webkit-slider-thumb {
- -webkit-appearance: none;
- -webkit-touch-appearance: none;
-    width: 0px; /* 1 */
-    background: #fff;
-    box-shadow: -100vw 0 0 100vw #FFA384;
-    
-}
+
+
+
 </style>
+
+
