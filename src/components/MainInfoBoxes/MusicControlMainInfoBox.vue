@@ -1,7 +1,8 @@
 <template>
   <div class="basic-card  main-info-box-big music-control-box">
     <MusicPlayerController id="music-control" />
-    <HorizontalBarController id="volume-control" />
+    <HorizontalBarController v-model="value" id="volume-control"/>
+  <div>{{value}}</div>
   </div>
 </template>
 
@@ -12,10 +13,25 @@ import HorizontalBarController from "../InteractionController/HorizontalBarContr
 export default {
   name: "MusicControlMainInfoBox",
   components: { MusicPlayerController, HorizontalBarController },
+  props: ["sliderValue"],
+  data() {
+    return {
+    };
+  },
 };
 </script>
 
 <style lang="scss">
+
+
+#volume-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-touch-appearance: none;
+  width: 0px; /* 1 */
+  background: #fff;
+  box-shadow: -100vw 0 0 100vw #FFC350;
+}
+
 .music-control-box {
   float: left;
   height: 25vh;
