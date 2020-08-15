@@ -2,7 +2,6 @@
   <div class="basic-card  main-info-box-big music-control-box">
     <MusicPlayerController id="music-control" />
     <HorizontalBarController v-model="value" id="volume-control"/>
-  <div>{{value}}</div>
   </div>
 </template>
 

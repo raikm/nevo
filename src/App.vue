@@ -229,7 +229,7 @@
           </div>
           <div
             class="menu-button click-element"
-            @click="changePage('DashboardPage', 'automation-icon')"
+            @click="changePage('SettingsPage', 'automation-icon')"
           >
             <svg class="menu-icon automation-icon" viewBox="0 0 64 64">
               <circle class="automation-ball" cx="9" cy="9" r="6" />
