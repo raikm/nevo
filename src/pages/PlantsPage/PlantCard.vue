@@ -9,7 +9,7 @@
         currentPlant = plant;
       "
     >
-      <h1 class="main-info-header">{{ plant.name.replace(/[_-]/g, " ") }}</h1>
+      <h1 class="main-info-header-medium">{{ plant.name.replace(/[_-]/g, " ") }}</h1>
       <PlantInfo :plant="plant" />
     </div>
     <div class="popup-container">
@@ -63,6 +63,12 @@ export default {
 
 <style lang="scss">
 @import "../../style/main-colors";
+@import "../../style/main-style";
+
+
+.info-icon-text{
+  font-size: $standard-title-medium;
+}
 
 .plant-card {
   float: left;
@@ -72,6 +78,7 @@ export default {
 
 .plant-card-container {
   // width: 100%;
+  margin-top: 1%;
 }
 
 .popup-container {

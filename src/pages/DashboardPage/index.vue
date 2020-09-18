@@ -67,6 +67,15 @@ export default {
   // overflow: hidden;
 }
 
+.main-info-header-medium {
+  // display: inline-flex;
+  font-size: 2.0vh;
+  height: 3vh;
+  line-height: 3vh;
+  margin-bottom: 1.6%;
+  // overflow: hidden;
+}
+
 .main-info-title {
   margin-left: 13%;
 }

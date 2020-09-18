@@ -1,4 +1,7 @@
 $standard-border-radius: 5px;
+$standard-title-big: 80%;
+$standard-title-medium: 60%;
+
 .basic-card {
     background-color: white;
     border-radius: 10px;
@@ -28,7 +31,7 @@ $standard-border-radius: 5px;
       font-weight: 400;
       height: 100%;
       // width: 100%;
-      font-size: 80%;
+      font-size: $standard-title-big;
       line-height: 80%;
       
       display: flex;

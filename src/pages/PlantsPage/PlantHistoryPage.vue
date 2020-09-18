@@ -2,7 +2,7 @@
   <div>
     <div class="plant-header">
       <h1 class="plant-title">
-        {{ currentPlant.name }}
+        {{ currentPlant.name.replace(/[_-]/g, " ") }}
       </h1>
 
       <PlantTimeChanger
@@ -369,14 +369,13 @@ export default {
       var timeFormat = "hA";
       var start = this.borderRange.start;
       var end = this.borderRange.end;
-
       var plantChart = this.preparePlantChart(
         data,
         plantDetailValueBorder.min,
         plantDetailValueBorder.max,
         timeFormat,
         start,
-        end
+        end,
       );
 
       /* eslint-disable no-unused-vars */
@@ -441,6 +440,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../style/main-colors";
+
+
+
 .plant-header {
   height: 13%;
   width: 100%;
@@ -471,9 +474,10 @@ export default {
     width: 4%; //<--------------
     float: left;
     text-align: center;
-    line-height: 3vh;
+    line-height: 2.5vh;
     font-size: 1.5vh;
     margin-left: 0.5%;
+    height: 3vh;
   }
 }
 
@@ -501,7 +505,7 @@ export default {
 
   .info-bar-big {
     height: 2vh;
-    background-color: rgba(247, 143, 79, 0.585);
+    background-color: $main-green;
     border-radius: 5px;
   }
 }

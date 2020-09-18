@@ -1,9 +1,12 @@
 /* eslint-disable */
 require('./cancel')
 require('./curtain')
+require('./fertilizer')
 require('./login')
 require('./logout')
 require('./moon')
 require('./morning')
 require('./projector')
+require('./soil_moist')
+require('./sun')
 require('./vacuum')
