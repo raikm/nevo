@@ -8,6 +8,7 @@ import router from './router'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import VueAxios from './plugins/axios'
+//https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
 import VueSVGIcon from 'vue-svgicon'
 import './mixins/helpersMixin'
 import aftership from './plugins/aftership'

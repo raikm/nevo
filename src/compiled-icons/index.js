@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('./cancel')
 require('./curtain')
 require('./login')
 require('./logout')

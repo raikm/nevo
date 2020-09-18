@@ -259,7 +259,6 @@
       </div>
     </div>
     <div class="plant-history-footer">
-
       <div class="batterry-bar-container">
         <div class="battery-bar-background">
           <div
@@ -278,7 +277,10 @@
           ></div>
         </div>
       </div>
-      <p class="update-text">last updated: {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}</p>
+      <p class="update-text">
+        last updated:
+        {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}
+      </p>
     </div>
   </div>
 </template>
@@ -296,7 +298,6 @@ export default {
   },
   watch: {
     borderRange: function() {
-      this.updateDisplayArrays();
       this.createCharts();
     },
   },
@@ -313,35 +314,18 @@ export default {
       sunlightDisplayArray: [],
 
       borderRange: {
-        start: new Date().setHours(new Date().getHours() - 24),
-        end: Date.now(),
+        start: new Date((new Date()).setHours(new Date().getHours() - 12)),
+        end: new Date()
       },
     };
   },
   methods: {
-    updateDisplayArrays() {
-      this.soilferilityDisplayArray = this.soilfertitlityArray.filter(
-        (value) =>
-          value.timestamp >= this.borderRange.start &&
-          value.timestamp <= this.borderRange.end
-      );
-      this.soilmoisutreDisplayArray = this.soilmoistureArray.filter(
-        (value) =>
-          value.timestamp >= this.borderRange.start &&
-          value.timestamp <= this.borderRange.end
-      );
-      this.sunlightDisplayArray = this.sunlightIntensityArray.filter(
-        (value) =>
-          value.timestamp >= this.borderRange.start &&
-          value.timestamp <= this.borderRange.end
-      );
-    },
     updateRange(borderRange) {
       this.borderRange = borderRange;
     },
     getCurrentPlantData(plant_id) {
       this.$axios
-        .get("http://localhost:8000/planthistory/" + plant_id + "/", {})
+        .get("http://192.168.1.80:8000/planthistory/" + plant_id + "/", {})
         .then((response) => {
           this.prepareHistoryData(response.data);
         })
@@ -350,53 +334,73 @@ export default {
         });
     },
     createChart(chartId, planDetailArray, plantDetailValueBorder) {
-      var _labels = planDetailArray.map((value) => value.timestamp);
-
-      var labels = _labels.map((value) => value.getHours());
-      var data = null;
+      var data = [];
       switch (chartId) {
         case "fertilizer-chart":
-          data = planDetailArray.map((value) => value.soil_fertility);
+          planDetailArray.forEach((element) => {
+            var _plantData = {
+              x: element.timestamp.toLocaleTimeString(),
+              y: element.soil_fertility,
+            };
+            data.push(_plantData);
+          });
           break;
         case "moisture-chart":
-          data = planDetailArray.map((value) => value.soil_moisture);
+          planDetailArray.forEach((element) => {
+            var _plantData = {
+              x: element.timestamp.toLocaleTimeString(),
+              y: element.soil_moisture,
+            };
+            data.push(_plantData);
+          });
           break;
         case "sunlight-chart":
-          data = planDetailArray.map((value) => value.sunlight);
+          planDetailArray.forEach((element) => {
+            var _plantData = {
+              x: element.timestamp.toLocaleTimeString(),
+              y: element.sunlight,
+            };
+            data.push(_plantData);
+          });
           break;
       }
 
       const ctx = document.getElementById(chartId);
+      var timeFormat = "hA";
+      var start = this.borderRange.start;
+      var end = this.borderRange.end;
+
       var plantChart = this.preparePlantChart(
-        labels,
         data,
         plantDetailValueBorder.min,
-        plantDetailValueBorder.max
+        plantDetailValueBorder.max,
+        timeFormat,
+        start,
+        end
       );
 
-      
       /* eslint-disable no-unused-vars */
       const myChart = new Chart(ctx, {
         type: plantChart.type,
         data: plantChart.data,
         options: plantChart.options,
-      });/* eslint-disable no-unused-vars */
+      }); /* eslint-disable no-unused-vars */
       // console.log(myChart);
     },
     createCharts() {
       this.createChart(
         "fertilizer-chart",
-        this.simplifyArray(this.soilferilityDisplayArray),
+        this.soilfertitlityArray,
         this.soilfertitlityBorders
       );
       this.createChart(
         "moisture-chart",
-        this.soilmoisutreDisplayArray,
+        this.soilmoistureArray,
         this.soilmoistureBorders
       );
       this.createChart(
         "sunlight-chart",
-        this.sunlightDisplayArray,
+        this.sunlightIntensityArray,
         this.sunlightIntensityBorders
       );
     },
@@ -404,6 +408,7 @@ export default {
       Object.keys(historyData).forEach((key) => {
         var plantData = historyData[key];
         var plantDataTimestamp = new Date(plantData.timestamp);
+        plantDataTimestamp.setHours(plantDataTimestamp.getHours() - 2);
 
         // --- SOIL FERTILITY
         var _plantSoilfertility = {
@@ -424,12 +429,11 @@ export default {
         };
         this.sunlightIntensityArray.push(_plantsunlight);
       });
+
       this.soilfertitlityBorders = historyData[0].soil_fertitlity_borders;
       this.soilmoistureBorders = historyData[0].soil_moisture_borders;
       this.sunlightIntensityBorders = historyData[0].sunlight_intensity_borders;
 
-
-      this.updateDisplayArrays();
       this.createCharts();
     },
   },
@@ -471,7 +475,6 @@ export default {
     font-size: 1.5vh;
     margin-left: 0.5%;
   }
- 
 }
 
 .current-data-container {
@@ -521,25 +524,20 @@ export default {
 }
 
 .plant-history-footer {
-  
-  
-  
+  .update-text {
+    float: right;
+    text-align: center;
+    line-height: 1.4vh;
+    font-size: 1vh;
+    top: 50%;
+    margin-right: 0.4vh;
+  }
 
-    .update-text{
-      float: right;
-      text-align: center;
-      line-height: 1.4vh;
-      font-size: 1vh;
-      top: 50%;
-      margin-right: 0.4vh;
-    }
-
-   .batterry-bar-container {
+  .batterry-bar-container {
     width: 3vh; //<--------------
     margin: 0 1%;
     float: right;
     .baterry-info-bar {
-      
       height: 1.1vh;
       background-color: rgb(25, 197, 68);
       border-radius: 0.3vh;

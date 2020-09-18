@@ -108,8 +108,8 @@ Vue.mixin({
 
         var duplicates = displayArray.filter(e => e.timestamp.getHours() == element.timestamp.getHours())
         if (duplicates.length > 1){
-          var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
-          console.log(newestDate)
+          //var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
+          //console.log(newestDate)
           //TODO: delete now all from the duplicated who dont have this date
         }
       }
@@ -141,17 +141,18 @@ Vue.mixin({
         
       }
     },
-    preparePlantChart(labels, data, min, max) {
+    preparePlantChart(data, min, max, timeFormat, start, end) {
+
+
       return {
         type: "line",
         data: {
-          labels: labels,
           datasets: [
             {
               data: data,
               borderWidth: 1,
               backgroundColor: "rgba(32.0, 99.0, 155.0, 0.7)",
-              pointRadius: 0,
+              pointRadius: 1,
             },
           ],
         },
@@ -162,6 +163,26 @@ Vue.mixin({
             display: false,
           },
           scales: {
+            xAxes: [
+              {
+                type: "time",
+                time: {
+                  parser: timeFormat,
+                },
+                gridLines: {
+                  color: "rgba(0, 0, 0, 0)",
+                  display: false,
+                },
+                ticks: {
+                  fontSize: 10,
+                  maxTicksLimit: 6,
+                  min: start,
+                  max: end,
+                },
+                
+
+              },
+            ],
             yAxes: [
               {
                 gridLines: {
@@ -172,17 +193,7 @@ Vue.mixin({
                   min: min,
                   display: false,
                 },
-              },
-            ],
-            xAxes: [
-              {
-                gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-                  display: false,
-                },
-                ticks: {
-                  fontSize: 15,
-                },
+                
               },
             ],
           },

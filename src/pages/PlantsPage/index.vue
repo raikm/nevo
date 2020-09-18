@@ -15,7 +15,7 @@ export default {
   created: function() {
     {
       this.$axios
-        .get("http://localhost:8000/allplants/", {
+        .get("http://192.168.1.80:8000/allplants/", {
         })
         .then((response) => {
           this.plantInformation = response.data;
