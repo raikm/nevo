@@ -1,5 +1,6 @@
 /* eslint-disable */
 require('./cancel')
+require('./couch')
 require('./curtain')
 require('./fertilizer')
 require('./login')

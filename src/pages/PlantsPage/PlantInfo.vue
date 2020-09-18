@@ -106,7 +106,7 @@ export default {
     display: flex;
     align-items: flex-end;
   .plant-detail-icon {
-    color: red;
+ 
     float: left;
     margin-right: 1%;
 

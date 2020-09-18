@@ -9,7 +9,21 @@
         currentPlant = plant;
       "
     >
-      <h1 class="main-info-header-medium">{{ plant.name.replace(/[_-]/g, " ") }}</h1>
+      <div class="plant-header-container">
+        <h1 class="plant-header main-info-header-medium">
+          {{ plant.name.replace(/[_-]/g, " ") }}
+        </h1>
+        <div class="location-container" @click="showLocationDetails()">
+          <div class="location-frame">
+            <svgicon
+              class="location-icon"
+              icon="couch"
+              width="1.7vh"
+              height="1.7vh"
+            ></svgicon>
+          </div>
+        </div>
+      </div>
       <PlantInfo :plant="plant" />
     </div>
     <div class="popup-container">
@@ -43,6 +57,7 @@
 import PlantInfo from "./PlantInfo";
 import PlantHistoryPage from "./PlantHistoryPage";
 import "../../compiled-icons/cancel";
+import "../../compiled-icons/couch";
 
 export default {
   name: "PlantCard",
@@ -57,7 +72,12 @@ export default {
       showModal: false,
     };
   },
-  methods: {},
+  methods: {
+    showLocationDetails() {
+      event.stopPropagation()
+      console.log("test");
+    },
+  },
 };
 </script>
 
@@ -65,9 +85,41 @@ export default {
 @import "../../style/main-colors";
 @import "../../style/main-style";
 
+.plant-header-container {
+  display: inline-block;
 
-.info-icon-text{
-  font-size: $standard-title-medium;
+  width: 100%;
+
+  z-index: 98;
+}
+.plant-header {
+  width: 80%;
+  float: left;
+}
+
+.location-container {
+  width: 20%;
+  overflow: hidden;
+
+  .location-frame {
+    border: rgba(0, 0, 0, 0.8);
+    border-style: solid;
+    border-width: 0.5px;
+    border-radius: 50%;
+    width: 2.9vh;
+    height: 2.9vh;
+    float: right;
+    display: inline-flex;
+  }
+  .location-frame:hover,
+  .location-frame:active {
+    background-color: $main-black-transparent;
+  }
+
+  .location-icon {
+    display: block;
+    margin: auto;
+  }
 }
 
 .plant-card {
@@ -77,19 +129,9 @@ export default {
 }
 
 .plant-card-container {
-  // width: 100%;
   margin-top: 1%;
 }
 
-.popup-container {
-  // justify-content: center;
-  // align-items: center;
-  // width: 100%;
-  // height: 50vh;
-  // min-height: 100vh;
-  // overflow: hidden;
-  // background-color: salmon;
-}
 
 .modal-overlay {
   position: absolute;
