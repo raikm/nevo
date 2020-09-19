@@ -13,11 +13,11 @@
         <h1 class="plant-header main-info-header-medium">
           {{ plant.name.replace(/[_-]/g, " ") }}
         </h1>
-        <div class="location-container" @click="showLocationDetails()">
+        <div class="location-container" @click="showLocationDetails(plant.location.location_details)">
           <div class="location-frame">
             <svgicon
               class="location-icon"
-              icon="couch"
+              :icon="plant.location.location"
               width="1.7vh"
               height="1.7vh"
             ></svgicon>
@@ -50,7 +50,12 @@
         </div>
       </transition>
     </div>
+
+ 
   </div>
+ 
+
+
 </template>
 
 <script>
@@ -58,6 +63,9 @@ import PlantInfo from "./PlantInfo";
 import PlantHistoryPage from "./PlantHistoryPage";
 import "../../compiled-icons/cancel";
 import "../../compiled-icons/couch";
+import "../../compiled-icons/dinning_table";
+import "../../compiled-icons/office";
+import "../../compiled-icons/loggia";
 
 export default {
   name: "PlantCard",
@@ -73,9 +81,12 @@ export default {
     };
   },
   methods: {
-    showLocationDetails() {
+    showLocationDetails(plantInfoText) {
       event.stopPropagation()
-      console.log("test");
+      if (plantInfoText != "NULL"){
+        this.showToastInfo(plantInfoText)
+      }
+      
     },
   },
 };

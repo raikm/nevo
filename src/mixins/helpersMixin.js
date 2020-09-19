@@ -1,6 +1,5 @@
 import Vue from "vue";
-import colors from "../style/main-colors.scss"
-
+import colors from "../style/main-colors.scss";
 
 Vue.mixin({
   methods: {
@@ -12,22 +11,28 @@ Vue.mixin({
     changePage: function(path, name) {
       this.$router.push(path);
       var elements = document.getElementsByClassName("active");
-      for(var i = 0; i < elements.length; i++)
-      {
+      for (var i = 0; i < elements.length; i++) {
         elements[0].classList.remove("active");
       }
       document.getElementsByClassName(name)[0].classList.add("active");
-
     },
     showToastError(text) {
       this.$buefy.toast.open({
         duration: 5000,
         message: text,
-        position: 'is-bottom',
-        type: 'is-danger'
-    })
-
+        position: "is-bottom",
+        type: "is-danger",
+      });
     },
+    showToastInfo(text) {
+      this.$buefy.toast.open({
+        duration: 5000,
+        message: text,
+        position: "is-bottom",
+        type: "is-light",
+      });
+    },
+
     defineSupplierShort(supplier) {
       if (supplier.includes("AUSTRIAN")) {
         return supplier.replace("AUSTRIAN ", "");
@@ -97,25 +102,22 @@ Vue.mixin({
           }
         })
         .catch((error) => {
-          this.showToastError(error)
+          this.showToastError(error);
         });
     },
     simplifyArray(displayArray) {
       // var simpliedArray = []
-      
 
-      
-    
-      displayArray.forEach(element => {
-
-        var duplicates = displayArray.filter(e => e.timestamp.getHours() == element.timestamp.getHours())
-        if (duplicates.length > 1){
+      displayArray.forEach((element) => {
+        var duplicates = displayArray.filter(
+          (e) => e.timestamp.getHours() == element.timestamp.getHours()
+        );
+        if (duplicates.length > 1) {
           //var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
           //console.log(newestDate)
           //TODO: delete now all from the duplicated who dont have this date
         }
-      }
-        )
+      });
       // var hour = timestamp.getHours();
       // var minutes = timestamp.getMinutes();
       // if (!Number.isInteger(hour / 2)) {
@@ -135,43 +137,42 @@ Vue.mixin({
         if (
           plantDetailArray[i].timestamp.getDate() ===
             plantDataTimestamp.getDate() &&
-            plantDetailArray[i].timestamp.getTime() ===
+          plantDetailArray[i].timestamp.getTime() ===
             plantDataTimestamp.getTime()
         ) {
           plantDetailArray.splice(i);
         }
-        
       }
     },
-    convertHex(hexCode,opacity){
-      var hex = hexCode.replace('#','');
-  
+    convertHex(hexCode, opacity) {
+      var hex = hexCode.replace("#", "");
+
       if (hex.length === 3) {
-          hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
       }
-  
-      var r = parseInt(hex.substring(0,2), 16),
-          g = parseInt(hex.substring(2,4), 16),
-          b = parseInt(hex.substring(4,6), 16);
-  
-      return 'rgba('+r+','+g+','+b+','+opacity/100+')';
-  },
+
+      var r = parseInt(hex.substring(0, 2), 16),
+        g = parseInt(hex.substring(2, 4), 16),
+        b = parseInt(hex.substring(4, 6), 16);
+
+      return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
+    },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
     preparePlantChart(data, min, max, timeFormat, start, end) {
       const opacityGreen = () => {
-        let hex = colors.mainGreen.replace('#', '');
-        
+        let hex = colors.mainGreen.replace("#", "");
+
         if (hex.length === 3) {
-            hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
-        }    
-        
+          hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+        }
+
         const r = parseInt(hex.substring(0, 2), 16);
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
-    
+
         return `rgba(${r},${g},${b},${70 / 100})`;
-    };
-    
+      };
+
       return {
         type: "line",
         data: {
@@ -207,8 +208,6 @@ Vue.mixin({
                   min: start,
                   max: end,
                 },
-                
-
               },
             ],
             yAxes: [
@@ -221,7 +220,6 @@ Vue.mixin({
                   min: min,
                   display: false,
                 },
-                
               },
             ],
           },
