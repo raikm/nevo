@@ -28,7 +28,7 @@ export default {
   -webkit-touch-appearance: none;
   width: 0px; /* 1 */
   background: #fff;
-  box-shadow: -100vw 0 0 100vw #FFC350;
+  box-shadow: -100vw 0 0 100vw #ffffff;
 }
 
 .music-control-box {

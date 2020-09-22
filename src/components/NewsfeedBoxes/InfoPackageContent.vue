@@ -1,9 +1,9 @@
 <template>
   <div>
-    <table :key="p.id" v-for="p in packages">
+    <table id="table-package-info" :key="p.id" v-for="p in packages">
       <tr>
-        <td id="supplier-information" >{{ p.supplier_short }}</td>
-        <td id="sender-information">{{ p.package_information }}</td>
+        <td class="td-package-info" id="supplier-information" >{{ p.supplier_short }}</td>
+        <td class="td-package-info" id="sender-information">{{ p.package_information }}</td>
         <td width="15%">
           <img
             class="delivery-icon"
@@ -42,11 +42,11 @@ export default {
 // Import Bulma's core
 @import "~bulma/sass/utilities/_all";
 
-table {
+#table-package-info {
   width: 100%;
 }
 
-td {
+.td-package-info {
   display: inline-block;
   font-size: 1.8vh;
   height: 5vh;

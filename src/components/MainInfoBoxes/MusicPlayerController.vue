@@ -1,7 +1,15 @@
 <template>
   <div>
     <div class="main-info-header">
-      <div class="main-info-icon-container"></div>
+      <div class="main-info-icon-container">
+         <svgicon
+              class="info-icon"
+              icon="music"
+              width="2vh"
+              height="2vh"
+            ></svgicon>
+
+      </div>
       <h1 class="main-info-title" id="public-transport-header">
         Music
       </h1>
@@ -64,6 +72,8 @@
 </template>
 
 <script>
+import "../../compiled-icons/music"
+
 export default {
   name: "MusicPlayerController",
   data() {
