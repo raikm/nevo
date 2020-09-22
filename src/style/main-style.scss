@@ -4,6 +4,7 @@
 $standard-border-radius: 5px;
 $standard-title-big: 80%;
 $standard-title-medium: 60%;
+$standard-text-medium: 1.7vh;
 
 .basic-card {
     background-color: white;
@@ -13,6 +14,9 @@ $standard-title-medium: 60%;
     border-style: solid;
     padding: 1vh;
     margin: 1.6% 1.6%;
+  }
+  .main-info-content{
+    margin: 2% 0;
   }
 
   .main-info-icon-container {
@@ -41,6 +45,7 @@ $standard-title-medium: 60%;
       justify-content: center;
       align-items: center;
     }
+
   }
 
   

@@ -1,6 +1,8 @@
 <template>
+
+<!-- :value="sliderValue" -->
   <input
-    :value="sliderValue"
+    
     class="horizontal-slider-control click-element"
     type="range"
     min="0"

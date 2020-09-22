@@ -29,6 +29,10 @@ export default {
     width: 100%;
     border-radius: 5px;
 }
+.calendar-title{
+  font-weight: bold;
+}
+
 .left-calendar-entry-box-container{
     float: left;
     width: 2%;

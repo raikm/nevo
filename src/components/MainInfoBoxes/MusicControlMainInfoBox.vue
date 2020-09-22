@@ -1,7 +1,8 @@
 <template>
   <div class="basic-card  main-info-box-big music-control-box">
     <MusicPlayerController id="music-control" />
-    <HorizontalBarController v-model="value" id="volume-control"/>
+     <!-- v-model="value" under -->
+    <HorizontalBarController id="volume-control"/>
   </div>
 </template>
 

@@ -9,8 +9,14 @@
           Up next
         </h1>
       </div>
-      <div id="calendar-appointment" :key="appointment.id" v-for="appointment in calendarAppointments">
-        <CalendarAppointment :appointment="appointment"/>
+      <div class="main-info-content">
+        <div
+          id="calendar-appointment"
+          :key="appointment.id"
+          v-for="appointment in calendarAppointments"
+        >
+          <CalendarAppointment :appointment="appointment" />
+        </div>
       </div>
     </div>
   </div>
@@ -34,35 +40,23 @@ export default {
         {
           id: 1,
           calendarColor: "#fe6f4c",
-          title: "Telko",
-          startDate: new Date()
-            .toJSON()
-            .slice(11, 16),
-          endDate: new Date()
-            .toJSON()
-            .slice(11, 16),
+          title: "Telko with Ben & Chris",
+          startDate: new Date().toJSON().slice(11, 16),
+          endDate: new Date().toJSON().slice(11, 16),
         },
         {
           id: 2,
           calendarColor: "#02b378",
-          title: "Lunch with Aneth",
-          startDate: new Date()
-            .toJSON()
-            .slice(11, 16),
-          endDate: new Date()
-            .toJSON()
-            .slice(11, 16),
+          title: "Lunch with Anna",
+          startDate: new Date().toJSON().slice(11, 16),
+          endDate: new Date().toJSON().slice(11, 16),
         },
         {
-          id: 2,
+          id: 3,
           calendarColor: "#02b378",
           title: "Stretching Routine",
-          startDate: new Date()
-            .toJSON()
-            .slice(11, 16),
-          endDate: new Date()
-            .toJSON()
-            .slice(11, 16),
+          startDate: new Date().toJSON().slice(11, 16),
+          endDate: new Date().toJSON().slice(11, 16),
         },
       ],
     };
@@ -76,6 +70,4 @@ export default {
   margin-right: 10px;
   width: 100%;
 }
-
-
 </style>

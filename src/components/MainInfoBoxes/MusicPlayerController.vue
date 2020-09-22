@@ -14,7 +14,7 @@
         Music
       </h1>
     </div>
-    <div class="main-playlist-shortcuts">
+    <div id="main-playlist-shortcuts">
       <div class="columns">
         <div class="column is-paddingless">
           <div
@@ -22,7 +22,7 @@
             :key="playlist.id"
             v-for="playlist in playlists.slice(3, 6)"
           >
-            <button class="playlist-button">
+            <button class="playlist-button" @click="startPlaylistOnSpotify(playlist.name)">
               <svg class="playlist-icon" viewBox="0 0 50 50">
                 <path
                   fill="#231F20"
@@ -48,7 +48,7 @@
             :key="playlist.id"
             v-for="playlist in playlists.slice(0, 3)"
           >
-            <button class="playlist-button">
+            <button class="playlist-button" @click="startPlaylistOnSpotify(playlist.name)">
               <svg class="playlist-icon" viewBox="0 0 50 50">
                 <path
                   fill="#231F20"
@@ -76,6 +76,12 @@ import "../../compiled-icons/music"
 
 export default {
   name: "MusicPlayerController",
+  methods: {
+    startPlaylistOnSpotify(playlistname){
+      document.getElementById("main-playlist-shortcuts").style.display = "None"
+      console.log(playlistname)
+    }
+  },
   data() {
     return {
       playlists: [
@@ -123,7 +129,7 @@ export default {
   width: 55%;
 }
 
-.main-playlist-shortcuts {
+#main-playlist-shortcuts {
   // background: yellow;
   // overflow: hidden;
   height: 100%;

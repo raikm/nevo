@@ -9,7 +9,7 @@
       </h1>
     </div>
 
-    <div>
+    <div class="main-info-content">
       <table class="table-public-transport">
         <tr>
           <td id="public-transport-line" class="td-public-transport-title">
@@ -129,9 +129,9 @@ export default {
 .td-public-transport,
 .td-public-transport-title {
   display: inline-block;
-  font-size: 1.8vh;
-  height: 2.7vh;
-  line-height: 2.7vh;
+  font-size: $standard-text-medium;
+  height: 2.6vh;
+  line-height: 2.6vh;
 }
 
 .td-public-transport-title {
