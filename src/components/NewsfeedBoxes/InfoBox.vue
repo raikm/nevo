@@ -10,8 +10,8 @@
 
       <div v-else-if="infoBoxContent.contentType === 'plant'">
         <InfoPlantContent />
-
       </div>
+
 
 
   </div>

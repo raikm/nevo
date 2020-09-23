@@ -1,15 +1,17 @@
 <template>
   <main>
-      <div class="column">
-        <TemperatureMainInfoBox />
-        <HumidityMainInfoBox />
-        <LightIntensityMainInfoBox />
-        <PublicTransportMainInfoBox />
-        <CalendarMainInfoBox />
-        <MusicControlMainInfoBox />
-        <RoomControlBox />
-        <MainSceneBox id="scene-buttons" />
-      </div>
+    <div class="column">
+      <TemperatureMainInfoBox />
+      <HumidityMainInfoBox />
+      <LightIntensityMainInfoBox />
+      <RoomControlBox />
+      <EBikeMainInfoBox />
+      <PublicTransportMainInfoBox />
+      <CalendarMainInfoBox />
+      <MusicControlMainInfoBox />
+
+      <MainSceneBox id="scene-buttons" />
+    </div>
   </main>
 </template>
 
@@ -21,8 +23,8 @@ import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTra
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
 import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
-import RoomControlBox from "../../components/ShortcutBoxes/RoomControlBox"
-
+import RoomControlBox from "../../components/ShortcutBoxes/RoomControlBox";
+import EBikeMainInfoBox from "../../components/MainInfoBoxes/EBikeMainInfoBox";
 
 export default {
   name: "DashboardPage",
@@ -34,18 +36,16 @@ export default {
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
     RoomControlBox,
+    EBikeMainInfoBox,
     MainSceneBox,
   },
   data() {
-    return {
-    
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="scss">
-
 .main-info-box {
   float: left;
   width: 30%;
@@ -69,7 +69,7 @@ export default {
 
 .main-info-header-medium {
   // display: inline-flex;
-  font-size: 2.0vh;
+  font-size: 2vh;
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;
@@ -90,6 +90,4 @@ export default {
   white-space: nowrap;
   width: 100%;
 }
-
-
 </style>
