@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('./bulb')
 require('./cancel')
 require('./couch')
 require('./curtain')
