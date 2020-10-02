@@ -62,19 +62,19 @@ $inactive-color: $main-gray;
 }
 .lamp-icon {
   $light-color: transparent;
-  #lampcable {
+  .lampcable {
     fill: $inactive-color;
   }
-  #lampshade-holder {
+  .lampshade-holder {
     fill: $inactive-color;
   }
-  #lampshade {
+  .lampshade {
     fill: $inactive-color;
   }
-  #lampshade-shadow {
+  .lampshade-shadow {
     fill: $inactive-color;
   }
-  #light {
+  .light {
     fill: $light-color;
   }
   .light-shine {
@@ -85,19 +85,19 @@ $inactive-color: $main-gray;
 .lamp-icon.active {
   $light-color: $main-orange;
   $light-color-2: $main-orange-2;
-  #lampcable {
+  .lampcable {
     fill: #465a61;
   }
-  #lampshade-holder {
+  .lampshade-holder {
     fill: #596c76;
   }
-  #lampshade {
+  .lampshade {
     fill: #7a8c98;
   }
-  #lampshade-shadow {
+  .lampshade-shadow {
     fill: #596c76;
   }
-  #light {
+  .light {
     fill: $light-color;
   }
   .light-shine {
@@ -139,7 +139,7 @@ $inactive-color: $main-gray;
   //TODO: access main defined colors from COLOR PALLETTE
   $package-color: $main-yellow-color;
   $package-second-color: $main-yellow-color-2;
-  #package-top {
+  .package-top {
     fill: $package-color;
   }
   .package-tape {
@@ -149,10 +149,10 @@ $inactive-color: $main-gray;
     fill: #fff6d8;
   }
 
-  #package-right-front {
+  .package-right-front {
     fill: $package-color;
   }
-  #package-left-front {
+  .package-left-front {
     fill: $package-second-color;
   }
 }
