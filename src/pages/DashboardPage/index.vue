@@ -51,7 +51,7 @@ export default {
 .main-info-box {
   float: left;
   width: 30%;
-  background: aqua;
+
 }
 
 .main-info-box-small {

@@ -57,7 +57,7 @@ export default {
 
 .e-bike-info-box {
   display: inline-block;
-  height: 10vh;
+  height: 5vw;
   // margin: 0 1.6%;
   width: 30%;
   overflow: hidden;

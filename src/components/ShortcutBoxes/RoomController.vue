@@ -1,6 +1,6 @@
 <template>
   <div class="lamp-shortcut-container">
-    <button class="lamp-shortcut-button">o</button>
+    <button class="lamp-shortcut-button"></button>
     {{ room.name }}
   </div>
 </template>
@@ -17,6 +17,7 @@ export default {
 .lamp-shortcut-container {
   height: 100%;
   width: 10vh;
+  font-size: small;
   text-align: center;
   align-items: center;
   justify-content: center;

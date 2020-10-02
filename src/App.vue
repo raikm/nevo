@@ -44,19 +44,25 @@
             class="menu-button click-element"
             @click="changePage('/PlantsPage', 'device-icon')"
           >
-           <svgicon class="menu-icon device-icon" icon="menu_device"></svgicon>
+            <svgicon class="menu-icon device-icon" icon="menu_device"></svgicon>
           </div>
           <div
             class="menu-button click-element"
             @click="changePage('/PackagesPage', 'package-icon')"
           >
-            <svgicon class="menu-icon package-icon" icon="menu_package"></svgicon>
+            <svgicon
+              class="menu-icon package-icon"
+              icon="menu_package"
+            ></svgicon>
           </div>
           <div
             class="menu-button click-element"
             @click="changePage('SettingsPage', 'automation-icon')"
           >
-            <svgicon class="menu-icon automation-icon" icon="menu_settings"></svgicon>
+            <svgicon
+              class="menu-icon automation-icon"
+              icon="menu_settings"
+            ></svgicon>
           </div>
         </div>
         <div id="main-control" class="main-menu">
