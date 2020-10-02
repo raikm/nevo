@@ -1,15 +1,14 @@
 <template>
   <main>
-    <div class="column">
+    <div>
       <TemperatureMainInfoBox />
-      <HumidityMainInfoBox />
+      <WeatherMainInfoBox />
       <LightIntensityMainInfoBox />
       <RoomControlBox />
       <EBikeMainInfoBox />
       <PublicTransportMainInfoBox />
       <CalendarMainInfoBox />
       <MusicControlMainInfoBox />
-
       <MainSceneBox id="scene-buttons" />
     </div>
   </main>
@@ -17,7 +16,7 @@
 
 <script>
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
-import HumidityMainInfoBox from "../../components/MainInfoBoxes/HumidityMainInfoBox";
+import WeatherMainInfoBox from "../../components/MainInfoBoxes/WeatherMainInfoBox"
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
 import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
@@ -30,7 +29,7 @@ export default {
   name: "DashboardPage",
   components: {
     TemperatureMainInfoBox,
-    HumidityMainInfoBox,
+    WeatherMainInfoBox,
     LightIntensityMainInfoBox,
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
@@ -46,9 +45,13 @@ export default {
 </script>
 
 <style lang="scss">
+
+
+
 .main-info-box {
   float: left;
   width: 30%;
+  background: aqua;
 }
 
 .main-info-box-small {
@@ -57,10 +60,12 @@ export default {
 
 .main-info-box-big {
   height: 25vh;
+  max-height: 25vh;
 }
+
 .main-info-header {
   // display: inline-flex;
-  font-size: 2.8vh;
+  font-size: 1.8vh;
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;
@@ -69,7 +74,7 @@ export default {
 
 .main-info-header-medium {
   // display: inline-flex;
-  font-size: 2vh;
+  font-size: 1.2vh;
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;

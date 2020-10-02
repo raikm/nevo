@@ -1,70 +1,55 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-small">
-    <div id="temperature-info-box" :temperatureInfo="temperatureInfo">
-      <div class="main-info-header">
-        <div class="main-info-icon-container">
-          <svg class="info-icon" viewBox="0 0 512 512">
-            <g>
-              <path
-                d="m315.492 61.06h75.774c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-75.774c-4.143 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5z"
-              />
-              <path
-                d="m315.492 95.689h37.888c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-37.888c-4.143 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5z"
-              />
-              <path
-                d="m391.267 115.689h-75.774c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h75.774c4.143 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z"
-              />
-              <path
-                d="m315.492 165.317h37.888c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-37.888c-4.143 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5z"
-              />
-              <path
-                d="m391.267 184.803h-75.774c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h75.774c4.143 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z"
-              />
-              <path
-                d="m315.492 234.432h37.888c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-37.888c-4.143 0-7.5 3.358-7.5 7.5s3.358 7.5 7.5 7.5z"
-              />
-              <path
-                d="m391.267 254.568h-75.774c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h75.774c4.143 0 7.5-3.358 7.5-7.5s-3.358-7.5-7.5-7.5z"
-              />
-              <path
-                d="m353.38 289.197h-37.888c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h37.888c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5z"
-              />
-              <path
-                d="m277.475 315.247v-194.227c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v198.428c0 2.666 1.415 5.131 3.717 6.476 28.095 16.413 45.547 46.796 45.547 79.293 0 24.752-9.707 47.957-27.333 65.339-17.621 17.378-40.971 26.778-65.739 26.415-23.724-.33-46.158-9.786-63.17-26.626-17.014-16.841-26.694-39.176-27.257-62.891-.794-33.422 16.648-64.662 45.52-81.529 2.302-1.345 3.717-3.811 3.717-6.476v-261.949c0-23.435 19.064-42.5 42.499-42.5s42.5 19.065 42.5 42.5v28.686c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-28.686c0-31.706-25.794-57.5-57.5-57.5-31.705 0-57.5 25.794-57.5 57.5v257.746c-31.354 20.072-50.121 55.143-49.232 92.564.656 27.615 11.914 53.609 31.7 73.195 19.784 19.583 45.892 30.58 73.514 30.965.512.007 1.022.01 1.533.01 28.245 0 54.809-10.883 74.947-30.744 20.507-20.223 31.801-47.221 31.801-76.019-.001-36.353-18.768-70.43-49.264-89.97z"
-              />
-              <path
-                d="m188.892 351.976c11.463-6.697 18.583-19.104 18.583-32.379v-24.369c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v24.369c0 7.965-4.272 15.41-11.149 19.428-24.159 14.114-38.754 40.255-38.091 68.222.47 19.814 8.572 38.489 22.813 52.586s33.002 22.013 52.834 22.289c.342.004.682.006 1.022.006 20.36 0 39.492-7.827 53.969-22.103 14.745-14.542 22.865-33.953 22.865-54.659 0-27.187-14.604-52.607-38.113-66.342-6.878-4.018-11.15-11.462-11.15-19.427v-261.949c0-15.164-12.336-27.5-27.5-27.5-15.163 0-27.5 12.336-27.5 27.5v202.42c0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5v-117.379h25v176.907c0 13.276 7.121 25.683 18.584 32.379 18.924 11.055 30.68 31.513 30.68 53.39 0 16.66-6.534 32.278-18.398 43.979-11.842 11.679-27.521 18.018-44.257 17.778-15.926-.222-31.013-6.597-42.482-17.95s-17.993-26.368-18.37-42.282c-.536-22.511 11.213-43.553 30.66-54.914zm18.583-224.287v-70.041c0-6.893 5.607-12.5 12.5-12.5s12.5 5.607 12.5 12.5v70.041z"
-              />
-            </g>
-          </svg>
-        </div>
-
-        <h1 class="main-info-title" id="temperature-header">
-          Indoor temperature
-        </h1>
+  <div
+    class="basic-card main-info-box main-info-box-small temperature-main-info-box"
+  >
+    <div class="main-info-header">
+      <div class="main-info-icon-container">
+        <svgicon icon="temperature"></svgicon>
       </div>
-      <!-- <div v-if="temperatureInfo != 99.9"> -->
-      <div v-if="temperatureInfo == 99.9">
-        <!-- <span id="temperature-value">+{{ temperatureInfo }}°C</span> -->
-        <span id="temperature-value">+26°C</span>
+
+      <h1 class="main-info-title" id="temperature-header">
+        Indoor temperature
+      </h1>
+    </div>
+
+    <div class="temperature-value-container" :temperatureInfo="temperatureInfo">
+      <div v-if="temperatureInfo == 23.9">
+        <!-- normally here should be 99.9 but cause of debug and server not avaible -->
+        <span class="temperature-value">+{{ temperatureInfo }}°C</span>
       </div>
       <div v-else>
-        <span id="temperature-value" style="padding-left: 3vh">--</span>
+        <span class="temperature-value" style="padding-left: 3vh">--</span>
       </div>
     </div>
+
+    <div class="temperature-controller-container">
+      <VerticalBarController id="temperature-control" />
+    </div>
+
+    <!-- <div class="humidity-value-container">
+      <svgicon class="small-icon" icon="humidity"></svgicon>
+      <span v-if="humidityInfo == 60.9" class="humidity-value"
+        >{{ humidityInfo }}%</span
+      >
+      <span v-else class="humidity-value" style="padding-left: 3vh">--</span>
+    </div> -->
   </div>
 </template>
 
 <script>
 // var serverAddress = "http://192.168.0.22:8181";
+import "../../compiled-icons/temperature";
+import "../../compiled-icons/humidity";
+import VerticalBarController from "../InteractionController/VerticalBarController";
 
 export default {
   name: "TemperatureMainInfoBox",
-  components: {},
+  components: { VerticalBarController },
   props: ["serverAddress", "temp"],
   data() {
     return {
-      temperatureInfo: 99.9,
+      temperatureInfo: 23.9,
+      humidityInfo: 60.9,
     };
   },
   mounted() {
@@ -90,21 +75,51 @@ export default {
 </script>
 
 <style lang="scss">
-#temperature-info-box {
+.temperature-main-info-box {
+}
+
+.temperature-value-container {
   float: left;
-  margin-right: 10px;
-  width: 85%;
+  width: 70%;
+  height: 40%;
+  .temperature-value {
+    font-size: 4.5vh;
+  }
 }
 
-#temperature-value {
-  font-size: 7vh;
+.temperature-controller-container {
+  float: left;
+  width: 30%;
+  height: 70%;
+  position: relative;
+
+  #temperature-control {
+    height: 3vh;
+    width: 100%;
+
+    position: absolute;
+    bottom: 45%;
+    left: 30%;
+  }
+
+  #temperature-control::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -webkit-touch-appearance: none;
+    width: 0px; /* 1 */
+    background: #fff;
+    box-shadow: -100vw 0 0 100vw #ffac88;
+  }
 }
 
-#temperature-controller {
-  background-color: rgba(255, 163, 132, 0.797);
+.humidity-value-container {
+  margin-left: 2%;
+  float: left;
+  width: 30%;
+  height: 30%;
 
-  border-radius: 10px;
-  height: 100%;
-  overflow: hidden;
+  .humidity-value {
+    font-size: 2.2vh;
+    margin-left: 2%;
+  }
 }
 </style>

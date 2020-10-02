@@ -13,19 +13,20 @@ $standard-text-medium: 1.7vh;
     border-width: 1px;
     border-style: solid;
     padding: 1vh;
-    margin: 1.6% 1.6%;
+    margin: 0 1.6%;
+    margin-bottom: 1.6%;
   }
   .main-info-content{
     margin: 2% 0;
   }
 
   .main-info-icon-container {
-    border-radius: $standard-border-radius;
-    border-style: solid;
-    border-width: .1vh;
+    // border-radius: $standard-border-radius;
+    // border-style: solid;
+    // border-width: .1vh;
     float: left;
-    height: 3vh;
-    width: 3vh;
+    height: 2.5vh;
+    width: 2.5vh;
     background-color: $main-black-transparent;
     .info-icon{
       margin: 10%;
@@ -88,4 +89,11 @@ $standard-text-medium: 1.7vh;
   button:hover {
     background-color: $main-blue;
     color: white;
+  }
+
+
+
+  .small-icon{
+    height: 2vh;
+    width: 2vh;
   }
