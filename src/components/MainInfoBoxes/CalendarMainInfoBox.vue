@@ -1,14 +1,6 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-big">
+  <div class="basic-card main-info-box-big">
     <div id="calendar-info-box" :calendarInfos="calendarInfos">
-      <div class="main-info-header">
-        <div class="main-info-icon-container">
-          <div class="info-icon-text">{{ this.day }}</div>
-        </div>
-        <h1 class="main-info-title" id="calendar-header">
-          Up next
-        </h1>
-      </div>
       <div class="main-info-content">
         <div
           id="calendar-appointment"

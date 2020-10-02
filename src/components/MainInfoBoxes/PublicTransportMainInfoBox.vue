@@ -1,14 +1,5 @@
 <template>
   <div class="basic-card main-info-box main-info-box-big">
-    <div class="main-info-header">
-      <div class="main-info-icon-container">
-        <svgicon icon="public-transport"></svgicon>
-      </div>
-      <h1 class="main-info-title" id="public-transport-header">
-        Public Transport
-      </h1>
-    </div>
-
     <div class="main-info-content">
       <table class="table-public-transport">
         <tr>

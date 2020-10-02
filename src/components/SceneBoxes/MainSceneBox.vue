@@ -1,11 +1,11 @@
 <template>
   <div>
     <div
-      class="scene-button basic-card click-element"
+      class="basic-card click-element"
       :key="scene.id"
       v-for="scene in scenes"
     >
-      <StandardSceneBox :scene="scene" />
+      <StandardSceneBox class="scene-button" :scene="scene" />
       
     </div>
   </div>
@@ -63,9 +63,7 @@ export default {
 
 <style lang="scss">
 .scene-button {
-  display: inline-block;
-  height: 10vh;
-  margin: 0 1.05%;
-  width: 14.5%;
+  width: 10vw;
+  
 }
 </style>

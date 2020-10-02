@@ -1,7 +1,7 @@
 <template>
   <div class="lamp-shortcut-container">
     <button class="lamp-shortcut-button"></button>
-    {{ room.name }}
+    <!-- {{ room.name }} -->
   </div>
 </template>
 
@@ -16,13 +16,16 @@ export default {
 <style lang="scss">
 .lamp-shortcut-container {
   height: 100%;
-  width: 10vh;
   font-size: small;
   text-align: center;
   align-items: center;
   justify-content: center;
+      display: flex;
+  flex-wrap: wrap;
+
 }
 .lamp-shortcut-button {
+
   display: block;
   height: 5vh;
   width: 5vh;

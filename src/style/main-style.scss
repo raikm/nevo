@@ -8,13 +8,17 @@ $standard-text-medium: 1.7vh;
 
 .basic-card {
     background-color: white;
+    // backdrop-filter: blur(10px) contrast(.98);
+
+    // box-shadow: rgba(0,0,0,0.2);
+
     border-radius: 10px;
     border-color: rgb(243, 244, 254);
-    border-width: 1px;
+    border-width: 1.5px;
     border-style: solid;
     padding: 1vh;
-    margin: 0 1.6%;
-    margin-bottom: 1.6%;
+    // margin: 0 1.6%;
+    // margin-bottom: 1.6%;
   }
   .main-info-content{
     margin: 2% 0;

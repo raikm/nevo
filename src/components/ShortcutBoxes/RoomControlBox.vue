@@ -53,9 +53,10 @@ export default {
 <style lang="scss">
 .room-controler-box {
   display: inline-block;
-  height: 5vw;
-  margin: 0 1.6%;
-  width: 63.4%;
+  // height: 5vw;
+  
+  
+
 }
 
 #lights-shortcuts {

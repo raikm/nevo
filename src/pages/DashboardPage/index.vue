@@ -1,22 +1,26 @@
 <template>
   <main>
-    <div>
-      <TemperatureMainInfoBox />
-      <WeatherMainInfoBox />
-      <LightIntensityMainInfoBox />
-      <RoomControlBox />
-      <EBikeMainInfoBox />
-      <PublicTransportMainInfoBox />
-      <CalendarMainInfoBox />
-      <MusicControlMainInfoBox />
-      <MainSceneBox id="scene-buttons" />
+    <div class="standard-information-row-container">
+      <TemperatureMainInfoBox class="Temperature-Box" />
+      <WeatherMainInfoBox class="Weather-Box" />
+      <LightIntensityMainInfoBox class="Lightintensity-Box" />
     </div>
+    <div class="standard-information-row-container-small">
+      <RoomControlBox class="Room-Control-Box" />
+      <EBikeMainInfoBox class="EBike-Box" />
+    </div>
+    <div class="flexible-information-row-container-small">
+      <PublicTransportMainInfoBox class="PubicTransport-Box" />
+      <CalendarMainInfoBox class="Calendar-Box" />
+      <MusicControlMainInfoBox class="Music-Control-Box" />
+    </div>
+    <MainSceneBox id="scene-buttons" />
   </main>
 </template>
 
 <script>
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
-import WeatherMainInfoBox from "../../components/MainInfoBoxes/WeatherMainInfoBox"
+import WeatherMainInfoBox from "../../components/MainInfoBoxes/WeatherMainInfoBox";
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
 import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
@@ -45,13 +49,52 @@ export default {
 </script>
 
 <style lang="scss">
+.standard-information-row-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6%;
 
+  .Temperature-Box {
+    width: 31%;
+  }
+  .Weather-Box {
+    width: 31%;
+  }
+  .Lightintensity-Box {
+    width: 31%;
+  }
+}
 
+.standard-information-row-container-small {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6%;
+  .Room-Control-Box {
+    width: 65.5%;
+    height: 10vh;
+  }
 
-.main-info-box {
-  float: left;
-  width: 30%;
+  .EBike-Box {
+    width: 31%;
+    height: 10vh;
+  }
+}
 
+.flexible-information-row-container-small {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6%;
+  .PubicTransport-Box {
+    width: 31%;
+  }
+
+  .Calendar-Box {
+    width: 31%;
+  }
+
+  .Music-Control-Box {
+    width: 31%;
+  }
 }
 
 .main-info-box-small {
@@ -86,13 +129,20 @@ export default {
 }
 
 #scene-buttons {
-  // background-color: pink;
-  margin-top: 1.6%;
-  height: 16vh;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  padding: 0.5vh;
-  white-space: nowrap;
+  height: 10vh;
   width: 100%;
+  // overflow-x: scroll;
+  // overflow-y: hidden;
+  overflow: auto;
+  
+  display: flex;
+  flex-wrap: nowrap;
+  // width: 100%;
+  justify-content: space-between;
+}
+
+
+#scene-buttons > div{
+  margin-right: 20px;
 }
 </style>

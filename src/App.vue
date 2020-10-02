@@ -65,7 +65,7 @@
             ></svgicon>
           </div>
         </div>
-        <div id="main-control" class="main-menu">
+        <div id="infobox-container" class="main-menu">
           <router-view></router-view>
         </div>
         <div id="newsfeed" class="main-menu">
@@ -166,9 +166,14 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+
+                              
+  
 }
 #header-container {
+  max-width: 2200px;
   width: 100%;
+  margin: 0 auto !important;
   float: left;
   #time-container {
     float: right;
@@ -183,6 +188,10 @@ body {
 }
 
 #main-container {
+  max-width: 2200px;
+  height: 1080px;
+  background: rgb(247, 247, 247);
+  margin: 0 auto !important;
   #menu {
     border-radius: 0px 40px;
     padding: 4vh;
@@ -190,20 +199,21 @@ body {
     width: 10%;
   }
 
-  #main-control {
-    //  background: beige;
+  #infobox-container {
+    
     float: left;
     padding: 4vh;
-    width: 70%;
+    width: 65%;
+    overflow: hidden;
   }
 
   #newsfeed {
-    border-radius: 40px 0px;
+    // border-radius: 40px 0px;
     padding: 4vh;
-    background-color: rgba(247, 246, 249, 1);
+    // background-color: rgba(247, 246, 249, 1);
     float: right;
     max-width: 450px;
-    width: 20%;
+    width: 25%;
   }
 }
 

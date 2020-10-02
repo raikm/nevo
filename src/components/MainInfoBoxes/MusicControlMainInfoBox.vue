@@ -35,9 +35,7 @@ export default {
 .music-control-box {
   float: left;
   height: 25vh;
-  margin: 1.6% 1.6%;
   
-  width: 30%;
   background-color: white;
   border-radius: 10px;
   border-color: rgb(243, 244, 254);
