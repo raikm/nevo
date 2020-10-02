@@ -1,69 +1,11 @@
 <template>
   <div id="app">
     <main>
-      <div class="columns">
-        <div id="left-header" class="column header is-1">
-     
-        </div>
-        <div id="middle-header" class="column header ">
-          <h1 id="dashboard-title"></h1>
-        </div>
-        <div id="right-header" class="column header is-3">
-          <div id="weather-container">
-            <svg id="weather-icon" viewBox="0 0 512.288 512.288">
-              <g>
-                <path
-                  d="m106.396 497.144h-16.075c-41.532 0-75.321-33.794-75.321-75.333 0-41.516 33.752-75.296 75.253-75.333.14.005.278.009.418.009h.006c41.369.193 74.965 33.904 74.965 75.324 0 4.142 3.357 7.5 7.5 7.5s7.5-3.358 7.5-7.5c0-47.275-36.5-86.179-82.795-90.017-.005-.365-.025-.738-.025-1.1 0-14.145 3.593-28.118 10.392-40.409 2.004-3.625.691-8.188-2.934-10.193-3.625-2.003-8.188-.69-10.193 2.933-8.023 14.507-12.265 30.991-12.265 47.668 0 .363.002.727.006 1.092-46.311 3.822-82.828 42.739-82.828 90.026 0 49.81 40.518 90.333 90.321 90.333h16.075c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5z"
-                />
-                <path
-                  d="m441.681 364.693c-10.133-29.587-38.035-49.783-69.771-49.783-12.418 0-24.442 3.073-35.212 8.949-10.507-15.722-28.409-25.515-47.608-25.515-4.738 0-9.398.574-13.928 1.712-5.936-18.111-17.152-34.361-32.143-46.371-17.393-13.934-39.268-21.608-61.597-21.608-24.438 0-47.883 9.008-66.017 25.364-3.076 2.774-3.32 7.517-.546 10.593 2.776 3.077 7.518 3.318 10.593.546 15.373-13.866 35.25-21.503 55.97-21.503 36.931 0 68.911 23.783 79.757 58.52-17.754 9.918-29.282 28.845-29.282 49.947 0 4.142 3.357 7.5 7.5 7.5 4.142 0 7.5-3.358 7.5-7.5 0-17.243 10.429-32.513 25.973-38.968.025-.01-.025.01 0 0 5.128-2.126 10.635-3.232 16.22-3.232 16.233 0 31.211 9.493 38.159 24.185.944 1.996 2.721 3.475 4.854 4.042 2.135.566 4.409.165 6.221-1.1 9.892-6.909 21.505-10.561 33.586-10.561 26.85 0 50.254 18.141 56.917 44.116.871 3.401 3.947 5.733 7.498 5.633 0 0 1.393-.049 1.841-.049 32.399 0 58.757 26.363 58.757 58.767s-26.358 58.767-58.757 58.767c-32.398 0-58.756-26.363-58.756-58.767 0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5c0 23.962 11.489 45.283 29.24 58.767h-257.254c-4.143 0-7.5 3.358-7.5 7.5s3.357 7.5 7.5 7.5h301.769c40.67 0 73.757-33.091 73.757-73.767.001-39.495-31.198-71.841-70.241-73.684z"
-                />
-                <path
-                  d="m322.808 99.544c-.035 0-.07.002-.104.002-.049 0-.099-.002-.148-.002-49.803 0-90.32 40.523-90.32 90.334s40.518 90.333 90.32 90.333c.049 0 .097-.002.146-.002.036 0 .071.001.107.001 49.81 0 90.333-40.523 90.333-90.333-.001-49.81-40.525-90.333-90.334-90.333zm-42.213 27.804c.339-.155.674-.329.995-.54 10.623-6.958 22.753-11.066 35.383-12.036.186-.014 5.445-.226 5.686-.226 41.484.057 75.215 33.827 75.215 75.331 0 41.493-33.715 75.256-75.184 75.33-41.485-.064-75.216-33.831-75.216-75.33 0-16.023 4.96-31.317 14.345-44.232.283-.389.518-.798.716-1.218 5.036-6.635 11.139-12.418 18.06-17.079z"
-                />
-                <path
-                  d="m322.555 81.411c4.143 0 7.5-3.358 7.5-7.5v-66.267c0-4.142-3.357-7.5-7.5-7.5s-7.5 3.358-7.5 7.5v66.267c0 4.142 3.357 7.5 7.5 7.5z"
-                />
-                <path
-                  d="m431.022 189.877c0 4.142 3.357 7.5 7.5 7.5h66.267c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-66.267c-4.143 0-7.5 3.358-7.5 7.5z"
-                />
-                <path
-                  d="m140.321 197.377h66.267c4.143 0 7.5-3.358 7.5-7.5s-3.357-7.5-7.5-7.5h-66.267c-4.143 0-7.5 3.358-7.5 7.5 0 4.143 3.358 7.5 7.5 7.5z"
-                />
-                <path
-                  d="m404.556 115.376c1.919 0 3.839-.732 5.304-2.197l46.857-46.857c2.929-2.929 2.929-7.678 0-10.606-2.93-2.929-7.678-2.929-10.607 0l-46.857 46.857c-2.929 2.929-2.929 7.678 0 10.606 1.464 1.465 3.384 2.197 5.303 2.197z"
-                />
-                <path
-                  d="m446.109 324.039c1.465 1.465 3.384 2.197 5.304 2.197 1.919 0 3.839-.732 5.304-2.197 2.929-2.929 2.929-7.678 0-10.606l-46.857-46.858c-2.929-2.929-7.677-2.929-10.607 0-2.929 2.929-2.929 7.678 0 10.606z"
-                />
-                <path
-                  d="m235.25 113.18c1.465 1.464 3.385 2.197 5.304 2.197s3.839-.732 5.304-2.197c2.929-2.929 2.929-7.678 0-10.606l-46.858-46.858c-2.93-2.929-7.678-2.929-10.607 0s-2.929 7.678 0 10.606z"
-                />
-                <path
-                  d="m271.247 85.608c1.196 2.888 3.988 4.632 6.932 4.632.956 0 1.929-.184 2.867-.573 3.827-1.585 5.645-5.973 4.059-9.799l-12.68-30.611c-1.585-3.827-5.973-5.646-9.799-4.059-3.827 1.585-5.645 5.973-4.059 9.799z"
-                />
-                <path
-                  d="m181.934 139.749 30.611 12.68c.938.389 1.91.573 2.867.573 2.943 0 5.735-1.744 6.932-4.632 1.586-3.827-.231-8.214-4.059-9.799l-30.611-12.68c-3.824-1.585-8.213.232-9.799 4.059-1.586 3.826.232 8.213 4.059 9.799z"
-                />
-                <path
-                  d="m467.233 249.806c1.586-3.827-.231-8.214-4.059-9.799l-30.611-12.68c-3.825-1.583-8.213.232-9.799 4.059s.231 8.214 4.059 9.799l30.611 12.68c.939.389 1.91.573 2.867.573 2.944 0 5.736-1.744 6.932-4.632z"
-                />
-                <path
-                  d="m426.823 138.57c-3.827 1.585-5.645 5.973-4.059 9.799 1.196 2.888 3.988 4.632 6.932 4.632.956 0 1.929-.184 2.867-.573l30.611-12.68c3.827-1.585 5.645-5.973 4.059-9.799-1.585-3.826-5.972-5.645-9.799-4.059z"
-                />
-                <path
-                  d="m364.062 89.667c.939.389 1.91.573 2.867.573 2.943 0 5.735-1.744 6.932-4.632l12.68-30.611c1.586-3.827-.231-8.214-4.059-9.799-3.824-1.584-8.213.232-9.799 4.059l-12.68 30.611c-1.585 3.827.232 8.214 4.059 9.799z"
-                />
-              </g>
-            </svg>
-            <div id="weather-temperatur">{{this.outsideTemperatur}}°C</div>
-          </div>
-          <div id="time-container">{{ this.time }}</div>
-          <div id="settings-container"></div>
-        </div>
+      <div id="header-container">
+        <div id="time-container">{{ this.time }}</div>
       </div>
-      <div class="columns">
-        <div id="menu" class="main-menu column is-1">
+      <div id="main-container">
+        <div id="menu" class="main-menu">
           <div
             class="menu-button click-element"
             @click="changePage('/DashboardPage', 'dashboard-icon')"
@@ -142,10 +84,10 @@
           >
             <div class="menu-icon calendar-icon">
               <div id="calendar-day">
-                {{this.weekday}}
+                {{ this.weekday }}
               </div>
               <div id="calendar-date">
-                {{this.day}}
+                {{ this.day }}
               </div>
             </div>
           </div>
@@ -286,10 +228,10 @@
             </svg>
           </div>
         </div>
-        <div id="main-control" class="main-menu column">
+        <div id="main-control" class="main-menu">
           <router-view></router-view>
         </div>
-        <div id="newsfeed" class="main-menu column is-3">
+        <div id="newsfeed" class="main-menu">
           <div
             id="info-box"
             :key="infoBoxContent.id"
@@ -329,7 +271,7 @@ export default {
     },
     defineCurrentFormatedDay() {
       var date = new Date();
-      this.day = date.getUTCDate();      
+      this.day = date.getUTCDate();
       var weekday = new Array(7);
       weekday[0] = "Sunday";
       weekday[1] = "Monday";
@@ -374,10 +316,6 @@ export default {
 @import "/style/menu-style", "/style/main-colors", "/style/main-style"; // add with comma
 
 body {
-  background-color: $main-background-color;
-}
-
-body {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
@@ -386,77 +324,49 @@ body {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
 }
-
-#dashboard-title {
-  font-size: 7vh;
-  line-height: 9vh;
-  height: 9vh;
-}
-#home-icon{
-  width: 50%;
-  margin-top: 15%;
-  margin-left: 25%;
-}
-#middle-header {
-  margin: 0 2vh;
-  // padding: 4vh;
-}
-
-#right-header {
-  #weather-container {
-    float: left;
-    // background-color: turquoise;
-    width: 40%;
-    height: 100%;
-    text-align: left;
-    #weather-icon {
-      margin-top: 20%;
-      width: 6h;
-      height: 5.6vh;
-      float: left;
-    }
-    #weather-temperatur {
-      text-align: center;
-      height: 100%;
-      float: left;
-      font-size: 2.7vh;
-      transform: translate(0, 28%);
-      margin-left: 5%;
-    }
-  }
+#header-container {
+  width: 100%;
+  float: left;
   #time-container {
-    float: left;
-    font-size: 6vh;
+    float: right;
+    padding: 10px;
+    font-size: 4vh;
     text-align: center;
-    //fast fix
-    transform: translate(0, 20%);
-    height: 100%;
-    width: 40%;
-  }
-  #settings-container {
-    float: left;
-    // background-color: yellow;
-    width: 20%;
-    height: 100%;
   }
 }
+
 .main-menu {
-  height: 90vh;
+  height: 100vh;
 }
-#menu {
-  border-radius: 0px 40px;
-  padding-top: 4vh;
+
+#main-container {
+  #menu {
+    border-radius: 0px 40px;
+    padding: 4vh;
+    float: left;
+    width: 10%;
+  }
+
+  #main-control {
+    //  background: beige;
+    float: left;
+    padding: 4vh;
+    width: 70%;
+  }
+
+  #newsfeed {
+    border-radius: 40px 0px;
+    padding: 4vh;
+    background-color: rgba(247, 246, 249, 1);
+    float: right;
+    max-width: 450px;
+    width: 20%;
+  }
 }
 
 #svgbackground {
   fill: rgb(252, 252, 252);
   width: 100%;
   height: 100%;
-}
-
-#newsfeed {
-  border-radius: 40px 0px;
-  padding: 4vh;
-  background-color: rgba(247, 246, 249, 1);
 }
 </style>
