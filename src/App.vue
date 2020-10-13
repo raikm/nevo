@@ -139,15 +139,17 @@ export default {
       infoBoxContentList: [
         {
           id: 1,
-          iconSource: "/img/icons/shipping-and-delivery.svg",
+          iconSource: "menu_package",
           title: "Package Tracking",
           contentType: "package",
+          iconClass: "package-icon active"
         },
         {
           id: 2,
-          iconSource: "/img/icons/plant.svg",
+          iconSource: "menu_plant",
           title: "Plant Alert",
           contentType: "plant",
+          iconClass: "plant-icon active"
         },
       ],
     };

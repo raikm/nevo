@@ -1,7 +1,7 @@
 <template>
   <div @click='changePage("/PackagesPage");' class="info-box" :data="infoBoxContent">
       
-      <img class="info-icon" :src="infoBoxContent.iconSource" />
+       <svgicon :class="infoBoxContent.iconClass" class="info-icon plant-icon" :icon="infoBoxContent.iconSource"></svgicon>
       <h1 class="info-title">{{infoBoxContent.title}}</h1>
       
       <div v-if="infoBoxContent.contentType === 'package'">
@@ -21,6 +21,8 @@
 // import InfoContent from './InfoContent'
 import InfoPackageContent from './InfoPackageContent'
 import InfoPlantContent from './InfoPlantContent'
+import "../../compiled-icons/menu_plant";
+import "../../compiled-icons/menu_package";
 
 export default {
   name: "InfoBox",
@@ -29,7 +31,9 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "../../style/menu-style";
+
 .info-box {
   background-color: white;
   border-radius: 10px;
