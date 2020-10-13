@@ -1,29 +1,38 @@
 <template>
   <div class="basic-card main-info-box main-info-box-big music-control-box">
-    <MusicPlayerController id="music-control" />
-     <!-- v-model="value" under -->
-    <HorizontalBarController id="volume-control"/>
+    <MusicPlayerPlaylistController id="music-control" />
+    <MusicPlayerController id="music-player" />
+    <!-- v-model="value" under -->
+    <div id="volume-control-wrapper">
+      <HorizontalBarController id="volume-control" />
+      <div id="volume-icon-container">
+        <svgicon id="volume-icon" icon="volume_medium"></svgicon>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
 import MusicPlayerController from "./MusicPlayerController";
 import HorizontalBarController from "../InteractionController/HorizontalBarController";
+import "../../compiled-icons/volume_medium";
 
 export default {
   name: "MusicControlMainInfoBox",
-  components: { MusicPlayerController, HorizontalBarController },
+  components: {
+    MusicPlayerPlaylistController,
+    HorizontalBarController,
+    MusicPlayerController,
+  },
   props: ["sliderValue"],
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
 
 <style lang="scss">
-
-
 #volume-control::-webkit-slider-thumb {
   -webkit-appearance: none;
   -webkit-touch-appearance: none;
@@ -34,27 +43,53 @@ export default {
 
 .music-control-box {
   float: left;
-  height: 25vh;
-  
+  height: 70%;
+
   background-color: white;
   border-radius: 10px;
   border-color: rgb(243, 244, 254);
   border-width: 1px;
   border-style: solid;
+  display: flex;
+  flex-direction: column;
 }
 
 #music-control,
 #volume-control {
+}
 
+#music-player {
+  height: 70%;
+  margin-bottom: 4%;
 }
 
 #music-control {
-  height: 70%;
+  
   margin-bottom: 4%;
+  display: none;
   // padding: 5%;
 }
 
+#volume-control-wrapper {
+  height: 30%;
+  position: relative;
+  
+}
+#volume-icon-container {
+  height: 100%;
+  position: absolute;
+  z-index: 99;
+  pointer-events: none;
+}
+#volume-icon {
+  height: 3vh;
+  margin: 1vh;
+  fill: lightgray;
+}
+
 #volume-control {
+  position: absolute;
+  z-index: 98;
   height: 5vh;
   width: 100%;
 }

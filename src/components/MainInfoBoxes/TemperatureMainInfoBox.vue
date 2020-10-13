@@ -3,36 +3,37 @@
     class="basic-card main-info-box main-info-box-small temperature-main-info-box"
   >
     <div class="main-info-header">
-      <div class="main-info-icon-container">
-        <svgicon icon="temperature"></svgicon>
-      </div>
-
       <h1 class="main-info-title" id="temperature-header">
         Indoor temperature
       </h1>
-    </div>
-
-    <div class="temperature-value-container" :temperatureInfo="temperatureInfo">
-      <div v-if="temperatureInfo == 23.9">
-        <!-- normally here should be 99.9 but cause of debug and server not avaible -->
-        <span class="temperature-value">+{{ temperatureInfo }}°C</span>
-      </div>
-      <div v-else>
-        <span class="temperature-value" style="padding-left: 3vh">--</span>
+      <div class="main-info-icon-container">
+        <svgicon icon="temperature"></svgicon>
       </div>
     </div>
 
-    <div class="temperature-controller-container">
-      <VerticalBarController id="temperature-control" />
-    </div>
-
-    <!-- <div class="humidity-value-container">
-      <svgicon class="small-icon" icon="humidity"></svgicon>
-      <span v-if="humidityInfo == 60.9" class="humidity-value"
-        >{{ humidityInfo }}%</span
+    <div class="temperature-humidity-wrapper">
+      <div
+        class="temperature-humidity-value-wrapper"
+        :temperatureInfo="temperatureInfo"
       >
-      <span v-else class="humidity-value" style="padding-left: 3vh">--</span>
-    </div> -->
+        <!-- normally here sho duld be 99.9 but cause of debug and server not avaible -->
+        <span v-if="temperatureInfo == 23.9" class="temperature-value"
+          >+{{ temperatureInfo }}°C</span
+        >
+
+        <span v-else class="temperature-value" style="padding-left: 3vh"
+          >--</span
+        >
+
+        <span v-if="humidityInfo == 60.9" class="humidity-value"
+          >{{ humidityInfo }}%</span
+        >
+        <span v-else class="humidity-value" style="padding-left: 3vh">--</span>
+      </div>
+      <div class="temperature-controller-container">
+        <VerticalBarController id="temperature-control" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -44,7 +45,7 @@ import VerticalBarController from "../InteractionController/VerticalBarControlle
 
 export default {
   name: "TemperatureMainInfoBox",
-  components: { VerticalBarController },
+  components: {VerticalBarController}, 
   props: ["serverAddress", "temp"],
   data() {
     return {
@@ -75,51 +76,44 @@ export default {
 </script>
 
 <style lang="scss">
-.temperature-main-info-box {
+
+.temperature-humidity-wrapper {
+  display: grid;
+  grid-template-columns: 7fr 3fr;
 }
 
-.temperature-value-container {
-  float: left;
-  width: 70%;
-  height: 40%;
-  .temperature-value {
-    font-size: 4.5vh;
-  }
+.temperature-humidity-value-wrapper{
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.temperature-value {
+  font-size: 4.5vh;
+}
+
+#temperature-control {
+  height: 3vh;
+  width: 100%;
+
+  position: relative;
+  bottom: -35%;
+  left: 30%;
+}
+
+#temperature-control::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  -webkit-touch-appearance: none;
+  width: 0px; /* 1 */
+  background: #fff;
+  box-shadow: -100vw 0 0 100vw #d44e34;
+}
+
+.humidity-value {
+  font-size: 2.2vh;
+  // margin-left: 2%;
 }
 
 .temperature-controller-container {
-  float: left;
-  width: 30%;
-  height: 70%;
-  position: relative;
-
-  #temperature-control {
-    height: 3vh;
-    width: 100%;
-
-    position: absolute;
-    bottom: 45%;
-    left: 30%;
-  }
-
-  #temperature-control::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    -webkit-touch-appearance: none;
-    width: 0px; /* 1 */
-    background: #fff;
-    box-shadow: -100vw 0 0 100vw #ffac88;
-  }
-}
-
-.humidity-value-container {
-  margin-left: 2%;
-  float: left;
-  width: 30%;
-  height: 30%;
-
-  .humidity-value {
-    font-size: 2.2vh;
-    margin-left: 2%;
-  }
+  align-self: stretch;
 }
 </style>

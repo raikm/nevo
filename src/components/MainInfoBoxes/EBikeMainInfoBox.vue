@@ -1,10 +1,13 @@
 <template>
-  <div class="basic-card main-info-box e-bike-info-box">
-    <div id="battery-status-container">
-      <canvas id="donutChart" data-percent="85"></canvas>
+  <div class="basic-card main-info-box-small e-bike-info-wrapper">
+    <div class="e-bike-info-box">
+      <div id="chart-wrapper">
+        <canvas id="bike-battery-chart"></canvas>
+      </div>
+      <div id="kilometer-wrapper">
+        <span id="kilometer-info">{{ bikeData.estimatedRange }} km</span>
+      </div>
     </div>
-    <div id="kilometer-info">{{ bikeData.estimatedRange }} km</div>
-    <img id="img-e-bike" src="../../../public/img/ebike.png" />
   </div>
 </template>
 
@@ -25,7 +28,7 @@ export default {
     };
   },
   mounted() {
-    const ctx = document.getElementById("donutChart");
+    const ctx = document.getElementById("bike-battery-chart");
     console.log(ctx);
     /* eslint-disable no-unused-vars */
     var donutChart = new Chart(ctx, {
@@ -33,13 +36,14 @@ export default {
       data: {
         datasets: [
           {
-            data: [46],
-            backgroundColor: "#0CF574",
+            data: [46, 54],
+            backgroundColor: ["#0CF574", "#eeeeee"], 
           },
         ],
       },
       options: {
         responsive: true,
+        maintainAspectRatio: false,
         legend: {
           display: false,
         },
@@ -55,36 +59,38 @@ export default {
 <style lang="scss">
 @import "../../style/main-style";
 
+.e-bike-info-wrapper {
+  position: relative;
+  background: url(../../../public/img/ebike.png) no-repeat 50% -20%;
+  background-color: white;
+  background-size: cover;
+}
+
 .e-bike-info-box {
-  display: inline-block;
-  // height: 5vw;
-  // margin: 0 1.6%;
-  width: 30%;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100%;
+  max-height: 100%;
   overflow: hidden;
+}
 
-  #kilometer-info {
-    float: right;
-    border-radius: $standard-border-radius;
-    border: 1px solid #000000;
-    
-     
-  }
-  #battery-status-container {
-    width: 8%;
-    position: absolute;
-    // z-index: 99;
-    // left: 0;
+#chart-wrapper {
+  min-width: 0;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
 
-    #img-e-bike {
-      position: absolute;
-      // width: 70%;
-      // height: 160%;
+#kilometer-wrapper {
+  text-align: right;
+  align-self: center;
+}
 
-      margin-left: 30%;
-      opacity: 0.5;
-      z-index: 99;
-      //  filter: drop-shadow(2px 2px 2px #222);
-    }
-  }
+#kilometer-info {
+
+  border-radius: $standard-border-radius;
+  border: 1px solid #000000;
+  padding: 5px;
 }
 </style>

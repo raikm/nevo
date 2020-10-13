@@ -78,7 +78,7 @@ export default {
   // align-items: center;
 }
 #room-light-control-container {
-  margin: 1.6%;
+  margin: auto 1.6%;
 }
 .room-light-control {
   display: grid;

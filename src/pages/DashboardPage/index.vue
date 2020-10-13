@@ -99,6 +99,10 @@ export default {
 
 .main-info-box-small {
   height: 15vh;
+  
+}
+.main-info-box-small div {
+  
 }
 
 .main-info-box-big {
@@ -107,7 +111,8 @@ export default {
 }
 
 .main-info-header {
-  // display: inline-flex;
+  display: grid;
+  grid-template-columns: 9fr 1fr;
   font-size: 1.8vh;
   height: 3vh;
   line-height: 3vh;
@@ -125,7 +130,7 @@ export default {
 }
 
 .main-info-title {
-  margin-left: 13%;
+ 
 }
 
 #scene-buttons {

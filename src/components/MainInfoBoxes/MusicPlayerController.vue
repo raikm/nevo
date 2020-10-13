@@ -1,161 +1,133 @@
 <template>
-  <div>
-    <div class="main-info-header">
-      <div class="main-info-icon-container">
-         <svgicon
-              class="info-icon"
-              icon="music"
-              width="2vh"
-              height="2vh"
-            ></svgicon>
-
+  <main>
+    <div id="player">
+      <div id="title-info-container">
+        <div id="cover-img">
+          <img id="album-cover" src="../../../public/img/album_cover.png" />
+        </div>
+        <div id="title-info">
+          <div id="location">Lounge</div>
+          <div id="title">Ok Cool.</div>
+          <div id="artist">Yung Hurn - Album Name</div>
+        </div>
+        <!-- <div id="current-music-play-icon">
+          <svgicon width="3vh" icon="music"></svgicon>
+        </div> -->
       </div>
-      <h1 class="main-info-title" id="public-transport-header">
-        Music
-      </h1>
-    </div>
-    <div id="main-playlist-shortcuts">
-      <div class="columns">
-        <div class="column is-paddingless">
-          <div
-            class="playlist-shortcuts"
-            :key="playlist.id"
-            v-for="playlist in playlists.slice(3, 6)"
-          >
-            <button class="playlist-button" @click="startPlaylistOnSpotify(playlist.name)">
-              <svg class="playlist-icon" viewBox="0 0 50 50">
-                <path
-                  fill="#231F20"
-                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
-                />
-              </svg>
-
-              {{ playlist.name }}
-            </button>
-          </div>
+      <div id="duration-info">
+        <div class="play-duration">1:25</div>
+        <div id="progress-wrapper">
+          <div id="progress"></div>
         </div>
-        <div class="column is-paddingless">
-          <div
-            class="playlist-shortcuts"
-            :key="playlist.id"
-            v-for="playlist in playlists.slice(0, 3)"
-          >
-            <button class="playlist-button" @click="startPlaylistOnSpotify(playlist.name)">
-              <svg class="playlist-icon" viewBox="0 0 50 50">
-                <path
-                  fill="#231F20"
-                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
-                /></svg
-              >{{ playlist.name }}
-            </button>
-          </div>
-        </div>
+        <div class="play-duration">3:30</div>
+      </div>
+      <div id="player-control">
+        <svgicon class="play-icon" icon="player_control_plus"></svgicon>
+        <svgicon class="play-icon" icon="player_control_backward"></svgicon>
+        <svgicon
+          class="play-icon"
+          id="play"
+          icon="player_control_play"
+        ></svgicon>
+        <svgicon class="play-icon" icon="player_control_forward"></svgicon>
+        <svgicon class="play-icon" icon="player_control_more"></svgicon>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
-import "../../compiled-icons/music"
+import "../../compiled-icons/player_control_more";
+import "../../compiled-icons/player_control_plus";
+import "../../compiled-icons/player_control_backward";
+import "../../compiled-icons/player_control_forward";
+import "../../compiled-icons/player_control_pause";
+import "../../compiled-icons/player_control_play";
+import "../../compiled-icons/player_control_stop";
+import "../../compiled-icons/music";
 
 export default {
   name: "MusicPlayerController",
-  methods: {
-    startPlaylistOnSpotify(playlistname){
-      document.getElementById("main-playlist-shortcuts").style.display = "None"
-      console.log(playlistname)
-    }
-  },
-  data() {
-    return {
-      playlists: [
-        {
-          id: 1,
-          name: "Coffee",
-          cover: "./link",
-        },
-        {
-          id: 2,
-          name: "Morning",
-          cover: "./link",
-        },
-        {
-          id: 3,
-          name: "Cooking",
-          cover: "./link",
-        },
-        {
-          id: 4,
-          name: "Guests",
-          cover: "./link",
-        },
-        {
-          id: 5,
-          name: "Up",
-          cover: "./link",
-        },
-        {
-          id: 6,
-          name: "Hip Hop",
-          cover: "./link",
-        },
-      ],
-    };
-  },
 };
 </script>
 
 <style lang="scss">
-.playlist-name {
-  padding-left: 0.5vh;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 55%;
-}
-
-#main-playlist-shortcuts {
-  // background: yellow;
-  // overflow: hidden;
+#player {
   height: 100%;
-  padding: 2vh 2.5%;
+  display: flexbox;
 }
 
-.playlist-icon {
-  float: left;
-  padding: 0.25vh;
-  height: 3vh;
-  width: 3vh;
+#player-control {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 0%;
+  justify-content: center;
+  height: 1.5vh;
+}
+#cover-img {
+  align-self: flex-end;
 }
 
-.playlist-shortcuts {
-  text-align: left;
+#album-cover {
+  border-radius: 15px;
+  border: 0 solid grey;
+  padding: 5%;
+}
+#title-info-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-column-gap: 5%;
+  height: 50%;
+}
+
+#title-info {
+  align-self: flex-end;
+  padding-bottom: 5%;
+}
+#artist {
+  font-size: 1vh;
+}
+
+#location {
+  font-size: 0.8vh;
+}
+#duration-info {
+  display: grid;
+  grid-template-columns: 1fr 8fr 1fr;
+
+  margin: 5% 0%;
+}
+
+.play-duration {
+  font-size: 10px;
+  justify-self: center;
+}
+#current-music-play-icon {
+  justify-self: right;
+}
+#progress-wrapper {
   width: 100%;
-  padding: 0.3vh;
+  height: 3px;
+  background-color: #ddd;
+  border-radius: 10px;
+  border: 0px solid;
+  align-self: center;
+}
+#progress {
+  width: 10%;
+  border-radius: 10px;
+  border: 0px solid;
+  height: 3px;
+  background-color: rgb(73, 157, 255);
 }
 
-.playlist-button {
-  height: 3.5vh;
-  width: 100%;
-  font-size: 2vh;
-  text-align: left;
-  display: flex;
+.play-icon {
+  height: 2.3vh;
+  fill: lightgray;
+  justify-self: center;
+}
 
-  align-items: center;
+#play {
+  fill: rgb(72, 72, 72);
 }
 </style>
