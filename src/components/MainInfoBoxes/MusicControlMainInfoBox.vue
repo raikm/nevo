@@ -82,8 +82,8 @@ export default {
   pointer-events: none;
 }
 #volume-icon {
-  height: 3vh;
-  margin: 1vh;
+  height: 2vh;
+  margin: 1.5vh;
   fill: lightgray;
 }
 

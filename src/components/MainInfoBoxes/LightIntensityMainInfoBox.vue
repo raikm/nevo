@@ -5,19 +5,60 @@
         <h1 class="main-info-title">
           Light intensity
         </h1>
-        <svg class="info-icon" viewBox="0 0 407.936 407.936">
+        <svg
+          class="info-icon"
+          width="304"
+          height="341"
+          viewBox="0 0 304 341"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <filter id="sofGlow" height="300%" width="300%" x="-75%" y="-75%">
+              <!-- Thicken out the original shape -->
+              <feMorphology
+                operator="dilate"
+                radius="4"
+                in="SourceAlpha"
+                result="thicken"
+              />
+
+              <!-- Use a gaussian blur to create the soft blurriness of the glow -->
+              <feGaussianBlur in="thicken" stdDeviation="7" result="blurred" />
+
+              <!-- Change the colour -->
+              <feFlood flood-color="#F5BC42" result="glowColor" />
+
+              <!-- Color in the glows -->
+              <feComposite
+                in="glowColor"
+                in2="blurred"
+                operator="in"
+                result="softGlow_colored"
+              />
+
+              <!--	Layer the effects together -->
+              <feMerge>
+                <feMergeNode in="softGlow_colored" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
           <path
-            d="M363.988,311.667c0-0.041-0.005-0.08-0.006-0.121c-0.129-38.091-13.847-74.924-38.669-103.769
-            c-23.173-26.931-54.619-45.384-89.143-52.453v-23.762c0-10.948-8.906-19.854-19.854-19.854h-4.348V8c0-4.418-3.582-8-8-8
-            s-8,3.582-8,8v103.708h-4.348c-10.948,0-19.854,8.906-19.854,19.854v23.762c-34.524,7.069-65.969,25.522-89.143,52.453
-            c-24.822,28.845-38.539,65.678-38.669,103.769c-0.001,0.041-0.006,0.08-0.006,0.121c0,0.026,0.004,0.051,0.004,0.077
-            c0,0.116-0.004,0.231-0.004,0.346v31.41c0,4.418,3.582,8,8,8h88.482c3.756,31.735,30.809,56.436,63.538,56.436
-            s59.781-24.7,63.538-56.436h88.482c4.418,0,8-3.582,8-8v-31.41c0-0.115-0.004-0.23-0.004-0.346
-            C363.984,311.718,363.988,311.693,363.988,311.667z M203.968,391.936c-23.893,0-43.76-17.55-47.399-40.436h94.797
-            C247.728,374.386,227.861,391.936,203.968,391.936z M59.948,335.5v-15.833h232.353c4.418,0,8-3.582,8-8s-3.582-8-8-8H60.196
-            c3.837-67.417,53.461-122.992,120.833-133.771c0.434-0.069,0.853-0.178,1.258-0.313h21.68c4.418,0,8-3.582,8-8s-3.582-8-8-8h-16.203
-            v-22.021c0-2.125,1.729-3.854,3.854-3.854h24.696c2.125,0,3.854,1.729,3.854,3.854v30.434c0,3.931,2.855,7.278,6.736,7.899
-            c67.372,10.78,116.996,66.355,120.833,133.771h-23.813c-4.418,0-8,3.582-8,8s3.582,8,8,8h24.062V335.5H59.948z"
+            class="light-bulb-body"
+            d="M204.619 121.973C187.585 126.342 166.467 127.865 151.998 127.865C137.53 127.865 116.411 126.342 99.3778 121.973C112.279 166.931 114.492 208.054 114.055 219.754C113.951 222.472 114.777 225.04 116.354 227.096L120.544 232.467C129.588 233.671 140.066 234.428 151.998 234.428C163.93 234.428 174.409 233.671 183.453 232.467L187.642 227.096C189.219 225.04 190.046 222.472 189.941 219.754C189.504 208.054 191.718 166.931 204.619 121.973Z"
+            stroke="#737373"
+          />
+          <path
+            class="light-bulb-body"
+            d="M152.036 245.087C144.303 245.087 133.416 244.693 123.517 243.617L128.277 276.736C128.524 279.06 129.54 281.212 131.136 282.843L135.573 287.361C135.867 287.67 136.143 288 136.399 288.341L141.102 294.554C142.907 296.962 145.652 298.369 148.569 298.369H152.036H155.504C158.42 298.369 161.175 296.962 162.98 294.554L167.664 288.341C167.93 288 168.205 287.67 168.509 287.361L172.946 282.843C174.542 281.212 175.549 279.06 175.796 276.736L180.555 243.617C170.656 244.693 159.769 245.087 152.036 245.087Z"
+            stroke="#737373"
+          />
+          <path
+            class="light-bulb"
+            d="M211.383 57.8921C225.871 72.8322 212.685 100.357 208.258 110.182C196.316 114.083 177.202 117.588 151.495 117.588C125.788 117.588 106.684 114.083 94.7424 110.182C90.3154 100.357 77.1199 72.8322 91.6169 57.8921C107.111 41.9184 148.883 43.016 151.495 43.016C154.117 43.016 195.879 41.9184 211.383 57.8921Z"
+            fill="#F5BC42"
+            filter="url(#sofGlow)"
           />
         </svg>
       </div>
@@ -27,7 +68,13 @@
           :style="{ width: lightintensityInfo.value + '%' }"
         ></div>
       </div> -->
-      <HorizontalBarController id="light-intensity-control" />
+
+      <div id="light-intensity-control-wrapper">
+        <HorizontalBarController id="light-intensity-control" />
+        <div id="light-intensity-icon-container">
+          <svgicon id="light-intensity-icon" icon="sun"></svgicon>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -71,9 +118,27 @@ export default {
   width: 100%;
 }
 
+#light-intensity-control-wrapper {
+  margin-top: 15%;
+  height: 30%;
+  position: relative;
+}
+#light-intensity-icon-container {
+  height: 100%;
+  position: absolute;
+  z-index: 99;
+  pointer-events: none;
+}
+#light-intensity-icon {
+  height: 2vh;
+  margin: 1.5vh;
+  fill: lightgray;
+}
+
 #light-intensity-control {
-  width: 100%;
+  position: absolute;
+  z-index: 98;
   height: 5vh;
-  margin-top: 4vh;
+  width: 100%;
 }
 </style>

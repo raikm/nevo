@@ -44,7 +44,14 @@
             class="menu-button click-element"
             @click="changePage('/PlantsPage', 'device-icon')"
           >
-            <svgicon class="menu-icon device-icon" icon="menu_device"></svgicon>
+            <!-- <svgicon class="menu-icon device-icon" icon="menu_rooms"></svgicon> -->
+<svg class="menu-icon" width="335" height="335" viewBox="0 0 335 335" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="5" y="5" width="325" height="325" rx="25" fill="white" stroke="#686868" stroke-width="15"/>
+<path d="M335 167H167V335" stroke="#686868" stroke-width="15"/>
+</svg>
+
+
+
           </div>
           <div
             class="menu-button click-element"
@@ -90,6 +97,7 @@ import "./compiled-icons/menu_lamp";
 import "./compiled-icons/menu_package";
 import "./compiled-icons/menu_plant";
 import "./compiled-icons/menu_settings";
+import "./compiled-icons/menu_rooms";
 
 export default {
   name: "homeapp",
@@ -151,6 +159,13 @@ export default {
           contentType: "plant",
           iconClass: "plant-icon active"
         },
+        {
+          id: 3,
+          iconSource: "washing_machine",
+          title: "Washing Machine",
+          contentType: "device",
+          iconClass: ""
+        },
       ],
     };
   },
@@ -168,6 +183,7 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
+  // font-family: Verdana;
 
                               
   

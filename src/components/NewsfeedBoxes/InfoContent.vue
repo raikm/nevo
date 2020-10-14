@@ -9,7 +9,7 @@ export default {
   name: "InfoContent",
 };
 </script>
-script
+
 
 <style scoped>
 

@@ -4,7 +4,8 @@
       <div class="calendar-color" :style="{background: appointment.calendarColor}"></div>
     </div>
     <div class="right-calendar-entry-box-container">
-      <div class="calendar-title">{{ appointment.title }}</div>
+      <span class="calendar-title">{{ appointment.title }}</span>
+      <span class="calendar-location"> - {{ appointment.location }}</span>
       <div class="calendar-time">
         {{ appointment.startDate }} - {{ appointment.endDate }}
       </div>
@@ -24,6 +25,11 @@ export default {
 </script>
 
 <style lang="scss">
+
+
+
+@import "../../style/main-colors";
+
 .calendar-color{
     height: 90%;
     width: 100%;
@@ -31,6 +37,10 @@ export default {
 }
 .calendar-title{
   font-weight: bold;
+}
+
+.calendar-location{
+  color: $main-gray;
 }
 
 .left-calendar-entry-box-container{
