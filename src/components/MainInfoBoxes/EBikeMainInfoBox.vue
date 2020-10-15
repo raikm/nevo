@@ -36,14 +36,20 @@ export default {
       data: {
         datasets: [
           {
-            data: [46, 54],
-            backgroundColor: ["#0CF574", "#eeeeee"], 
+            data: [72, 28],
+            backgroundColor: ["#0CF574", "#fff"],
           },
         ],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
+        cutoutPercentage: 70,
+        elements: {
+          arc: {
+            borderWidth: 0,
+          },
+        },
         legend: {
           display: false,
         },
@@ -62,7 +68,8 @@ export default {
 .e-bike-info-wrapper {
   position: relative;
   background: url(../../../public/img/ebike.png) no-repeat 50% -20%;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
   background-size: cover;
 }
 
@@ -78,8 +85,8 @@ export default {
 #chart-wrapper {
   min-width: 0;
   overflow: auto;
-  width: 100%;
-  height: 100%;
+  width: 75%;
+  height: 75%;
 }
 
 #kilometer-wrapper {
@@ -88,7 +95,6 @@ export default {
 }
 
 #kilometer-info {
-
   border-radius: $standard-border-radius;
   border: 1px solid #000000;
   padding: 5px;

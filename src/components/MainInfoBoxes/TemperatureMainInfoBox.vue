@@ -31,7 +31,7 @@
         <span v-else class="humidity-value" style="padding-left: 3vh">--</span>
       </div>
       <div class="temperature-controller-container">
-        <VerticalBarController id="temperature-control" />
+        <!-- <VerticalBarController id="temperature-control" /> -->
       </div>
     </div>
   </div>
@@ -41,11 +41,11 @@
 // var serverAddress = "http://192.168.0.22:8181";
 import "../../compiled-icons/temperature";
 import "../../compiled-icons/humidity";
-import VerticalBarController from "../InteractionController/VerticalBarController";
+// import VerticalBarController from "../InteractionController/VerticalBarController";
 
 export default {
   name: "TemperatureMainInfoBox",
-  components: {VerticalBarController}, 
+  // components: {VerticalBarController}, 
   props: ["serverAddress", "temp"],
   data() {
     return {
@@ -105,7 +105,7 @@ export default {
   -webkit-touch-appearance: none;
   width: 0px; /* 1 */
   background: #fff;
-  box-shadow: -100vw 0 0 100vw #d44e34;
+  box-shadow: -100vw 0 0 100vw #dc2e02e3;
 }
 
 .humidity-value {

@@ -1,4 +1,4 @@
 <svg class="menu-icon" width="335" height="335" viewBox="0 0 335 335" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="5" y="5" width="325" height="325" rx="25" fill="white" stroke="#686868" stroke-width="15"/>
+<rect x="5" y="5" width="325" height="325" rx="25" stroke="#686868" stroke-width="15"/>
 <path d="M335 167H167V335" stroke="#686868" stroke-width="15"/>
 </svg>

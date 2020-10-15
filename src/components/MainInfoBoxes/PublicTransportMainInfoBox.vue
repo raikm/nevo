@@ -1,6 +1,6 @@
 <template>
   <div class="basic-card main-info-box main-info-box-big">
-    <div class="main-info-content">
+    <div class="public-transport-content">
       <table class="table-public-transport">
         <tr>
           <td id="public-transport-line" class="td-public-transport-title">
@@ -34,21 +34,33 @@
           <td class="td-public-transport public-transport-direction">
             {{ transport.direction }}
           </td>
-          <td id="public-transport-time" class="td-public-transport">
+          <td id="public-transport-time-value" class="td-public-transport">
             {{ transport.time }} min
           </td>
         </tr>
       </table>
+    </div>
+    Duration to next Appoinment:
+    <div class="eta-content-container">
+      
+      <div
+        class="eta-content"
+        :key="etaContent.id"
+        v-for="etaContent in etaContents"
+      >
+        <ETAInfo :etaContent="etaContent" />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import "../../compiled-icons/public-transport";
+import ETAInfo from "./ETAInfo";
 
 export default {
   name: "PublicTransportMainInfoBox",
-  components: {},
+  components: { ETAInfo },
   props: [],
   data() {
     var BUS = "bus";
@@ -64,7 +76,7 @@ export default {
           line: "U1",
           lineColor: "#DA421E",
           textColor: "white",
-          time: 4,
+          time: 3,
         },
         {
           id: 2,
@@ -73,7 +85,7 @@ export default {
           line: "TXL",
           lineColor: "#95276e",
           textColor: "white",
-          time: 2,
+          time: 4,
         },
         {
           id: 3,
@@ -103,6 +115,11 @@ export default {
           time: 13,
         },
       ],
+
+      etaContents: [
+        { id: 1, etaIcon: "bike", etaTime: "10 min" },
+        { id: 2, etaIcon: "public-transport", etaTime: "22 min" },
+      ],
     };
   },
   computed: {},
@@ -121,20 +138,21 @@ export default {
 .td-public-transport-title {
   display: inline-block;
   font-size: $standard-text-medium;
-  height: 2.6vh;
-  line-height: 2.6vh;
+  height: 2.1vh;
+  line-height: 2.1vh;
 }
 
 .td-public-transport-title {
-  font-weight: bold;
+  font-weight: 500;
 }
 
 // to overwrite td = left
 #public-transport-line {
   text-align: center;
   width: 15%;
-  font-weight: bold;
+  font-weight: 600;
   border-radius: $standard-border-radius;
+  opacity: 0.85;
 }
 
 .public-transport-direction {
@@ -152,5 +170,19 @@ export default {
 #public-transport-time {
   text-align: right;
   width: 20%;
+}
+
+#public-transport-time-value {
+  text-align: right;
+  font-size: $standard-text-small;
+  width: 20%;
+}
+
+.eta-content-container {
+  margin-top: 2%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 5%;
 }
 </style>

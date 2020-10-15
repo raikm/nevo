@@ -47,10 +47,11 @@ export default {
 @import "../../style/menu-style";
 
 .info-box {
-  background-color: white;
+  background-color: rgba(255, 255, 255, .45);   
+    backdrop-filter: blur(10px);
   border-radius: 10px;
   border-color: rgb(243, 244, 254);
-  border-width: 1px;
+  border-width: 0px;
   border-style: solid;
   margin-bottom: 1vh;
   width: 100%;

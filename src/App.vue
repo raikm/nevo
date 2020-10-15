@@ -46,7 +46,7 @@
           >
             <!-- <svgicon class="menu-icon device-icon" icon="menu_rooms"></svgicon> -->
 <svg class="menu-icon" width="335" height="335" viewBox="0 0 335 335" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="5" y="5" width="325" height="325" rx="25" fill="white" stroke="#686868" stroke-width="15"/>
+<rect x="5" y="5" width="325" height="325" rx="25" stroke="#686868" stroke-width="15"/>
 <path d="M335 167H167V335" stroke="#686868" stroke-width="15"/>
 </svg>
 
@@ -54,6 +54,7 @@
 
           </div>
           <div
+            id="package-menu-button"
             class="menu-button click-element"
             @click="changePage('/PackagesPage', 'package-icon')"
           >
@@ -62,7 +63,7 @@
               icon="menu_package"
             ></svgicon>
           </div>
-          <div
+          <!-- <div
             class="menu-button click-element"
             @click="changePage('SettingsPage', 'automation-icon')"
           >
@@ -70,7 +71,7 @@
               class="menu-icon automation-icon"
               icon="menu_settings"
             ></svgicon>
-          </div>
+          </div> -->
         </div>
         <div id="infobox-container" class="main-menu">
           <router-view></router-view>
@@ -198,6 +199,7 @@ body {
     padding: 10px;
     font-size: 4vh;
     text-align: center;
+    margin-right: 1.6%;
   }
 }
 
@@ -208,7 +210,10 @@ body {
 #main-container {
   max-width: 2200px;
   height: 1080px;
-  background: rgb(247, 247, 247);
+  // background: rgb(172, 27, 27);
+  //https://webgradients.com/
+  //background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); //day
+  background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
   margin: 0 auto !important;
   #menu {
     border-radius: 0px 40px;

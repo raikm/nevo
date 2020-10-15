@@ -1,13 +1,13 @@
 <template>
   <main>
+     <div class="standard-information-row-container-small">
+      <RoomControlBox class="Room-Control-Box" />
+      <!-- <EBikeMainInfoBox class="EBike-Box" /> -->
+    </div>
     <div class="standard-information-row-container">
       <TemperatureMainInfoBox class="Temperature-Box" />
       <WeatherMainInfoBox class="Weather-Box" />
       <LightIntensityMainInfoBox class="Lightintensity-Box" />
-    </div>
-    <div class="standard-information-row-container-small">
-      <RoomControlBox class="Room-Control-Box" />
-      <EBikeMainInfoBox class="EBike-Box" />
     </div>
     <div class="flexible-information-row-container-small">
       <PublicTransportMainInfoBox class="PubicTransport-Box" />
@@ -27,7 +27,7 @@ import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfo
 import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
 import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
 import RoomControlBox from "../../components/ShortcutBoxes/RoomControlBox";
-import EBikeMainInfoBox from "../../components/MainInfoBoxes/EBikeMainInfoBox";
+// import EBikeMainInfoBox from "../../components/MainInfoBoxes/EBikeMainInfoBox";
 
 export default {
   name: "DashboardPage",
@@ -39,7 +39,7 @@ export default {
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
     RoomControlBox,
-    EBikeMainInfoBox,
+    // EBikeMainInfoBox,
     MainSceneBox,
   },
   data() {

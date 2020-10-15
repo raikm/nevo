@@ -1,6 +1,6 @@
 <template>
   <main>
-  <p :key="deviceInfo.id" :deviceInfo="deviceInfo">{{deviceInfo.deviceTitle}}: {{deviceInfo.message}}</p>
+  <p :key="deviceInfo.id" :deviceInfo="deviceInfo">{{deviceInfo.deviceTitle}}</p>
   </main>
 </template>
 
@@ -16,7 +16,7 @@ export default {
         { 
           id: 1,
           deviceTitle: "Laundry Done",
-          message: "since 10 min",
+          message: "10 min ago",
         }
     };
   },
@@ -44,5 +44,9 @@ p {
 .delivery-icon {
   height: 70%;
   vertical-align: middle;
+}
+
+#message{
+  font-size: 1vh;
 }
 </style>

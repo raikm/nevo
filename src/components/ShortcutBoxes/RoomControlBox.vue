@@ -1,8 +1,9 @@
 <template>
-  <div class="room-controler-box basic-card">
+  <div class="room-controler-box">
     <div id="room-light-control-container" :key="room.id" v-for="room in rooms">
-      <div class="room-light-control click-element">
+      <div class="room-light-control click-element"  :class="{ 'lamps-on' : room.status === 1}">
         <svgicon
+          :class="{ 'bulb-on' : room.status === 1}"
           class="bulb-icon"
           icon="bulb"
           width="3vh"
@@ -27,34 +28,37 @@ export default {
         {
           id: 1,
           name: "Living Room",
+          status: 1
         },
         {
           id: 9,
           name: "Couch Area",
+          status: 1
         },
         {
           id: 2,
           name: "Kitchen",
+          status: 0
         },
         {
           id: 3,
           name: "Bed Room",
+          status: 0
         },
         {
           id: 4,
           name: "Office",
+          status: 1
         },
         {
           id: 5,
           name: "Entrance",
+          status: 0
         },
         {
           id: 6,
           name: "Dinning",
-        },
-        {
-          id: 7,
-          name: "Bed Room II",
+          status: 0
         },
       ],
     };
@@ -73,7 +77,7 @@ export default {
   // width: 100%
   font-size: small;
   text-align: center;
-  justify-content: center;
+  justify-content: left;
 
   // align-items: center;
 }
@@ -82,9 +86,10 @@ export default {
 }
 .room-light-control {
   display: grid;
-  border-color: rgb(237, 238, 250);
-  border-width: 1px;
+  border-color: rgb(255, 255, 255);
+  border-width: 2px;
   border-style: solid;
+  
   width: 6.5vh;
   height: 6.5vh;
   place-items: center;
@@ -94,11 +99,15 @@ export default {
 .room-light-control:hover {
 }
 
+.lamps-on{
+  background-color: rgb(255, 255, 255);
+}
+
 .light-bulb {
   fill: #f5bc42;
 }
 .light-bulb-body {
   // stroke: rgb(66, 66, 66);
-  fill: rgb(234, 234, 234);
+  fill: rgb(230, 230, 230);
 }
 </style>

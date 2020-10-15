@@ -109,13 +109,13 @@ export default {
   text-align: center;
   vertical-align: middle;
   font-weight: 500;
-  line-height: 2.8vh;
+  line-height: 2.9vh;
   border-radius: 50%;
   border: 0px solid;
   background-color: $main-white;
   color: $main-blue;
-  height: 2.8vh;
-  width: 2.8vh;
+  height: 2.9vh;
+  width: 2.9vh;
 }
 
 #calendar-info-box {

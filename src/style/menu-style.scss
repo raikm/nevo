@@ -19,7 +19,8 @@ $inactive-color: $main-gray;
 }
 
 .menu-button {
-  background-color: white;
+  background-color: rgba(255, 255, 255, .45);   
+  backdrop-filter: blur(10px);
   border-color: rgb(243, 244, 254);
   border-style: solid;
   border-radius: 10px;
@@ -127,7 +128,7 @@ $inactive-color: $main-gray;
 .package-icon {
   stroke: $inactive-color;
   stroke-width: 0.4em;
-  fill: white;
+  fill: none;
   .package-tape, .package-stripes {
     fill: $inactive-color;
   }
@@ -203,4 +204,8 @@ $inactive-color: $main-gray;
   .automation-arrow{
     fill: #465a61;
   }
+}
+
+#package-menu-button{
+  padding: 3%;
 }

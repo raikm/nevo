@@ -1,4 +1,5 @@
 /* eslint-disable */
+require('./bike')
 require('./bulb')
 require('./cancel')
 require('./couch')
@@ -30,6 +31,7 @@ require('./player_control_stop')
 require('./projector')
 require('./public-transport')
 require('./soil_moist')
+require('./sun_2')
 require('./sun')
 require('./temperature')
 require('./vacuum')
