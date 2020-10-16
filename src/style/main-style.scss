@@ -12,11 +12,9 @@ $standard-text-small: 1.2vh;
     backdrop-filter: blur(10px);
     // backdrop-filter: blur(10px) contrast(.98);
 
-    // box-shadow: rgba(0,0,0,0.2);
+    border-width: 0;
 
     border-radius: 10px;
-    border-color: rgb(243, 244, 254);
-    border-width: 0px;
     border-style: solid;
     padding: 1vh;
     // margin: 0 1.6%;

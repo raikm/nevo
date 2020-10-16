@@ -32,28 +32,13 @@
             <div class="info-bar-background">
               <div
                 class="info-bar-big"
-                v-if="
-                  currentPlant.soil_moisture /
-                    currentPlant.soil_moisture_borders.max >
-                    0.1
-                "
                 :style="{
                   width:
-                    (currentPlant.soil_moisture /
-                      currentPlant.soil_moisture_borders.max) *
-                      100 +
-                    '%',
-                }"
-              ></div>
-              <div
-                class="info-bar-big"
-                v-if="
-                  currentPlant.soil_moisture /
-                    currentPlant.soil_moisture_borders.max <
-                    0.1
-                "
-                :style="{
-                  width: 0 + '%',
+                    (currentPlant.soil_moisture - currentPlant.soil_moisture_borders.min > 0
+                      ? (currentPlant.soil_moisture /
+                          currentPlant.soil_moisture_borders.max) *
+                        100
+                      : 0) + '%',
                 }"
               ></div>
             </div>
@@ -81,28 +66,14 @@
             <div class="info-bar-background">
               <div
                 class="info-bar-big"
-                v-if="
-                  currentPlant.soil_fertility /
-                    currentPlant.soil_fertitlity_borders.max >
-                    0.1
-                "
                 :style="{
                   width:
-                    (currentPlant.soil_fertility /
-                      currentPlant.soil_fertitlity_borders.max) *
-                      100 +
-                    '%',
-                }"
-              ></div>
-              <div
-                class="info-bar-big"
-                v-if="
-                  currentPlant.soil_fertility /
-                    currentPlant.soil_fertitlity_borders.max <
-                    0.1
-                "
-                :style="{
-                  width: 0 + '%',
+                    (currentPlant.soil_fertility - currentPlant.soil_fertitlity_borders.min >
+                    0
+                      ? (currentPlant.soil_fertility /
+                          currentPlant.soil_fertitlity_borders.max) *
+                        100
+                      : 0) + '%',
                 }"
               ></div>
             </div>
@@ -130,28 +101,13 @@
             <div class="info-bar-background">
               <div
                 class="info-bar-big"
-                v-if="
-                  currentPlant.sunlight /
-                    currentPlant.sunlight_intensity_borders.max >
-                    0.1
-                "
                 :style="{
                   width:
-                    (currentPlant.sunlight /
-                      currentPlant.sunlight_intensity_borders.max) *
-                      100 +
-                    '%',
-                }"
-              ></div>
-              <div
-                class="info-bar-big"
-                v-if="
-                  currentPlant.sunlight /
-                    currentPlant.sunlight_intensity_borders.max <
-                    0.1
-                "
-                :style="{
-                  width: 0 + '%',
+                    (currentPlant.sunlight - currentPlant.sunlight_intensity_borders.min > 0
+                      ? (currentPlant.sunlight /
+                          currentPlant.sunlight_intensity_borders.max) *
+                        100
+                      : 0) + '%',
                 }"
               ></div>
             </div>
@@ -217,9 +173,9 @@ export default {
       soilfertitlityBorders: [],
       soilmoistureBorders: [],
       sunlightIntensityBorders: [],
-      soilferilityDisplayArray: [],
-      soilmoisutreDisplayArray: [],
-      sunlightDisplayArray: [],
+      // soilferilityDisplayArray: [],
+      // soilmoisutreDisplayArray: [],
+      // sunlightDisplayArray: [],
 
       borderRange: {
         start: new Date(new Date().setHours(new Date().getHours() - 12)),
@@ -235,6 +191,7 @@ export default {
       this.$axios
         .get("http://192.168.1.80:8000/planthistory/" + plant_id + "/", {})
         .then((response) => {
+          console.log(response.data)
           this.prepareHistoryData(response.data);
         })
         .catch((error) => {

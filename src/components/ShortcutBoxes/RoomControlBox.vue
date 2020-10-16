@@ -103,7 +103,7 @@ export default {
   background-color: rgb(255, 255, 255);
 }
 
-.light-bulb {
+.bulb-on.light-bulb {
   fill: #f5bc42;
 }
 .light-bulb-body {

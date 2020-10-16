@@ -1,5 +1,8 @@
 <template>
+
   <div class="plant-card-container">
+    
+
     <div
       class="basic-card plant-card click-element"
       v-bind:key="plant.plant_id"
@@ -13,7 +16,10 @@
         <h1 class="plant-header main-info-header-medium">
           {{ plant.name.replace(/[_-]/g, " ") }}
         </h1>
-        <div class="location-container" @click="showLocationDetails(plant.location.location_details)">
+        <div
+          class="location-container"
+          @click="showLocationDetails(plant.location.location_details)"
+        >
           <div class="location-frame">
             <svgicon
               class="location-icon"
@@ -50,12 +56,7 @@
         </div>
       </transition>
     </div>
-
- 
   </div>
- 
-
-
 </template>
 
 <script>
@@ -82,11 +83,10 @@ export default {
   },
   methods: {
     showLocationDetails(plantInfoText) {
-      event.stopPropagation()
-      if (plantInfoText != "NULL"){
-        this.showToastInfo(plantInfoText)
+      event.stopPropagation();
+      if (plantInfoText != "NULL") {
+        this.showToastInfo(plantInfoText);
       }
-      
     },
   },
 };
@@ -136,13 +136,16 @@ export default {
 .plant-card {
   float: left;
   height: 16vh;
-  width: 21.8%;
+  // width: 21.8%;
 }
 
 .plant-card-container {
   margin-top: 1%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 2%;
+  grid-row-gap: 5%;
 }
-
 
 .modal-overlay {
   position: absolute;

@@ -16,8 +16,9 @@
           class="info-bar"
           :style="{
             width:
-              (plant.soil_moisture / plant.soil_moisture_borders.max) * 100 +
-              '%',
+              (plant.soil_moisture - plant.soil_moisture_borders.min > 0
+                ? (plant.soil_moisture / plant.soil_moisture_borders.max) * 100
+                : 0) + '%',
           }"
         ></div>
       </div>
@@ -38,13 +39,15 @@
           class="info-bar"
           :style="{
             width:
-              (plant.soil_fertility / plant.soil_fertitlity_borders.max) * 100 +
-              '%',
+              (plant.soil_fertility - plant.soil_fertitlity_borders.min > 0
+                ? (plant.soil_fertility / plant.soil_fertitlity_borders.max) *
+                  100
+                : 0) + '%',
           }"
         ></div>
       </div>
     </div>
-        <div class="plant-attribute-header-info">
+    <div class="plant-attribute-header-info">
       <svgicon
         class="plant-detail-icon"
         icon="sun"
@@ -60,8 +63,9 @@
           class="info-bar"
           :style="{
             width:
-              (plant.sunlight / plant.sunlight_intensity_borders.max) * 100 +
-              '%',
+              (plant.sunlight - plant.sunlight_intensity_borders.min > 0
+                ? (plant.sunlight / plant.sunlight_intensity_borders.max) * 100
+                : 0) + '%',
           }"
         ></div>
       </div>
@@ -103,13 +107,11 @@ export default {
 .plant-attribute-header-info {
   height: 1.5vh;
   margin-bottom: 0.4vh;
-    display: flex;
-    align-items: flex-end;
+  display: flex;
+  align-items: flex-end;
   .plant-detail-icon {
- 
     float: left;
     margin-right: 1%;
-
   }
 
   .plant-detail-title {
