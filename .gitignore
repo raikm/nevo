@@ -21,3 +21,6 @@ yarn-error.log*
 *.sw?
 *.cfg
 config.json
+
+#Electron-builder output
+/dist_electron
