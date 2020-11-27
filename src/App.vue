@@ -184,7 +184,7 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
-  // font-family: Verdana;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 
                               
   
@@ -213,7 +213,8 @@ body {
   // background: rgb(172, 27, 27);
   //https://webgradients.com/
   //background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); //day
-  background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+  //background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   margin: 0 auto !important;
   #menu {
     border-radius: 0px 40px;

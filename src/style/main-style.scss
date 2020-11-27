@@ -62,7 +62,7 @@ $standard-text-small: 1.2vh;
   }
 
 
-  .click-element.active {
+  .click-element:active {
     animation: bounce-in 0.5s;
   }
   
@@ -79,20 +79,20 @@ $standard-text-small: 1.2vh;
   }
 
   button {
-    background-color: white;
-    border-radius: 0.5vh;
-    border-color: rgb(237, 238, 250);
-    border-width: 1px;
-    border-style: solid;
-    color: $text-color;
-    font-size: x-small;
-    font-weight: 300;
+    // background-color: white;
+    // border-radius: 0.5vh;
+    // border-color: rgb(237, 238, 250);
+    // border-width: 1px;
+    // border-style: solid;
+    // color: $text-color;
+    // font-size: x-small;
+    // font-weight: 300;
     // height: 50%;
   }
   
   button:hover {
-    background-color: $main-blue;
-    color: white;
+    // background-color: $main-blue;
+    // color: white;
   }
 
 

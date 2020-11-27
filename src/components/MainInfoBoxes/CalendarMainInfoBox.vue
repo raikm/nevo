@@ -1,7 +1,7 @@
 <template>
   <div class="basic-card main-info-box-big">
     <div id="calendar-header">
-      <div id="day-info"><span id="day-span">Wednesday</span><span id="month-span"> October</span></div>
+      <div id="day-info"><span id="day-span">Tuesday</span><span id="month-span"> November</span></div>
       <div id="user-infos" :key="user.id" v-for="user in users">
         <div class="user-info-circle">
           <div class="circle click-element">{{ user.short }}</div>

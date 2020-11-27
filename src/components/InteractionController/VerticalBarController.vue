@@ -27,7 +27,7 @@ export default {
 
 .vertical-slider-control{
   border-radius: 10px;
-  border: 1px solid #f3f4fe;;
+  border: 0px solid #f3f4fe;;
 
   -webkit-appearance: none;
   -webkit-touch-appearance: none;

@@ -69,6 +69,7 @@ export default {
 <style lang="scss">
 @import "../../style/main-style";
 
+
 .room-controler-box {
   display: flex;
   flex-wrap: nowrap;
@@ -83,13 +84,14 @@ export default {
 }
 #room-light-control-container {
   margin: auto 1.6%;
+  
 }
 .room-light-control {
   display: grid;
   border-color: rgb(255, 255, 255);
-  border-width: 2px;
+  border-width: 0px;
   border-style: solid;
-  
+  background-color: rgba(255, 255, 255, .55);
   width: 6.5vh;
   height: 6.5vh;
   place-items: center;
@@ -100,14 +102,21 @@ export default {
 }
 
 .lamps-on{
-  background-color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, .95);
 }
 
-.bulb-on.light-bulb {
-  fill: #f5bc42;
+.bulb-icon{
+  fill:rgba(243, 243, 243, 0.85); ;
+  
+}
+
+.bulb-on {
+  fill: #f2bd4b;
+  filter: url(#sofGlow);
 }
 .light-bulb-body {
   // stroke: rgb(66, 66, 66);
   fill: rgb(230, 230, 230);
 }
+
 </style>
