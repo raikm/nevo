@@ -34,7 +34,9 @@
                 class="info-bar-big"
                 :style="{
                   width:
-                    (currentPlant.soil_moisture - currentPlant.soil_moisture_borders.min > 0
+                    (currentPlant.soil_moisture -
+                      currentPlant.soil_moisture_borders.min >
+                    0
                       ? (currentPlant.soil_moisture /
                           currentPlant.soil_moisture_borders.max) *
                         100
@@ -68,7 +70,8 @@
                 class="info-bar-big"
                 :style="{
                   width:
-                    (currentPlant.soil_fertility - currentPlant.soil_fertitlity_borders.min >
+                    (currentPlant.soil_fertility -
+                      currentPlant.soil_fertitlity_borders.min >
                     0
                       ? (currentPlant.soil_fertility /
                           currentPlant.soil_fertitlity_borders.max) *
@@ -103,7 +106,9 @@
                 class="info-bar-big"
                 :style="{
                   width:
-                    (currentPlant.sunlight - currentPlant.sunlight_intensity_borders.min > 0
+                    (currentPlant.sunlight -
+                      currentPlant.sunlight_intensity_borders.min >
+                    0
                       ? (currentPlant.sunlight /
                           currentPlant.sunlight_intensity_borders.max) *
                         100
@@ -191,7 +196,7 @@ export default {
       this.$axios
         .get("http://192.168.1.80:8000/planthistory/" + plant_id + "/", {})
         .then((response) => {
-          console.log(response.data)
+
           this.prepareHistoryData(response.data);
         })
         .catch((error) => {
@@ -204,7 +209,7 @@ export default {
         case "fertilizer-chart":
           planDetailArray.forEach((element) => {
             var _plantData = {
-              x: element.timestamp.toLocaleTimeString(),
+              x: element.timestamp,
               y: element.soil_fertility,
             };
             data.push(_plantData);
@@ -213,7 +218,7 @@ export default {
         case "moisture-chart":
           planDetailArray.forEach((element) => {
             var _plantData = {
-              x: element.timestamp.toLocaleTimeString(),
+              x: element.timestamp,
               y: element.soil_moisture,
             };
             data.push(_plantData);
@@ -222,7 +227,7 @@ export default {
         case "sunlight-chart":
           planDetailArray.forEach((element) => {
             var _plantData = {
-              x: element.timestamp.toLocaleTimeString(),
+              x: element.timestamp,
               y: element.sunlight,
             };
             data.push(_plantData);
@@ -271,15 +276,19 @@ export default {
     prepareHistoryData(historyData) {
       Object.keys(historyData).forEach((key) => {
         var plantData = historyData[key];
-        var plantDataTimestamp = new Date(plantData.timestamp);
-        plantDataTimestamp.setHours(plantDataTimestamp.getHours() - 2);
 
+        var plantDataTimestamp = new Date(plantData.timestamp);
+        plantDataTimestamp.setHours(plantDataTimestamp.getHours() - 1); //TODO: more general for time changes
+        // if (plantDataTimestamp <  this.borderRange.start){
+        //   return
+        // }
         // --- SOIL FERTILITY
         var _plantSoilfertility = {
           timestamp: plantDataTimestamp,
           soil_fertility: plantData.soil_fertility,
         };
         this.soilfertitlityArray.push(_plantSoilfertility);
+
         // --- SOIL MOISTURE
         var _plantSoilMoisture = {
           timestamp: plantDataTimestamp,
@@ -293,7 +302,6 @@ export default {
         };
         this.sunlightIntensityArray.push(_plantsunlight);
       });
-
       this.soilfertitlityBorders = historyData[0].soil_fertitlity_borders;
       this.soilmoistureBorders = historyData[0].soil_moisture_borders;
       this.sunlightIntensityBorders = historyData[0].sunlight_intensity_borders;

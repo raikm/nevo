@@ -159,6 +159,13 @@ Vue.mixin({
     },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
     preparePlantChart(data, min, max, timeFormat, start, end) {
+
+      // console.log(start)
+      // console.log(end)
+      // const dataModified = data.filter(entry => entry.length > 6);
+      // console.log(data)
+
+
       const opacityGreen = () => {
         let hex = colors.mainGreen.replace("#", "");
 

@@ -27,7 +27,7 @@
       />
       <label @click="changeRange(borderHalfDayRange)" for="first_toggle"><div class="time-text">12h</div></label>
       <label @click="changeRange(borderDayRange)" for="second_toggle"><div class="time-text">24h</div></label>
-      <label @click="changeRange(borderWeekRange)" for="third_toggle"><div class="time-text">14d</div></label>
+      <label @click="changeRange(borderTwoWeekRange)" for="third_toggle"><div class="time-text">14d</div></label>
       <div class="toggle_option_slider"></div>
     </div>
   </div>
@@ -48,8 +48,8 @@ export default {
         start: new Date(new Date().setHours(new Date().getHours() - 24)),
         end: Date.now(),
       },
-      borderWeekRange: {
-        start: new Date(new Date().setDate(new Date().getDate() - 7)),
+      borderTwoWeekRange: {
+        start: new Date(new Date().setDate(new Date().getDate() - 14)),
         end: Date.now(),
       },
       borderMonthRange: {
