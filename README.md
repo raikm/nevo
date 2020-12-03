@@ -28,7 +28,9 @@ I drafted a quick first concept to give you an idea about the structure planned.
 
 ### Current Statues
 
-![](/doc/current_statues.png?)
+![Dec 2020](/doc/current_status_dec_2020.png?)
+
+![Aug 2020](/doc/current_statues.png?)
 
 ### Some integration ideas
 
