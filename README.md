@@ -22,7 +22,7 @@ First of all the idea is to have a touchscreen mounted on the wall (for example 
 
 The advantage of a web-based solution would be to control and overview information on your computer or other device as well e.g. overview your plant sensors from the couch. Furthermore you could use it on a (not used) tablet, raspberry pi with screen etc..
 
-I drafted a quick first concept to give you an idea about the structure planned. The colors for the sketch below are still missing.
+I drafted a quick first concept to give you an idea about the structure planned.
 
 ![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
 
@@ -68,14 +68,12 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### About me
 
-Even though I am about to finish my master degree in medical informatics I feel as a beginner in programming. I had only 50% (felt like even less) programming related topics in my [bachelor](https://www.htwg-konstanz.de/bachelor/gesundheitsinformatik/uebersicht/) and [master](https://www.meduniwien.ac.at/web/en/studies-further-education/medical-informatics-master/) degree. I was mostly working on small scaled projects and in my free time I lost interested to finish personal projects.
+Passionate and detailed oriented software engineer with background in the medical software industry looking to grow as a full stack developer.
 
-Since one year I am passionated about python (writing automation scripts) and web developing. I started with vue.js at the beginning of 2020 and I love it. I am also using it in my current master-thesis to work on a recruitment tool, where medical staff can analyse patient-data to get an overview about potential patients.
+Since more than one year I am passionated about python (writing automation scripts) and web developing. I started with vue.js at the beginning of 2020 and I love it. I am also using it in my current master-thesis to work on a recruitment tool, where medical staff can analyse patient-data to get an overview about potential patients.
 
-Since half a year I finally motivated myself to invest way more time in software developing and my learning curve rises steadily. The topics I am working on a daily basis are web developing (vue.js), [FHIR](https://hl7.org/FHIR/) (standard for health care data exchange) and Python (Django Server impl. in my master thesis).
+Since one year I started to invest way more time in software developing in private projects and my learning curve rises steadily. The topics I am working on a daily basis are web developing (vue.js), [FHIR](https://hl7.org/FHIR/) (standard for health care data exchange) and Python (Django Server).
 
 🔗 [Github](https://github.com/raikm) | ✉️ osproject@raik-mueller.com
 
 Please feel also free to leave feedback or new ideas 😊
-
-Maybe there is a solution already and I didn’t see it? Let me know!
