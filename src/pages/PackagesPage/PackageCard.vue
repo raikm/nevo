@@ -126,7 +126,7 @@ export default {
 
       setTimeout(() => {
         this.changeDisplayNewPackages();
-        this.$parent.getPackageInfos();
+        // this.$parent.getPackageInfos();
       }, 3000);
     },
     showResult(result) {

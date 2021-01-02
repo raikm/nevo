@@ -14,7 +14,7 @@
     </table>
   </div>
 </template>
-<script type="text/javascript" src="//www.17track.net/externalcall.js"></script>
+
 <script>
 export default {
   name: "InfoPackageContent",
@@ -24,7 +24,7 @@ export default {
     };
   },
   mounted() {
-    this.getPackageInfos(this.packages);
+    // this.getPackageInfos(this.packages);
     this.sortPackages();
     
   },  

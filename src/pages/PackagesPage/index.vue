@@ -16,7 +16,7 @@ export default {
     };
   },
   mounted() {
-    this.getPackageInfos(this.packages);
+    // this.getPackageInfos(this.packages);
   },
   methods: {
   
