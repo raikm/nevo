@@ -97,18 +97,20 @@ export default {
 @import "../../style/main-style";
 
 .plant-header-container {
-  display: grid;
-  grid-template-columns: 80% 20%;
+  display: inline-block;
+
+  width: 100%;
 
   z-index: 98;
 }
 .plant-header {
-  // width: 80%;
-  // float: left;
+  width: 80%;
+  float: left;
 }
 
 .location-container {
-  // overflow: hidden;
+  width: 20%;
+  overflow: hidden;
 
   .location-frame {
     border: rgba(0, 0, 0, 0.8);

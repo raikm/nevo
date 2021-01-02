@@ -103,7 +103,7 @@ export default {
   #weather-icon {
     height: 100%;
     justify-self: right;
-    fill: $main-yellow-2;
+    fill: $main-yellow-color-2;
   }
 }
 
@@ -145,7 +145,7 @@ export default {
     }
 
     .weather-hour-icon {
-      fill: $main-yellow-2;
+      fill: $main-yellow-color-2;
       height: 2.5vh;
     }
     .weather-hour-temperature {

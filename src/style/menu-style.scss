@@ -122,7 +122,7 @@ $inactive-color: $main-gray;
 }
 
 .device-icon.active {
-  fill: $main-yellow-2;
+  fill: $main-yellow-color-2;
 }
 
 .package-icon {
@@ -138,8 +138,8 @@ $inactive-color: $main-gray;
   stroke: transparent;
   stroke-width: 0;
   //TODO: access main defined colors from COLOR PALLETTE
-  $package-color: $main-yellow;
-  $package-second-color: $main-yellow-2;
+  $package-color: $main-yellow-color;
+  $package-second-color: $main-yellow-color-2;
   .package-top {
     fill: $package-color;
   }
@@ -190,13 +190,13 @@ $inactive-color: $main-gray;
   stroke: transparent;
   stroke-width: 0;
   .automation-ball{
-    fill:$main-yellow;
+    fill:$main-yellow-color;
   }
   .automation-ball-2{
     fill: $main-orange;
   }
   .automation-ball-shadow{
-    fill:$main-yellow-2;
+    fill:$main-yellow-color-2;
   }
   .automation-ball-2-shadow{
     fill: $main-orange-2;
