@@ -13,7 +13,7 @@
     <div class="bar-container">
       <div class="info-bar-background">
         <div
-          class="info-bar"
+          class="info-bar info-bar-moisture"
           :style="{
             width:
               (plant.soil_moisture - plant.soil_moisture_borders.min > 0
@@ -36,7 +36,7 @@
     <div class="bar-container">
       <div class="info-bar-background">
         <div
-          class="info-bar"
+          class="info-bar info-bar-fertilizer"
           :style="{
             width:
               (plant.soil_fertility - plant.soil_fertitlity_borders.min > 0
@@ -60,7 +60,7 @@
     <div class="bar-container">
       <div class="info-bar-background">
         <div
-          class="info-bar"
+          class="info-bar info-bar-sun"
           :style="{
             width:
               (plant.sunlight - plant.sunlight_intensity_borders.min > 0
@@ -144,7 +144,6 @@ export default {
 .info-bar {
   margin-bottom: 0.5vh;
   height: 1vh;
-  background-color: $main-green;
   border-radius: 4px;
 }
 

@@ -1,5 +1,5 @@
 import Vue from "vue";
-import colors from "../style/main-colors.scss";
+// import colors from "../style/main-colors.scss";
 
 Vue.mixin({
   methods: {
@@ -158,7 +158,7 @@ Vue.mixin({
       return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
     },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-    preparePlantChart(data, min, max, timeFormat, start, end) {
+    preparePlantChart(data, min, max, mainColor, timeFormat, start, end) {
 
       // console.log(start)
       // console.log(end)
@@ -166,8 +166,8 @@ Vue.mixin({
       // console.log(data)
 
 
-      const opacityGreen = () => {
-        let hex = colors.mainGreen.replace("#", "");
+      const opactiyColor = () => {
+        let hex = mainColor.replace("#", "");
 
         if (hex.length === 3) {
           hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
@@ -187,7 +187,7 @@ Vue.mixin({
             {
               data: data,
               borderWidth: 1,
-              backgroundColor: opacityGreen,
+              backgroundColor: opactiyColor,
               pointRadius: 1,
             },
           ],

@@ -31,7 +31,7 @@
           <div class="bar-container">
             <div class="info-bar-background">
               <div
-                class="info-bar-big"
+                class="info-bar-big info-bar-moisture"
                 :style="{
                   width:
                     (currentPlant.soil_moisture -
@@ -50,6 +50,19 @@
       <div class="diagram-container">
         <canvas id="moisture-chart"></canvas>
       </div>
+
+      <div class="past-viewer">
+        <div
+          :key="pastWaterDay.index"
+          v-for="pastWaterDay in pastWaterReviewArray"
+          class="past-viewer-circle"
+          :class="{
+            waterDayColorActive: pastWaterDay == 1,
+            waterDayColorInactive: pastWaterDay == 0,
+          }"
+        ></div>
+        <span id="day-week-review-info">7 Day's Review</span>
+      </div>
     </div>
 
     <div id="fertilizer-container" class="plant-detail-container">
@@ -67,7 +80,7 @@
           <div class="bar-container">
             <div class="info-bar-background">
               <div
-                class="info-bar-big"
+                class="info-bar-big info-bar-fertilizer"
                 :style="{
                   width:
                     (currentPlant.soil_fertility -
@@ -86,6 +99,19 @@
       <div class="diagram-container">
         <canvas id="fertilizer-chart"></canvas>
       </div>
+
+      <div class="past-viewer">
+        <div
+          :key="pastFertilizerWeek.index"
+          v-for="pastFertilizerWeek in pastFertilizerReviewArray"
+          class="past-viewer-circle"
+          :class="{
+            fertilizerWeekColorActive: pastFertilizerWeek == 1,
+            fertilizerWeekColorInactive: pastFertilizerWeek == 0,
+          }"
+        ></div>
+        <span id="day-week-review-info">7 Week's Review</span>
+      </div>
     </div>
 
     <div class="plant-detail-container">
@@ -103,7 +129,7 @@
           <div class="bar-container">
             <div class="info-bar-background">
               <div
-                class="info-bar-big"
+                class="info-bar-big info-bar-sun"
                 :style="{
                   width:
                     (currentPlant.sunlight -
@@ -123,30 +149,31 @@
       <div class="diagram-container">
         <canvas id="sunlight-chart"></canvas>
       </div>
-    </div>
-    <div class="plant-history-footer">
-      <div class="batterry-bar-container">
-        <div class="battery-bar-background">
-          <div
-            class="baterry-info-bar"
-            :style="[
-              currentPlant.battery < 15
-                ? {
-                    backgroundColor: '#ff0000',
-                    width: currentPlant.battery + '%',
-                  }
-                : {
-                    backgroundColor: 'rgb(25, 197, 68)',
-                    width: currentPlant.battery + '%',
-                  },
-            ]"
-          ></div>
+      <div class="sensor-and-history-data">
+        <div class="update-text">
+          last updated:
+          {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}
+        </div>
+        <div class="batterry-bar-container">
+          <div class="battery-bar-background">
+            <div
+              class="baterry-info-bar"
+              :style="[
+                currentPlant.battery < 15
+                  ? {
+                      backgroundColor: '#ff0000',
+                      width: currentPlant.battery + '%',
+                    }
+                  : {
+                      backgroundColor: 'rgb(25, 197, 68)',
+                      width: currentPlant.battery + '%',
+                    },
+              ]"
+            ></div>
+          </div>
+          <div class="battery-nipple"></div>
         </div>
       </div>
-      <p class="update-text">
-        last updated:
-        {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}
-      </p>
     </div>
   </div>
 </template>
@@ -157,6 +184,7 @@ import Chart from "chart.js";
 import "../../compiled-icons/soil_moist";
 import "../../compiled-icons/fertilizer";
 import "../../compiled-icons/sun";
+ import colors from "../../style/main-colors.scss";
 
 export default {
   name: "PlantHistoryPage",
@@ -186,6 +214,9 @@ export default {
         start: new Date(new Date().setHours(new Date().getHours() - 12)),
         end: new Date(),
       },
+
+      pastWaterReviewArray: [1, 0, 0, 0, 0, 0, 0],
+      pastFertilizerReviewArray: [0, 0, 0, 0, 1, 0, 0],
     };
   },
   methods: {
@@ -196,7 +227,6 @@ export default {
       this.$axios
         .get("http://192.168.1.80:8000/planthistory/" + plant_id + "/", {})
         .then((response) => {
-
           this.prepareHistoryData(response.data);
         })
         .catch((error) => {
@@ -204,7 +234,10 @@ export default {
         });
     },
     createChart(chartId, planDetailArray, plantDetailValueBorder) {
+     
+
       var data = [];
+      var mainColor;
       switch (chartId) {
         case "fertilizer-chart":
           planDetailArray.forEach((element) => {
@@ -214,6 +247,8 @@ export default {
             };
             data.push(_plantData);
           });
+          mainColor = colors.mainGreen
+          console.log(mainColor)
           break;
         case "moisture-chart":
           planDetailArray.forEach((element) => {
@@ -223,6 +258,7 @@ export default {
             };
             data.push(_plantData);
           });
+          mainColor = colors.mainBlue
           break;
         case "sunlight-chart":
           planDetailArray.forEach((element) => {
@@ -232,6 +268,7 @@ export default {
             };
             data.push(_plantData);
           });
+          mainColor = colors.mainYellow
           break;
       }
 
@@ -243,6 +280,7 @@ export default {
         data,
         plantDetailValueBorder.min,
         plantDetailValueBorder.max,
+        mainColor,
         timeFormat,
         start,
         end
@@ -317,20 +355,19 @@ export default {
 
 .plant-header {
   height: 13%;
-  width: 100%;
+  display: grid;
+  grid-template-columns: 80% auto 5vh;
   padding: 0.6%;
   .plant-title {
     font-weight: bold;
-    float: left;
-    width: 75.5%; //<--------------
     font-size: 2.8vh;
     height: 3vh;
     line-height: 3vh;
   }
   .time-button-container {
-    float: left;
+    
     height: 4vh;
-    width: 20%; //<--------------
+  
     .time-button {
       margin: 0 1.6%;
       width: 30%;
@@ -338,12 +375,12 @@ export default {
     }
   }
   .temperature-info {
-    border: rgba(0, 0, 0, 0.8);
+    border: rgba(6, 6, 6, 0.6);
     border-style: solid;
     border-width: 2px;
     border-radius: 10px;
-    width: 4%; //<--------------
-    float: left;
+
+
     text-align: center;
     line-height: 2.5vh;
     font-size: 1.5vh;
@@ -375,9 +412,11 @@ export default {
 
   .info-bar-big {
     height: 1.2vh;
-    background-color: $main-green;
+   
     border-radius: 5px;
   }
+
+
 }
 
 .plant-detail-container {
@@ -401,22 +440,59 @@ export default {
     overflow: hidden;
     width: 96.8%;
   }
+
+  .past-viewer {
+    margin: 3% 1.6%;
+    $circle-size: 1.8vh;
+    display: grid;
+    grid-template-columns: 2vh 2vh 2vh 2vh 2vh 2vh 2vh auto;
+    justify-content: right;
+    .past-viewer-circle {
+      width: $circle-size;
+      height: $circle-size;
+      -moz-border-radius: $circle-size;
+      -webkit-border-radius: $circle-size;
+      border-radius: $circle-size;
+      justify-self: center;
+      align-self: center;
+    }
+    .waterDayColorActive {
+      background-color: $main-blue;
+    }
+    .fertilizerWeekColorActive{
+      background-color: $main-green;
+    }
+
+    .waterDayColorInactive, .fertilizerWeekColorInactive {
+      background-color: rgba(181, 180, 180, 0.431);
+    }
+
+    #day-week-review-info {
+      justify-self: right;
+      align-self: center;
+      margin-left: 0.5vh;
+    }
+    //double values auslagern und nur die Farben trennen
+    //Farbe wie Diagram nur blasser
+  }
 }
 
-.plant-history-footer {
+.sensor-and-history-data {
+  margin: 3% 1.6%;
+  display: grid;
+  grid-template-columns: auto auto;
+  column-gap: 0.5vh;
+  justify-content: right;
   .update-text {
-    float: right;
-    text-align: center;
-    line-height: 1.4vh;
     font-size: 1vh;
-    top: 50%;
-    margin-right: 0.4vh;
   }
 
   .batterry-bar-container {
-    width: 3vh; //<--------------
-    margin: 0 1%;
-    float: right;
+    width: 3vh;
+    display: grid;
+    grid-template-columns: 3vh 0.5vh;
+    column-gap: 0vh;
+
     .baterry-info-bar {
       height: 1.1vh;
       background-color: rgb(25, 197, 68);
@@ -428,6 +504,22 @@ export default {
       border-radius: 0.4vh;
       border-style: solid;
       border-width: 1px;
+    }
+    .battery-nipple {
+      width: 0.2vh;
+      height: 0.4vh; /* as the half of the width */
+      border-radius: 0 0.5vh 0.5vh 0;
+      border-width: 1px 1px 1px 0px;
+      border-style: solid;
+      // border-color: gray;
+      // -webkit-box-sizing: border-box;
+      // -moz-box-sizing: border-box;
+      // box-sizing: border-box;
+      //justify-self: center;
+      align-self: center;
+
+      // transform: rotate(90deg);
+
     }
   }
 }

@@ -34,7 +34,7 @@ export default {
     },
     getLastPlantData() {
       this.$axios
-        .get("http://192.168.1.80:8000/allplants/", {})
+        .get("http://127.0.0.1:8000/getAllPlants/", {})
         .then((response) => {
           this.plantInformation = response.data;
         })
@@ -59,6 +59,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../style/main-colors";
+
+
 #header-plant-controller {
   display: grid;
 }
@@ -121,4 +124,16 @@ export default {
   border-style: solid;
   cursor: none;
 }
+
+  .info-bar-fertilizer {
+ background-color: $main-green;
+  }
+
+  .info-bar-moisture {
+ background-color: $main-blue;
+  }
+
+  .info-bar-sun {
+ background-color: $main-yellow;
+  }
 </style>
