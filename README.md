@@ -6,8 +6,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 #### 📦 Plant Dashboard Page
-#### 📦 First touches with healh data export from the iPhone
-#### 📦 Find a back-end for next tests (openhab, homeassistant, ...)
+#### 📦 First touches with health data export from the iPhone
+#### 📦 Find a back-end for first tests (openhab, homeassistant, ...)
 
 ---
 
