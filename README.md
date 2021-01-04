@@ -2,6 +2,12 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
+> ### 🛫 Next Up
+> ##### 📦 Plant Dashboard Page
+> ##### 📦 First touches with healh data export from the iPhone
+> ##### 📦 Find a back-end for next tests (openhab, homeassistant, ...)
+> 
+
 ![Dec 2020](/doc/current_status_december_2020.png?)
 
 ## Intention
