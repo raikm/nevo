@@ -1,4 +1,22 @@
 # HOMEPANORAMA
+
+The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
+
+---
+
+### 🛫 Next Up
+#### 📦 Plant Dashboard Page
+#### 📦 First touches with health data export from the iPhone
+#### 📦 Find a back-end for first tests (openhab, homeassistant, ...)
+
+---
+
+<html style="width:80%;height:100%;">
+        <div id="bdiv" style="height:100%;width:80%;border:1px solid lightgray;">Difficult to remain positive in such conditions</div>
+    </html>
+
+![Dec 2020](/doc/current_status_december_2020.png?)
+
 ## Intention
 Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
 
@@ -12,9 +30,7 @@ This project should provide a platform independent solution. I found inspiration
 
 To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
 
-## Goals
 
-My goal and dream is to create a dashboard for which we develop together new functionally and integrate services to one platform.
 
 ### First concept
 
@@ -26,7 +42,7 @@ I drafted a quick first concept to give you an idea about the structure planned.
 
 ![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
 
-### Current Statues
+### History
 
 ![Dec 2020](/doc/current_status_december_2020.png?)
 
@@ -67,15 +83,3 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
-
-### About me
-
-Passionate and detailed oriented software engineer with background in the medical software industry looking to grow as a full stack developer.
-
-Since more than one year I am passionated about python (writing automation scripts) and web developing. I started with vue.js at the beginning of 2020 and I love it. I am also using it in my current master-thesis to work on a recruitment tool, where medical staff can analyse patient-data to get an overview about potential patients.
-
-Since one year I started to invest way more time in software developing in private projects and my learning curve rises steadily. The topics I am working on a daily basis are web developing (vue.js), [FHIR](https://hl7.org/FHIR/) (standard for health care data exchange) and Python (Django Server).
-
-🔗 [Github](https://github.com/raikm) | ✉️ osproject@raik-mueller.com
-
-Please feel also free to leave feedback or new ideas 😊
