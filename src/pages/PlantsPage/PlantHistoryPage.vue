@@ -13,13 +13,12 @@
       <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
       </div>
-      <div
-        class="hover-button settings-button"
-        @click="showSettingsChange()"
-      >
+      <div class="hover-button settings-button" @click="showSettingsChange()">
         <svgicon icon="settings" width="2vh" height="2vh"></svgicon>
       </div>
     </div>
+
+    <!-- container 1 -->
     <div v-show="showHistory" class="plant-history-container">
       <div class="plant-detail-container">
         <div class="current-data-container">
@@ -70,7 +69,7 @@
           <span id="day-week-review-info">7 Day's Review</span>
         </div>
       </div>
-
+      <!-- container 2 -->
       <div id="fertilizer-container" class="plant-detail-container">
         <div class="current-data-container">
           <div class="plant-detail-header">
@@ -119,7 +118,7 @@
           <span id="day-week-review-info">7 Week's Review</span>
         </div>
       </div>
-
+      <!-- container 3 -->
       <div class="plant-detail-container">
         <div class="current-data-container">
           <div class="plant-detail-header">
@@ -140,7 +139,7 @@
                     width:
                       (currentPlant.sunlight -
                         currentPlant.sunlight_intensity_borders.min >
-                      0
+                      currentPlant.sunlight_intensity_borders.min
                         ? (currentPlant.sunlight /
                             currentPlant.sunlight_intensity_borders.max) *
                           100
@@ -397,7 +396,7 @@ export default {
     //border: rgba(6, 6, 6, 0.6);
     border-style: solid;
     border-width: 0px;
-    border-radius: 10px;
+    border-radius: $standard-border-radius;
     background: white;
     text-align: center;
     line-height: 2.5vh;
@@ -416,36 +415,14 @@ export default {
 
 .plant-history-container {
   height: 100%;
-  //display: none;
-}
-
-.subtitle-plant-borders {
-}
-
-.border-info-wrapper {
-  margin: 1vh;
-}
-
-.border-details {
-  width: 60%;
   display: grid;
-  grid-template-columns: 1fr 0.2fr 1fr 0.8fr;
-  justify-items: center;
-  align-items: center;
-  column-gap: 5%;
-
-  .border-input-info {
-    border-radius: 10px;
-    border: 1px solid #cbd8e3;
-    width: 100%;
-    height: 100%;
-    align-self: center;
-    background-color: #e0e0e050;
-    text-align: center;
-    display: grid;
-    align-items: center;
-  }
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: $standard-space;
 }
+
+// .border-info-wrapper {
+//   margin: 1vh;
+// }
 
 .current-data-container {
   .icon-detail-svg {
@@ -463,7 +440,7 @@ export default {
   }
 
   .bar-container {
-    width: 97%;
+    width: 100%;
     height: 4%;
     float: left;
   }
@@ -471,34 +448,36 @@ export default {
   .info-bar-big {
     height: 1.2vh;
 
-    border-radius: 5px;
+    border-radius: $standard-border-radius;
   }
 }
 
 .plant-detail-container {
-  float: left;
-  min-height: 65%;
-  width: 33.3%;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: $standard-space;
+  // min-height: 65%;
+  // width: 33.3%;
 
   .plant-detail-header {
-    margin: -1.5% 1.5% 1.5% 1.5%;
+    // margin: -1.5% 1.5% 1.5% 1.5%;
     height: 3vh;
   }
 
   .diagram-container {
     background-color: white;
-    border-radius: 10px;
+    border-radius: $standard-border-radius;
     border-color: rgb(243, 244, 254);
     border-width: 1px;
     border-style: solid;
-    margin: 1.6% 1.6%;
+    // margin: 1.6% 1.6%;
     height: 26vh;
     overflow: hidden;
-    width: 96.8%;
+    // width: 96.8%;
   }
 
   .past-viewer {
-    margin: 3% 1.6%;
+    // margin: 3% 1.6%;
     $circle-size: 1.8vh;
     display: grid;
     grid-template-columns: 2vh 2vh 2vh 2vh 2vh 2vh 2vh auto;
@@ -535,7 +514,7 @@ export default {
 }
 
 .sensor-and-history-data {
-  margin: 3% 1.6%;
+  // margin: 3% 1.6%;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 0.5vh;

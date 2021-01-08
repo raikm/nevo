@@ -1,11 +1,15 @@
 @import "./main-colors.scss";
 
 
-$standard-border-radius: 5px;
+$standard-border-radius: 10px;
 $standard-title-big: 80%;
 $standard-title-medium: 60%;
 $standard-text-medium: 1.7vh;
 $standard-text-small: 1.2vh;
+
+
+$standard-space: 10px; 
+
 
 .basic-card {
     background-color: rgba(255, 255, 255, .45);   
