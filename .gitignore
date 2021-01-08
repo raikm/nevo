@@ -24,3 +24,4 @@ config.json
 
 #Electron-builder output
 /dist_electron
+homeapp-darwin-x64

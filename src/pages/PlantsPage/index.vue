@@ -34,7 +34,7 @@ export default {
     },
     getLastPlantData() {
       this.$axios
-        .get("http://192.168.1.80:8000/allplants/", {})
+        .get("http://192.168.1.80:8080/getAllPlants/", {})
         .then((response) => {
           this.plantInformation = response.data;
         })
@@ -45,8 +45,9 @@ export default {
     reloadPlantData() {
       document.getElementById("reload-icon").setAttribute("class", "rotating");
       this.$axios
-        .get("http://192.168.1.80:8000/reload_plant_data/", {})
+        .get("http://192.168.1.80:8080/reload_plant_data/", {})
         .then((response) => {
+          console.log(response)
           this.plantInformation = response.data;
           document.getElementById("reload-icon").setAttribute("class", "");
         })
@@ -59,6 +60,9 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../style/main-colors";
+
+
 #header-plant-controller {
   display: grid;
 }
@@ -121,4 +125,16 @@ export default {
   border-style: solid;
   cursor: none;
 }
+
+  .info-bar-fertilizer {
+ background-color: $main-green;
+  }
+
+  .info-bar-moisture {
+ background-color: $main-blue;
+  }
+
+  .info-bar-sun {
+ background-color: $main-yellow;
+  }
 </style>

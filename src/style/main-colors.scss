@@ -4,20 +4,21 @@ $main-white: rgb(250, 250, 250);
 $main-black: black;
 $main-black-transparent: #dcdcdc0c;
 $main-red: #bd312d;
-$main-yellow-color: #FFE17D;
-$main-yellow-color-2: #FFC350;  // a little darker
+$main-yellow: #FFE17D;
+$main-yellow-2: #FFC350;  // a little darker
 $main-orange: #ffa384;
 $main-blue: #e7f2f8;
 $main-orange: #fec165;
 $main-orange-2:#fdb441; // a little darker
 $main-green: #308e5a;
-
-
 $main-blue: #1976d2;
+
 $main-background-color: rgb(252, 252, 252);
 
 
 
 :export {
     mainGreen: $main-green;
+    mainBlue: $main-blue;
+    mainYellow: $main-yellow;
   }

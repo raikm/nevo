@@ -101,3 +101,39 @@ $standard-text-small: 1.2vh;
     height: 2vh;
     width: 2vh;
   }
+
+
+  .hover-button {
+    // height: 3vh;
+    // width: 3vh;
+    padding: 0.5vh;
+    display: grid;
+    place-items: center;
+
+  }
+
+  .hover-button:hover {cursor: auto;} .hover-button:hover {
+    //background-color: rgba(255, 255, 255, 0.55);
+    background-color: rgb(255, 255, 255);
+    //background-color: red;
+    //backdrop-filter: blur(10px);
+    border-width: 0;
+    border-radius: 10px;
+    border-style: solid;
+    cursor: none;
+  }
+
+  .title-1{
+    font-weight: bold;
+    font-size: 2.8vh;
+    height: 3vh;
+    line-height: 3vh;
+  }
+
+  .title-2{
+    font-weight: bold;
+    font-size: 1.9vh;
+    height: 2.1vh;
+    line-height: 2.1vh;
+    margin-bottom: 10px;
+  }

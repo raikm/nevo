@@ -74,7 +74,7 @@ export default {
 
 .toggle_radio {
   position: relative;
-  background: rgba(245, 245, 245, 0.639);
+  background: rgba(255, 255, 255, 0.639);
   overflow: hidden;
   padding: 0 !important;
   -webkit-border-radius: $standard-border-radius;
