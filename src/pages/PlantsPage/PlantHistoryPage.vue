@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="plant-header">
+    <div class="plant-header-popup">
       <h1 class="title-1">
         {{ currentPlant.name.replace(/[_-]/g, " ") }}
       </h1>
@@ -13,13 +13,16 @@
       <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
       </div>
+       <div class="hover-button settings-button" @click="showSettingsChange()">
+        <svgicon icon="pin" width="2vh" height="2vh"></svgicon>
+      </div>
       <div class="hover-button settings-button" @click="showSettingsChange()">
         <svgicon icon="settings" width="2vh" height="2vh"></svgicon>
       </div>
     </div>
 
-    <!-- container 1 -->
-    <div v-show="showHistory" class="plant-history-container">
+    <div class="plant-history-container">
+      <!-- container 1 -->
       <div class="plant-detail-container">
         <div class="current-data-container">
           <div class="plant-detail-header">
@@ -54,19 +57,6 @@
         </div>
         <div class="diagram-container">
           <canvas id="moisture-chart"></canvas>
-        </div>
-
-        <div class="past-viewer">
-          <div
-            :key="pastWaterDay.index"
-            v-for="pastWaterDay in pastWaterReviewArray"
-            class="past-viewer-circle"
-            :class="{
-              waterDayColorActive: pastWaterDay == 1,
-              waterDayColorInactive: pastWaterDay == 0,
-            }"
-          ></div>
-          <span id="day-week-review-info">7 Day's Review</span>
         </div>
       </div>
       <!-- container 2 -->
@@ -103,19 +93,6 @@
         </div>
         <div class="diagram-container">
           <canvas id="fertilizer-chart"></canvas>
-        </div>
-
-        <div class="past-viewer">
-          <div
-            :key="pastFertilizerWeek.index"
-            v-for="pastFertilizerWeek in pastFertilizerReviewArray"
-            class="past-viewer-circle"
-            :class="{
-              fertilizerWeekColorActive: pastFertilizerWeek == 1,
-              fertilizerWeekColorInactive: pastFertilizerWeek == 0,
-            }"
-          ></div>
-          <span id="day-week-review-info">7 Week's Review</span>
         </div>
       </div>
       <!-- container 3 -->
@@ -154,37 +131,65 @@
         <div class="diagram-container">
           <canvas id="sunlight-chart"></canvas>
         </div>
-        <div class="sensor-and-history-data">
-          <div class="update-text">
-            last updated:
-            {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}
-          </div>
-          <div class="batterry-bar-container">
-            <div class="battery-bar-background">
-              <div
-                class="baterry-info-bar"
-                :style="[
-                  currentPlant.battery < 15
-                    ? {
-                        backgroundColor: '#ff0000',
-                        width: currentPlant.battery + '%',
-                      }
-                    : {
-                        backgroundColor: 'rgb(25, 197, 68)',
-                        width: currentPlant.battery + '%',
-                      },
-                ]"
-              ></div>
-            </div>
-            <div class="battery-nipple"></div>
-          </div>
-        </div>
       </div>
     </div>
     <PlantSettingsPage
       :currentPlant="currentPlant"
       :showSettings="showSettings"
     />
+    <div class="plant-history-container">
+      <div class="past-viewer">
+        <div
+          :key="pastWaterDay.index"
+          v-for="pastWaterDay in pastWaterReviewArray"
+          class="past-viewer-circle"
+          :class="{
+            waterDayColorActive: pastWaterDay == 1,
+            waterDayColorInactive: pastWaterDay == 0,
+          }"
+        ></div>
+        <span id="day-week-review-info">7 Day's Review</span>
+      </div>
+
+      <div class="past-viewer">
+        <div
+          :key="pastFertilizerWeek.index"
+          v-for="pastFertilizerWeek in pastFertilizerReviewArray"
+          class="past-viewer-circle"
+          :class="{
+            fertilizerWeekColorActive: pastFertilizerWeek == 1,
+            fertilizerWeekColorInactive: pastFertilizerWeek == 0,
+          }"
+        ></div>
+        <span id="day-week-review-info">7 Week's Review</span>
+      </div>
+
+      <div class="sensor-and-history-data">
+        <div class="update-text">
+          last updated:
+          {{ new Date(currentPlant.timestamp).toLocaleDateString("de-DE") }}
+        </div>
+        <div class="batterry-bar-container">
+          <div class="battery-bar-background">
+            <div
+              class="baterry-info-bar"
+              :style="[
+                currentPlant.battery < 15
+                  ? {
+                      backgroundColor: '#ff0000',
+                      width: currentPlant.battery + '%',
+                    }
+                  : {
+                      backgroundColor: 'rgb(25, 197, 68)',
+                      width: currentPlant.battery + '%',
+                    },
+              ]"
+            ></div>
+          </div>
+          <div class="battery-nipple"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -197,6 +202,7 @@ import "../../compiled-icons/settings";
 import "../../compiled-icons/fertilizer";
 import "../../compiled-icons/sun";
 import colors from "../../style/main-colors.scss";
+import "../../compiled-icons/pin";
 
 export default {
   name: "PlantHistoryPage",
@@ -235,9 +241,6 @@ export default {
   },
   methods: {
     showSettingsChange() {
-      this.showHistory == false
-        ? (this.showHistory = true)
-        : (this.showHistory = false);
       this.showSettings == false
         ? (this.showSettings = true)
         : (this.showSettings = false);
@@ -376,10 +379,10 @@ export default {
 @import "../../style/main-colors";
 @import "../../style/main-style";
 
-.plant-header {
+.plant-header-popup{
   height: 13%;
   display: grid;
-  grid-template-columns: 75% auto 5vh 4vh;
+  grid-template-columns: auto 30vh 5vh 4vh 4vh;
   column-gap: 5px;
   padding: 0.6%;
 
@@ -418,6 +421,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: $standard-space;
+  
 }
 
 // .border-info-wrapper {
@@ -475,50 +479,52 @@ export default {
     overflow: hidden;
     // width: 96.8%;
   }
+}
 
-  .past-viewer {
-    // margin: 3% 1.6%;
-    $circle-size: 1.8vh;
-    display: grid;
-    grid-template-columns: 2vh 2vh 2vh 2vh 2vh 2vh 2vh auto;
-    justify-content: right;
-    .past-viewer-circle {
-      width: $circle-size;
-      height: $circle-size;
-      -moz-border-radius: $circle-size;
-      -webkit-border-radius: $circle-size;
-      border-radius: $circle-size;
-      justify-self: center;
-      align-self: center;
-    }
-    .waterDayColorActive {
-      background-color: $main-blue;
-    }
-    .fertilizerWeekColorActive {
-      background-color: $main-green;
-    }
-
-    .waterDayColorInactive,
-    .fertilizerWeekColorInactive {
-      background-color: rgba(181, 180, 180, 0.431);
-    }
-
-    #day-week-review-info {
-      justify-self: right;
-      align-self: center;
-      margin-left: 0.5vh;
-    }
-    //double values auslagern und nur die Farben trennen
-    //Farbe wie Diagram nur blasser
+.past-viewer {
+  margin-top: $standard-space;
+  $circle-size: 1.8vh;
+  display: grid;
+  grid-template-columns: 2vh 2vh 2vh 2vh 2vh 2vh 2vh auto;
+  justify-content: right;
+  .past-viewer-circle {
+    width: $circle-size;
+    height: $circle-size;
+    -moz-border-radius: $circle-size;
+    -webkit-border-radius: $circle-size;
+    border-radius: $circle-size;
+    justify-self: center;
+    align-self: center;
   }
+  .waterDayColorActive {
+    background-color: $main-blue;
+  }
+  .fertilizerWeekColorActive {
+    background-color: $main-green;
+  }
+
+  .waterDayColorInactive,
+  .fertilizerWeekColorInactive {
+    background-color: rgba(181, 180, 180, 0.431);
+  }
+
+  #day-week-review-info {
+    justify-self: right;
+    align-self: center;
+    margin-left: 0.5vh;
+  }
+  //double values auslagern und nur die Farben trennen
+  //Farbe wie Diagram nur blasser
 }
 
 .sensor-and-history-data {
-  // margin: 3% 1.6%;
+  
+  margin-top: $standard-space;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 0.5vh;
   justify-content: right;
+height: 1.1vh;
   .update-text {
     font-size: 1vh;
   }
@@ -540,6 +546,7 @@ export default {
       border-radius: 0.4vh;
       border-style: solid;
       border-width: 1px;
+      
     }
     .battery-nipple {
       width: 0.2vh;

@@ -2,32 +2,7 @@
   <div v-show="showSettings">
     <div id="plant-settings-container">
       <div class="meta-data-container">
-        <div class="input-wrapper">
-          <input
-            class="input"
-            type="text"
-            :value="currentPlant.version"
-            disabled
-          />
-          <span class="placeholder">Version</span>
-        </div>
-
-        <div class="input-wrapper">
-          <input
-            class="input"
-            type="text"
-            :value="currentPlant.address"
-            disabled
-          />
-          <span class="placeholder">Address</span>
-        </div>
-
-        <div class="input-wrapper">
-          <input class="input" type="text" value=" 12.02.2020" disabled />
-          <span class="placeholder">Last Battery Change</span>
-        </div>
         <div class="border-info-wrapper">
-          <div class="title-2">Soil Moisture Borders</div>
           <div class="border-details">
             <div class="input-wrapper">
               <input
@@ -47,10 +22,10 @@
             <div class="border-input-info">
               {{ currentPlant.soil_moisture_borders.currency }}
             </div>
+            <div class="normal-button save-border-settings-button click-element">Save</div>
           </div>
         </div>
         <div class="border-info-wrapper">
-          <div class="title-2">Fertilizer Borders</div>
           <div class="border-details">
             <div class="input-wrapper">
               <input
@@ -70,10 +45,11 @@
             <div class="border-input-info">
               {{ currentPlant.soil_fertitlity_borders.currency }}
             </div>
+             <div class="normal-button save-border-settings-button click-element">Save</div>
           </div>
+         
         </div>
         <div class="border-info-wrapper">
-          <div class="title-2">Sun Intensity Borders</div>
           <div class="border-details">
             <div class="input-wrapper">
               <input
@@ -93,18 +69,20 @@
             <div class="border-input-info">
               {{ currentPlant.sunlight_intensity_borders.currency }}
             </div>
+             <div class="normal-button save-border-settings-button click-element">Save</div>
           </div>
+         
         </div>
       </div>
     </div>
-    <div id="plant-settings-container-footer">
+    <!-- <div id="plant-settings-container-footer">
       <div class="hover-button location-button" @click="locateSensor()">
         Locate Sensor<svgicon icon="pin" width="1.3vh" height="1.3vh"></svgicon>
       </div>
       <div class="hover-button save-border-settings-button">
         Save
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -128,18 +106,17 @@ export default {
 @import "../../style/main-style";
 
 #plant-settings-container {
-  height: 29vh;
-  background: white;
+  // height: 29vh;
+  // background: white;
   font-size: 1.5vh;
-  border-radius: 10px;
-  padding: 1.6%;
-  margin: 0.6%;
+  // border-radius: 10px;
+  //   padding: 1.6%;
+    margin: $standard-space 0;
   .meta-data-container {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 5%;
-    row-gap: 10%;
-    padding: 1%;
+    column-gap: $standard-space;
+    // padding: 1%;
   }
 
   .input-wrapper {
@@ -155,7 +132,10 @@ export default {
     width: 100%;
     outline: none;
     box-sizing: border-box;
-  }
+    text-align: center;
+    font-size: 1.6vh;
+
+}
   .input:disabled {
     background: white;
   }
@@ -198,7 +178,7 @@ export default {
 }
 
 #plant-settings-container-footer {
-  margin: 1vh;
+  //   margin: 1vh;
 
   height: 3.5vh;
   display: grid;
@@ -213,18 +193,19 @@ export default {
     width: 12vh;
     display: inline;
   }
+}
 
-  .save-border-settings-button {
-    text-align: center;
-    height: 3vh;
-    width: 12vh;
-  }
+.save-border-settings-button {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+   align-self: center;
 }
 
 .border-details {
-  width: 80%;
+  width: 100%;
   display: grid;
-  grid-template-columns: 1fr 0.2fr 1fr 0.8fr;
+  grid-template-columns: 1fr 0.2fr 1fr 0.8fr 1fr;
   justify-items: center;
   align-items: center;
   column-gap: 5%;

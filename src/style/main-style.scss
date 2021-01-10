@@ -127,6 +127,15 @@ $standard-space: 10px;
     cursor: none;
   }
 
+  .normal-button{
+    background-color: rgb(255, 255, 255);
+    border-width: 0;
+    border-radius: 10px;
+    border-style: solid;
+    display: grid;
+    place-items: center;
+  } 
+
   .title-1{
     font-weight: bold;
     font-size: 2.8vh;
@@ -139,5 +148,12 @@ $standard-space: 10px;
     font-size: 1.9vh;
     height: 2.1vh;
     line-height: 2.1vh;
-    margin-bottom: 10px;
+    margin-bottom: $standard-space;  }
+
+  .title-3{
+    font-weight: bold;
+    font-size: 1.5vh;
+    height: 1.5vh;
+    line-height: 1.5vh;
+    margin-bottom: $standard-space;
   }

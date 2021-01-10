@@ -177,7 +177,7 @@ Vue.mixin({
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
 
-        return `rgba(${r},${g},${b},${70 / 100})`;
+        return `rgba(${r},${g},${b},${60 / 100})`;
       };
 
       return {
