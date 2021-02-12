@@ -15,6 +15,10 @@ Vue.mixin({
         elements[0].classList.remove("active");
       }
       document.getElementsByClassName(name)[0].classList.add("active");
+
+      document.getElementById("newsfeed").style.display = "none";
+      document.getElementById("infobox-container").style.width = "90%";
+
     },
     showToastError(text) {
       this.$buefy.toast.open({

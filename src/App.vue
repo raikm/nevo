@@ -194,7 +194,7 @@ body {
   
 }
 #header-container {
-  max-width: 2200px;
+  // max-width: 2200px;
   width: 100%;
   margin: 0 auto !important;
   float: left;
@@ -208,7 +208,7 @@ body {
 }
 
 .main-menu {
-  height: 100vh;
+  // height: 100vh;
 }
 
 .page-header{
@@ -218,14 +218,14 @@ body {
 }
 
 #main-container {
-  max-width: 2200px;
-  height: 1080px;
   // background: rgb(172, 27, 27);
   //https://webgradients.com/
   //background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); //day
   //background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
   background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
   margin: 0 auto !important;
+  height: 100vh;
+  width: 100%;
   #menu {
     border-radius: 0px 40px;
     padding: 2.5rem;
@@ -238,6 +238,7 @@ body {
     float: left;
     padding: 0 2.5rem 2.5rem 2.5rem;
     width: 65%;
+    height: 100%;
     overflow: hidden;
   }
   .newsfeed-header{
@@ -248,7 +249,7 @@ body {
     padding: 0 2.5rem 2.5rem 2.5rem;
     // background-color: rgba(247, 246, 249, 1);
     float: right;
-    max-width: 450px;
+    // max-width: 450px; 
     width: 25%;
   }
 }
