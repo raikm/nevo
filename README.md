@@ -6,14 +6,10 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 #### 📦 Plant Dashboard Page
-#### 📦 First touches with health data export from the iPhone
+#### 📦 First tests with health data export from the iPhone
 #### 📦 Find a back-end for first tests (openhab, homeassistant, ...)
 
 ---
-
-<html style="width:80%;height:100%;">
-        <div id="bdiv" style="height:100%;width:80%;border:1px solid lightgray;">Difficult to remain positive in such conditions</div>
-    </html>
 
 ![Dec 2020](/doc/current_status_december_2020.png?)
 
