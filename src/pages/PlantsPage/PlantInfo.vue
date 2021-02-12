@@ -105,7 +105,7 @@ export default {
     line-height: 100%;
     display: flex;
     align-items: flex-end;
-    font-size: 1vh;
+    font-size: 0.8rem;
     height: 100%;
   }
 }

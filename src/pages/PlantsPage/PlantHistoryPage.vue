@@ -13,12 +13,12 @@
       <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
       </div>
-       <div class="hover-button settings-button" @click="showSettingsChange()">
+      <!-- <div class="hover-button settings-button" @click="showSettingsChange()">
         <svgicon icon="pin" width="2vh" height="2vh"></svgicon>
-      </div>
-      <div class="hover-button settings-button" @click="showSettingsChange()">
+      </div> -->
+      <!-- <div class="hover-button settings-button" @click="showSettingsChange()">
         <svgicon icon="settings" width="2vh" height="2vh"></svgicon>
-      </div>
+      </div> -->
     </div>
 
     <div class="plant-history-container">
@@ -36,23 +36,12 @@
               <div class="plant-detail-title">Soil Moisture</div>
             </div>
 
-            <div class="bar-container">
-              <div class="info-bar-background">
-                <div
-                  class="info-bar-big info-bar-moisture"
-                  :style="{
-                    width:
-                      (currentPlant.soil_moisture -
-                        currentPlant.soil_moisture_borders.min >
-                      0
-                        ? (currentPlant.soil_moisture /
-                            currentPlant.soil_moisture_borders.max) *
-                          100
-                        : 0) + '%',
-                  }"
-                ></div>
-              </div>
-            </div>
+            <ProgressBarWithTrend
+              :barColor="colors.mainBlue"
+              :plantValue="currentPlant.soil_moisture"
+              :valueMinBorder="currentPlant.soil_moisture_borders.min"
+              :valueMaxBorder="currentPlant.soil_moisture_borders.max"
+            />
           </div>
         </div>
         <div class="diagram-container">
@@ -72,23 +61,13 @@
               ></svgicon>
               <div class="plant-detail-title">Fertilizer</div>
             </div>
-            <div class="bar-container">
-              <div class="info-bar-background">
-                <div
-                  class="info-bar-big info-bar-fertilizer"
-                  :style="{
-                    width:
-                      (currentPlant.soil_fertility -
-                        currentPlant.soil_fertitlity_borders.min >
-                      0
-                        ? (currentPlant.soil_fertility /
-                            currentPlant.soil_fertitlity_borders.max) *
-                          100
-                        : 0) + '%',
-                  }"
-                ></div>
-              </div>
-            </div>
+
+            <ProgressBarWithTrend
+              :barColor="colors.mainBrown"
+              :plantValue="currentPlant.soil_fertility"
+              :valueMinBorder="currentPlant.soil_fertitlity_borders.min"
+              :valueMaxBorder="currentPlant.soil_fertitlity_borders.max"
+            />
           </div>
         </div>
         <div class="diagram-container">
@@ -108,23 +87,13 @@
               ></svgicon>
               <div class="plant-detail-title">Sun Intensity</div>
             </div>
-            <div class="bar-container">
-              <div class="info-bar-background">
-                <div
-                  class="info-bar-big info-bar-sun"
-                  :style="{
-                    width:
-                      (currentPlant.sunlight -
-                        currentPlant.sunlight_intensity_borders.min >
-                      currentPlant.sunlight_intensity_borders.min
-                        ? (currentPlant.sunlight /
-                            currentPlant.sunlight_intensity_borders.max) *
-                          100
-                        : 0) + '%',
-                  }"
-                ></div>
-              </div>
-            </div>
+
+            <ProgressBarWithTrend
+              :barColor="colors.mainYellow"
+              :plantValue="currentPlant.sunlight"
+              :valueMinBorder="currentPlant.sunlight_intensity_borders.min"
+              :valueMaxBorder="currentPlant.sunlight_intensity_borders.max"
+            />
           </div>
         </div>
 
@@ -203,10 +172,11 @@ import "../../compiled-icons/fertilizer";
 import "../../compiled-icons/sun";
 import colors from "../../style/main-colors.scss";
 import "../../compiled-icons/pin";
+import ProgressBarWithTrend from "../../components/ProgressBarWithTrend";
 
 export default {
   name: "PlantHistoryPage",
-  components: { PlantTimeChanger, PlantSettingsPage },
+  components: { PlantTimeChanger, PlantSettingsPage, ProgressBarWithTrend },
   props: ["currentPlant"],
   created: function() {
     this.getCurrentPlantData(this.currentPlant.id);
@@ -237,6 +207,7 @@ export default {
       pastFertilizerReviewArray: [0, 0, 0, 0, 0, 0, 0],
       showHistory: true,
       showSettings: false,
+      colors: colors,
     };
   },
   methods: {
@@ -379,12 +350,13 @@ export default {
 @import "../../style/main-colors";
 @import "../../style/main-style";
 
-.plant-header-popup{
+.plant-header-popup {
   height: 13%;
   display: grid;
-  grid-template-columns: auto 30vh 5vh 4vh 4vh;
+  grid-template-columns: auto 40vh 3.5rem;
   column-gap: 5px;
-  padding: 0.6%;
+  padding: 0.7rem 0;
+  // padding: 0.6%;
 
   .time-button-container {
     height: 4vh;
@@ -400,14 +372,15 @@ export default {
     border-style: solid;
     border-width: 0px;
     border-radius: $standard-border-radius;
-    background: white;
+    // background: white;
     text-align: center;
+    color: $main-black;
     line-height: 2.5vh;
     display: grid;
     place-items: center;
-    font-size: 1.5vh;
+    font-size: $standard-text-small;
     //margin-left: 0.5%;
-    height: 3vh;
+    height: 1.7rem;
   }
   .settings-button {
     justify-self: center;
@@ -421,7 +394,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   column-gap: $standard-space;
-  
 }
 
 // .border-info-wrapper {
@@ -505,28 +477,28 @@ export default {
 
   .waterDayColorInactive,
   .fertilizerWeekColorInactive {
-    background-color: rgba(181, 180, 180, 0.431);
+    background-color: $main-light-gray;
   }
 
   #day-week-review-info {
     justify-self: right;
     align-self: center;
     margin-left: 0.5vh;
+    font-size: $standard-text-small;
   }
   //double values auslagern und nur die Farben trennen
   //Farbe wie Diagram nur blasser
 }
 
 .sensor-and-history-data {
-  
   margin-top: $standard-space;
   display: grid;
   grid-template-columns: auto auto;
   column-gap: 0.5vh;
   justify-content: right;
-height: 1.1vh;
+  height: 0.7rem;
   .update-text {
-    font-size: 1vh;
+    font-size: $standard-text-small;
   }
 
   .batterry-bar-container {
@@ -536,7 +508,8 @@ height: 1.1vh;
     column-gap: 0vh;
 
     .baterry-info-bar {
-      height: 1.1vh;
+      //height: 1.1vh;
+      height: 100%;
       background-color: rgb(25, 197, 68);
       border-radius: 0.3vh;
     }
@@ -546,7 +519,6 @@ height: 1.1vh;
       border-radius: 0.4vh;
       border-style: solid;
       border-width: 1px;
-      
     }
     .battery-nipple {
       width: 0.2vh;

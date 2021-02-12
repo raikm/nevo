@@ -11,7 +11,8 @@
               : 0) + '%',
           backgroundColor: barColor,
         }"
-      ></div>
+      >
+      </div>
     </div>
   </div>
 </template>
@@ -40,6 +41,10 @@ export default {
   height: 0.6rem;
   border-radius: $standard-border-radius;
   opacity: 85%;
+  font-size: 50%;
+  text-align: right;
+  display: grid;
+  align-content: center;
   @keyframes load {
     0% {
       width: 0;

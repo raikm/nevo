@@ -153,7 +153,7 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 98;
-  background-color: rgba(250, 250, 250, 0.81);
+  background-color: rgba(250, 250, 250, 0.91);
 }
 
 .plant-popup-window-frame {
@@ -161,6 +161,7 @@ export default {
   top: 11%;
   left: 0%;
   right: 0%;
+  
   // height: 5vh;
 }
 
@@ -177,11 +178,12 @@ export default {
 .plant-popup-window {
   position: absolute;
   top: 11%;
-  left: 5%;
-  right: 5%;
+  left: 2%;
+  right: 2%;
   // transform: translate(-50%, -50%);
   z-index: 99;
   // height: 50%;
+  background-color: white !important;
 }
 
 .fade-enter-active,

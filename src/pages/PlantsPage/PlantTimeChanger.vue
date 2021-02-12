@@ -14,7 +14,6 @@
       />
       <input
         type="radio"
-        
         class="toggle_option"
         id="second_toggle"
         name="toggle_option"
@@ -25,9 +24,15 @@
         id="third_toggle"
         name="toggle_option"
       />
-      <label @click="changeRange(borderHalfDayRange)" for="first_toggle"><div class="time-text">12h</div></label>
-      <label @click="changeRange(borderDayRange)" for="second_toggle"><div class="time-text">24h</div></label>
-      <label @click="changeRange(borderTwoWeekRange)" for="third_toggle"><div class="time-text">14d</div></label>
+      <label @click="changeRange(borderHalfDayRange)" for="first_toggle"
+        ><div class="time-text">Last 12 Hours</div></label
+      >
+      <label @click="changeRange(borderDayRange)" for="second_toggle"
+        ><div class="time-text">Last 24 Hours</div></label
+      >
+      <label @click="changeRange(borderTwoWeekRange)" for="third_toggle"
+        ><div class="time-text">Last 10 Days</div></label
+      >
       <div class="toggle_option_slider"></div>
     </div>
   </div>
@@ -74,14 +79,15 @@ export default {
 
 .toggle_radio {
   position: relative;
-  background: rgba(255, 255, 255, 0.639);
+  background: rgba(238, 238, 240, 1);
+
   overflow: hidden;
   padding: 0 !important;
   -webkit-border-radius: $standard-border-radius;
   -moz-border-radius: $standard-border-radius;
   border-radius: $standard-border-radius;
   position: relative;
-  height: 3vh;
+  height: 1.7rem;
   width: 100%;
 }
 .toggle_radio > * {
@@ -97,48 +103,57 @@ export default {
   width: 33.3%;
   height: 100%;
   //margin: 3px 3px;
+
   -webkit-border-radius: $standard-border-radius;
   -moz-border-radius: $standard-border-radius;
   border-radius: $standard-border-radius;
+
   cursor: pointer;
-  z-index: 1;
 }
 .time-text {
   // line-height: 100%;
+  position: relative;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
-  font-size: 1.4vh;
-  
+  font-size: $standard-text-small;
+  z-index: 1;
 }
 
 .toggle_option_slider {
   width: 33.3%;
-  height: 90%;
+  height: 100%;
   position: absolute;
-  top: 5%;
+  border: 1px solid $main-light-gray;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+
   -webkit-border-radius: $standard-border-radius;
   -moz-border-radius: $standard-border-radius;
   border-radius: $standard-border-radius;
-  -webkit-transition: all 0.4s ease;
-  -moz-transition: all 0.4s ease;
-  -o-transition: all 0.4s ease;
-  -ms-transition: all 0.4s ease;
-  transition: all 0.4s ease;
+
+  -webkit-transition: all 0.2s ease;
+  -moz-transition: all 0.2s ease;
+  -o-transition: all 0.2s ease;
+  -ms-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  z-index: 0;
 }
 
 #first_toggle:checked ~ .toggle_option_slider {
-  background: rgba($main-black, 0.25);
-  left: 0%; 
+  background: rgba(white, 1);
+
+  left: 0%;
 }
 #second_toggle:checked ~ .toggle_option_slider {
-  background: rgba($main-black, 0.2);
+  background: rgba(white, 1);
   left: 33.3%;
 }
 #third_toggle:checked ~ .toggle_option_slider {
-  background: rgba($main-black, 0.25);
+  background: rgba(white, 1);
   left: 66.6%;
 }
 </style>
