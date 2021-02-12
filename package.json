@@ -15,7 +15,7 @@
   "main": "background.js",
   "dependencies": {
     "aftership": "^6.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^5.0.0-beta2",
     "buefy": "^0.8.17",
     "chart.js": "^2.9.3",
