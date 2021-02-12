@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="header-plant-controller">
+    <div class="page-header">
       <div id="plant-reload-container">
         <svgicon id="reload-icon" icon="reload" @click="reloadPlantData()" />
       </div>
@@ -47,7 +47,7 @@ export default {
       this.$axios
         .get("http://192.168.1.80:8080/reload_plant_data/", {})
         .then((response) => {
-          console.log(response)
+          console.log(response);
           this.plantInformation = response.data;
           document.getElementById("reload-icon").setAttribute("class", "");
         })
@@ -62,10 +62,11 @@ export default {
 <style lang="scss">
 @import "../../style/main-colors";
 
-
-#header-plant-controller {
-  display: grid;
+#plant-page {
+  height: 100%;
 }
+
+
 
 #plant-reload-container {
   justify-self: right;
@@ -126,15 +127,15 @@ export default {
   cursor: none;
 }
 
-  .info-bar-fertilizer {
- background-color: $main-green;
-  }
+.info-bar-fertilizer {
+  background-color: $main-green;
+}
 
-  .info-bar-moisture {
- background-color: $main-blue;
-  }
+.info-bar-moisture {
+  background-color: $main-blue;
+}
 
-  .info-bar-sun {
- background-color: $main-yellow;
-  }
+.info-bar-sun {
+  background-color: $main-yellow;
+}
 </style>

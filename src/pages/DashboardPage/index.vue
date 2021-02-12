@@ -122,10 +122,11 @@ export default {
 
 .main-info-header-medium {
   // display: inline-flex;
-  font-size: 1.2vh;
+  font-size: 1rem;
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;
+  font-weight: 500;
   // overflow: hidden;
 }
 

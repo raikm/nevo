@@ -77,6 +77,10 @@
           <router-view></router-view>
         </div>
         <div id="newsfeed" class="main-menu">
+          <div class="newsfeed-header">
+           
+          </div>
+
           <div
             id="info-box"
             :key="infoBoxContent.id"
@@ -207,6 +211,12 @@ body {
   height: 100vh;
 }
 
+.page-header{
+  
+  display: grid;
+  height: 2.5rem;
+}
+
 #main-container {
   max-width: 2200px;
   height: 1080px;
@@ -218,7 +228,7 @@ body {
   margin: 0 auto !important;
   #menu {
     border-radius: 0px 40px;
-    padding: 4vh;
+    padding: 2.5rem;
     float: left;
     width: 10%;
   }
@@ -226,14 +236,16 @@ body {
   #infobox-container {
     
     float: left;
-    padding: 4vh;
+    padding: 0 2.5rem 2.5rem 2.5rem;
     width: 65%;
     overflow: hidden;
   }
-
+  .newsfeed-header{
+    height: 2.5rem;
+  }
   #newsfeed {
     // border-radius: 40px 0px;
-    padding: 4vh;
+    padding: 0 2.5rem 2.5rem 2.5rem;
     // background-color: rgba(247, 246, 249, 1);
     float: right;
     max-width: 450px;

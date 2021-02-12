@@ -1,6 +1,7 @@
 $text-color: rgb(71, 71, 71);
 $main-gray: rgb(104, 104, 104);
 $main-white: rgb(250, 250, 250);
+$main-white-smoke: rgb(245, 245, 245);
 $main-black: black;
 $main-black-transparent: #dcdcdc0c;
 $main-red: #bd312d;
@@ -10,13 +11,13 @@ $main-yellow: #FFE17D;
 
 $main-yellow-2: #FFC350;  // a little darker
 $main-orange: #ffa384;
-$main-blue: #e7f2f8;
 $main-orange: #fec165;
 $main-orange-2:#fdb441; // a little darker
 
 
-$main-green: #329075;
-$main-blue: #4690db;
+$main-green: #8a5a44;
+$main-brown: rgb(180,92,76);
+$main-blue: #1675b4;
 
 $main-background-color: rgb(252, 252, 252);
 
@@ -25,5 +26,6 @@ $main-background-color: rgb(252, 252, 252);
 :export {
     mainGreen: $main-green;
     mainBlue: $main-blue;
+    mainBrown: $main-brown;
     mainYellow: $main-yellow;
   }

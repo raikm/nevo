@@ -138,11 +138,12 @@ export default {
 }
 
 .plant-card-container {
-  margin-top: 1%;
+  // margin-top: 1%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 2%;
   grid-row-gap: 5%;
+  
 }
 
 .modal-overlay {

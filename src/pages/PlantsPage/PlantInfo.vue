@@ -9,20 +9,13 @@
       ></svgicon>
       <div class="plant-detail-title">Soil Moisture</div>
     </div>
+    <ProgressBarWithTrend
+      :barColor="colors.mainBlue"
+      :plantValue="plant.soil_moisture"
+      :valueMinBorder="plant.soil_moisture_borders.min"
+      :valueMaxBorder="plant.soil_moisture_borders.max"
+    />
 
-    <div class="bar-container">
-      <div class="info-bar-background">
-        <div
-          class="info-bar info-bar-moisture"
-          :style="{
-            width:
-              (plant.soil_moisture - plant.soil_moisture_borders.min > 0
-                ? (plant.soil_moisture / plant.soil_moisture_borders.max) * 100
-                : 0) + '%',
-          }"
-        ></div>
-      </div>
-    </div>
     <div class="plant-attribute-header-info">
       <svgicon
         class="plant-detail-icon"
@@ -33,20 +26,13 @@
       <div class="plant-detail-title">Fertilizer</div>
     </div>
 
-    <div class="bar-container">
-      <div class="info-bar-background">
-        <div
-          class="info-bar info-bar-fertilizer"
-          :style="{
-            width:
-              (plant.soil_fertility - plant.soil_fertitlity_borders.min > 0
-                ? (plant.soil_fertility / plant.soil_fertitlity_borders.max) *
-                  100
-                : 0) + '%',
-          }"
-        ></div>
-      </div>
-    </div>
+    <ProgressBarWithTrend
+      :barColor="colors.mainBrown"
+      :plantValue="plant.soil_fertility"
+      :valueMinBorder="plant.soil_fertitlity_borders.min"
+      :valueMaxBorder="plant.soil_fertitlity_borders.max"
+    />
+
     <div class="plant-attribute-header-info">
       <svgicon
         class="plant-detail-icon"
@@ -56,20 +42,12 @@
       ></svgicon>
       <div class="plant-detail-title">Sun Intensity</div>
     </div>
-
-    <div class="bar-container">
-      <div class="info-bar-background">
-        <div
-          class="info-bar info-bar-sun"
-          :style="{
-            width:
-              (plant.sunlight - plant.sunlight_intensity_borders.min > 0
-                ? (plant.sunlight / plant.sunlight_intensity_borders.max) * 100
-                : 0) + '%',
-          }"
-        ></div>
-      </div>
-    </div>
+    <ProgressBarWithTrend
+      :barColor="colors.mainYellow"
+      :plantValue="plant.sunlight"
+      :valueMinBorder="plant.sunlight_intensity_borders.min"
+      :valueMaxBorder="plant.sunlight_intensity_borders.max"
+    />
   </div>
 </template>
 
@@ -77,10 +55,18 @@
 import "../../compiled-icons/fertilizer";
 import "../../compiled-icons/sun";
 import "../../compiled-icons/soil_moist";
+import ProgressBarWithTrend from "../../components/ProgressBarWithTrend";
+import colors from "../../style/main-colors.scss";
 
 export default {
   name: "PlantInfo",
   props: ["plant"],
+  data() {
+    return {
+      colors: colors,
+    };
+  },
+  components: { ProgressBarWithTrend },
   mounted: function() {},
 };
 </script>
