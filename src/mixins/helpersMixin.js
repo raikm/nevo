@@ -1,5 +1,5 @@
 import Vue from "vue";
-// import colors from "../style/main-colors.scss";
+import colors from "../style/main-colors.scss";
 
 Vue.mixin({
   methods: {
@@ -190,7 +190,7 @@ Vue.mixin({
           datasets: [
             {
               data: data,
-              borderWidth: 1,
+              borderWidth: 0,
               backgroundColor: opactiyColor,
               pointRadius: 1,
             },
@@ -210,8 +210,8 @@ Vue.mixin({
                   parser: timeFormat,
                 },
                 gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
-                  display: false,
+                  color: colors.mainLightGray,
+                  display: true,
                 },
                 ticks: {
                   fontSize: 10,
@@ -225,10 +225,12 @@ Vue.mixin({
               {
                 gridLines: {
                   color: "rgba(0, 0, 0, 0)",
+                  display: false,
                 },
                 ticks: {
                   max: max,
                   min: min,
+                  maxTicksLimit: 4,
                   display: false,
                 },
               },
