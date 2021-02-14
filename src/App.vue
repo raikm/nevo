@@ -1,5 +1,11 @@
 <template>
   <div id="app">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
+     user-scalable=0"
+    />
+
     <main>
       <div id="header-container">
         <div id="time-container">{{ this.time }}</div>
@@ -45,13 +51,25 @@
             @click="changePage('/PlantsPage', 'device-icon')"
           >
             <!-- <svgicon class="menu-icon device-icon" icon="menu_rooms"></svgicon> -->
-<svg class="menu-icon" width="335" height="335" viewBox="0 0 335 335" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="5" y="5" width="325" height="325" rx="25" stroke="#686868" stroke-width="15"/>
-<path d="M335 167H167V335" stroke="#686868" stroke-width="15"/>
-</svg>
-
-
-
+            <svg
+              class="menu-icon"
+              width="335"
+              height="335"
+              viewBox="0 0 335 335"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <rect
+                x="5"
+                y="5"
+                width="325"
+                height="325"
+                rx="25"
+                stroke="#686868"
+                stroke-width="15"
+              />
+              <path d="M335 167H167V335" stroke="#686868" stroke-width="15" />
+            </svg>
           </div>
           <div
             id="package-menu-button"
@@ -77,9 +95,7 @@
           <router-view></router-view>
         </div>
         <div id="newsfeed" class="main-menu">
-          <div class="newsfeed-header">
-           
-          </div>
+          <div class="newsfeed-header"></div>
 
           <div
             id="info-box"
@@ -155,21 +171,21 @@ export default {
           iconSource: "menu_package",
           title: "Package Tracking",
           contentType: "package",
-          iconClass: "package-icon active"
+          iconClass: "package-icon active",
         },
         {
           id: 2,
           iconSource: "menu_plant",
           title: "Plant Alert",
           contentType: "plant",
-          iconClass: "plant-icon active"
+          iconClass: "plant-icon active",
         },
         {
           id: 3,
           iconSource: "washing_machine",
           title: "Washing Machine",
           contentType: "device",
-          iconClass: ""
+          iconClass: "",
         },
       ],
     };
@@ -189,10 +205,10 @@ body {
   user-select: none; /* Non-prefixed version, currently
                                   supported by Chrome, Edge, Opera and Firefox */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-
-                              
-  
 }
+#app {
+}
+
 #header-container {
   // max-width: 2200px;
   width: 100%;
@@ -211,9 +227,9 @@ body {
   // height: 100vh;
 }
 
-.page-header{
-  
+.page-header {
   display: grid;
+
   height: 2.5rem;
 }
 
@@ -222,10 +238,22 @@ body {
   //https://webgradients.com/
   //background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%); //day
   //background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
-  background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
-  margin: 0 auto !important;
+  //background-image: linear-gradient(120deg, #215F60 0%, #215f609b 100%);
+  //background-image: linear-gradient(to right, #ffecd2 0%, #fcb69f 100%);
+  background-color: #cddcdc;
+  background-image: radial-gradient(
+      at 50% 100%,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  background-blend-mode: screen, overlay;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
   #menu {
     border-radius: 0px 40px;
     padding: 2.5rem;
@@ -234,14 +262,11 @@ body {
   }
 
   #infobox-container {
-    
+    padding-right: 2.5rem;
     float: left;
-    padding: 0 2.5rem 2.5rem 2.5rem;
     width: 65%;
-    height: 100%;
-    overflow: hidden;
   }
-  .newsfeed-header{
+  .newsfeed-header {
     height: 2.5rem;
   }
   #newsfeed {
@@ -249,7 +274,7 @@ body {
     padding: 0 2.5rem 2.5rem 2.5rem;
     // background-color: rgba(247, 246, 249, 1);
     float: right;
-    // max-width: 450px; 
+    // max-width: 450px;
     width: 25%;
   }
 }
