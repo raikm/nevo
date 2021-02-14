@@ -113,7 +113,7 @@ export default {
 .main-info-header {
   display: grid;
   grid-template-columns: 9fr 1fr;
-  font-size: 1.8vh;
+ 
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;
@@ -122,16 +122,19 @@ export default {
 
 .main-info-header-medium {
   // display: inline-flex;
-  font-size: 1rem;
-  height: 3vh;
-  line-height: 3vh;
+  font-size: 1.5em;
+  //line-height: 3vh;
   margin-bottom: 1.6%;
   font-weight: 500;
   // overflow: hidden;
 }
 
 .main-info-title {
- 
+  font-size: 1.8vh;
+}
+
+.main-info-title-big {
+  font-size: 2.8rem;
 }
 
 #scene-buttons {

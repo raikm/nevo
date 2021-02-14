@@ -1,53 +1,61 @@
 <template>
   <div class="plant-info-container">
-    <div class="plant-attribute-header-info">
-      <svgicon
-        class="plant-detail-icon"
-        icon="soil_moist"
-        width="1.5vh"
-        height="1.5vh"
-      ></svgicon>
-      <div class="plant-detail-title">Soil Moisture</div>
-    </div>
-    <ProgressBarWithTrend
-      :barColor="colors.mainBlue"
-      :plantValue="plant.soil_moisture"
-      :valueMinBorder="plant.soil_moisture_borders.min"
-      :valueMaxBorder="plant.soil_moisture_borders.max"
-    />
+    <div class="plant-attribute-info">
+      <div class="plant-attribute-header-info">
+        <svgicon
+          class="plant-detail-icon"
+          icon="soil_moist"
+          width="1rem"
+          height="1rem"
+        ></svgicon>
 
-    <div class="plant-attribute-header-info">
-      <svgicon
-        class="plant-detail-icon"
-        icon="fertilizer"
-        width="1.5vh"
-        height="1.5vh"
-      ></svgicon>
-      <div class="plant-detail-title">Fertilizer</div>
+        <div class="plant-detail-title">Soil Moisture</div>
+      </div>
+      <ProgressBarWithTrend
+        :barColor="colors.mainBlue"
+        :plantValue="plant.soil_moisture"
+        :valueMinBorder="plant.soil_moisture_borders.min"
+        :valueMaxBorder="plant.soil_moisture_borders.max"
+        :barHeight="'0.5vw'"
+      />
     </div>
+    <div class="plant-attribute-info">
+      <div class="plant-attribute-header-info">
+        <svgicon
+          class="plant-detail-icon"
+          icon="fertilizer"
+          width="1rem"
+          height="1rem"
+        ></svgicon>
+        <div class="plant-detail-title">Fertilizer</div>
+      </div>
 
-    <ProgressBarWithTrend
-      :barColor="colors.mainBrown"
-      :plantValue="plant.soil_fertility"
-      :valueMinBorder="plant.soil_fertitlity_borders.min"
-      :valueMaxBorder="plant.soil_fertitlity_borders.max"
-    />
-
-    <div class="plant-attribute-header-info">
-      <svgicon
-        class="plant-detail-icon"
-        icon="sun"
-        width="1.5vh"
-        height="1.5vh"
-      ></svgicon>
-      <div class="plant-detail-title">Sun Intensity</div>
+      <ProgressBarWithTrend
+        :barColor="colors.mainGreen"
+        :plantValue="plant.soil_fertility"
+        :valueMinBorder="plant.soil_fertitlity_borders.min"
+        :valueMaxBorder="plant.soil_fertitlity_borders.max"
+        :barHeight="'0.5vw'"
+      />
     </div>
-    <ProgressBarWithTrend
-      :barColor="colors.mainYellow"
-      :plantValue="plant.sunlight"
-      :valueMinBorder="plant.sunlight_intensity_borders.min"
-      :valueMaxBorder="plant.sunlight_intensity_borders.max"
-    />
+    <div class="plant-attribute-info">
+      <div class="plant-attribute-header-info">
+        <svgicon
+          class="plant-detail-icon"
+          icon="sun"
+          width="1rem"
+          height="1rem"
+        ></svgicon>
+        <div class="plant-detail-title">Sun Intensity</div>
+      </div>
+      <ProgressBarWithTrend
+        :barColor="colors.mainYellow"
+        :plantValue="plant.sunlight"
+        :valueMinBorder="plant.sunlight_intensity_borders.min"
+        :valueMaxBorder="plant.sunlight_intensity_borders.max"
+        :barHeight="'0.5vw'"
+      />
+    </div>
   </div>
 </template>
 
@@ -74,6 +82,14 @@ export default {
 <style lang="scss">
 @import "../../style/main-colors";
 
+.plant-info-container {
+  height: auto;
+}
+
+.plant-attribute-info{
+  height: 30%;
+}
+
 .left {
   margin-right: 1.5vh;
   float: left;
@@ -91,7 +107,7 @@ export default {
 }
 
 .plant-attribute-header-info {
-  height: 1.5vh;
+  height: auto;
   margin-bottom: 0.4vh;
   display: flex;
   align-items: flex-end;
@@ -105,8 +121,9 @@ export default {
     line-height: 100%;
     display: flex;
     align-items: flex-end;
-    font-size: 0.8rem;
+    font-size: 1rem;
     height: 100%;
+    width: 100%;
   }
 }
 

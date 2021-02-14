@@ -70,13 +70,13 @@ export default {
 
 #plant-reload-container {
   justify-self: right;
-  height: 3vh;
-  width: 3vh;
-  padding: 0, 5vh;
+  height: 2.0rem;
+  width: 2.0rem;
+  // padding: 0, 5vh;
   display: grid;
   place-items: center;
   #reload-icon {
-    height: 2vh;
+    height: 1.5rem;
     fill: rgb(64, 64, 64);
     transition: transform 1s ease-in-out;
   }

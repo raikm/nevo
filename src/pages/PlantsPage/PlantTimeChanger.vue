@@ -31,7 +31,7 @@
         ><div class="time-text">Last 24 Hours</div></label
       >
       <label @click="changeRange(borderTwoWeekRange)" for="third_toggle"
-        ><div class="time-text">Last 10 Days</div></label
+        ><div class="time-text">Last 14 Days</div></label
       >
       <div class="toggle_option_slider"></div>
     </div>
@@ -87,7 +87,7 @@ export default {
   -moz-border-radius: $standard-border-radius;
   border-radius: $standard-border-radius;
   position: relative;
-  height: 1.7rem;
+  height: 1.5vw;
   width: 100%;
 }
 .toggle_radio > * {
@@ -126,7 +126,7 @@ export default {
   width: 33.3%;
   height: 100%;
   position: absolute;
-  border: 1px solid $main-light-gray;
+  border: 2px solid $main-light-gray;
   top: 0;
   bottom: 0;
   margin: auto;

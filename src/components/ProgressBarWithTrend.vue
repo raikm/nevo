@@ -6,22 +6,22 @@
         :style="{
           width:
             //if value over minimum and at least 2% then show bar
-            (plantValue - valueMinBorder > 0 && (plantValue / valueMaxBorder) * 100 > 2
+            (plantValue - valueMinBorder > 0 &&
+            (plantValue / valueMaxBorder) * 100 > 2
               ? (plantValue / valueMaxBorder) * 100
               : 0) + '%',
           backgroundColor: barColor,
+          height: barHeight,
         }"
-      >
-      </div>
+      ></div>
     </div>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "ProgressBarWithTrend",
-  props: ["barColor", "valueMinBorder", "valueMaxBorder", "plantValue"],
+  props: ["barColor", "valueMinBorder", "valueMaxBorder", "plantValue", "barHeight"],
   created() {},
   methods: {},
 };
@@ -38,7 +38,7 @@ export default {
 
 .progress-bar {
   animation: load 2s normal forwards;
-  height: 0.6rem;
+  height: 100%;
   border-radius: $standard-border-radius;
   opacity: 85%;
   font-size: 50%;
@@ -56,7 +56,7 @@ export default {
 }
 
 .progress-bar-background {
-  background-color: $main-white-smoke;
+  background-color: $main-light-gray;
   border-radius: $standard-border-radius;
 }
 </style>

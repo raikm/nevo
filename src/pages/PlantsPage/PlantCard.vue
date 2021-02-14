@@ -1,8 +1,5 @@
 <template>
-
   <div class="plant-card-container">
-    
-
     <div
       class="basic-card plant-card click-element"
       v-bind:key="plant.plant_id"
@@ -24,8 +21,8 @@
             <svgicon
               class="location-icon"
               :icon="plant.location.location"
-              width="1.7vh"
-              height="1.7vh"
+              width="60%"
+              height="60%"
             ></svgicon>
           </div>
         </div>
@@ -42,17 +39,21 @@
       </transition>
 
       <transition name="slide" appear>
-        <div class="plant-popup-window-frame" v-if="showModal">
-          <svgicon
-            id="cancel-icon"
-            icon="cancel"
-            width="24"
-            height="24"
-            @click="showModal = false"
-          ></svgicon>
-          <div class="basic-card plant-popup-window" v-if="showModal">
-            <PlantHistoryPage :currentPlant="currentPlant" />
-          </div>
+        <div class="plant-popup-window" v-if="showModal">
+          <PopUpWindow
+            :windowWidth="90"
+            :windowHeight="50"
+            :popupTitle="currentPlant.name"
+            :leftInfo="'Close'"
+            :rightInfo="currentPlant.temperature.split('.')[0] + '°C'"
+          >
+            <component
+              :is="historyPage"
+              :currentPlant="currentPlant"
+            ></component>
+          </PopUpWindow>
+
+          <!-- <PlantHistoryPage :currentPlant="currentPlant" /> -->
         </div>
       </transition>
     </div>
@@ -62,6 +63,8 @@
 <script>
 import PlantInfo from "./PlantInfo";
 import PlantHistoryPage from "./PlantHistoryPage";
+import PopUpWindow from "../../components/PopUpWindow/PopUpWindow";
+
 import "../../compiled-icons/cancel";
 import "../../compiled-icons/couch";
 import "../../compiled-icons/dinning_table";
@@ -73,12 +76,14 @@ export default {
   components: {
     PlantInfo,
     PlantHistoryPage,
+    PopUpWindow,
   },
   props: ["plantInformation"],
   data() {
     return {
       currentPlant: {},
       showModal: false,
+      historyPage: "PlantHistoryPage",
     };
   },
   methods: {
@@ -99,7 +104,6 @@ export default {
 .plant-header-container {
   display: grid;
   grid-template-columns: 80% 20%;
-
   z-index: 98;
 }
 .plant-header {
@@ -133,17 +137,29 @@ export default {
 
 .plant-card {
   float: left;
-  height: 16vh;
+  height: 100%;
   // width: 21.8%;
+}
+
+@media (max-width: 1600px) {
+  .plant-card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1600px) {
+  .plant-card-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  }
 }
 
 .plant-card-container {
   // margin-top: 1%;
+
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  //grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 2%;
   grid-row-gap: 5%;
-  
 }
 
 .modal-overlay {
@@ -161,7 +177,7 @@ export default {
   top: 11%;
   left: 0%;
   right: 0%;
-  
+
   // height: 5vh;
 }
 
@@ -178,12 +194,13 @@ export default {
 .plant-popup-window {
   position: absolute;
   top: 11%;
-  left: 2%;
-  right: 2%;
+  left: 0%;
+  right: 0%;
+
   // transform: translate(-50%, -50%);
   z-index: 99;
   // height: 50%;
-  background-color: white !important;
+  //background-color: white !important;
 }
 
 .fade-enter-active,

@@ -1,18 +1,16 @@
 <template>
-  <div>
+  <div class="plant-popup">
     <div class="plant-header-popup">
-      <h1 class="title-1">
-        {{ currentPlant.name.replace(/[_-]/g, " ") }}
-      </h1>
+      <div></div>
 
       <PlantTimeChanger
         :borderRange="borderRange"
         @update-range="updateRange"
       />
 
-      <div class="temperature-info">
+      <!-- <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
-      </div>
+      </div> -->
       <!-- <div class="hover-button settings-button" @click="showSettingsChange()">
         <svgicon icon="pin" width="2vh" height="2vh"></svgicon>
       </div> -->
@@ -41,6 +39,7 @@
               :plantValue="currentPlant.soil_moisture"
               :valueMinBorder="currentPlant.soil_moisture_borders.min"
               :valueMaxBorder="currentPlant.soil_moisture_borders.max"
+              :barHeight="'0.5vw'"
             />
           </div>
         </div>
@@ -63,10 +62,11 @@
             </div>
 
             <ProgressBarWithTrend
-              :barColor="colors.mainBrown"
+              :barColor="colors.mainGreen"
               :plantValue="currentPlant.soil_fertility"
               :valueMinBorder="currentPlant.soil_fertitlity_borders.min"
               :valueMaxBorder="currentPlant.soil_fertitlity_borders.max"
+              :barHeight="'0.5vw'"
             />
           </div>
         </div>
@@ -93,12 +93,14 @@
               :plantValue="currentPlant.sunlight"
               :valueMinBorder="currentPlant.sunlight_intensity_borders.min"
               :valueMaxBorder="currentPlant.sunlight_intensity_borders.max"
+              :barHeight="'0.5vw'"
             />
           </div>
         </div>
 
         <div class="diagram-container">
           <canvas id="sunlight-chart"></canvas>
+
         </div>
       </div>
     </div>
@@ -350,10 +352,19 @@ export default {
 @import "../../style/main-colors";
 @import "../../style/main-style";
 
+.plant-popup{
+  //height: auto;
+   padding: 0 $standard-space;
+   background: white;
+   margin: $standard-space;
+   border-radius: $standard-border-radius;
+}
+
+
 .plant-header-popup {
   height: 13%;
   display: grid;
-  grid-template-columns: auto 40vh 3.5rem;
+  grid-template-columns: auto 40vh;
   column-gap: 5px;
   padding: 0.7rem 0;
   // padding: 0.6%;
@@ -444,17 +455,19 @@ export default {
     background-color: white;
     border-radius: $standard-border-radius;
     border-color: rgb(243, 244, 254);
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
     // margin: 1.6% 1.6%;
-    height: 26vh;
-    overflow: hidden;
+    height: auto;
+    // overflow: hidden;
+    padding: $standard-space;
     // width: 96.8%;
   }
 }
 
 .past-viewer {
-  margin-top: $standard-space;
+  margin: $standard-space 0;
+
   $circle-size: 1.8vh;
   display: grid;
   grid-template-columns: 2vh 2vh 2vh 2vh 2vh 2vh 2vh auto;
@@ -496,7 +509,8 @@ export default {
   grid-template-columns: auto auto;
   column-gap: 0.5vh;
   justify-content: right;
-  height: 0.7rem;
+  align-content: center;
+  
   .update-text {
     font-size: $standard-text-small;
   }
@@ -506,10 +520,12 @@ export default {
     display: grid;
     grid-template-columns: 3vh 0.5vh;
     column-gap: 0vh;
+    height: 1rem;
+      align-self: center;
 
     .baterry-info-bar {
       //height: 1.1vh;
-      height: 100%;
+      height: 1rem;
       background-color: rgb(25, 197, 68);
       border-radius: 0.3vh;
     }
