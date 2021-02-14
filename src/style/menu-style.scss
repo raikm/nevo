@@ -10,16 +10,14 @@ $inactive-color: $main-gray;
   0% {
     transform: scale(1);
   }
-  50% {
+  100% {
     transform: scale(0.98);
   }
-  100% {
-    transform: scale(1.02);
-  }
+  
 }
 
 .menu-button {
-  background-color: rgba(255, 255, 255, .45);   
+  background-color: rgba(255, 255, 255, 1);   
   backdrop-filter: blur(10px);
   border-color: rgb(243, 244, 254);
   border-style: solid;
@@ -35,6 +33,12 @@ $inactive-color: $main-gray;
   margin-right: auto;
   text-align: center;
 }
+
+.menu-button:hover {
+  transform: scale(0.98);
+}
+
+
 
 .menu-icon {
   margin: 12%;
@@ -53,7 +57,7 @@ $inactive-color: $main-gray;
   }
 }
 
-.dashboard-icon.active {
+.dashboard-icon.active, .dashboard-icon:hover {
   .box-1 {
     fill: $main-orange;
   }
@@ -83,7 +87,7 @@ $inactive-color: $main-gray;
   }
 }
 
-.lamp-icon.active {
+.lamp-icon.active, .lamp-icon:hover {
   $light-color: $main-orange;
   $light-color-2: $main-orange-2;
   .lampcable {
@@ -111,7 +115,7 @@ $inactive-color: $main-gray;
   margin-left: 12%;
   margin-right: 8%;
 }
-.plant-icon.active {
+.plant-icon.active, .plant-icon:hover {
   fill: #639a67;
 }
 
@@ -121,7 +125,7 @@ $inactive-color: $main-gray;
   margin-right: 3%;
 }
 
-.device-icon.active {
+.device-icon.active, .device-icon:hover {
   fill: $main-yellow-2;
 }
 
@@ -134,7 +138,7 @@ $inactive-color: $main-gray;
   }
 }
 
-.package-icon.active {
+.package-icon.active, .package-icon:hover {
   stroke: transparent;
   stroke-width: 0;
   //TODO: access main defined colors from COLOR PALLETTE
@@ -172,7 +176,7 @@ $inactive-color: $main-gray;
   }
 }
 
-.calendar-icon.active {
+.calendar-icon.active, .calendar-icon:hover {
   #calendar-day {
     color: $main-red;
   }
@@ -186,7 +190,7 @@ $inactive-color: $main-gray;
   }
 }
 
-.automation-icon.active{
+.automation-icon.active {
   stroke: transparent;
   stroke-width: 0;
   .automation-ball{
