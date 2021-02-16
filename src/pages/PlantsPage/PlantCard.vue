@@ -5,7 +5,7 @@
       v-bind:key="plant.plant_id"
       v-for="plant in plantInformation"
       @click="
-        showModal = true;
+        showPlantHistory = true;
         currentPlant = plant;
       "
     >
@@ -33,19 +33,20 @@
       <transition name="fade" appear>
         <div
           class="modal-overlay"
-          v-if="showModal"
-          @click="showModal = false"
+          v-if="showPlantHistory"
+          @click="showPlantHistory = false"
         ></div>
       </transition>
 
       <transition name="slide" appear>
-        <div class="plant-popup-window" v-if="showModal">
+        <div class="plant-popup-window" v-if="showPlantHistory">
           <PopUpWindow
             :windowWidth="90"
             :windowHeight="50"
             :popupTitle="currentPlant.name"
             :leftInfo="'Close'"
             :rightInfo="currentPlant.temperature.split('.')[0] + '°C'"
+            @leftEvent="closeDialog"
           >
             <component
               :is="historyPage"
@@ -82,7 +83,7 @@ export default {
   data() {
     return {
       currentPlant: {},
-      showModal: false,
+      showPlantHistory: false,
       historyPage: "PlantHistoryPage",
     };
   },
@@ -92,6 +93,9 @@ export default {
       if (plantInfoText != "NULL") {
         this.showToastInfo(plantInfoText);
       }
+    },
+    closeDialog() {
+      this.showPlantHistory = false;
     },
   },
 };

@@ -265,6 +265,7 @@ body {
     padding-right: 2.5rem;
     float: left;
     width: 65%;
+    height: 100%;
   }
   .newsfeed-header {
     height: 2.5rem;

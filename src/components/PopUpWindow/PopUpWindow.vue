@@ -6,7 +6,9 @@
         :style="{ width: windowWidth + 'vw', height: 'auto' }"
       >
         <div class="pop-up-window-header">
-          <div class="pop-up-header-left-action">{{ leftInfo }}</div>
+          <div @click="leftEvent" class="pop-up-header-left-action">
+            {{ leftInfo }}
+          </div>
 
           <h1 class="pop-up-header-title">{{ popupTitle }}</h1>
           <div class="pop-up-header-right-action">{{ rightInfo }}</div>
@@ -36,6 +38,12 @@ export default {
       child: "content",
     };
   },
+  methods: {
+    leftEvent() {
+      this.$emit("leftEvent");
+      console.log();
+    },
+  },
 };
 </script>
 
@@ -47,7 +55,6 @@ export default {
   display: flex;
   justify-content: center;
   align-content: center;
-  
 }
 
 .pop-up-window {
@@ -55,7 +62,7 @@ export default {
   top: 15%;
   background: $main-light-gray;
   box-shadow: 10px 10px 60px #555;
-animation: fadeIn 0.5s ease-in both;
+  animation: fadeIn 0.4s ease-in both;
   // backdrop-filter: blur(10px) contrast(.98);
   border-radius: $standard-border-radius;
 }
@@ -72,9 +79,9 @@ animation: fadeIn 0.5s ease-in both;
 }
 
 .pop-up-window-header {
-  padding: $standard-space * 2;
+  padding: $standard-space $standard-space * 2;
   width: 100%;
-  height: 5vh;
+  height: auto;
   border-radius: $standard-border-radius $standard-border-radius 0 0;
   background-color: white;
   border: solid;
