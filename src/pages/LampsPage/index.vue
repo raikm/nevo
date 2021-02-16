@@ -31,10 +31,10 @@ export default {
           roomName: "Kitchen",
           backgroundImage: "",
           lamps: [
-            { lampName: "Entrance", status: 1 },
-            { lampName: "Floor", status: 1 },
-            { lampName: "Floor", status: 1 },
-            { lampName: "Floor", status: 1 },
+            { lampName: "Entrance", status: 1, type: 'bulb' },
+            { lampName: "Floor", status: 1, type: 'bulb' },
+            { lampName: "Floor", status: 1, type: 'bulb' },
+            { lampName: "Floor", status: 1, type: 'bulb' },
           ],
         },
         {
@@ -84,6 +84,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../../style/main-style";
+
 .room-wrapper {
  overflow: auto;
   
@@ -93,11 +95,13 @@ export default {
   justify-content: space-between;
   width: 100%;
  height: 100%;
+ 
 }
 
 .room-with-lamps {
-  min-width: 20%;
-  height: 100%;
+  //min-width: 6vw * 2;
   
+  height: 100%;
+  margin-right: $standard-space;
 }
 </style>
