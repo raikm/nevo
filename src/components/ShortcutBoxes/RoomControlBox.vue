@@ -68,6 +68,7 @@ export default {
 
 <style lang="scss">
 @import "../../style/main-style";
+@import "../../style/main-colors";
 
 
 .room-controler-box {
@@ -113,6 +114,10 @@ export default {
 .bulb-on {
   fill: #f2bd4b;
   filter: url(#sofGlow);
+}
+
+.light-stand-body{
+  fill: $main-blue;
 }
 .light-bulb-body {
   // stroke: rgb(66, 66, 66);

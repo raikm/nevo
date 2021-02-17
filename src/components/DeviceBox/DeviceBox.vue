@@ -3,25 +3,31 @@
     <div class="device-box-header">
       <svgicon
         class="bulb-icon"
-        :class="{ 'bulb-on' : deviceStatus === 1}"
+        :class="{ 'bulb-on': deviceStatus === 'on' }"
         :icon="iconName"
-        width="2.5rem"
-        height="2.5rem"
+        
+        height="100%"
+        width="30%"
       ></svgicon>
     </div>
     <div class="device-box-title">
-        {{deviceTitle}}
+      <div class="box-title">
+        {{ deviceTitle }}
+      </div>
     </div>
     <div class="device-box-status">
-        On
+      {{ deviceStatus }}
     </div>
   </div>
 </template>
 
 <script>
 import "../../compiled-icons/bulb";
+import "../../compiled-icons/stand_lamp";
+import "../../compiled-icons/spot";
 
 export default {
+  // mounted() {console.log(this.iconName)},
   props: ["iconName", "deviceTitle", "deviceStatus"],
 };
 </script>
@@ -31,19 +37,43 @@ export default {
 
 .device-box {
   width: 6vw;
+  max-width: 140px;
   height: 6vw;
+  max-height: 140px;
 }
 
-.device-box-header{
-    height: 60%;
+.device-box-header {
+  height: 40%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
 }
 
-.device-box-title{
-    height: 20%;
-    font-weight: 700;
+.device-box-title {
+  height: 40%;
+  font-weight: 700;
+  line-height: 100%;
+  font-size: 1rem;
+  // width: 100%;
+ 
+ 
+  
+
 }
 
-.device-box-status{
-    height: 20%;
+.box-title {
+  position: absolute;
+  bottom: 24%;
+  
+}
+
+.device-box-status {
+  font-size: 1rem;
+  width: 100%;
+  height: 20%;
+  position: absolute;
+    text-overflow: ellipsis;
+  overflow: hidden;
 }
 </style>

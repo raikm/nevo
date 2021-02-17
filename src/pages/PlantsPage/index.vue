@@ -47,7 +47,7 @@ export default {
       this.$axios
         .get("http://192.168.1.80:8080/reload_plant_data/", {})
         .then((response) => {
-          console.log(response);
+          // console.log(response);
           this.plantInformation = response.data;
           document.getElementById("reload-icon").setAttribute("class", "");
         })

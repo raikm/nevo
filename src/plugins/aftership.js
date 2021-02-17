@@ -1,5 +1,4 @@
-
-var config = require("../../config.json")
+const config = require("../../config.json");
 
 
 const { AfterShip } = require('aftership');

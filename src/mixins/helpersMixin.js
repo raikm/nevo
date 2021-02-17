@@ -3,13 +3,8 @@ import colors from "../style/main-colors.scss";
 
 Vue.mixin({
   methods: {
-    getConfigFile: function() {
-      //TODO: request also the value and return already the value not the config
-      var config = require("../../config.json");
-      return config;
-    },
     changePage: function(path, name) {
-      this.$router.push(path);
+      this.$router.push(path, () => {});
       var elements = document.getElementsByClassName("active");
       for (var i = 0; i < elements.length; i++) {
         elements[0].classList.remove("active");
@@ -69,11 +64,10 @@ Vue.mixin({
       if (packages.length > 1) {
         packages = [];
       }
-      var config = this.getConfigFile();
       this.$axios
         .get("https://api.aftership.com/v4/trackings", {
           headers: {
-            "aftership-api-key": config.aftership.api_key,
+            "aftership-api-key": this.$store.getters.getConfig.aftership.api_key,
             "Content-Type": "application/json",
           },
         })

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import axios from 'axios'
-
+import store from './store'
 
 import App from './App.vue'
 import './registerServiceWorker'
@@ -16,8 +16,12 @@ import aftership from './plugins/aftership'
 
 
 
+
+
+
 Vue.use(VueAxios)
 Vue.use(aftership)
+Vue.use(store)
 
 
 Vue.config.productionTip = false
@@ -29,6 +33,7 @@ Vue.use(Buefy)
 
 new Vue({
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
 

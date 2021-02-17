@@ -120,10 +120,21 @@ import "./compiled-icons/menu_plant";
 import "./compiled-icons/menu_settings";
 import "./compiled-icons/menu_rooms";
 
+//get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket
+import {
+  //Auth,
+  createConnection,
+  subscribeEntities,
+  createLongLivedTokenAuth,
+} from "home-assistant-js-websocket";
+
 export default {
   name: "homeapp",
   components: {
     InfoBox,
+  },
+  created() {
+    this.connect();
   },
   mounted() {
     //TODO: check if no problem with perfomance
@@ -133,6 +144,20 @@ export default {
     this.defineCurrentFormatedDay();
   },
   methods: {
+    async connect() {
+      const auth = createLongLivedTokenAuth(
+        this.$store.getters.getConfig.homeassistant.hassUrl,
+        this.$store.getters.getConfig.homeassistant.life_time_token_raik
+      );
+
+      this.connection = await createConnection({ auth });
+      subscribeEntities(this.connection, (entities) => {
+        console.log("new Message from Server")
+        
+        this.$store.commit("setCurrentEntities", Object.values(entities));
+      });
+    },
+
     defineCurrentFormatedTime() {
       const date = new Date();
       this.time =
@@ -158,9 +183,11 @@ export default {
   },
   destroyed() {
     clearInterval(this.interval);
+    this.connection.suspend();
   },
   data() {
     return {
+      connection: null,
       time: "",
       day: "",
       weekday: "",
