@@ -1,6 +1,10 @@
 <template>
   <div>
     <div class="page-header">
+
+      <div :v-if="humiditySensors" :key="humditySensor.entity_id" v-for="humditySensor in humiditySensors">
+      <HeaderInfoBoxWithIcon :iconName="'office'" :headerValue="humditySensor.state + '%'" />
+      </div>
       <div id="plant-reload-container">
         <svgicon id="reload-icon" icon="reload" @click="reloadPlantData()" />
       </div>
@@ -12,23 +16,43 @@
 <script>
 import PlantCard from "./PlantCard";
 import "../../compiled-icons/reload";
+import HeaderInfoBoxWithIcon from "../../components/HeaderInfoBox/HeaderInfoBoxWithIcon";
+import {mapState} from "vuex"
 
 export default {
   name: "PlantsPage",
   components: {
     PlantCard,
+    HeaderInfoBoxWithIcon,
   },
-  created: function() {
+  created() {
     {
       this.getLastPlantData();
+      this.saveCurrentHumiditySensorDate()
     }
+  },
+  computed: mapState(["currentEntities"]),
+  watch: {
+    currentEntities() {
+      this.saveCurrentHumiditySensorDate()
+    },
   },
   data() {
     return {
       plantInformation: {},
+      humiditySensors: [],
     };
   },
   methods: {
+    saveCurrentHumiditySensorDate() {
+      this.$store.getters.getCurrentEntities.filter((entity) => {
+        this.humiditySensors = [];
+        if (entity.entity_id.startsWith("sensor.humidity")) {
+          this.humiditySensors.push(entity);
+        }
+        console.log(this.humiditySensors);
+      });
+    },
     imagePath(image) {
       return require(image.url.default);
     },
@@ -66,12 +90,9 @@ export default {
   height: 100%;
 }
 
-
-
 #plant-reload-container {
-  justify-self: right;
-  height: 2.0rem;
-  width: 2.0rem;
+  height: 2rem;
+  width: 2rem;
   // padding: 0, 5vh;
   display: grid;
   place-items: center;

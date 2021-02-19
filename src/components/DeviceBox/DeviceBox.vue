@@ -5,7 +5,6 @@
         class="bulb-icon"
         :class="{ 'bulb-on': deviceStatus === 'on' }"
         :icon="iconName"
-        
         height="100%"
         width="30%"
       ></svgicon>
@@ -37,43 +36,43 @@ export default {
 
 .device-box {
   width: 6vw;
+  min-width: 115px;
   max-width: 140px;
   height: 6vw;
+  min-height: 115px;
   max-height: 140px;
 }
 
 .device-box-header {
   height: 40%;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+
   width: 100%;
 }
 
 .device-box-title {
   height: 40%;
+  width: 100%;
+
   font-weight: 700;
   line-height: 100%;
-  font-size: 1rem;
+  display: flex;
+  font-size: 100%;
   // width: 100%;
- 
- 
-  
 
-}
-
-.box-title {
-  position: absolute;
-  bottom: 24%;
-  
+  .box-title {
+    position: absolute;
+    bottom: 24%;
+    width: auto;
+   
+  }
 }
 
 .device-box-status {
-  font-size: 1rem;
-  width: 100%;
+  font-size: 100%;
+  width: auto;
   height: 20%;
   position: absolute;
-    text-overflow: ellipsis;
   overflow: hidden;
 }
 </style>

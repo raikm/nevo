@@ -1,8 +1,8 @@
 <template>
   <main>
-    <svgicon class="scene-icon" :icon="scene.iconSource"></svgicon>
+    <svgicon class="scene-icon-2" :icon="scene.iconSource"></svgicon>
 
-    <h1 class="scene-name" :scene="scene">
+    <h1 class="scene-name-2">
       {{ scene.title }}
     </h1>
   </main>
@@ -19,18 +19,17 @@ import "../../compiled-icons/moon";
 import "../../compiled-icons/curtain";
 
 export default {
-  name: "StandardSceneBox",
   props: ["scene"],
 };
 </script>
 
 <style lang="scss">
-.scene-icon {
+.scene-icon-2 {
   height: 2.5vh;
   width: 2.5vw;
 }
 
-.scene-name {
+.scene-name-2 {
   margin-right: 1vh;
   float: right;
   font-size: large;

@@ -255,9 +255,15 @@ body {
 }
 
 .page-header {
-  display: grid;
-
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
   height: 2.5rem;
+}
+
+.page-header > div {
+  margin: 0 0.5rem
 }
 
 #main-container {
@@ -293,6 +299,7 @@ body {
     float: left;
     width: 65%;
     height: 100%;
+    overflow: hidden;
   }
   .newsfeed-header {
     height: 2.5rem;

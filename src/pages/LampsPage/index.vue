@@ -14,10 +14,9 @@
 </template>
 
 <script>
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 
 import Room from "./Room";
-
 
 export default {
   name: "LampsPage",
@@ -28,17 +27,17 @@ export default {
   computed: mapState(["currentEntities"]),
   watch: {
     currentEntities() {
-      this.getDeviceStates()
+      this.getDeviceStates();
     },
   },
   methods: {
     getDeviceStates() {
-      this.entities = this.$store.getters.getCurrentEntities;
       this.filterAllLightsFromDevices();
     },
     filterAllLightsFromDevices() {
-      const lights = this.entities.filter((d) => {
-        return d.attributes["Room"];
+      //TODO: only lights!
+      const lights = this.$store.getters.getCurrentEntities.filter((d) => {
+        return d.attributes["Room"] && d.entity_id.startsWith("light");
       });
 
       const roomNames = [];
@@ -48,7 +47,7 @@ export default {
           roomNames.push(lights[i].attributes.Room);
         }
       }
-      if (this.rooms.length > 0)  this.rooms = [];
+      if (this.rooms.length > 0) this.rooms = [];
       for (let i = 0; i < roomNames.length; i++) {
         // sort lights into Rooms
         var room = lights.filter((d) => {
@@ -61,69 +60,7 @@ export default {
   },
   data() {
     return {
-      // rooms: [
-      //   {
-      //     roomName: "Floor",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //     ],
-      //   },
-      //   //backgroundImage like a Table, Couch, Kitchen Counter, ...
-      //   {
-      //     roomName: "Kitchen",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1, type: "bulb" },
-      //       { lampName: "Floor", status: 1, type: "bulb" },
-      //       { lampName: "Floor", status: 1, type: "bulb" },
-      //       { lampName: "Floor", status: 1, type: "bulb" },
-      //     ],
-      //   },
-      //   {
-      //     roomName: "Living Room",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //     ],
-      //   },
-      //   {
-      //     roomName: "Dinning Room",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //     ],
-      //   },
-      //   {
-      //     roomName: "Bed Room",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //     ],
-      //   },
-      //   {
-      //     roomName: "Bed 2 Room",
-      //     backgroundImage: "",
-      //     lamps: [
-      //       { lampName: "Entrance", status: 1 },
-      //       { lampName: "Floor", status: 1 },
-      //     ],
-      //   },
-      // ],
       rooms: [],
-      entities: null,
     };
   },
 };
@@ -138,17 +75,16 @@ export default {
   display: flex;
   flex-wrap: nowrap;
   // width: 100%;
-  justify-content: space-between;
+  // justify-content: space-between;
   width: 100%;
   height: 100%;
 }
 
 .room-with-lamps {
-  //min-width: 6vw * 2;
-  max-width: 300px;
-
+  min-width: 295px;
+  width: 6vw * 2;
+  max-width: 295px;
   height: 100%;
-  //margin-right: $standard-space;
-  
+  margin-right: $standard-space;
 }
 </style>
