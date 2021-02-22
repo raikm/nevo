@@ -11,17 +11,24 @@
     <div id="temperature-hour-info">
       <div
         class="temperature-hour-content"
-        :key="temperatureHourInfo.id"
-        v-for="temperatureHourInfo in temperatureHourInfos"
+        :key="tempHourInfo.index"
+        v-for="tempHourInfo in tempHourInfos"
       >
-        <span class="weather-hour">{{ temperatureHourInfo.hour }}</span>
+        <span class="weather-hour">
+          {{
+            new Date(
+              currentHour.setHours(currentHour.getHours() + 1)
+            ).getHours()
+          }}
+        </span>
+        
         <svgicon
           class="weather-hour-icon"
-          :icon="temperatureHourInfo.icon"
+          :icon="tempHourInfo.weather[0].main"
         ></svgicon>
-        <span class="weather-hour-temperature">{{
-          temperatureHourInfo.temperature
-        }}°</span>
+        <span class="weather-hour-temperature"
+          >{{ Math.round(tempHourInfo.temp) }}°</span
+        >
       </div>
     </div>
   </div>
@@ -30,13 +37,47 @@
 <script>
 // var serverAddress = "http://192.168.0.22:8181";
 import "../../compiled-icons/sun_2";
+import "../../compiled-icons/Clouds"
+
+
+import { mapState } from "vuex";
 
 export default {
   name: "WeatherMainInfoBox",
   components: {},
   props: [],
+  computed: mapState(["weather"]),
+  created() {
+    // this.prepareWeatherHourlySix();
+  },
+  watch: {
+    weather() {
+      this.prepareWeatherHourlySix();
+    },
+  },
+  methods: {
+    prepareWeatherHourlySix() {
+      console.log(".....");
+      console.log(this.$store.getters.getWeather);
+      console.log(".....");
+      if (
+        this.$store.getters.getWeather.hourly &&
+        this.$store.getters.getWeather.hourly.length > 0
+      ) {
+        let _weatherHour = Object.values(this.$store.getters.getWeather.hourly);
+
+        this.tempHourInfos = _weatherHour.slice(0, 5).filter((hour) => {
+          console.log(hour);
+          return hour;
+        });
+      }
+      console.log(this.tempHourInfos);
+    },
+  },
   data() {
     return {
+      tempHourInfos: [],
+      currentHour: new Date(),
       temperatureHourInfos: [
         {
           id: 1,
@@ -81,12 +122,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
-@import "../../style/main-colors";
 
-
-#weather-box{
-  background-image: linear-gradient(-150deg, #7DE2FC 0%, #b6bee5 100%);
+#weather-box {
+  background-image: linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%);
   color: white;
 }
 
@@ -134,13 +172,11 @@ export default {
     text-align: center;
     display: flex;
     flex-direction: column;
-    
 
     .weather-hour {
       font-size: medium;
       line-height: 1.7vh;
-      
-      
+
       font-weight: bold;
     }
 
@@ -149,10 +185,7 @@ export default {
       height: 2.5vh;
     }
     .weather-hour-temperature {
-      
-      
       font-weight: bold;
-      
     }
   }
 }

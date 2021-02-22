@@ -19,7 +19,7 @@ import "../../compiled-icons/moon";
 import "../../compiled-icons/curtain";
 
 export default {
-  props: ["scene"],
+  props: ["scene", "containerWidth"],
 };
 </script>
 

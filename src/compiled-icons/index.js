@@ -2,6 +2,7 @@
 require('./bike')
 require('./bulb')
 require('./cancel')
+require('./Clouds')
 require('./couch')
 require('./curtain')
 require('./dinning_table')

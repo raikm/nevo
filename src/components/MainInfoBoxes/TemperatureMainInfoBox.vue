@@ -39,7 +39,6 @@
 </template>
 
 <script>
-// var serverAddress = "http://192.168.0.22:8181";
 import "../../compiled-icons/temperature";
 import "../../compiled-icons/humidity";
 // import VerticalBarController from "../InteractionController/VerticalBarController";

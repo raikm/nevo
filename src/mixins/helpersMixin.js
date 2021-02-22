@@ -11,9 +11,14 @@ Vue.mixin({
       }
       document.getElementsByClassName(name)[0].classList.add("active");
 
-      document.getElementById("newsfeed").style.display = "none";
-      document.getElementById("infobox-container").style.width = "90%";
-
+      console.log(this.$router.currentRoute.name);
+      if (this.$router.currentRoute.name == "dashboard-page") {
+        this.$store.commit("setShowNotification", true);
+        document.getElementById("infobox-container").style.width = "65%";
+      } else {
+        this.$store.commit("setShowNotification", false);
+        document.getElementById("infobox-container").style.width = "90%";
+      }
     },
     showToastError(text) {
       this.$buefy.toast.open({
@@ -67,7 +72,8 @@ Vue.mixin({
       this.$axios
         .get("https://api.aftership.com/v4/trackings", {
           headers: {
-            "aftership-api-key": this.$store.getters.getConfig.aftership.api_key,
+            "aftership-api-key": this.$store.getters.getConfig.aftership
+              .api_key,
             "Content-Type": "application/json",
           },
         })
@@ -157,12 +163,10 @@ Vue.mixin({
     },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
     preparePlantChart(data, min, max, mainColor, timeFormat, start, end) {
-
       // console.log(start)
       // console.log(end)
       // const dataModified = data.filter(entry => entry.length > 6);
       // console.log(data)
-
 
       const opactiyColor = () => {
         let hex = mainColor.replace("#", "");

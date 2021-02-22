@@ -5,7 +5,7 @@
       :key="scene.id"
       v-for="scene in scenes"
     >
-      <StandardSceneBox class="scene-button" :scene="scene" />
+      <StandardSceneBox :containerWidth="containerWidth" :scene="scene" />
       
     </div>
   </div>
@@ -16,6 +16,7 @@ import StandardSceneBox from "./StandardSceneBox";
 
 export default {
   name: "MainSceneBox",
+  props: ["containerWidth"],
   components: { StandardSceneBox },
   data() {
     return {

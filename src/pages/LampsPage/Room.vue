@@ -2,9 +2,9 @@
   <div>
     <div class="main-info-title-big room-title">{{ room.roomName }}</div>
     <div class="room-line"></div>
-    <div class="room-scene-wrapper" :key="scene.id" v-for="scene in scenes">
+    <!-- <div class="room-scene-wrapper" :key="scene.id" v-for="scene in scenes">
       <SceneBox :sceneIcon="scene.iconSource" :sceneName="scene.title" />
-    </div>
+    </div> -->
 
     <div class="room-lights">
       <div v-bind:key="light.attributes.friendly_name" v-for="light in room">
@@ -19,14 +19,14 @@
 </template>
 
 <script>
-import SceneBox from "../../components/SceneBoxes/SceneBox";
+// import SceneBox from "../../components/SceneBoxes/SceneBox";
 
 import DeviceBox from "../../components/DeviceBox/DeviceBox";
 
 export default {
   name: "Room",
   props: ["room"],
-  components: { DeviceBox, SceneBox },
+  components: { DeviceBox },
   data() {
     return {
       scenes: [

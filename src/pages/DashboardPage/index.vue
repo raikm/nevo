@@ -1,6 +1,6 @@
 <template>
   <main>
-     <div class="standard-information-row-container-small">
+    <div class="standard-information-row-container-small">
       <RoomControlBox class="Room-Control-Box" />
       <!-- <EBikeMainInfoBox class="EBike-Box" /> -->
     </div>
@@ -14,7 +14,7 @@
       <CalendarMainInfoBox class="Calendar-Box" />
       <MusicControlMainInfoBox class="Music-Control-Box" />
     </div>
-    <MainSceneBox id="scene-buttons" />
+    <MainSceneBox ref="sceneButtons" :containerWidth="containerSceneWidth" id="scene-buttons" />
   </main>
 </template>
 
@@ -42,13 +42,24 @@ export default {
     // EBikeMainInfoBox,
     MainSceneBox,
   },
+  created(){
+  },
+  mounted() {
+    this.containerSceneWidth = window.innerWidth * 0.65;
+    console.log(this.containerSceneWidth)
+  },
   data() {
-    return {};
+    return {
+      containerSceneWidth: 0,
+    };
   },
 };
 </script>
 
 <style lang="scss">
+@import "../../style/main-style";
+
+
 .standard-information-row-container {
   display: flex;
   justify-content: space-between;
@@ -99,10 +110,8 @@ export default {
 
 .main-info-box-small {
   height: 15vh;
-  
 }
 .main-info-box-small div {
-  
 }
 
 .main-info-box-big {
@@ -113,7 +122,7 @@ export default {
 .main-info-header {
   display: grid;
   grid-template-columns: 9fr 1fr;
- 
+
   height: 3vh;
   line-height: 3vh;
   margin-bottom: 1.6%;
@@ -138,20 +147,21 @@ export default {
 }
 
 #scene-buttons {
-  height: 10vh;
+  height: auto;
   width: 100%;
   // overflow-x: scroll;
   // overflow-y: hidden;
   overflow: auto;
   
-  display: flex;
-  flex-wrap: nowrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  row-gap: $standard-space;
+  column-gap: $standard-space;
   // width: 100%;
-  justify-content: space-between;
+  // justify-content: space-between;
 }
 
-
-#scene-buttons > div{
-  margin-right: 20px;
+#scene-buttons > div {
+  // margin-right: 15px;
 }
 </style>

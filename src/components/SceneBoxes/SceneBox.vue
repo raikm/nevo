@@ -25,7 +25,8 @@ export default {
 <style lang="scss">
 .scene-box {
   height: 2vw;
-  max-height: 70px;
+  min-height: 50px;
+  max-height: 90px;
   margin-bottom: 15px;
   display: grid;
   grid-template-columns: 1fr 4fr;

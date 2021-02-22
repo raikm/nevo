@@ -1,9 +1,19 @@
 <template>
   <div>
     <div class="page-header">
-
-      <div :v-if="humiditySensors" :key="humditySensor.entity_id" v-for="humditySensor in humiditySensors">
-      <HeaderInfoBoxWithIcon :iconName="'office'" :headerValue="humditySensor.state + '%'" />
+      <div
+        :v-if="humiditySensors"
+        :key="humditySensor.entity_id"
+        v-for="humditySensor in humiditySensors"
+      >
+        <HeaderInfoBoxWithIcon
+          :iconName="'office'"
+          :headerValue="
+            humditySensor.state != 'unavailable'
+              ? humditySensor.state + '%'
+              : humditySensor.state
+          "
+        />
       </div>
       <div id="plant-reload-container">
         <svgicon id="reload-icon" icon="reload" @click="reloadPlantData()" />
@@ -17,10 +27,9 @@
 import PlantCard from "./PlantCard";
 import "../../compiled-icons/reload";
 import HeaderInfoBoxWithIcon from "../../components/HeaderInfoBox/HeaderInfoBoxWithIcon";
-import {mapState} from "vuex"
+import { mapState } from "vuex";
 
 export default {
-  name: "PlantsPage",
   components: {
     PlantCard,
     HeaderInfoBoxWithIcon,
@@ -28,13 +37,13 @@ export default {
   created() {
     {
       this.getLastPlantData();
-      this.saveCurrentHumiditySensorDate()
+      this.saveCurrentHumiditySensorDate();
     }
   },
   computed: mapState(["currentEntities"]),
   watch: {
     currentEntities() {
-      this.saveCurrentHumiditySensorDate()
+      this.saveCurrentHumiditySensorDate();
     },
   },
   data() {
@@ -45,12 +54,13 @@ export default {
   },
   methods: {
     saveCurrentHumiditySensorDate() {
+      this.humiditySensors = [];
       this.$store.getters.getCurrentEntities.filter((entity) => {
-        this.humiditySensors = [];
         if (entity.entity_id.startsWith("sensor.humidity")) {
+          console.log(entity);
           this.humiditySensors.push(entity);
         }
-        console.log(this.humiditySensors);
+        // console.log(this.humiditySensors);
       });
     },
     imagePath(image) {
@@ -58,7 +68,7 @@ export default {
     },
     getLastPlantData() {
       this.$axios
-        .get("http://192.168.1.80:8080/getAllPlants/", {})
+        .get(this.$store.getters.getConfig.homeserver.url + ":8080/getAllPlants/", {})
         .then((response) => {
           this.plantInformation = response.data;
         })
@@ -69,7 +79,7 @@ export default {
     reloadPlantData() {
       document.getElementById("reload-icon").setAttribute("class", "rotating");
       this.$axios
-        .get("http://192.168.1.80:8080/reload_plant_data/", {})
+        .get(this.$store.getters.getConfig.homeserver.url + ":8080/reload_plant_data/", {})
         .then((response) => {
           // console.log(response);
           this.plantInformation = response.data;
