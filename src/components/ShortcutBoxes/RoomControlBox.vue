@@ -67,8 +67,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
-@import "../../style/main-colors";
 
 
 .room-controler-box {

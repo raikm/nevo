@@ -28,8 +28,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../style/main-style";
-@import "../style/main-colors";
+
+
 
 .progress-bar-container {
   width: 100%;

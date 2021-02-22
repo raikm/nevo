@@ -12,7 +12,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
 .option-wrapper {
   margin: 1rem 0;
 }

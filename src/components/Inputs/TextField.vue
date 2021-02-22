@@ -13,7 +13,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
+
 .input-wrapper {
   margin: 1rem 0;
 }

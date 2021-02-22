@@ -27,7 +27,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
 
 #system-overview {
   margin: 1%;

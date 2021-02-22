@@ -67,7 +67,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
+
 
 .room-wrapper {
   overflow: auto;

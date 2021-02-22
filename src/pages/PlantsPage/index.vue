@@ -94,7 +94,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
 
 #plant-page {
   height: 100%;

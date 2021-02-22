@@ -20,7 +20,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
 
 .eta-content-box {
   display: grid;

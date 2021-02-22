@@ -127,7 +127,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
 
 .table-public-transport {
   margin-bottom: 0.8%;

@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
+
 
 
 .standard-information-row-container {

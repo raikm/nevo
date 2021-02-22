@@ -32,7 +32,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
+
 
 .device-box {
   width: 6vw;

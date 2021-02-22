@@ -80,7 +80,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
 
 .plant-info-container {
   height: auto;

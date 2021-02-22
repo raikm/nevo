@@ -122,7 +122,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
 
 .systemsettings-header {
   margin: 1vh 1vh;

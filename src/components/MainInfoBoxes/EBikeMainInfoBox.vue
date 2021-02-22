@@ -63,7 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
 
 .e-bike-info-wrapper {
   position: relative;

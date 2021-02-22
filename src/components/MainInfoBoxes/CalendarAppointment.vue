@@ -28,8 +28,6 @@ export default {
 
 
 
-@import "../../style/main-colors";
-
 .calendar-color{
     height: 90%;
     width: 100%;

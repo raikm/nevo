@@ -102,8 +102,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
-@import "../../style/main-style";
 
 .plant-header-container {
   display: grid;

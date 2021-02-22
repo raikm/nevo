@@ -74,8 +74,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-colors";
-@import "../../style/main-style";
 
 .toggle_radio {
   position: relative;

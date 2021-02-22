@@ -221,7 +221,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import "/style/menu-style", "/style/main-colors", "/style/main-style"; // add with comma
+
 
 body {
   -webkit-touch-callout: none; /* iOS Safari */

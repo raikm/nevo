@@ -44,7 +44,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/menu-style";
 
 .info-box {
   background-color: rgba(255, 255, 255, .45);   

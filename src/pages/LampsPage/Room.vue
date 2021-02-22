@@ -47,7 +47,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../../style/main-style";
 .room-scene-wrapper{
   width: 100%;
   max-width: 245px;;

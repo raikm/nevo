@@ -48,8 +48,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../../style/main-style";
-@import "../../style/main-colors";
 
 .pop-up-window-wrapper {
   display: flex;
