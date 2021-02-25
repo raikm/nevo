@@ -1,174 +1,201 @@
 @import "./main-colors.scss";
 
-
 $standard-border-radius: 10px;
-$standard-title-big: 80%;
+$standard-title-big: 4rem;
 $standard-title-medium: 60%;
 $standard-text-medium: 1.7vh;
 $standard-text-small: 1.2vh;
 
+$standard-space: 15px;
 
-$standard-space: 15px; 
+body {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
 
+  //https://webgradients.com/
+  background-color: #cddcdc;
+  background-image: radial-gradient(
+      at 50% 100%,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(0, 0, 0, 0.5) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.25) 0%,
+      rgba(0, 0, 0, 0.25) 100%
+    );
+  background-blend-mode: screen, overlay;
+}
+
+.page-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  width: 100%;
+  height: 2.5rem;
+}
+
+.page-header > div {
+  margin: 0 0.5rem;
+}
 
 .basic-card {
-    background-color: rgba(255, 255, 255, 1);   
-    backdrop-filter: blur(10px);
-    // backdrop-filter: blur(10px) contrast(.98);
-  
-    // box-shadow:
-    // 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    // 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    // 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    // 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    // 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    // 0 100px 80px rgba(0, 0, 0, 0.12);
+  background-color: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(10px);
+  // backdrop-filter: blur(10px) contrast(.98);
 
-    border-width: 0;
+  // box-shadow:
+  // 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  // 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  // 0 12.5px 10px rgba(0, 0, 0, 0.06),
+  // 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  // 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  // 0 100px 80px rgba(0, 0, 0, 0.12);
 
-    border-radius: 10px;
-    border-style: solid;
-    padding: 1vh;
-    
-    // margin: 0 1.6%;
-    // margin-bottom: 1.6%;
+  border-width: 0;
+
+  border-radius: 10px;
+  border-style: solid;
+  padding: 1vh;
+
+  // margin: 0 1.6%;
+  // margin-bottom: 1.6%;
+}
+
+.main-info-content {
+  margin: 2% 0;
+}
+
+.main-info-icon-container {
+  // border-radius: $standard-border-radius;
+  // border-style: solid;
+  // border-width: .1vh;
+  float: left;
+  height: 2.5vh;
+  width: 2.5vh;
+  background-color: $main-black-transparent;
+  .info-icon {
+    margin: 10%;
+    height: 80%;
+    width: 80%;
   }
- 
+  .info-icon-text {
+    //TODO: box is 1px to much right
+    // margin: 10%;
+    font-weight: 400;
+    height: 100%;
+    // width: 100%;
+    font-size: $standard-title-big;
+    line-height: 80%;
 
-
-  .main-info-content{
-    margin: 2% 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+}
 
-  .main-info-icon-container {
-    // border-radius: $standard-border-radius;
-    // border-style: solid;
-    // border-width: .1vh;
-    float: left;
-    height: 2.5vh;
-    width: 2.5vh;
-    background-color: $main-black-transparent;
-    .info-icon{
-      margin: 10%;
-      height: 80%;
-      width: 80%;
+//OLD
+.main-info-icon {
+  float: left;
+  height: 3vh;
+}
+
+.click-element:active {
+  animation: bounce-in 0.5s;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(1);
   }
-    .info-icon-text{
-      //TODO: box is 1px to much right
-      // margin: 10%;
-      font-weight: 400;
-      height: 100%;
-      // width: 100%;
-      font-size: $standard-title-big;
-      line-height: 80%;
-      
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
+  50% {
+    transform: scale(0.95);
   }
-
-  
-
-  //OLD
-  .main-info-icon{
-    float: left;
-    height: 3vh;
+  80% {
+    transform: scale(1.03);
   }
-
-
-  .click-element:active {
-    animation: bounce-in 0.5s;
+  100% {
+    transform: scale(1);
   }
-  
-  @keyframes bounce-in {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(0.95);
-    }
-    80% {
-      transform: scale(1.03);
-    }
-    100% {
-      transform: scale(1.0);
-    }
-  }
+}
 
-  button {
-    // background-color: white;
-    // border-radius: 0.5vh;
-    // border-color: rgb(237, 238, 250);
-    // border-width: 1px;
-    // border-style: solid;
-    // color: $text-color;
-    // font-size: x-small;
-    // font-weight: 300;
-    // height: 50%;
-  }
-  
-  button:hover {
-    // background-color: $main-blue;
-    // color: white;
-  }
+button {
+  // background-color: white;
+  // border-radius: 0.5vh;
+  // border-color: rgb(237, 238, 250);
+  // border-width: 1px;
+  // border-style: solid;
+  // color: $text-color;
+  // font-size: x-small;
+  // font-weight: 300;
+  // height: 50%;
+}
 
+button:hover {
+  // background-color: $main-blue;
+  // color: white;
+}
 
+.small-icon {
+  height: 2vh;
+  width: 2vh;
+}
 
-  .small-icon{
-    height: 2vh;
-    width: 2vh;
-  }
+.hover-button {
+  // height: 3vh;
+  // width: 3vh;
+  padding: 0.5vh;
+  display: grid;
+  place-items: center;
+}
 
+.hover-button:hover {
+  cursor: auto;
+}
+.hover-button:hover {
+  //background-color: rgba(255, 255, 255, 0.55);
+  background-color: rgb(255, 255, 255);
+  //background-color: red;
+  //backdrop-filter: blur(10px);
+  border-width: 0;
+  border-radius: 10px;
+  border-style: solid;
+  cursor: none;
+}
 
-  .hover-button {
-    // height: 3vh;
-    // width: 3vh;
-    padding: 0.5vh;
-    display: grid;
-    place-items: center;
+.normal-button {
+  background-color: rgb(255, 255, 255);
+  border-width: 0;
+  border-radius: 10px;
+  border-style: solid;
+  display: grid;
+  place-items: center;
+}
 
-  }
+.title-1 {
+  font-weight: bold;
+  font-size: 2.8vh;
+  height: 3vh;
+  line-height: 3vh;
+}
 
-  .hover-button:hover {cursor: auto;} .hover-button:hover {
-    //background-color: rgba(255, 255, 255, 0.55);
-    background-color: rgb(255, 255, 255);
-    //background-color: red;
-    //backdrop-filter: blur(10px);
-    border-width: 0;
-    border-radius: 10px;
-    border-style: solid;
-    cursor: none;
-  }
+.title-2 {
+  font-weight: bold;
+  font-size: 1.9vh;
+  height: 2.1vh;
+  line-height: 2.1vh;
+  margin-bottom: $standard-space;
+}
 
-  .normal-button{
-    background-color: rgb(255, 255, 255);
-    border-width: 0;
-    border-radius: 10px;
-    border-style: solid;
-    display: grid;
-    place-items: center;
-  } 
-
-  .title-1{
-    font-weight: bold;
-    font-size: 2.8vh;
-    height: 3vh;
-    line-height: 3vh;
-  }
-
-  .title-2{
-    font-weight: bold;
-    font-size: 1.9vh;
-    height: 2.1vh;
-    line-height: 2.1vh;
-    margin-bottom: $standard-space;  }
-
-  .title-3{
-    font-weight: bold;
-    font-size: 1.5vh;
-    height: 1.5vh;
-    line-height: 1.5vh;
-    margin-bottom: $standard-space;
-  }
+.title-3 {
+  font-weight: bold;
+  font-size: 1.5vh;
+  height: 1.5vh;
+  line-height: 1.5vh;
+  margin-bottom: $standard-space;
+}
