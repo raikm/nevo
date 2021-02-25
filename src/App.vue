@@ -13,8 +13,8 @@
     </div>
     <div id="main-container">
       <Menu />
-      <router-view class="page"></router-view>
-      <Newsfeed />
+      <router-view id="page"></router-view>
+      <Newsfeed v-if="this.$store.getters.getShowNotification" />
     </div>
   </div>
 </template>
@@ -57,11 +57,6 @@ export default {
       });
     },
   },
-  data() {
-    return {
-      connection: null,
-    };
-  },
 };
 </script>
 
@@ -78,12 +73,13 @@ export default {
   height: 93vh;
   width: 100vw;
 
-  .page {
+  #page {
     padding-right: 2.5rem;
     float: left;
     width: 65%;
     height: 100%;
     overflow: hidden;
+    padding-top: 2.5rem;
   }
 }
 </style>
