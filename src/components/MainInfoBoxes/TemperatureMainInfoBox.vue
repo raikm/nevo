@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="tempbox"
     class="basic-card main-info-box main-info-box-small temperature-main-info-box"
   >
     <div class="main-info-header">
@@ -8,21 +9,25 @@
       </h1>
     </div>
 
-    <div class="temperature-humidity-wrapper">
+    <div class="main-box-body">
       <div
         class="temperature-humidity-value-wrapper"
         :temperatureInfo="temperatureInfo"
+        ref="temphumd"
       >
-        <span v-if="temperatureInfo != '99.9'" class="temperature-value"
+        <span
+          v-if="temperatureInfo != '99.9' && temperatureInfo != 'NaN'"
+          :style="{ fontSize: this.$refs.temphumd.clientHeight * 0.5 + 'px' }"
           >{{ temperatureInfo }}°C</span
         >
-        <span v-else class="temperature-value" style="padding-left: 3vh"
-          >--</span
-        >
-        <span v-if="humidityInfo != 999.9" class="humidity-value"
+        <span v-else :style="{ fontSize: '3vh' }">--</span>
+
+        <span
+          v-if="humidityInfo != 999.9 && humidityInfo != 'NaN'"
+          :style="{ fontSize: this.$refs.temphumd.clientHeight * 0.2 + 'px' }"
           >{{ humidityInfo }}%</span
         >
-        <span v-else class="humidity-value" style="padding-left: 3vh">--</span>
+        <span v-else>--</span>
       </div>
 
       <!-- <div class="temperature-controller-container">
@@ -63,7 +68,6 @@ export default {
     getCurrentHumidity() {
       this.$store.getters.getCurrentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.humidity")) {
-          console.log(entity);
           this.humidityInfo = parseFloat(entity.state).toFixed(1);
         }
       });
@@ -79,22 +83,19 @@ export default {
 </script>
 
 <style lang="scss">
+.temperature-main-info-box {
+}
+
 .temperature-humidity-wrapper {
   display: grid;
-  grid-template-columns: 7fr 3fr;
 }
 
 .temperature-humidity-value-wrapper {
   display: grid;
   grid-template-columns: 1fr;
-}
+  grid-template-rows: 4fr 1fr;
 
-.temperature-value {
-  font-size: $standard-text-medium;
-}
-
-.humidity-value {
-  font-size: $standard-text-small;
+  height: 100%;
 }
 
 .temperature-controller-container {

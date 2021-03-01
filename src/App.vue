@@ -72,9 +72,10 @@ export default {
 #main-container {
   height: 93vh;
   width: 100vw;
+  max-width: 1920px;
 
   #page {
-    padding-right: 2.5rem;
+    // padding-right: 2.5rem;
     float: left;
     width: 65%;
     height: 100%;

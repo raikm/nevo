@@ -11,13 +11,12 @@ Vue.mixin({
       }
       document.getElementsByClassName(name)[0].classList.add("active");
 
-      console.log(this.$router.currentRoute.name);
       if (this.$router.currentRoute.name == "dashboard-page") {
         this.$store.commit("setShowNotification", true);
-        document.getElementById("infobox-container").style.width = "65%";
+        document.getElementById("page").style.width = "65%";
       } else {
         this.$store.commit("setShowNotification", false);
-        document.getElementById("infobox-container").style.width = "90%";
+        document.getElementById("page").style.width = "90%";
       }
     },
     showToastError(text) {

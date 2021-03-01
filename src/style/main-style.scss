@@ -1,12 +1,23 @@
 @import "./main-colors.scss";
+@import "./resolutions/ipad.scss";
+@import "./resolutions/desktop.scss";
+@import "./resolutions/2560x1600_Lenovo.scss";
+@import "./resolutions/default-settings.scss";
+
 
 $standard-border-radius: 10px;
 $standard-title-big: 4rem;
 $standard-title-medium: 60%;
-$standard-text-medium: 1.7vh;
-$standard-text-small: 1.2vh;
+
+$standard-text-big: 2.5vh;
+$standard-text-medium: 1.5vh;
+$standard-text-small: 1vh;
 
 $standard-space: 15px;
+
+
+
+
 
 body {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -16,20 +27,9 @@ body {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-
+  font-size: 16px;
   //https://webgradients.com/
-  background-color: #cddcdc;
-  background-image: radial-gradient(
-      at 50% 100%,
-      rgba(255, 255, 255, 0.5) 0%,
-      rgba(0, 0, 0, 0.5) 100%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.25) 0%,
-      rgba(0, 0, 0, 0.25) 100%
-    );
-  background-blend-mode: screen, overlay;
+  
 }
 
 .page-header {

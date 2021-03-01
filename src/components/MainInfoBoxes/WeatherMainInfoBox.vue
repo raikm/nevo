@@ -1,12 +1,31 @@
 <template>
-  <div id="weather-box" class="basic-card main-info-box main-info-box-small">
+  <div
+    id="weather-box"
+    class="basic-card main-info-box main-info-box-small"
+    :style="{ backgroundImage: this.backgroundImage }"
+    v-if="currentWeather.weather"
+  >
     <div id="weather-header">
-      <span id="weather-city-name">Berlin</span>
-      <svgicon id="weather-icon" icon="sun_2"></svgicon>
+      <div id="weather-city-name">Salzburg</div>
+      <svgicon
+        id="weather-icon"
+        :icon="'Weather_' + currentWeather.weather[0].main"
+        :style="{
+          fill: getWeatherIconColor(currentWeather.weather[0].main),
+        }"
+      ></svgicon>
     </div>
     <div id="temperature-info-overview">
-      <span id="temperature-outdoor-info">16°</span>
-      <div id="weather-description"><span>Sunny</span><span></span></div>
+      <span id="temperature-outdoor-info"
+        >{{ Math.round(currentWeather.temp) }}°</span
+      >
+      <div id="weather-description">
+        <span>{{ currentWeather.weather[0].main }}</span>
+        <span
+          >H: {{ Math.round(todayForcast.temp.max) }}° L:
+          {{ Math.round(todayForcast.temp.min) }}°
+        </span>
+      </div>
     </div>
     <div id="temperature-hour-info">
       <div
@@ -14,33 +33,45 @@
         :key="tempHourInfo.index"
         v-for="tempHourInfo in tempHourInfos"
       >
-        <span class="weather-hour">
+        <div class="weather-hour">
           {{
             new Date(
               currentHour.setHours(currentHour.getHours() + 1)
             ).getHours()
           }}
-        </span>
-        
-        <svgicon
-          class="weather-hour-icon"
-          :icon="tempHourInfo.weather[0].main"
-        ></svgicon>
-        <span class="weather-hour-temperature"
-          >{{ Math.round(tempHourInfo.temp) }}°</span
-        >
+        </div>
+        <div class="weather-icon-wrapper">
+          <svgicon
+            class="weather-hour-icon"
+            width="1.5vh"
+            :icon="'Weather_' + currentWeather.weather[0].main"
+            :style="{
+              fill: getWeatherIconColor(currentWeather.weather[0].main),
+            }"
+          ></svgicon>
+        </div>
+        <div class="weather-hour-temperature">
+          {{ Math.round(tempHourInfo.temp) }}°
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-// var serverAddress = "http://192.168.0.22:8181";
-import "../../compiled-icons/sun_2";
-import "../../compiled-icons/Clouds"
-
+import "../../compiled-icons/Weather_Clear";
+import "../../compiled-icons/Weather_Clouds_2";
+import "../../compiled-icons/Weather_Clouds_Day";
+import "../../compiled-icons/Weather_Clouds";
+import "../../compiled-icons/Weather_Mist";
+import "../../compiled-icons/Weather_Rain";
+import "../../compiled-icons/Weather_Snow";
+import "../../compiled-icons/Weather_Sunrise";
+import "../../compiled-icons/Weather_Sunset";
+import "../../compiled-icons/Weather_Thunderstorm";
 
 import { mapState } from "vuex";
+import colors from "@/style/main-colors.scss";
 
 export default {
   name: "WeatherMainInfoBox",
@@ -48,144 +79,133 @@ export default {
   props: [],
   computed: mapState(["weather"]),
   created() {
-    // this.prepareWeatherHourlySix();
+    this.getWeatherDataFormAPI();
   },
-  watch: {
-    weather() {
-      this.prepareWeatherHourlySix();
-    },
-  },
+  mounted() {},
   methods: {
-    prepareWeatherHourlySix() {
-      console.log(".....");
-      console.log(this.$store.getters.getWeather);
-      console.log(".....");
-      if (
-        this.$store.getters.getWeather.hourly &&
-        this.$store.getters.getWeather.hourly.length > 0
-      ) {
-        let _weatherHour = Object.values(this.$store.getters.getWeather.hourly);
+    getWeatherDataFormAPI() {
+      const {
+        api_key,
+        open_weather_url,
+      } = this.$store.getters.getConfig.weather;
 
-        this.tempHourInfos = _weatherHour.slice(0, 5).filter((hour) => {
-          console.log(hour);
-          return hour;
+      this.$axios
+        .get(`${open_weather_url}&appid=${api_key}`, {})
+        .then((response) => {
+          this.currentWeather = response.data.current;
+          this.todayForcast = response.data.daily[0];
+          this.defineBackground();
+          let _weatherHour = Object.values(response.data.hourly);
+
+          this.tempHourInfos = _weatherHour.slice(0, 6).filter((hour) => {
+            return hour;
+          });
+        })
+        .catch((error) => {
+          this.showToastError(error.toString());
         });
+    },
+    getWeatherIconColor(weatherDescription) {
+      //TODO: define colors in SVGs/js
+      switch (weatherDescription) {
+        case "Clear":
+          return colors.mainYellow;
+        default:
+          return colors.mainLightGray;
       }
-      console.log(this.tempHourInfos);
+    },
+    defineBackground() {
+      let sunset = new Date(this.todayForcast.sunset);
+      if (sunset > new Date()) {
+        this.backgroundImage =
+          "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
+      } else {
+        this.backgroundImage =
+          "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)";
+      }
     },
   },
   data() {
     return {
       tempHourInfos: [],
+      todayForcast: {},
+      currentWeather: {},
       currentHour: new Date(),
-      temperatureHourInfos: [
-        {
-          id: 1,
-          hour: 12,
-          temperature: 10,
-          icon: "sun_2",
-        },
-        {
-          id: 2,
-          hour: 13,
-          temperature: 11,
-          icon: "sun_2",
-        },
-        {
-          id: 3,
-          hour: 14,
-          temperature: 14,
-          icon: "sun_2",
-        },
-        {
-          id: 4,
-          hour: 15,
-          temperature: 16,
-          icon: "sun_2",
-        },
-        {
-          id: 5,
-          hour: 16,
-          temperature: 16,
-          icon: "sun_2",
-        },
-        {
-          id: 6,
-          hour: 17,
-          temperature: 16,
-          icon: "sun_2",
-        },
-      ],
+      backgroundImage: "",
     };
   },
 };
 </script>
 
 <style lang="scss">
-
 #weather-box {
-  background-image: linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%);
   color: white;
 }
 
 #weather-header {
   // background-color: chartreuse;
-  height: 20%;
+  height: 3vh;
   display: grid;
 
   grid-template-columns: 4fr 1fr;
   #weather-city-name {
     font-size: $standard-text-medium;
-    font-weight: bold;
   }
   #weather-icon {
     height: 100%;
     justify-self: right;
-    fill: $main-yellow-2;
   }
 }
 
 #temperature-info-overview {
   // background-color: red;
-  height: 35%;
+  height: 4vh;
   display: grid;
 
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 2fr 4fr;
   #temperature-outdoor-info {
-    font-size: 3vh;
+    font-size: $standard-text-big;
   }
   #weather-description {
     text-align: right;
-    font-weight: bold;
+    font-size: $standard-text-small;
+    display: grid;
+    grid-template-rows: 0.5fr 1fr;
   }
 }
 
 #temperature-hour-info {
   // background-color: blue;
-  height: 45%;
+  height: 6vh;
   display: grid;
 
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; //TODO: repeat
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 1vh;
   .temperature-hour-content {
-    // align-self: center;
-    justify-self: center;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
+    // text-align: center;
+    display: grid;
+    grid-template-rows: 1.5vh 3vh 1.5vh;
+
+    // justify-items: center;
+    align-items: center;
 
     .weather-hour {
-      font-size: medium;
-      line-height: 1.7vh;
-
-      font-weight: bold;
+      font-size: 1.3vh;
+      opacity: 80%;
+    }
+    .weather-icon-wrapper {
+      display: flex;
+      // justify-content: center;
+      // vertical-align: middle;
     }
 
     .weather-hour-icon {
-      fill: $main-yellow-2;
-      height: 2.5vh;
+      fill: white;
     }
+
     .weather-hour-temperature {
-      font-weight: bold;
+      font-size: 1.2vh;
+      font-weight: 700;
     }
   }
 }

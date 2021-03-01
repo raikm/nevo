@@ -40,6 +40,6 @@ export default {
   justify-self: flex-end;
   text-align: center;
   margin-right: 1.6%;
-  width: 30%;
+  // width: 30%;
 }
 </style>

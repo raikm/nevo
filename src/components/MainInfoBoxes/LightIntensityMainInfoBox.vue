@@ -5,7 +5,6 @@
         <h1 class="main-info-title">
           Light intensity
         </h1>
-       
       </div>
       <!-- <div id="light-intensity-bar-border">
         <div
@@ -46,14 +45,15 @@ export default {
 #light-intensity-control::-webkit-slider-thumb {
   -webkit-appearance: none;
   -webkit-touch-appearance: none;
-  width: 0px; /* 1 */
+  -moz-appearance: none;
+  appearance: none;
+  width: 0px;
   background: #fff;
+  color: white;
   box-shadow: -100vw 0 0 100vw #ffffff;
 }
 
 #light-intensity-info-box {
-  float: left;
-  margin-right: 10px;
   width: 100%;
 }
 

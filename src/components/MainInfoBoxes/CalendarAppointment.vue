@@ -34,6 +34,7 @@ export default {
     border-radius: 5px;
 }
 .calendar-title{
+  font-size: $standard-text-medium;
   font-weight: bold;
 }
 
@@ -49,6 +50,7 @@ export default {
 }
 
 .right-calendar-entry-box-container{
+  font-size: $standard-text-medium;
     overflow: hidden;
 }
 

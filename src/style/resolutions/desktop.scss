@@ -1,0 +1,39 @@
+@media (min-width: 1300px) {
+  body {
+    background-color: #e3a35a;
+    background-image: radial-gradient(
+        at 50% 100%,
+        rgba(255, 255, 255, 0.5) 0%,
+        rgba(0, 0, 0, 0.5) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.25) 0%,
+        rgba(0, 0, 0, 0.25) 100%
+      );
+    background-blend-mode: screen, overlay;
+  }
+
+  .standard-information-row-container {
+    column-gap: 15px;
+    row-gap: 15px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    //grid-template-rows: ;
+    margin-bottom: 1.6%;
+    margin: auto;
+
+    .small-box {
+        height: 15vh;
+        max-height: 200px;
+
+      }
+      .big-box {
+          min-height: 200px;
+        height: 25vh;
+        // max-height: 250px;
+      }
+  }
+}
+
+
