@@ -8,6 +8,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 #### 📦 Connect to Google API for Calendar Data
 #### 📦 First tests with health data export from the iPhone
 
+---
+
 ### 🛬 Latest Updates (01.03.2021)
 #### 📦 Plant Dashboard Page V1 🎉 
 #### 📦 Websocketconnection to back-end (homeassistant)
