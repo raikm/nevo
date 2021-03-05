@@ -11,8 +11,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ---
 
 ### 🛬 Latest Updates (01.03.2021)
-#### 📦 Plant Dashboard Page V1 🎉 
-#### 📦 Websocketconnection to back-end (homeassistant)
+#### 🎉 Plant Dashboard Page V1  
+#### 🎉 Websocketconnection to back-end (homeassistant)
 ##### &nbsp;&nbsp;&nbsp;&nbsp; ➥ Visualize live statues about lights
 
 ---
