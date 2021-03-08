@@ -349,8 +349,8 @@ export default {
         };
         this.sunlightIntensityArray.push(_plantsunlight);
       });
-      this.pastWaterReviewArray = historyData.pastWaterReviewArray;
-      this.pastFertilizerReviewArray = historyData.pastFertilizerReviewArray;
+      this.pastWaterReviewArray = historyData.pastWaterReviewArray.reverse();
+      this.pastFertilizerReviewArray = historyData.pastFertilizerReviewArray.reverse();
       this.soilfertitlityBorders = historyData[0].soil_fertitlity_borders;
       this.soilmoistureBorders = historyData[0].soil_moisture_borders;
       this.sunlightIntensityBorders = historyData[0].sunlight_intensity_borders;
