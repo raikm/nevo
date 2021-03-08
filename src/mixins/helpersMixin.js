@@ -16,7 +16,8 @@ Vue.mixin({
         document.getElementById("page").style.width = "65%";
       } else {
         this.$store.commit("setShowNotification", false);
-        document.getElementById("page").style.width = "90%";
+       
+        // console.log(document.getElementById("page").style.width)
       }
     },
     showToastError(text) {
@@ -189,7 +190,7 @@ Vue.mixin({
               data: data,
               borderWidth: 0,
               backgroundColor: opactiyColor,
-              pointRadius: 1,
+              pointRadius: 2,
             },
           ],
         },
@@ -228,7 +229,7 @@ Vue.mixin({
                   max: max,
                   min: min,
                   maxTicksLimit: 4,
-                  display: false,
+                  display: true,
                 },
               },
             ],
