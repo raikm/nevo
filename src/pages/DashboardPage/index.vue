@@ -9,7 +9,7 @@
       <WeatherMainInfoBox class="small-box" />
       <LightIntensityMainInfoBox class="small-box" />
 
-      <!-- <PublicTransportMainInfoBox class="big-box" /> -->
+      <PublicTransportMainInfoBox class="big-box" />
       <CalendarMainInfoBox class="big-box" />
       <MusicControlMainInfoBox class="big-box" />
     </div>
@@ -27,7 +27,7 @@
 import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
 import WeatherMainInfoBox from "../../components/MainInfoBoxes/WeatherMainInfoBox";
 import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
-// import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransportMainInfoBox";
+import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
 import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
@@ -40,7 +40,7 @@ export default {
     TemperatureMainInfoBox,
     WeatherMainInfoBox,
     LightIntensityMainInfoBox,
-    // PublicTransportMainInfoBox,
+    PublicTransportMainInfoBox,
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
     // RoomControlBox,
