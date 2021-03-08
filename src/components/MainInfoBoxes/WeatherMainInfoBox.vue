@@ -73,6 +73,8 @@ import "../../compiled-icons/Weather_Thunderstorm";
 import { mapState } from "vuex";
 import colors from "@/style/main-colors.scss";
 
+
+
 export default {
   name: "WeatherMainInfoBox",
   components: {},
@@ -116,7 +118,7 @@ export default {
     },
     defineBackground() {
       let sunset = new Date(this.todayForcast.sunset);
-      if (sunset > new Date()) {
+      if (sunset.getTime() > new Date().getTime()) {
         this.backgroundImage =
           "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
       } else {
