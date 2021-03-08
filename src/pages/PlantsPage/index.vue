@@ -40,6 +40,9 @@ export default {
       this.saveCurrentHumiditySensorDate();
     }
   },
+  mounted() {
+    document.getElementById("page").style.width = "90%";
+  },
   computed: mapState(["currentEntities"]),
   watch: {
     currentEntities() {
@@ -68,7 +71,10 @@ export default {
     },
     getLastPlantData() {
       this.$axios
-        .get(this.$store.getters.getConfig.homeserver.url + ":8080/getAllPlants/", {})
+        .get(
+          this.$store.getters.getConfig.homeserver.url + ":8080/getAllPlants/",
+          {}
+        )
         .then((response) => {
           this.plantInformation = response.data;
         })
@@ -79,7 +85,11 @@ export default {
     reloadPlantData() {
       document.getElementById("reload-icon").setAttribute("class", "rotating");
       this.$axios
-        .get(this.$store.getters.getConfig.homeserver.url + ":8080/reload_plant_data/", {})
+        .get(
+          this.$store.getters.getConfig.homeserver.url +
+            ":8080/reload_plant_data/",
+          {}
+        )
         .then((response) => {
           // console.log(response);
           this.plantInformation = response.data;
@@ -94,7 +104,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 #plant-page {
   height: 100%;
 }
