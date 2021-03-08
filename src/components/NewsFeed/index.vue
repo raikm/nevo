@@ -56,7 +56,7 @@ export default {
 }
 #newsfeed {
   // border-radius: 40px 0px;
-  padding: 0 2.5rem 2.5rem 2.5rem;
+  padding: 0 2.5rem 2.5rem 0;
   // background-color: rgba(247, 246, 249, 1);
   float: right;
   // max-width: 450px;
