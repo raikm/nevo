@@ -1,5 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
+
+
+
 try {
   var config = require("../../config.json");
 } catch (err) {
@@ -10,7 +13,7 @@ Vue.use(Vuex);
 
 function getDayOfTheWeek() {
   var date = new Date();
-  var weekday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+  const weekday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
 
   return weekday[date.getDay()];
 }
@@ -21,7 +24,8 @@ export default new Vuex.Store({
     config: config,
     showNotification: true,
     weather: {},
-    dayOfTheWeek: getDayOfTheWeek()
+    dayOfTheWeek: getDayOfTheWeek(),
+    gCalendars: [],
   },
   mutations: {
     //sync
@@ -32,9 +36,11 @@ export default new Vuex.Store({
       state.weather = updatedWeather;
     },
     setShowNotification(state, notificationStatus) {
-      console.log("new status = " + notificationStatus);
       state.showNotification = notificationStatus;
     },
+    setGCalendars(state, updatedCalendars) {
+      state.gCalendars = updatedCalendars;
+    }
   },
   modules: {},
   getters: {
@@ -43,6 +49,7 @@ export default new Vuex.Store({
     getShowNotification: (state) => state.showNotification,
     getWeather: (state) => state.weather,
     getCurrentDayOfTheWeek: (state) => state.dayOfTheWeek,
+    getCalendars: (state) => state.gCalendars,
   },
  
 });

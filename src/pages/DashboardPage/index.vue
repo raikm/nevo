@@ -104,12 +104,11 @@ export default {
 #scene-buttons {
   height: auto;
   width: 100%;
-  display: none;
   // overflow-x: scroll;
   // overflow-y: hidden;
   overflow: auto;
-
-  // display: grid;
+  margin-top: $standard-space;
+  display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   row-gap: $standard-space;
   column-gap: $standard-space;

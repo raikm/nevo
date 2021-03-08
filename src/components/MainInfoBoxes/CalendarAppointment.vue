@@ -4,10 +4,10 @@
       <div class="calendar-color" :style="{background: appointment.calendarColor}"></div>
     </div>
     <div class="right-calendar-entry-box-container">
-      <span class="calendar-title">{{ appointment.title }}</span>
-      <span class="calendar-location"> - {{ appointment.location }}</span>
+      <span class="calendar-title">{{ appointment.summary }}</span>
+      <span v-if="appointment.location" class="calendar-location"> - {{ appointment.location }}</span>
       <div class="calendar-time">
-        {{ appointment.startDate }} - {{ appointment.endDate }}
+        {{ new Date(appointment.start.dateTime).toLocaleTimeString("de-DE", {hour: '2-digit', minute:'2-digit'}) }} - {{ new Date(appointment.end.dateTime).toLocaleTimeString("de-DE", {hour: '2-digit', minute:'2-digit'}) }}
       </div>
     </div>
   </div>

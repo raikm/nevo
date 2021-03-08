@@ -41,6 +41,19 @@ export default {
   },
   created() {
     this.connectHomeassistantWebSocket();
+    this.$gapi.login(() => {
+      this.$router.push("/");
+    });
+      this.$gapi.getGapiClient().then((gapi) => {
+        gapi.client.calendar.calendarList
+          .list()
+          .then((response) => {
+            this.$store.commit("setGCalendars", response.result.items);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    });
   },
 
   methods: {
@@ -73,6 +86,7 @@ export default {
   height: 93vh;
   width: 100vw;
   max-width: 1920px;
+  margin: 0 auto;
 
   #page {
     // padding-right: 2.5rem;
@@ -81,6 +95,7 @@ export default {
     height: 100%;
     overflow: hidden;
     padding-top: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 </style>
