@@ -5,15 +5,18 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ---
 
 ### 🛫 Next Up
-#### 📦 Connect to Google API for Calendar Data
+#### 📦 Public Transport API
+#### 📦 Connect to Sonos API
+#### 📦 Change Light Statues with Websocket
 #### 📦 First tests with health data export from the iPhone
 
 ---
 
-### 🛬 Latest Updates (01.03.2021)
+### 🛬 Latest Updates (08.03.2021)
 #### 🎉 Plant Dashboard Page V1  
 #### 🎉 Websocketconnection to back-end (homeassistant)
 ##### &nbsp;&nbsp;&nbsp;&nbsp; ➥ Visualize live statues about lights
+#### 🎉 Connect to Google API for Calendar Data V1 
 
 ---
 
