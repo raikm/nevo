@@ -7,17 +7,20 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ---
 
 ### 🛫 Next Up
-#### 📦 Connect to Sonos API
-#### 📦 Change Light Statues with Websocket
-#### 📦 First tests with health data export from the iPhone
-
+```
+ 📦 Connect to Sonos API
+ 📦 Change Light Statues with Websocket
+ 📦 First tests with health data export from the iPhone
+```
 ---
 
 ### 🛬 Latest Updates (08.03.2021)
-#### 🎉 Plant Dashboard Page V1  
-#### 🎉 Websocketconnection to back-end (homeassistant)
-#### 🎉 Connect to Google API for Calendar Data V1 
-#### 🎉 Public Transport API V1
+```
+ 🎉 Plant Dashboard Page V1  
+ 🎉 Websocketconnection to back-end (homeassistant)
+ 🎉 Connect to Google API for Calendar Data V1 
+ 🎉 Public Transport API V1
+```
 
 ---
 
@@ -31,7 +34,9 @@ npm install
 npm run serve
 ```
 
-## config.json example in wiki!
+```
+config.json example in wiki!
+```
 
 ## Intention
 Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
@@ -46,7 +51,7 @@ This project should provide a platform independent solution. I found inspiration
 
 To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
 
-### History
+## History
 ##### Plant Dashboard January 2021
 ![Jan 2021](doc/current_statues_plant_dashboard.png?)
 
