@@ -76,15 +76,36 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### config.json example
 
-### Lints and fixes files
 ```
-npm run lint
+{
+    "aftership": {
+        "api_key": "<API_KEY>"
+    },
+    "homeassistant": {
+        "hassUrl": "http://192.168.1.50:8123",
+        "life_time_token_raik": "<LIFE_TIME_TOKEN>"
+    },
+    "homeserver": {
+        "url": "http://192.168.1.80"
+    },
+    "weather": {
+        "open_weather_url": "https://api.openweathermap.org/data/2.5/onecall?lat=47.811195&lon=13.033229&exclude=minutely&units=metric",
+        "api_key": "<API_KEY>"
+    },
+    "google_calendar": {
+        "client_id": "<CLIENT_ID>",
+        "client_secret": "<CLIENT_SECRET>",
+        "redirectUri": "https://developers.google.com/oauthplayground",
+        "api_key": "<API_KEY>"
+    },
+    "public_transport": {
+        "websocketUrl":"192.168.1.50",
+        "home_address": {
+            "longitude": 123,
+            "latitude": 4123
+        }
+    }
+}
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
