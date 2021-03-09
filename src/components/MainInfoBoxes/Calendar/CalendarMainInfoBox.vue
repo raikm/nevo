@@ -2,7 +2,17 @@
   <div class="basic-card main-info-box-big">
     <div id="calendar-header">
       <div id="day-info">
-        <span id="day-span">{{this.$store.getters.getCurrentDayOfTheWeek}}</span><span id="month-span">, {{ new Date().getUTCDate() + ". " + new Date().toLocaleString('default', { month: 'long' })}}</span>
+        <span id="day-span">{{
+          this.$store.getters.getCurrentDayOfTheWeek
+        }}</span
+        ><span id="month-span"
+          >,
+          {{
+            new Date().getUTCDate() +
+              ". " +
+              new Date().toLocaleString("default", { month: "long" })
+          }}</span
+        >
       </div>
       <!-- <div id="user-infos" :key="user.id" v-for="user in users">
         <div class="user-info-circle click-element">
@@ -57,7 +67,6 @@ export default {
           this.getCalendarEvents(gapi, this.$store.getters.getCalendars);
         });
         unsubscribe(); // So it only reacts once.
-        // console.log(this.calendarAppointmentsSorted)
       }
     });
   },
@@ -84,14 +93,17 @@ export default {
             orderBy: "startTime",
           })
           .then((response) => {
-            // console.log(response.result.items);
-            if (response.result.items.length > 0) {
-              response.result.items.forEach((entry) => {
+            response.result.items.forEach((entry) => {
+              if (new Date(entry.end.dateTime) > new Date()) {
                 entry["calendarColor"] = calendarColor;
                 this.calendarAppointmentsSorted.push(entry);
-                this.calendarAppointmentsSorted.sort((a, b) => ((new Date(a.start.dateTime)) > (new Date(b.start.dateTime))) ? 1 : -1)
-              });
-            }
+                this.calendarAppointmentsSorted.sort((a, b) =>
+                  new Date(a.start.dateTime) > new Date(b.start.dateTime)
+                    ? 1
+                    : -1
+                );
+              }
+            });
           })
           .catch((error) => {
             console.log(error);
@@ -116,8 +128,7 @@ export default {
           id: 3,
           short: "AR",
         },
-      ],  
-  
+      ],
     };
   },
 };

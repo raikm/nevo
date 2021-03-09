@@ -24,15 +24,15 @@
 </template>
 
 <script>
-import TemperatureMainInfoBox from "../../components/MainInfoBoxes/TemperatureMainInfoBox";
-import WeatherMainInfoBox from "../../components/MainInfoBoxes/WeatherMainInfoBox";
-import LightIntensityMainInfoBox from "../../components/MainInfoBoxes/LightIntensityMainInfoBox";
-import PublicTransportMainInfoBox from "../../components/MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
-import CalendarMainInfoBox from "../../components/MainInfoBoxes/CalendarMainInfoBox";
-import MusicControlMainInfoBox from "../../components/MainInfoBoxes/MusicControlMainInfoBox";
-import MainSceneBox from "../../components/SceneBoxes/MainSceneBox";
-// import RoomControlBox from "../../components/ShortcutBoxes/RoomControlBox";
-// import EBikeMainInfoBox from "../../components/MainInfoBoxes/EBikeMainInfoBox";
+import TemperatureMainInfoBox from "@/components/MainInfoBoxes/TemperatureMainInfoBox";
+import WeatherMainInfoBox from "@/components/MainInfoBoxes/WeatherMainInfoBox";
+import LightIntensityMainInfoBox from "@/components/MainInfoBoxes/LightIntensityMainInfoBox";
+import PublicTransportMainInfoBox from "@/components/MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
+import CalendarMainInfoBox from "@/components/MainInfoBoxes/Calendar/CalendarMainInfoBox";
+import MusicControlMainInfoBox from "@/components/MainInfoBoxes/MusicControlMainInfoBox";
+import MainSceneBox from "@/components/SceneBoxes/MainSceneBox";
+// import RoomControlBox from "@/components/ShortcutBoxes/RoomControlBox";
+// import EBikeMainInfoBox from "@/components/MainInfoBoxes/EBikeMainInfoBox";
 
 export default {
   name: "DashboardPage",

@@ -118,7 +118,9 @@ export default {
     },
     defineBackground() {
       let sunset = new Date(this.todayForcast.sunset);
-      if (sunset.getTime() > new Date().getTime()) {
+      let now = new Date()
+      // console.log(sunset.toLocaleTimeString() + " --- " + now.toLocaleTimeString())
+      if (sunset.getTime() < now.getTime()) {
         this.backgroundImage =
           "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
       } else {
