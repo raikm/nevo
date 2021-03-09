@@ -4,20 +4,6 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ![March 2021](/doc/current_status_march_2021.png?)
 
-## Intention
-Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
-
-With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
-
-The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
-
-SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
-
-This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
-
-To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
-
-
 ---
 
 ### 🛫 Next Up
@@ -34,25 +20,6 @@ To sum up, the motivation is to create an application that extends the functiona
 #### 🎉 Public Transport API V1
 
 ---
-### History
-##### Plant Dashboard January 2021
-![Jan 2021](doc/current_statues_plant_dashboard.png?)
-
-##### December 2020
-![](/doc/current_status_december_2020.png?)
-
-##### August 2020
-![Aug 2020](/doc/current_statues.png?)
-
-### First concept
-
-First of all the idea is to have a touchscreen mounted on the wall (for example in the entrance) to get a quick overview about information or control often use automations.
-
-The advantage of a web-based solution would be to control and overview information on your computer or other device as well e.g. overview your plant sensors from the couch. Furthermore you could use it on a (not used) tablet, raspberry pi with screen etc..
-
-
-
-
 
 ## Project setup
 ```
@@ -64,4 +31,27 @@ npm install
 npm run serve
 ```
 
-### config.json example in wiki!
+## config.json example in wiki!
+
+## Intention
+Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
+
+With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
+
+The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
+
+SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
+
+This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
+
+To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
+
+### History
+##### Plant Dashboard January 2021
+![Jan 2021](doc/current_statues_plant_dashboard.png?)
+
+##### December 2020
+![](/doc/current_status_december_2020.png?)
+
+##### August 2020
+![Aug 2020](/doc/current_statues.png?)
