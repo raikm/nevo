@@ -2,6 +2,22 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
+![March 2021](/doc/current_status_march_2021.png?)
+
+## Intention
+Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
+
+With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
+
+The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
+
+SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
+
+This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
+
+To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
+
+
 ---
 
 ### 🛫 Next Up
@@ -18,27 +34,15 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 #### 🎉 Public Transport API V1
 
 ---
-# March 2021
-![March 2021](/doc/current_status_march_2021.png?)
-# December 2021
-![](/doc/current_status_december_2020.png?)
-# Plant Dashboard January 2021
+### History
+##### Plant Dashboard January 2021
 ![Jan 2021](doc/current_statues_plant_dashboard.png?)
 
-## Intention
-Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
+##### December 2020
+![](/doc/current_status_december_2020.png?)
 
-With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
-
-The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
-
-SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
-
-This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
-
-To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
-
-
+##### August 2020
+![Aug 2020](/doc/current_statues.png?)
 
 ### First concept
 
@@ -46,28 +50,9 @@ First of all the idea is to have a touchscreen mounted on the wall (for example 
 
 The advantage of a web-based solution would be to control and overview information on your computer or other device as well e.g. overview your plant sensors from the couch. Furthermore you could use it on a (not used) tablet, raspberry pi with screen etc..
 
-I drafted a quick first concept to give you an idea about the structure planned.
 
-![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
 
-### History
 
-![Dec 2020](/doc/current_status_december_2020.png?)
-
-![Aug 2020](/doc/current_statues.png?)
-
-### Some integration ideas
-
-To just name a few for the dashboard:
-
-- Integration of a package tracker: see upcoming deliveries and if “delivery today” show it in your *inbox* (tracking [api](https://extcall.17track.net/de))
-- Integration of a plant-overview-board (works with [xiaomi plant sensors](https://de.gearbest.com/other-garden-supplies/pp_373947.html) to get current plant information)
-- Integration of scene control: control common scenes like “coming home”, “start cleaning” (e.g. integrate with openhab)
-- Integration of public transport information: show upcoming trains or buses: e.g.: create routines for mornings to see schedules (use public transport apis from local cities)
-
-*see the [Kanbanboard](https://github.com/raikm/homepanorama/projects/2) for more ideas.*
-
-Solutions of this examples exist for sure but they are mostly isolated solutions and are a good start.
 
 ## Project setup
 ```
@@ -79,36 +64,4 @@ npm install
 npm run serve
 ```
 
-### config.json example
-
-```
-{
-    "aftership": {
-        "api_key": "<API_KEY>"
-    },
-    "homeassistant": {
-        "hassUrl": "http://192.168.1.50:8123",
-        "life_time_token_raik": "<LIFE_TIME_TOKEN>"
-    },
-    "homeserver": {
-        "url": "http://192.168.1.80"
-    },
-    "weather": {
-        "open_weather_url": "https://api.openweathermap.org/data/2.5/onecall?lat=47.811195&lon=13.033229&exclude=minutely&units=metric",
-        "api_key": "<API_KEY>"
-    },
-    "google_calendar": {
-        "client_id": "<CLIENT_ID>",
-        "client_secret": "<CLIENT_SECRET>",
-        "redirectUri": "https://developers.google.com/oauthplayground",
-        "api_key": "<API_KEY>"
-    },
-    "public_transport": {
-        "websocketUrl":"192.168.1.50",
-        "home_address": {
-            "longitude": 123,
-            "latitude": 4123
-        }
-    }
-}
-```
+### config.json example in wiki!
