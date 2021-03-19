@@ -2,25 +2,41 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
+![March 2021](/doc/current_status_march_2021.png?)
+
 ---
 
 ### 🛫 Next Up
-#### 📦 Connect to Sonos API
-#### 📦 Change Light Statues with Websocket
-#### 📦 First tests with health data export from the iPhone
-
+```
+ 📦 Connect to Sonos API
+ 📦 Change Light Statues with Websocket
+ 📦 First tests with health data export from the iPhone
+```
 ---
 
 ### 🛬 Latest Updates (08.03.2021)
-#### 🎉 Plant Dashboard Page V1  
-#### 🎉 Websocketconnection to back-end (homeassistant)
-#### 🎉 Connect to Google API for Calendar Data V1 
-#### 🎉 Public Transport API V1
+```
+ 🎉 Plant Dashboard Page V1  
+ 🎉 Websocketconnection to back-end (homeassistant)
+ 🎉 Connect to Google API for Calendar Data V1 
+ 🎉 Public Transport API V1
+```
 
 ---
 
-![Dec 2020](/doc/current_status_december_2020.png?)
-![Jan 2021](doc/current_statues_plant_dashboard.png?)
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+```
+config.json example in wiki!
+```
 
 ## Intention
 Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
@@ -35,77 +51,12 @@ This project should provide a platform independent solution. I found inspiration
 
 To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
 
+## History
+##### Plant Dashboard January 2021
+![Jan 2021](doc/current_statues_plant_dashboard.png?)
 
+##### December 2020
+![](/doc/current_status_december_2020.png?)
 
-### First concept
-
-First of all the idea is to have a touchscreen mounted on the wall (for example in the entrance) to get a quick overview about information or control often use automations.
-
-The advantage of a web-based solution would be to control and overview information on your computer or other device as well e.g. overview your plant sensors from the couch. Furthermore you could use it on a (not used) tablet, raspberry pi with screen etc..
-
-I drafted a quick first concept to give you an idea about the structure planned.
-
-![https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png](https://cdn-images-1.medium.com/max/720/1*x5obiQ9cIw6qRnNsWO56cw.png)
-
-### History
-
-![Dec 2020](/doc/current_status_december_2020.png?)
-
+##### August 2020
 ![Aug 2020](/doc/current_statues.png?)
-
-### Some integration ideas
-
-To just name a few for the dashboard:
-
-- Integration of a package tracker: see upcoming deliveries and if “delivery today” show it in your *inbox* (tracking [api](https://extcall.17track.net/de))
-- Integration of a plant-overview-board (works with [xiaomi plant sensors](https://de.gearbest.com/other-garden-supplies/pp_373947.html) to get current plant information)
-- Integration of scene control: control common scenes like “coming home”, “start cleaning” (e.g. integrate with openhab)
-- Integration of public transport information: show upcoming trains or buses: e.g.: create routines for mornings to see schedules (use public transport apis from local cities)
-
-*see the [Kanbanboard](https://github.com/raikm/homepanorama/projects/2) for more ideas.*
-
-Solutions of this examples exist for sure but they are mostly isolated solutions and are a good start.
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### config.json example
-
-```
-{
-    "aftership": {
-        "api_key": "<API_KEY>"
-    },
-    "homeassistant": {
-        "hassUrl": "http://192.168.1.50:8123",
-        "life_time_token_raik": "<LIFE_TIME_TOKEN>"
-    },
-    "homeserver": {
-        "url": "http://192.168.1.80"
-    },
-    "weather": {
-        "open_weather_url": "https://api.openweathermap.org/data/2.5/onecall?lat=47.811195&lon=13.033229&exclude=minutely&units=metric",
-        "api_key": "<API_KEY>"
-    },
-    "google_calendar": {
-        "client_id": "<CLIENT_ID>",
-        "client_secret": "<CLIENT_SECRET>",
-        "redirectUri": "https://developers.google.com/oauthplayground",
-        "api_key": "<API_KEY>"
-    },
-    "public_transport": {
-        "websocketUrl":"192.168.1.50",
-        "home_address": {
-            "longitude": 123,
-            "latitude": 4123
-        }
-    }
-}
-```
