@@ -58,7 +58,7 @@ export default {
   methods: {
     saveCurrentHumiditySensorDate() {
       this.humiditySensors = [];
-      this.$store.getters.getCurrentEntities.filter((entity) => {
+      this.$store.getters.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.humidity")) {
           console.log(entity);
           this.humiditySensors.push(entity);
@@ -72,7 +72,7 @@ export default {
     getLastPlantData() {
       this.$axios
         .get(
-          this.$store.getters.getConfig.homeserver.url + ":8080/getAllPlants/",
+          this.$store.getters.config.homeserver.url + ":8080/getAllPlants/",
           {}
         )
         .then((response) => {
@@ -86,7 +86,7 @@ export default {
       document.getElementById("reload-icon").setAttribute("class", "rotating");
       this.$axios
         .get(
-          this.$store.getters.getConfig.homeserver.url +
+          this.$store.getters.config.homeserver.url +
             ":8080/reload_plant_data/",
           {}
         )

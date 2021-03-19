@@ -3,7 +3,7 @@
     <div id="calendar-header">
       <div id="day-info">
         <span id="day-span">{{
-          this.$store.getters.getCurrentDayOfTheWeek
+          this.$store.getters.currentDayOfTheWeek
         }}</span
         ><span id="month-span"
           >,
@@ -64,7 +64,7 @@ export default {
     unsubscribe = this.$store.subscribe(({ type }) => {
       if (type === "setGCalendars") {
         this.$gapi.getGapiClient().then((gapi) => {
-          this.getCalendarEvents(gapi, this.$store.getters.getCalendars);
+          this.getCalendarEvents(gapi, this.$store.getters.googleCalendars);
         });
         unsubscribe(); // So it only reacts once.
       }

@@ -27,6 +27,7 @@ export default new Vuex.Store({
     dayOfTheWeek: getDayOfTheWeek(),
     gCalendars: [],
     sonosZones: [],
+    currentSelectedMainZone: [],
   },
   mutations: {
     //sync
@@ -44,6 +45,9 @@ export default new Vuex.Store({
     },
     setZones(state, updatedZones) {
       state.sonosZones = updatedZones;
+    },
+    setcurrentSelectedMainZone(state, updatedMainZone) {
+      state.currentSelectedMainZone = updatedMainZone;
     }
   },
   modules: {},
@@ -55,6 +59,7 @@ export default new Vuex.Store({
     currentDayOfTheWeek: (state) => state.dayOfTheWeek,
     googleCalendars: (state) => state.gCalendars,
     sonosZones: (state) => state.sonosZones,
+    currentSelectedMainZone: (state) => state.currentSelectedMainZone,
   },
  
 });

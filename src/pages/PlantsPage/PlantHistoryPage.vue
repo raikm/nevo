@@ -236,7 +236,7 @@ export default {
     },
     getCurrentPlantData(plant_id) {
       this.$axios
-        .get(this.$store.getters.getConfig.homeserver.url + ":8080/planthistory/" + plant_id + "/", {})
+        .get(this.$store.getters.config.homeserver.url + ":8080/planthistory/" + plant_id + "/", {})
         .then((response) => {
           this.prepareHistoryData(response.data);
         })

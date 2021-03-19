@@ -59,14 +59,14 @@ export default {
   },
   methods: {
     getCurrentTemperature() {
-      this.$store.getters.getCurrentEntities.filter((entity) => {
+      this.$store.getters.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.temperature")) {
           this.temperatureInfo = parseFloat(entity.state).toFixed(1);
         }
       });
     },
     getCurrentHumidity() {
-      this.$store.getters.getCurrentEntities.filter((entity) => {
+      this.$store.getters.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.humidity")) {
           this.humidityInfo = parseFloat(entity.state).toFixed(1);
         }

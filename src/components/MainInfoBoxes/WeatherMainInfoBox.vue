@@ -11,7 +11,7 @@
         id="weather-icon"
         :icon="'Weather_' + currentWeather.weather[0].main"
         :style="{
-          fill: getWeatherIconColor(currentWeather.weather[0].main),
+          fill: currentWeatherIconColor(currentWeather.weather[0].main),
         }"
       ></svgicon>
     </div>
@@ -46,7 +46,7 @@
             width="1.5vh"
             :icon="'Weather_' + currentWeather.weather[0].main"
             :style="{
-              fill: getWeatherIconColor(currentWeather.weather[0].main),
+              fill: currentWeatherIconColor(currentWeather.weather[0].main),
             }"
           ></svgicon>
         </div>
@@ -81,15 +81,15 @@ export default {
   props: [],
   computed: mapState(["weather"]),
   created() {
-    this.getWeatherDataFormAPI();
+    this.currentWeatherDataFormAPI();
   },
   mounted() {},
   methods: {
-    getWeatherDataFormAPI() {
+    currentWeatherDataFormAPI() {
       const {
         api_key,
         open_weather_url,
-      } = this.$store.getters.getConfig.weather;
+      } = this.$store.getters.config.weather;
 
       this.$axios
         .get(`${open_weather_url}&appid=${api_key}`, {})
@@ -107,7 +107,7 @@ export default {
           this.showToastError(error.toString());
         });
     },
-    getWeatherIconColor(weatherDescription) {
+    currentWeatherIconColor(weatherDescription) {
       //TODO: define colors in SVGs/js
       switch (weatherDescription) {
         case "Clear":

@@ -27,6 +27,7 @@
     "home-assistant-js-websocket": "^5.9.0",
     "readline": "^1.3.0",
     "register-service-worker": "^1.7.2",
+    "socket.io-client": "^4.0.0",
     "vue": "^2.6.12",
     "vue-gapi": "^1.1.0",
     "vue-router": "^3.5.1",

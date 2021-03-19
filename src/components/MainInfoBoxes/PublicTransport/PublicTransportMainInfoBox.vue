@@ -46,7 +46,11 @@ export default {
   // components: { ETAInfo },
   props: [],
   created() {
-    this.getDepatureTime();
+    try {
+      this.getDepatureTime();
+    } catch (e) {
+      console.error("Hafas Client ist not setup: " + e);
+    }
   },
   methods: {
     mapETATime(timeString) {
@@ -58,11 +62,12 @@ export default {
     getDepatureTime() {
       const createRoundRobin = require("@derhuerst/round-robin-scheduler");
       const createClient = require("hafas-client-rpc/ws/client");
+
       const hafasClient = createClient(
         createRoundRobin,
         [
           "ws://" +
-            this.$store.getters.getConfig.public_transport.websocketUrl +
+            this.$store.getters.config.public_transport.websocketUrl +
             ":3000",
         ],
         (_, hafas) => {
@@ -85,9 +90,10 @@ export default {
           });
         }
       );
+
       // console.log(hafasClient);
       hafasClient.on("message", () => {
-        console.log("a message occurred!");
+        // console.log("a message occurred!");
       });
       hafasClient.on("cnnection-open", () => {
         console.log("connection-open");
@@ -123,9 +129,9 @@ export default {
         type: "location",
         // id: "980133005",
         // address: "Salzburg",
-        latitude: this.$store.getters.getConfig.public_transport.home_address
+        latitude: this.$store.getters.config.public_transport.home_address
           .latitude,
-        longitude: this.$store.getters.getConfig.public_transport.home_address
+        longitude: this.$store.getters.config.public_transport.home_address
           .longitude,
       },
     };

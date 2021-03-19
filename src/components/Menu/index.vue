@@ -22,7 +22,7 @@
       <div class="menu-icon calendar-icon">
         <div id="calendar-day">
           {{
-            this.$store.getters.getCurrentDayOfTheWeek
+            this.$store.getters.currentDayOfTheWeek
               .substring(0, 3)
               .toUpperCase()
           }}

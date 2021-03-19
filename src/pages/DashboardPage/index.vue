@@ -29,7 +29,7 @@ import WeatherMainInfoBox from "@/components/MainInfoBoxes/WeatherMainInfoBox";
 import LightIntensityMainInfoBox from "@/components/MainInfoBoxes/LightIntensityMainInfoBox";
 import PublicTransportMainInfoBox from "@/components/MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
 import CalendarMainInfoBox from "@/components/MainInfoBoxes/Calendar/CalendarMainInfoBox";
-import MusicControlMainInfoBox from "@/components/MainInfoBoxes/MusicControlMainInfoBox";
+import MusicControlMainInfoBox from "@/components/MainInfoBoxes/MusicPlayer/MusicControlMainInfoBox";
 import MainSceneBox from "@/components/SceneBoxes/MainSceneBox";
 // import RoomControlBox from "@/components/ShortcutBoxes/RoomControlBox";
 // import EBikeMainInfoBox from "@/components/MainInfoBoxes/EBikeMainInfoBox";

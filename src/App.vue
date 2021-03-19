@@ -14,7 +14,7 @@
     <div id="main-container">
       <Menu />
       <router-view id="page"></router-view>
-      <Newsfeed v-if="this.$store.getters.getShowNotification" />
+      <Newsfeed v-if="this.$store.getters.showNotification" />
     </div>
   </div>
 </template>
@@ -23,6 +23,7 @@
 import DateTimeBox from "@/components/DateTimeBox";
 import Menu from "@/components/Menu";
 import Newsfeed from "@/components/NewsFeed";
+
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
  */
@@ -32,6 +33,10 @@ import {
   createLongLivedTokenAuth,
 } from "home-assistant-js-websocket";
 
+
+import io from 'socket.io-client'
+
+
 export default {
   name: "homeapp",
   components: {
@@ -40,27 +45,28 @@ export default {
     Newsfeed,
   },
   created() {
-    this.connectHomeassistantWebSocket();
+    // this.connectHomeassistantWebSocket();
+    this.connectSonosWebsocket();
     this.$gapi.login(() => {
       this.$router.push("/");
     });
-      this.$gapi.getGapiClient().then((gapi) => {
-        gapi.client.calendar.calendarList
-          .list()
-          .then((response) => {
-            this.$store.commit("setGCalendars", response.result.items);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
+    this.$gapi.getGapiClient().then((gapi) => {
+      gapi.client.calendar.calendarList
+        .list()
+        .then((response) => {
+          this.$store.commit("setGCalendars", response.result.items);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     });
   },
 
   methods: {
     async connectHomeassistantWebSocket() {
       const auth = createLongLivedTokenAuth(
-        this.$store.getters.getConfig.homeassistant.hassUrl,
-        this.$store.getters.getConfig.homeassistant.life_time_token_raik
+        this.$store.getters.config.homeassistant.hassUrl,
+        this.$store.getters.config.homeassistant.life_time_token_raik
       );
       await createConnection({ auth }).then((conn) => {
         subscribeEntities(conn, (entities) => {
@@ -68,6 +74,14 @@ export default {
           this.$store.commit("setCurrentEntities", Object.values(entities));
         });
       });
+    },
+    connectSonosWebsocket() {
+     
+      console.log("start socket: " + this.$store.getters.config.sonos.websocketURL)
+      io(this.$store.getters.config.sonos.sonosURL);
+
+      
+
     },
   },
 };
@@ -91,6 +105,8 @@ export default {
   #page {
     // padding-right: 2.5rem;
     float: left;
+    // width: 90%;
+    //Debug
     width: 65%;
     height: 100%;
     overflow: hidden;
