@@ -72,7 +72,7 @@ Vue.mixin({
       this.$axios
         .get("https://api.aftership.com/v4/trackings", {
           headers: {
-            "aftership-api-key": this.$store.getters.getConfig.aftership
+            "aftership-api-key": this.$store.getters.config.aftership
               .api_key,
             "Content-Type": "application/json",
           },

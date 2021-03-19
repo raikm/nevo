@@ -26,6 +26,7 @@ export default new Vuex.Store({
     weather: {},
     dayOfTheWeek: getDayOfTheWeek(),
     gCalendars: [],
+    sonosZones: [],
   },
   mutations: {
     //sync
@@ -40,16 +41,20 @@ export default new Vuex.Store({
     },
     setGCalendars(state, updatedCalendars) {
       state.gCalendars = updatedCalendars;
+    },
+    setZones(state, updatedZones) {
+      state.sonosZones = updatedZones;
     }
   },
   modules: {},
   getters: {
-    getCurrentEntities: (state) => state.currentEntities,
-    getConfig: (state) => state.config,
-    getShowNotification: (state) => state.showNotification,
-    getWeather: (state) => state.weather,
-    getCurrentDayOfTheWeek: (state) => state.dayOfTheWeek,
-    getCalendars: (state) => state.gCalendars,
+    currentEntities: (state) => state.currentEntities,
+    config: (state) => state.config,
+    showNotification: (state) => state.showNotification,
+    currentWeather: (state) => state.weather,
+    currentDayOfTheWeek: (state) => state.dayOfTheWeek,
+    googleCalendars: (state) => state.gCalendars,
+    sonosZones: (state) => state.sonosZones,
   },
  
 });
