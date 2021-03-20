@@ -12,7 +12,7 @@
 </template>
 
 <script>
-// var serverAddress = "http://192.168.0.22:8181";
+// let serverAddress = "http://192.168.0.22:8181";
 
 import Chart from "chart.js";
 export default {
@@ -31,7 +31,7 @@ export default {
     const ctx = document.getElementById("bike-battery-chart");
     console.log(ctx);
     /* eslint-disable no-unused-vars */
-    var donutChart = new Chart(ctx, {
+    let donutChart = new Chart(ctx, {
       type: "doughnut",
       data: {
         datasets: [

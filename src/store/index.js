@@ -1,8 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-
-
 try {
   var config = require("../../config.json");
 } catch (err) {
@@ -12,8 +10,16 @@ try {
 Vue.use(Vuex);
 
 function getDayOfTheWeek() {
-  var date = new Date();
-  const weekday = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+  let date = new Date();
+  const weekday = new Array(
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  );
 
   return weekday[date.getDay()];
 }
@@ -26,8 +32,8 @@ export default new Vuex.Store({
     weather: {},
     dayOfTheWeek: getDayOfTheWeek(),
     gCalendars: [],
-    sonosZones: [],
-    currentSelectedMainZone: [],
+    speaker: [],
+    activeSpeaker: [],
   },
   mutations: {
     //sync
@@ -44,11 +50,11 @@ export default new Vuex.Store({
       state.gCalendars = updatedCalendars;
     },
     setZones(state, updatedZones) {
-      state.sonosZones = updatedZones;
+      state.speaker = updatedZones;
     },
-    setcurrentSelectedMainZone(state, updatedMainZone) {
-      state.currentSelectedMainZone = updatedMainZone;
-    }
+    setactiveSpeaker(state, updatedMainZone) {
+      state.activeSpeaker = updatedMainZone;
+    },
   },
   modules: {},
   getters: {
@@ -58,8 +64,8 @@ export default new Vuex.Store({
     currentWeather: (state) => state.weather,
     currentDayOfTheWeek: (state) => state.dayOfTheWeek,
     googleCalendars: (state) => state.gCalendars,
-    sonosZones: (state) => state.sonosZones,
-    currentSelectedMainZone: (state) => state.currentSelectedMainZone,
-  },
- 
+    speaker: (state) => state.speaker,
+    activeSpeaker: (state) => state.activeSpeaker,
+    activeSpeakerState: (state) => state.activeSpeaker.coordinator.state,
+  }
 });

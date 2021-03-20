@@ -1,4 +1,4 @@
-@media (min-width: 1184px) and(max-width: 1366px) {
+@media (min-width: 400px) and(max-width: 1366px) {
   body {
     background-color: #e2b485;
     background-image: radial-gradient(
@@ -14,3 +14,6 @@
     background-blend-mode: screen, overlay;
   }
 }
+
+
+// @media (min-width: 1184px) and(max-width: 1366px) {

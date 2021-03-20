@@ -81,7 +81,7 @@ export default {
       calendars = calendars.filter(function(obj) {
         return obj.id !== "e_2_de#weeknum@group.v.calendar.google.com";
       });
-      for (var i = 0; i < calendars.length; i++) {
+      for (let i = 0; i < calendars.length; i++) {
         let calendarColor = calendars[i].backgroundColor;
         gapiClient.client.calendar.events
           .list({

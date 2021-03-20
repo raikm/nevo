@@ -65,7 +65,7 @@ export default {
   },
   methods: {
     changeRange(newRange) {
-      var _borderRange = this.borderRange;
+      let _borderRange = this.borderRange;
       _borderRange = newRange;
       this.$emit("update-range", _borderRange);
     },

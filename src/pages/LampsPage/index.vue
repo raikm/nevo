@@ -50,7 +50,7 @@ export default {
       if (this.rooms.length > 0) this.rooms = [];
       for (let i = 0; i < roomNames.length; i++) {
         // sort lights into Rooms
-        var room = lights.filter((d) => {
+        let room = lights.filter((d) => {
           return d.attributes.Room == roomNames[i];
         });
         room.roomName = roomNames[i];

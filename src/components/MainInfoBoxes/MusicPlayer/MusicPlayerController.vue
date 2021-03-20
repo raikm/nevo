@@ -9,10 +9,10 @@
         <div id="title-info">
           <div
             class="track-information-line"
-            v-if="this.currentSelectedMainZone.length !== 0"
+            v-if="this.activeSpeaker.length !== 0"
             id="location"
           >
-            <p>{{ this.currentSelectedMainZone.coordinator.roomName }}</p>
+            <p>{{ this.activeSpeaker.coordinator.roomName }}</p>
           </div>
           <div class="track-information-line" id="title">
             <p>{{ currentTrack.title }}</p>
@@ -27,10 +27,10 @@
         <div id="progress-track-wrapper">
           <div
             id="progress-track"
-            v-if="this.currentSelectedMainZone.length !== 0"
+            v-if="this.activeSpeaker.length !== 0"
             :style="{
               width:
-                (this.currentSelectedMainZone.coordinator.state.elapsedTime /
+                (this.activeSpeakerState.elapsedTime /
                   this.currentTrack.duration) *
                   100 +
                 '%',
@@ -44,9 +44,8 @@
         <svgicon class="play-icon" icon="player_control_backward"></svgicon>
         <svgicon
           v-if="
-            this.currentSelectedMainZone.length !== 0 &&
-              this.currentSelectedMainZone.coordinator.state.playbackState ===
-                'PLAYING'
+            this.activeSpeaker.length !== 0 &&
+              this.activeSpeakerState.playbackState === 'PLAYING'
           "
           class="play-icon"
           id="play"
@@ -80,10 +79,10 @@ import { mapGetters } from "vuex";
 export default {
   name: "MusicPlayerController",
   computed: {
-    ...mapGetters(["currentSelectedMainZone"]),
+    ...mapGetters(["activeSpeaker", "activeSpeakerState"]),
   },
   watch: {
-    currentSelectedMainZone() {
+    activeSpeaker() {
       this.getCurrentTrack();
       this.elapsedTimeToFormatedString();
       this.endTimeToFormatedString();
@@ -91,31 +90,30 @@ export default {
   },
   created() {
     this.getCurrentTrack();
-    this.elapsedTimeToFormatedString();
-    this.endTimeToFormatedString();
+    this.elapsedTimeToFormatedString(this.activeSpeakerState);
+    this.endTimeToFormatedString(this.currentTrack);
   },
   methods: {
     getCurrentTrack() {
-      if (this.currentSelectedMainZone.length === 0) return;
-      this.currentTrack = this.currentSelectedMainZone.members[0].state.currentTrack;
+      this.currentTrack =
+        this.activeSpeaker.length !== 0
+          ? this.activeSpeaker.members[0].state.currentTrack
+          : {};
     },
-    elapsedTimeToFormatedString() {
-      const elapsedTimeInSeconds = this.currentSelectedMainZone.coordinator
-        .state.elapsedTime;
-      this.elapsedTime = this.timeInSecondsToTimes(elapsedTimeInSeconds);
+    elapsedTimeToFormatedString({ elapsedTime: elapsedTimeInSeconds }) {
+      this.elapsedTime = this.getFormatedTimeString(elapsedTimeInSeconds);
     },
-    endTimeToFormatedString() {
-      const endTimeInSeconds = this.currentTrack.duration;
-      this.endTrackTime = this.timeInSecondsToTimes(endTimeInSeconds);
+    endTimeToFormatedString({ duration: endTimeInSeconds }) {
+      this.endTrackTime = this.getFormatedTimeString(endTimeInSeconds);
     },
-    timeInSecondsToTimes(seconds) {
-      let defaultDate = new Date(0);
-      defaultDate.setHours(0);
-      defaultDate.setSeconds(seconds);
-      const defaultDateString = defaultDate.toLocaleTimeString();
-      if (defaultDateString.split(":")[1][0] === "0")
-        return defaultDateString.slice(4, 8);
-      return defaultDateString.slice(3, 8);
+    getFormatedTimeString(seconds) {
+      let durationTime = new Date(0);
+      durationTime.setHours(0);
+      durationTime.setSeconds(seconds);
+      const durationTimeString = durationTime.toLocaleTimeString();
+      if (durationTimeString.split(":")[1][0] === "0")
+        return durationTimeString.slice(4, 8);
+      return durationTimeString.slice(3, 8);
     },
     resumeTrack() {},
     pauseTrack() {},
@@ -157,8 +155,8 @@ export default {
 }
 
 #album-cover {
-  border-radius: 15px;
-  border: 0 solid grey;
+  // border-radius: 15px;
+
   padding: 2%;
 }
 #title-info-container {

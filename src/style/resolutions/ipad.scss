@@ -1,6 +1,7 @@
-@media (min-width: 1194px) and (max-width: 1366px) {
+@media (min-width: 500px) and (max-width: 1366px) {
   body {
-    background-color: #cddcdc;
+    // background-color: #cddcdc;
+background-color: #e3a35a;
     background-image: radial-gradient(
         at 50% 100%,
         rgba(255, 255, 255, 0.5) 0%,
@@ -34,3 +35,6 @@
 
 
 }
+
+
+// @media (min-width: 1194px) and (max-width: 1366px) {

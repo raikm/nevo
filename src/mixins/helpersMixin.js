@@ -5,8 +5,8 @@ Vue.mixin({
   methods: {
     changePage: function(path, name) {
       this.$router.push(path, () => {});
-      var elements = document.getElementsByClassName("active");
-      for (var i = 0; i < elements.length; i++) {
+      let elements = document.getElementsByClassName("active");
+      for (let i = 0; i < elements.length; i++) {
         elements[0].classList.remove("active");
       }
       document.getElementsByClassName(name)[0].classList.add("active");
@@ -44,12 +44,12 @@ Vue.mixin({
       return supplier;
     },
     defineStatusTagColor(status) {
-      var green = "#53c66ebd";
-      var greenAlternative = "#53c66ebd";
-      var yellow = "#e3ea60bd";
-      var startColor = "#e66718bd";
+      let green = "#53c66ebd";
+      let greenAlternative = "#53c66ebd";
+      let yellow = "#e3ea60bd";
+      let startColor = "#e66718bd";
 
-      var backgroundColor = startColor;
+      let backgroundColor = startColor;
 
       if (
         status == "Delivered" ||
@@ -78,20 +78,20 @@ Vue.mixin({
           },
         })
         .then((response) => {
-          var packagesInformation = response.data.data.trackings;
-          for (var i = 0; i < packagesInformation.length; i++) {
-            var info = packagesInformation[i];
+          let packagesInformation = response.data.data.trackings;
+          for (let i = 0; i < packagesInformation.length; i++) {
+            let info = packagesInformation[i];
 
-            var delivery_date_string =
+            let delivery_date_string =
               info.expected_delivery != null
                 ? info.expected_delivery
                 : info.shipment_delivery_date; //<--
-            var status = info.tag;
-            var backgroundColor = this.defineStatusTagColor(status);
-            var delivery_date = new Date(delivery_date_string);
-            var supplier = info.slug.replace("-", " ").toUpperCase();
-            var supplierShort = this.defineSupplierShort(supplier);
-            var p = {
+            let status = info.tag;
+            let backgroundColor = this.defineStatusTagColor(status);
+            let delivery_date = new Date(delivery_date_string);
+            let supplier = info.slug.replace("-", " ").toUpperCase();
+            let supplierShort = this.defineSupplierShort(supplier);
+            let p = {
               id: i,
               supplier: supplier,
               supplier_short: supplierShort,
@@ -110,20 +110,20 @@ Vue.mixin({
         });
     },
     simplifyArray(displayArray) {
-      // var simpliedArray = []
+      // let simpliedArray = []
 
       displayArray.forEach((element) => {
-        var duplicates = displayArray.filter(
+        let duplicates = displayArray.filter(
           (e) => e.timestamp.getHours() == element.timestamp.getHours()
         );
         if (duplicates.length > 1) {
-          //var newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
+          //let newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
           //console.log(newestDate)
           //TODO: delete now all from the duplicated who dont have this date
         }
       });
-      // var hour = timestamp.getHours();
-      // var minutes = timestamp.getMinutes();
+      // let hour = timestamp.getHours();
+      // let minutes = timestamp.getMinutes();
       // if (!Number.isInteger(hour / 2)) {
       //   if (minutes > 30) {
       //     hour = hour + 1;
@@ -137,7 +137,7 @@ Vue.mixin({
       return displayArray;
     },
     cleanUpOldData(plantDataTimestamp, plantDetailArray) {
-      for (var i = 0; i < plantDetailArray.length; i++) {
+      for (let i = 0; i < plantDetailArray.length; i++) {
         if (
           plantDetailArray[i].timestamp.getDate() ===
             plantDataTimestamp.getDate() &&
@@ -149,13 +149,13 @@ Vue.mixin({
       }
     },
     convertHex(hexCode, opacity) {
-      var hex = hexCode.replace("#", "");
+      let hex = hexCode.replace("#", "");
 
       if (hex.length === 3) {
         hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
       }
 
-      var r = parseInt(hex.substring(0, 2), 16),
+      let r = parseInt(hex.substring(0, 2), 16),
         g = parseInt(hex.substring(2, 4), 16),
         b = parseInt(hex.substring(4, 6), 16);
 

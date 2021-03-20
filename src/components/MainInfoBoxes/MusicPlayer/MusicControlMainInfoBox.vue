@@ -3,8 +3,8 @@
     <MusicPlayerController
       id="music-player"
       v-if="
-        this.currentSelectedMainZone.length !== 0 &&
-          this.currentSelectedMainZone.coordinator.state.playbackState ===
+        this.activeSpeaker.length !== 0 &&
+          this.activeSpeaker.coordinator.state.playbackState ===
             'PLAYING'"
     />
     <MusicPlayerPlaylistController v-else id="music-control" />
@@ -16,8 +16,8 @@
       <HorizontalBarController
         id="volume-control"
         :value="
-          this.currentSelectedMainZone.length !== 0
-            ? this.currentSelectedMainZone.coordinator.state.volume
+          this.activeSpeaker.length !== 0
+            ? this.activeSpeaker.coordinator.state.volume
             : 0
         "
       />
@@ -44,7 +44,7 @@ export default {
   },
   props: ["sliderValue"],
   computed: {
-    ...mapGetters(["sonosZones", "config", "currentSelectedMainZone"]),
+    ...mapGetters(["speaker", "config", "activeSpeaker"]),
   },
   mounted() {
     this.setUpZones();
@@ -62,22 +62,22 @@ export default {
         });
     },
     setUpDefaultMainZones() {
-      const loungeZone = this.sonosZones.find((zone) => {
+      const loungeZone = this.speaker.find((zone) => {
         return zone.coordinator.roomName === "Lounge";
       });
       if (typeof loungeZone === "undefined") return;
       if (
-        this.currentSelectedMainZone.length === 0 ||
+        this.activeSpeaker.length === 0 ||
         this.currentMainZoneAvailable === false
       ) {
-        this.$store.commit("setcurrentSelectedMainZone", loungeZone);
+        this.$store.commit("setactiveSpeaker", loungeZone);
       }
     },
     currentMainZoneAvailable() {
-      this.sonosZones.find((zone) => {
+      this.speaker.find((zone) => {
         if (
           zone.coordinator.roomName ===
-          this.currentSelectedMainZone.coordinator.roomName
+          this.activeSpeaker.coordinator.roomName
         )
           return true;
       });

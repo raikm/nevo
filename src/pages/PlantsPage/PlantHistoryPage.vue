@@ -245,12 +245,12 @@ export default {
         });
     },
     createChart(chartId, planDetailArray, plantDetailValueBorder) {
-      var data = [];
-      var mainColor;
+      let data = [];
+      let mainColor;
       switch (chartId) {
         case "fertilizer-chart":
           planDetailArray.forEach((element) => {
-            var _plantData = {
+            let _plantData = {
               x: element.timestamp,
               y: element.soil_fertility,
             };
@@ -261,7 +261,7 @@ export default {
           break;
         case "moisture-chart":
           planDetailArray.forEach((element) => {
-            var _plantData = {
+            let _plantData = {
               x: element.timestamp,
               y: element.soil_moisture,
             };
@@ -271,7 +271,7 @@ export default {
           break;
         case "sunlight-chart":
           planDetailArray.forEach((element) => {
-            var _plantData = {
+            let _plantData = {
               x: element.timestamp,
               y: element.sunlight,
             };
@@ -282,10 +282,10 @@ export default {
       }
 
       const ctx = document.getElementById(chartId);
-      var timeFormat = "hA";
-      var start = this.borderRange.start;
-      var end = this.borderRange.end;
-      var plantChart = this.preparePlantChart(
+      let timeFormat = "hA";
+      let start = this.borderRange.start;
+      let end = this.borderRange.end;
+      let plantChart = this.preparePlantChart(
         data,
         plantDetailValueBorder.min,
         plantDetailValueBorder.max,
@@ -322,28 +322,28 @@ export default {
     },
     prepareHistoryData(historyData) {
       Object.keys(historyData).forEach((key) => {
-        var plantData = historyData[key];
+        let plantData = historyData[key];
 
-        var plantDataTimestamp = new Date(plantData.timestamp);
+        let plantDataTimestamp = new Date(plantData.timestamp);
         plantDataTimestamp.setHours(plantDataTimestamp.getHours() - 1); //TODO: more general for time changes
         // if (plantDataTimestamp <  this.borderRange.start){
         //   return
         // }
         // --- SOIL FERTILITY
-        var _plantSoilfertility = {
+        let _plantSoilfertility = {
           timestamp: plantDataTimestamp,
           soil_fertility: plantData.soil_fertility,
         };
         this.soilfertitlityArray.push(_plantSoilfertility);
 
         // --- SOIL MOISTURE
-        var _plantSoilMoisture = {
+        let _plantSoilMoisture = {
           timestamp: plantDataTimestamp,
           soil_moisture: plantData.soil_moisture,
         };
         this.soilmoistureArray.push(_plantSoilMoisture);
         // --- SUNLIGHT
-        var _plantsunlight = {
+        let _plantsunlight = {
           timestamp: plantDataTimestamp,
           sunlight: plantData.sunlight,
         };

@@ -79,11 +79,11 @@ export default {
   props: ["packages"],
   methods: {
     changeDisplayNewPackages() {
-      var NewPackageEl = document.getElementById("new-package"),
+      let NewPackageEl = document.getElementById("new-package"),
         NewPackageDisplay = window.getComputedStyle(NewPackageEl).display;
-      var PlusButtonEl = document.getElementById("plus-button");
-      var saveButtonEl = document.getElementById("save-button");
-      var statusTextEl = document.getElementById("status-text");
+      let PlusButtonEl = document.getElementById("plus-button");
+      let saveButtonEl = document.getElementById("save-button");
+      let statusTextEl = document.getElementById("status-text");
       if (NewPackageDisplay == "none") {
         NewPackageEl.style.display = "flex";
         statusTextEl.style.display = "none";
@@ -99,10 +99,10 @@ export default {
       return null;
     },
     saveNewDelivery() {
-      var e = document.getElementById("selector");
-      var slug = e.options[e.selectedIndex].value;
-      var title = document.getElementById("sender-input").value;
-      var trackingnumber = document.getElementById("trackingnumber-input")
+      let e = document.getElementById("selector");
+      let slug = e.options[e.selectedIndex].value;
+      let title = document.getElementById("sender-input").value;
+      let trackingnumber = document.getElementById("trackingnumber-input")
         .value;
       if (!slug.length > 0 || !title.length > 3 || !trackingnumber.length > 5) {
         console.log("here toast or status field with error");
@@ -130,8 +130,8 @@ export default {
       }, 3000);
     },
     showResult(result) {
-      var saveButtonEl = document.getElementById("save-button");
-      var statusTextEl = document.getElementById("status-text");
+      let saveButtonEl = document.getElementById("save-button");
+      let statusTextEl = document.getElementById("status-text");
       saveButtonEl.style.display = "none";
       statusTextEl.style.display = "inline";
       console.log(result);

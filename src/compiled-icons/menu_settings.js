@@ -1,6 +1,6 @@
 
 /* eslint-disable */
-var icon = require('vue-svgicon')
+let icon = require('vue-svgicon')
 icon.register({
   'menu_settings': {
     width: 16,
