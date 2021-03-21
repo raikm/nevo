@@ -150,9 +150,10 @@ export default {
 .public-transport-header,
 .public-transport-content {
   display: grid;
-  grid-template-columns: 1fr 5fr 1fr;
+  grid-template-columns: 1fr 8fr 1fr;
   column-gap: 5px;
   font-size: $standard-text-medium;
+
 }
 
 .public-transport-content-wrapper {
@@ -163,13 +164,17 @@ export default {
   font-weight: bold;
 }
 
+.public-transport-header-title{
+
+}
+
 .public-transport-header-title-line,
 .public-transport-header-title-line-info {
   text-align: center;
   font-weight: bold;
 }
 .public-transport-header-title-line-info {
-  border-radius: $standard-border-radius;
+  border-radius: 4px;
   color: white;
   margin: 0.1vh 0;
 }
