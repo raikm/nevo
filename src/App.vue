@@ -34,7 +34,7 @@ import {
 } from "home-assistant-js-websocket";
 
 
-import io from 'socket.io-client'
+// import io from 'socket.io-client'
 
 
 export default {
@@ -77,8 +77,8 @@ export default {
     },
     connectSonosWebsocket() {
      
-      console.log("start socket: " + this.$store.getters.config.sonos.websocketURL)
-      io(this.$store.getters.config.sonos.sonosURL);
+      // console.log("start socket: " + this.$store.getters.config.sonos.websocketURL)
+      // io(this.$store.getters.config.sonos.sonosURL);
 
       
 
