@@ -22,6 +22,15 @@ const config = {
   discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
 }
 
+
+import VueSocketIO from 'vue-socket.io';
+Vue.use(new VueSocketIO({
+  // debug: true,
+  connection: 'http://192.168.1.217:5008',
+}))
+
+
+
 Vue.use(VueAxios);
 Vue.use(aftership);
 Vue.use(store);

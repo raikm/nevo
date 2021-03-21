@@ -1,11 +1,11 @@
 <template>
-  <!-- :value="sliderValue" -->
   <input
     class="horizontal-slider-control click-element"
     type="range"
     min="0"
     max="100"
-    :value="this.value"
+    v-model="sliderValue"
+    @change="changeSliderValue"
   />
 </template>
 
@@ -13,8 +13,19 @@
 export default {
   name: "HorizontalBarController",
   props: ["value"],
-  created(){
-  }
+  mounted() {
+    this.sliderValue = this.value;
+  },
+  data() {
+    return {
+      sliderValue: 0,
+    };
+  },
+  methods: {
+    changeSliderValue() {
+      this.$emit("change-slider-value", this.sliderValue);
+    },
+  },
 };
 </script>
 

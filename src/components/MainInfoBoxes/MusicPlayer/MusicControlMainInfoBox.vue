@@ -1,24 +1,26 @@
+//  v-if="
+//         this.activeSpeaker.length !== 0 && 
+//           (this.activeSpeakerState.playbackState === 'PLAYING' ||
+//             this.activeSpeakerState.playbackState === 'PAUSED')
+//       "
+
 <template>
   <div class="basic-card main-info-box main-info-box-big music-control-box">
     <MusicPlayerController
       id="music-player"
-      v-if="
-        this.activeSpeaker.length !== 0 &&
-          this.activeSpeaker.coordinator.state.playbackState ===
-            'PLAYING'"
+     
     />
-    <MusicPlayerPlaylistController v-else id="music-control" />
-
-
+    <!-- <MusicPlayerPlaylistController id="music-control" /> -->
 
     <!-- TODO: put more in the HorizontalBarController -->
     <div id="volume-control-wrapper">
       <HorizontalBarController
+        ref="volumeControl"
         id="volume-control"
+        @change-slider-value="changeVolume"
         :value="
-          this.activeSpeaker.length !== 0
-            ? this.activeSpeaker.coordinator.state.volume
-            : 0
+          this.activeSpeaker.length !== 0 ? this.activeSpeakerState.volume : 0
+
         "
       />
       <div id="volume-icon-container">
@@ -29,7 +31,7 @@
 </template>
 
 <script>
-import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
+// import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
 import MusicPlayerController from "./MusicPlayerController";
 import HorizontalBarController from "@/components/InteractionController/HorizontalBarController";
 import "../../../compiled-icons/volume_medium";
@@ -38,13 +40,12 @@ import { mapGetters } from "vuex";
 export default {
   name: "MusicControlMainInfoBox",
   components: {
-    MusicPlayerPlaylistController,
+    // MusicPlayerPlaylistController,
     HorizontalBarController,
     MusicPlayerController,
   },
-  props: ["sliderValue"],
   computed: {
-    ...mapGetters(["speaker", "config", "activeSpeaker"]),
+    ...mapGetters(["speakers", "config", "activeSpeaker", "activeSpeakerState"]),
   },
   mounted() {
     this.setUpZones();
@@ -52,36 +53,44 @@ export default {
   methods: {
     setUpZones() {
       this.$axios
-        .get(this.config.sonos.RESTURL + "/zones")
+        .get(this.config.sonos.rest_url + "/zones")
         .then((response) => {
-          this.$store.commit("setZones", response.data);
-          this.setUpDefaultMainZones();
+          this.$store.commit("setSpeakers", response.data.map(element => element.coordinator));
+          // this.setUpDefaultMainZones();
         })
         .catch((error) => {
           this.showToastError(error.toString());
         });
     },
-    setUpDefaultMainZones() {
-      const loungeZone = this.speaker.find((zone) => {
-        return zone.coordinator.roomName === "Lounge";
-      });
-      if (typeof loungeZone === "undefined") return;
-      if (
-        this.activeSpeaker.length === 0 ||
-        this.currentMainZoneAvailable === false
-      ) {
-        this.$store.commit("setactiveSpeaker", loungeZone);
-      }
-    },
+    // setUpDefaultMainZones() {
+    //   const loungeZone = this.speakers.find((zone) => {
+    //     return zone.coordinator.roomName === "Lounge";
+    //   });
+    //   if (typeof loungeZone === "undefined") return;
+    //   if (
+    //     this.activeSpeaker.length === 0 ||
+    //     this.currentMainZoneAvailable === false
+    //   ) {
+    //     this.$store.commit("setActiveSpeakers", loungeZone);
+    //   }
+    // },
     currentMainZoneAvailable() {
-      this.speaker.find((zone) => {
+      this.speakers.find((zone) => {
         if (
-          zone.coordinator.roomName ===
-          this.activeSpeaker.coordinator.roomName
+          zone.coordinator.roomName === this.activeSpeaker.roomName
         )
           return true;
       });
       return false;
+    },
+    changeVolume(newVolume) {
+      this.$axios
+        .get(
+          `${this.config.sonos.rest_url}/${this.activeSpeaker.roomName}/volume/${newVolume}`
+        )
+        .catch((error) => {
+          this.showToastError(error.toString());
+        });
     },
   },
 };

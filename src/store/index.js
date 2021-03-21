@@ -32,7 +32,7 @@ export default new Vuex.Store({
     weather: {},
     dayOfTheWeek: getDayOfTheWeek(),
     gCalendars: [],
-    speaker: [],
+    speakers: [],
     activeSpeaker: [],
   },
   mutations: {
@@ -49,11 +49,37 @@ export default new Vuex.Store({
     setGCalendars(state, updatedCalendars) {
       state.gCalendars = updatedCalendars;
     },
-    setZones(state, updatedZones) {
-      state.speaker = updatedZones;
+    setSpeakers(state, newSpeakers) {      
+      state.activeSpeaker =
+        newSpeakers.find((speaker) =>
+          speaker.state !== undefined
+            ? speaker.state.playbackState === "PLAYING"
+            : []
+        ) || [];
+        //TODO necessary ?
+      state.speakers = newSpeakers;
     },
-    setactiveSpeaker(state, updatedMainZone) {
-      state.activeSpeaker = updatedMainZone;
+    setNewSpeakerVolume(state, newVolumeObject) {
+      let result = state.speakers.find(
+        (speaker) => speaker.roomName === newVolumeObject.roomName
+      );
+      if (result !== "undefined") {
+        let index = state.speakers.indexOf(result);
+        state.speakers[index].state.volume = newVolumeObject.newVolume;
+      }
+    },
+    updateSpeakers(state, updatedSpeakers) {
+      let result = state.speakers.find(
+        (speaker) => speaker.roomName === updatedSpeakers.roomName
+      );
+      if (result !== "undefined") {
+        let index = state.speakers.indexOf(result);
+        state.speakers[index] = updatedSpeakers;
+        if (updatedSpeakers.roomName === state.activeSpeaker.roomName) {
+          // console.log(updatedSpeakers)
+          state.activeSpeaker = updatedSpeakers;
+        }
+      }
     },
   },
   modules: {},
@@ -64,8 +90,8 @@ export default new Vuex.Store({
     currentWeather: (state) => state.weather,
     currentDayOfTheWeek: (state) => state.dayOfTheWeek,
     googleCalendars: (state) => state.gCalendars,
-    speaker: (state) => state.speaker,
+    speakers: (state) => state.speakers,
     activeSpeaker: (state) => state.activeSpeaker,
-    activeSpeakerState: (state) => state.activeSpeaker.coordinator.state,
-  }
+    activeSpeakerState: (state) => state.activeSpeaker.state,
+  },
 });
