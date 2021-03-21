@@ -8,7 +8,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
- 📦 Connect to Sonos API
+ 📦 Implement Routines in Home assistant an connecto to short cut buttons
  📦 Change Light Statues with Websocket
  📦 First tests with health data export from the iPhone
 ```
@@ -20,6 +20,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
  🎉 Websocketconnection to back-end (homeassistant)
  🎉 Connect to Google API for Calendar Data V1 
  🎉 Public Transport API V1
+ 🎉 Connect to Sonos API V1 (Multiroom missing)
 ```
 
 ---
