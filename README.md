@@ -14,7 +14,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ```
 ---
 
-### 🛬 Latest Updates (08.03.2021)
+### 🛬 Latest Updates (22.03.2021)
 ```
  🎉 Plant Dashboard Page V1  
  🎉 Websocketconnection to back-end (homeassistant)
