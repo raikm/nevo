@@ -8,6 +8,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
+ 📦 deploy automatic for tests
+ 📦 write tests
  📦 Implementing Routines in Home Assistant as preparation for short cut buttons on the bottom
  📦 Change Light Statues with Websocket
  📦 First tests with health data export from the iPhone
