@@ -31,5 +31,7 @@ jobs:
         run: npm install
 
       # Runs a set of commands using the runners shell
-      - name: Run serve
-        run: npm run serve
+      - name: Run Build
+        run: npm run build
+        
+    
