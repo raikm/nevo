@@ -11,12 +11,20 @@ on:
   workflow_dispatch:
     branches: [ master ]
 
+
+
+
 jobs:
+  
   build:
     runs-on: ubuntu-latest
 
     steps:
 
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: '14.16.0'
       - name: Install Dependencies
         run: npm install
 
