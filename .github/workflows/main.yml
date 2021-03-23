@@ -19,12 +19,23 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    steps:
+   
+    
 
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Read node from package.json
+        uses: culshaw/read-package-node-version-actions@v1
+        id: package-node-version
+
+      - name: Show node version number
+        run: echo "Version is ${{ steps.package-node-version.outputs.version }}"
+    
       - name: Use Node.js
         uses: actions/setup-node@v1
         with: 
-          node-version: '14.16.0'
+          node-version: ${{ steps.package-node-version.outputs.version }}
       - name: Install Dependencies
         run: npm install
 
