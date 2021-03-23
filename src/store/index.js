@@ -59,7 +59,7 @@ export default new Vuex.Store({
     setSpeakers(state, newSpeakers) {      
       state.activeSpeaker =
         newSpeakers.find((speaker) =>
-          speaker.state !== undefined
+          speaker.state != null
             ? speaker.state.playbackState === "PLAYING"
             : []
         ) || [];
@@ -71,7 +71,7 @@ export default new Vuex.Store({
         (speaker) => speaker.roomName === newVolumeObject.roomName
       );
       //BUGFIX: handle multiroom
-      if (result !== "undefined") {
+      if (result != null) {
         let index = state.speakers.indexOf(result);
         state.speakers[index].state.volume = newVolumeObject.newVolume;
       }
@@ -80,7 +80,7 @@ export default new Vuex.Store({
       let result = state.speakers.find(
         (speaker) => speaker.roomName === updatedSpeakers.roomName
       );
-      if (result !== "undefined") {
+      if (result != null) {
         let index = state.speakers.indexOf(result);
         state.speakers[index] = updatedSpeakers;
         if (updatedSpeakers.roomName === state.activeSpeaker.roomName) {

@@ -67,7 +67,7 @@ export default {
     //   const loungeZone = this.speakers.find((zone) => {
     //     return zone.coordinator.roomName === "Lounge";
     //   });
-    //   if (typeof loungeZone === "undefined") return;
+    //   if (typeof loungeZone == null) return;
     //   if (
     //     this.activeSpeaker.length === 0 ||
     //     this.currentMainZoneAvailable === false
