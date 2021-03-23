@@ -29,7 +29,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ## Workflows
 
-
+![Build Workflow](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
 
 ## Project setup
 ```
