@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Build and Run Panorama App
+name: Build Panorama App
 
 on:
   # Triggers t
@@ -15,8 +15,8 @@ on:
 
 #Todo: test on windows and mac!
 jobs:
-  
-  build:
+  build-linux:
+    name: build on ubuntu
     runs-on: ubuntu-latest
     
     steps:
@@ -34,4 +34,43 @@ jobs:
       - name: Run Build
         run: npm run build
         
+  build-windows:
+    name: build on windows
+    runs-on: windows-latest
     
+    steps:
+      - uses: actions/checkout@v1
+  
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 14.16.X
+          
+      - name: Install Dependencies
+        run: npm install
+
+      # Runs a set of commands using the runners shell
+      - name: Run Build
+        run: npm run build
+        
+        
+  build-macos:
+    name: build on macos
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with: 
+          node-version: 14.16.X
+
+      - name: Install Dependencies
+        run: npm install
+
+      # Runs a set of commands using the runners shell
+      - name: Run Build
+        run: npm run build
+
+

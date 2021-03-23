@@ -4,6 +4,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ![March 2021](/doc/current_status_march_2021.png?)
 
+![Build Workflow](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
 ---
 
 ### 🛫 Next Up
@@ -26,10 +27,6 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ```
 
 ---
-
-## Workflows
-
-
 
 ## Project setup
 ```
