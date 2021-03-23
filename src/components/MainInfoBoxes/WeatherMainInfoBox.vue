@@ -1,60 +1,68 @@
 <template>
-  <div
-    id="weather-box"
-    class="basic-card main-info-box main-info-box-small"
-    :style="{ backgroundImage: this.backgroundImage }"
-    v-if="currentWeather.weather"
-  >
-    <div id="weather-header">
-      <div id="weather-city-name">Salzburg</div>
-      <svgicon
-        id="weather-icon"
-        :icon="'Weather_' + currentWeather.weather[0].main"
-        :style="{
-          fill: currentWeatherIconColor(currentWeather.weather[0].main),
-        }"
-      ></svgicon>
-    </div>
-    <div id="temperature-info-overview">
-      <span id="temperature-outdoor-info"
-        >{{ Math.round(currentWeather.temp) }}°</span
-      >
-      <div id="weather-description">
-        <span>{{ currentWeather.weather[0].main }}</span>
-        <span
-          >H: {{ Math.round(todayForcast.temp.max) }}° L:
-          {{ Math.round(todayForcast.temp.min) }}°
-        </span>
+  <div>
+    <div
+      id="weather-box"
+      class="basic-card main-info-box main-info-box-small"
+      :style="{ backgroundImage: this.backgroundImage }"
+      v-if="currentWeather.weather"
+    >
+      <div id="weather-header">
+        <div id="weather-city-name">Salzburg</div>
+        <svgicon
+          id="weather-icon"
+          :icon="'Weather_' + currentWeather.weather[0].main"
+          :style="{
+            fill: currentWeatherIconColor(currentWeather.weather[0].main),
+          }"
+        ></svgicon>
       </div>
-    </div>
-    <div id="temperature-hour-info">
-      <div
-        class="temperature-hour-content"
-        :key="tempHourInfo.index"
-        v-for="tempHourInfo in tempHourInfos"
-      >
-        <div class="weather-hour">
-          {{
-            new Date(
-              currentHour.setHours(currentHour.getHours() + 1)
-            ).getHours()
-          }}
-        </div>
-        <div class="weather-icon-wrapper">
-          <svgicon
-            class="weather-hour-icon"
-            width="1.5vh"
-            :icon="'Weather_' + currentWeather.weather[0].main"
-            :style="{
-              fill: currentWeatherIconColor(currentWeather.weather[0].main),
-            }"
-          ></svgicon>
-        </div>
-        <div class="weather-hour-temperature">
-          {{ Math.round(tempHourInfo.temp) }}°
+      <div id="temperature-info-overview">
+        <span id="temperature-outdoor-info"
+          >{{ Math.round(currentWeather.temp) }}°</span
+        >
+        <div id="weather-description">
+          <span>{{ currentWeather.weather[0].main }}</span>
+          <span
+            >H: {{ Math.round(todayForcast.temp.max) }}° L:
+            {{ Math.round(todayForcast.temp.min) }}°
+          </span>
         </div>
       </div>
+      <div id="temperature-hour-info">
+        <div
+          class="temperature-hour-content"
+          :key="tempHourInfo.index"
+          v-for="tempHourInfo in tempHourInfos"
+        >
+          <div class="weather-hour">
+            {{
+              new Date(
+                currentHour.setHours(currentHour.getHours() + 1)
+              ).getHours()
+            }}
+          </div>
+          <div class="weather-icon-wrapper">
+            <svgicon
+              class="weather-hour-icon"
+              width="1.5vh"
+              :icon="'Weather_' + currentWeather.weather[0].main"
+              :style="{
+                fill: currentWeatherIconColor(currentWeather.weather[0].main),
+              }"
+            ></svgicon>
+          </div>
+          <div class="weather-hour-temperature">
+            {{ Math.round(tempHourInfo.temp) }}°
+          </div>
+        </div>
+      </div>
     </div>
+    <div
+      id="weather-box"
+      class="basic-card main-info-box main-info-box-small"
+      :style="{ backgroundImage: this.backgroundImage }"
+      v-else
+    ></div>
   </div>
 </template>
 
@@ -73,8 +81,6 @@ import "../../compiled-icons/Weather_Thunderstorm";
 import { mapState } from "vuex";
 import colors from "@/style/main-colors.scss";
 
-
-
 export default {
   name: "WeatherMainInfoBox",
   components: {},
@@ -86,10 +92,8 @@ export default {
   mounted() {},
   methods: {
     currentWeatherDataFormAPI() {
-      const {
-        api_key,
-        open_weather_url,
-      } = this.$store.getters.config.weather;
+      if (this.$store.getters.config.weather.api_key.length === 0) return;
+      const { api_key, open_weather_url } = this.$store.getters.config.weather;
 
       this.$axios
         .get(`${open_weather_url}&appid=${api_key}`, {})
@@ -118,7 +122,7 @@ export default {
     },
     defineBackground() {
       let sunset = new Date(this.todayForcast.sunset);
-      let now = new Date()
+      let now = new Date();
       // console.log(sunset.toLocaleTimeString() + " --- " + now.toLocaleTimeString())
       if (sunset.getTime() < now.getTime()) {
         this.backgroundImage =

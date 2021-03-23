@@ -33,9 +33,7 @@ import {
   createLongLivedTokenAuth,
 } from "home-assistant-js-websocket";
 
-
 // import io from 'socket.io-client'
-
 
 export default {
   name: "homeapp",
@@ -47,22 +45,27 @@ export default {
   created() {
     // this.connectHomeassistantWebSocket();
     this.connectSonosWebsocket();
-    this.$gapi.login(() => {
-      this.$router.push("/");
-    });
-    this.$gapi.getGapiClient().then((gapi) => {
-      gapi.client.calendar.calendarList
-        .list()
-        .then((response) => {
-          this.$store.commit("setGCalendars", response.result.items);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    });
+    this.connectGoogleApi();
   },
 
   methods: {
+    connectGoogleApi() {
+      if (this.$gapi.clientProvider.authInstance == null) return;
+      this.$gapi.login(() => {
+        this.$router.push("/");
+      });
+      this.$gapi.getGapiClient().then((gapi) => {
+        gapi.client.calendar.calendarList
+          .list()
+          .then((response) => {
+            this.$store.commit("setGCalendars", response.result.items);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      });
+    },
+
     async connectHomeassistantWebSocket() {
       const auth = createLongLivedTokenAuth(
         this.$store.getters.config.homeassistant.hassUrl,
@@ -76,12 +79,8 @@ export default {
       });
     },
     connectSonosWebsocket() {
-     
       // console.log("start socket: " + this.$store.getters.config.sonos.websocketURL)
       // io(this.$store.getters.config.sonos.sonosURL);
-
-      
-
     },
   },
 };

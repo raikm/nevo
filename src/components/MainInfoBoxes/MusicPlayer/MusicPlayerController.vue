@@ -30,9 +30,7 @@
             v-if="this.activeSpeaker.length !== 0"
             :style="{
               width:
-                (this.currentTrackSeconds /
-                  this.currentTrack.duration) *
-                  100 +
+                (this.currentTrackSeconds / this.currentTrack.duration) * 100 +
                 '%',
             }"
           ></div>
@@ -116,7 +114,10 @@ export default {
   },
   watch: {
     activeSpeaker() {
-      if (this.activeSpeaker.length === 0) return;
+      if (this.activeSpeaker.length === 0) {
+        clearInterval(this.interval);
+        return;
+      }
       this.getCurrentTrack();
       if (this.currentTrack.length !== 0) {
         this.currentTrackSeconds = this.activeSpeakerState.elapsedTime;
@@ -124,17 +125,16 @@ export default {
       }
     },
   },
-  sockets: {
-    connect: function() {
-      // console.log("socket connected");
-    },
-  },
+  sockets: {},
   mounted() {
-    // if (this.activeSpeakerState.playbackState === "PLAYING") {
-    this.interval = setInterval(() => {
-      this.updateSecondsInCurrentTrack();
-    }, 1000);
-    // }
+    if (
+      typeof this.activeSpeakerState !== "undefined" &&
+      this.activeSpeakerState.playbackState === "PLAYING"
+    ) {
+      this.interval = setInterval(() => {
+        this.updateSecondsInCurrentTrack();
+      }, 1000);
+    }
   },
   destroyed() {
     clearInterval(this.interval);
@@ -210,11 +210,14 @@ export default {
     getChanges() {
       this.sockets.subscribe("change", (data) => {
         let result = JSON.parse(data.toString());
+        console.log(result);
         if (result.type === "transport-state") {
           this.$store.commit("updateSpeakers", result.data);
-        } else if (result.type === "topology-change") {
+        }
+        if (result.type === "topology-change") {
           this.$store.commit("setSpeakers", result.data);
-        } else if (result.type === "volume-change") {
+        }
+        if (result.type === "volume-change") {
           this.$store.commit("setNewSpeakerVolume", result.data);
         }
       });

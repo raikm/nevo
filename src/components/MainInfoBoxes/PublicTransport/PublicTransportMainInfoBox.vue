@@ -46,11 +46,37 @@ export default {
   // components: { ETAInfo },
   props: [],
   created() {
-    try {
-      this.getDepatureTime();
-    } catch (e) {
-      console.error("Hafas Client ist not setup: " + e);
-    }
+    this.getDepatureTime();
+    this.interval = setInterval(() => {
+      try {
+        this.getDepatureTime();
+      } catch (e) {
+        console.error("Hafas Client ist not setup: " + e);
+      }
+    }, 20000);
+  },
+  data() {
+    return {
+      departuresFromHome: [],
+      favoriteLineIds: ["svv-1-2-j21-1", "svv-1-4-j21-1", "svv-1-12-j21-1"],
+      stationsNearHome: [
+        { id: "455654100", name: "Salzburg Stadtwerk Lehen" },
+        { id: "455079400", name: "Salzburg Roseggerstraße" },
+        // { id: "455104600", name: "Salzburg Kuenburgstraße" }, //define bus lines who have to be filtered out
+        // { id: "455081900", name: "Salzburg Strubergasse" },
+        // { id: "455079300", name: "Salzburg Esshaverstraße" },
+        // { id: "455001300", name: "Salzburg Gaswerkgasse" },
+        // { id: "455102400", name: "Salzburg Aiglhof S-Bahn" },
+        // { id: "455102300", name: "Salzburg Mülln-Altstadt S-Bahn" },
+      ],
+      homeaddress: {
+        type: "location",
+        latitude: this.$store.getters.config.public_transport.home_address
+          .latitude,
+        longitude: this.$store.getters.config.public_transport.home_address
+          .longitude,
+      },
+    };
   },
   methods: {
     mapETATime(timeString) {
@@ -60,6 +86,8 @@ export default {
       return Math.abs(Math.round(difference));
     },
     getDepatureTime() {
+      if (this.$store.getters.config.public_transport.websocketUrl === "<IP_ADDRESS>") return;
+      this.departuresFromHome = []
       const createRoundRobin = require("@derhuerst/round-robin-scheduler");
       const createClient = require("hafas-client-rpc/ws/client");
 
@@ -111,30 +139,8 @@ export default {
       return false;
     },
   },
-  data() {
-    return {
-      departuresFromHome: [],
-      favoriteLineIds: ["svv-1-2-j21-1", "svv-1-4-j21-1", "svv-1-12-j21-1"],
-      stationsNearHome: [
-        { id: "455654100", name: "Salzburg Stadtwerk Lehen" },
-        { id: "455079400", name: "Salzburg Roseggerstraße" },
-        // { id: "455104600", name: "Salzburg Kuenburgstraße" }, //define bus lines who have to be filtered out
-        // { id: "455081900", name: "Salzburg Strubergasse" },
-        // { id: "455079300", name: "Salzburg Esshaverstraße" },
-        // { id: "455001300", name: "Salzburg Gaswerkgasse" },
-        // { id: "455102400", name: "Salzburg Aiglhof S-Bahn" },
-        // { id: "455102300", name: "Salzburg Mülln-Altstadt S-Bahn" },
-      ],
-      homeaddress: {
-        type: "location",
-        // id: "980133005",
-        // address: "Salzburg",
-        latitude: this.$store.getters.config.public_transport.home_address
-          .latitude,
-        longitude: this.$store.getters.config.public_transport.home_address
-          .longitude,
-      },
-    };
+  destroyed() {
+    clearInterval(this.interval);
   },
 };
 </script>
@@ -150,10 +156,9 @@ export default {
 .public-transport-header,
 .public-transport-content {
   display: grid;
-  grid-template-columns: 1fr 8fr 1fr;
+  grid-template-columns: 1fr 8fr 4fr;
   column-gap: 5px;
   font-size: $standard-text-medium;
-
 }
 
 .public-transport-content-wrapper {
@@ -164,8 +169,7 @@ export default {
   font-weight: bold;
 }
 
-.public-transport-header-title{
-
+.public-transport-header-title {
 }
 
 .public-transport-header-title-line,

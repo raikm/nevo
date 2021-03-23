@@ -3,9 +3,15 @@ import Vuex from "vuex";
 
 try {
   var config = require("../../config.json");
-} catch (err) {
-  console.log("CONFIG FILE NOT FOUND");
+} catch (error) {
+  if (error.code === "MODULE_NOT_FOUND") {
+    config = require("../../config_example.json");
+    console.error("CONFIG FILE NOT FOUND - EXAMPLE CONFIG IS BEEING USED");
+  } else {
+    console.error("CONFIG FILE NOT FOUND");
+  }
 }
+Object.freeze(config);
 
 Vue.use(Vuex);
 
@@ -23,6 +29,7 @@ function getDayOfTheWeek() {
 
   return weekday[date.getDay()];
 }
+console.log(config)
 
 export default new Vuex.Store({
   state: {
@@ -63,6 +70,7 @@ export default new Vuex.Store({
       let result = state.speakers.find(
         (speaker) => speaker.roomName === newVolumeObject.roomName
       );
+      //BUGFIX: handle multiroom
       if (result !== "undefined") {
         let index = state.speakers.indexOf(result);
         state.speakers[index].state.volume = newVolumeObject.newVolume;

@@ -10,44 +10,56 @@ import VueAxios from "./plugins/axios";
 //https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
 import VueSVGIcon from "vue-svgicon";
 import "./mixins/helpersMixin";
-import aftership from "./plugins/aftership";
-import VueGapi from 'vue-gapi'
-const { google_calendar } = require("../config.json");
+
+// import aftership from "./plugins/aftership";
+
+import VueGapi from "vue-gapi";
+let google_calendar;
+
+try {
+  ({ google_calendar } = require("../config.json"));
+} catch (error) {
+  if (error.code === "MODULE_NOT_FOUND") {
+    ({ google_calendar } = require("../config_example.json"));
+    console.error("CONFIG FILE NOT FOUND - EXAMPLE CONFIG IS BEEING USED");
+  } else {
+    console.error(error);
+  }
+}
+
 //TODO: Catch missing config.json
 
 const config = {
   apiKey: google_calendar.api_key,
   clientId: google_calendar.client_id,
-  scope: 'https://www.googleapis.com/auth/calendar.readonly',
-  discoveryDocs: ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"]
-}
+  scope: "https://www.googleapis.com/auth/calendar.readonly",
+  discoveryDocs: [
+    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
+  ],
+};
 
-
-import VueSocketIO from 'vue-socket.io';
-Vue.use(new VueSocketIO({
-  // debug: true,
-  connection: 'http://192.168.1.217:5008',
-}))
-
-
+import VueSocketIO from "vue-socket.io";
+Vue.use(
+  new VueSocketIO({
+    // debug: true,
+    connection: "http://192.168.1.217:5008",
+  })
+);
 
 Vue.use(VueAxios);
-Vue.use(aftership);
+// Vue.use(aftership);
 Vue.use(store);
-Vue.use(VueGapi, config)
+Vue.use(VueGapi, config);
 Vue.use(VueSVGIcon);
 Vue.use(Buefy);
-
 
 Vue.config.productionTip = false;
 Vue.http = Vue.prototype.$http = axios;
 window.axios = require("axios");
 window.aftership = require("aftership");
 
-
 new Vue({
   router,
   store,
   render: (h) => h(App),
 }).$mount("#app");
-
