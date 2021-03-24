@@ -128,7 +128,7 @@ export default {
   sockets: {},
   mounted() {
     if (
-      typeof this.activeSpeakerState != null &&
+      this.activeSpeakerState != null &&
       this.activeSpeakerState.playbackState === "PLAYING"
     ) {
       this.interval = setInterval(() => {
