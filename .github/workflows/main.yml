@@ -51,7 +51,7 @@ jobs:
         with:
           node-version: 14.16.X
       - name: Install Dependencies
-        run: npm install‚
+        run: npm install
       # Runs a set of commands using the runners shell
       - name: Run Build
         run: npm run build
