@@ -1,8 +1,7 @@
-
 /* eslint-disable */
-let icon = require('vue-svgicon')
+var icon = require('vue-svgicon')
 icon.register({
-  'moon': {
+  'night_mode': {
     width: 16,
     height: 16,
     viewBox: '0 0 482.72 482.72',

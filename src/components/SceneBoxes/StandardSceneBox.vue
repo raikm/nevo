@@ -1,25 +1,55 @@
 <template>
-  <main>
-    <svgicon class="scene-icon-2" :icon="scene.iconSource"></svgicon>
+  <div v-on:click="triggerShortcut()">
+    <svgicon
+      class="scene-icon-2"
+      :icon="shortcut.entity_id.split('shortcut_')[1]"
+      
+    ></svgicon>
 
     <h1 class="scene-name-2">
-      {{ scene.title }}
+      {{ shortcut.attributes.friendly_name }}
     </h1>
-  </main>
+  </div>
 </template>
 
 <script>
 //npm run generate-icons
-import "../../compiled-icons/login";
-import "../../compiled-icons/logout";
-import "../../compiled-icons/morning";
-import "../../compiled-icons/projector";
-import "../../compiled-icons/vacuum";
-import "../../compiled-icons/moon";
-import "../../compiled-icons/curtain";
+import "@/compiled-icons/start_morning";
+import "@/compiled-icons/leave_home";
+import "@/compiled-icons/back_home";
+import "@/compiled-icons/movie_mode";
+import "@/compiled-icons/cleanup";
+import "@/compiled-icons/night_mode";
+import "@/compiled-icons/plant_lights";
 
 export default {
-  props: ["scene", "containerWidth"],
+  props: ["shortcut"],
+  data() {
+    return {
+      config: {
+        headers: {
+          Authorization: `Bearer ${this.$store.getters.config.homeassistant.life_time_token_raik}`,
+        },
+      },
+    };
+  },
+  methods: {
+    triggerShortcut() {
+      
+      var bodyParameters = {
+        entity_id: this.shortcut.entity_id,
+      };
+      
+      this.$axios
+        .post(
+          "http://192.168.1.217:8123/api/services/script/turn_on",
+          bodyParameters,
+          this.config
+        )
+        .then(console.log)
+        .catch((error) => this.showToastError(error));
+    },
+  },
 };
 </script>
 

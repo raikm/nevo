@@ -1,6 +1,5 @@
-
 /* eslint-disable */
-let icon = require('vue-svgicon')
+var icon = require('vue-svgicon')
 icon.register({
   'player_control_plus': {
     width: 16,

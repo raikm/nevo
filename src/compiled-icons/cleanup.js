@@ -1,8 +1,7 @@
-
 /* eslint-disable */
-let icon = require('vue-svgicon')
+var icon = require('vue-svgicon')
 icon.register({
-  'vacuum': {
+  'cleanup': {
     width: 512,
     height: 512,
     viewBox: '0 0 512 512',

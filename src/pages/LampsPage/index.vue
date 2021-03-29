@@ -37,6 +37,7 @@ export default {
     filterAllLightsFromDevices() {
       //TODO: only lights!
       const lights = this.$store.getters.currentEntities.filter((d) => {
+        console.log(d)
         return d.attributes["Room"] && d.entity_id.startsWith("light");
       });
 

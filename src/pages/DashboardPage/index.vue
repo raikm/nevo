@@ -20,6 +20,8 @@
       :containerWidth="containerSceneWidth"
       id="scene-buttons"
     />
+
+    <!-- <div>{{containerSceneWidth}}x{{containerSceneHeight}}</div> -->
   </main>
 </template>
 

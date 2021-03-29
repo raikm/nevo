@@ -29,7 +29,6 @@ function getDayOfTheWeek() {
 
   return weekday[date.getDay()];
 }
-console.log(config)
 
 export default new Vuex.Store({
   state: {
@@ -56,14 +55,12 @@ export default new Vuex.Store({
     setGCalendars(state, updatedCalendars) {
       state.gCalendars = updatedCalendars;
     },
-    setSpeakers(state, newSpeakers) {      
+    setSpeakers(state, newSpeakers) {
       state.activeSpeaker =
         newSpeakers.find((speaker) =>
-          speaker.state != null
-            ? speaker.state.playbackState === "PLAYING"
-            : []
+          speaker.state != null ? speaker.state.playbackState === "PLAYING" : []
         ) || [];
-        //TODO necessary ?
+      //TODO necessary ?
       state.speakers = newSpeakers;
     },
     setNewSpeakerVolume(state, newVolumeObject) {
@@ -93,6 +90,10 @@ export default new Vuex.Store({
   modules: {},
   getters: {
     currentEntities: (state) => state.currentEntities,
+    shortcutEntities: (state) =>
+      state.currentEntities.filter((entity) =>
+        entity.entity_id.startsWith("script.shortcut_")
+      ),
     config: (state) => state.config,
     showNotification: (state) => state.showNotification,
     currentWeather: (state) => state.weather,

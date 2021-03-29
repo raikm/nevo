@@ -1,6 +1,5 @@
-
 /* eslint-disable */
-let icon = require('vue-svgicon')
+var icon = require('vue-svgicon')
 icon.register({
   'Weather_Clouds_Day': {
     width: 512,

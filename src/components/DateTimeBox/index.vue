@@ -19,7 +19,7 @@ export default {
   },
   destroyed() {
     clearInterval(this.interval);
-    this.connection.suspend();
+    // this.connection.suspend();
   },
   methods: {
     defineCurrentFormatedTime() {

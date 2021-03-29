@@ -14,10 +14,10 @@
       </div> -->
 
       <div id="light-intensity-control-wrapper">
-        <HorizontalBarController id="light-intensity-control" />
-        <div id="light-intensity-icon-container">
-          <svgicon id="light-intensity-icon" icon="sun"></svgicon>
-        </div>
+        <HorizontalBarController
+          id="light-intensity-control"
+          :iconName="'sun'"
+        />
       </div>
     </div>
   </div>
@@ -55,6 +55,7 @@ export default {
 
 #light-intensity-info-box {
   width: 100%;
+  height: 100%;
 }
 
 #light-intensity-bar-border {
@@ -64,25 +65,12 @@ export default {
 }
 
 #light-intensity-control-wrapper {
-  margin-top: 15%;
-  height: 30%;
-  position: relative;
-}
-#light-intensity-icon-container {
-  height: 100%;
-  position: absolute;
-  z-index: 99;
-  pointer-events: none;
-}
-#light-intensity-icon {
-  height: 2vh;
-  margin: 1.5vh;
-  fill: lightgray;
+  height: 80%;
+  display: grid;
+  align-content: flex-end;
 }
 
 #light-intensity-control {
-  position: absolute;
-  z-index: 98;
   height: 5vh;
   width: 100%;
 }

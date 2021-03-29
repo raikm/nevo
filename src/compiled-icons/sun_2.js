@@ -1,6 +1,5 @@
-
 /* eslint-disable */
-let icon = require('vue-svgicon')
+var icon = require('vue-svgicon')
 icon.register({
   'sun_2': {
     width: 470,

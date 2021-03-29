@@ -43,7 +43,7 @@ export default {
     Newsfeed,
   },
   created() {
-    // this.connectHomeassistantWebSocket();
+    this.connectHomeassistantWebSocket();
     this.connectSonosWebsocket();
     this.connectGoogleApi();
   },
@@ -74,6 +74,7 @@ export default {
       await createConnection({ auth }).then((conn) => {
         subscribeEntities(conn, (entities) => {
           //setHistory
+          console.log(entities);
           this.$store.commit("setCurrentEntities", Object.values(entities));
         });
       });
@@ -104,9 +105,10 @@ export default {
   #page {
     // padding-right: 2.5rem;
     float: left;
-    // width: 90%;
+    width: 90%;
+    max-width: 1400px;
     //Debug
-    width: 65%;
+    // width: 65%;
     height: 100%;
     overflow: hidden;
     padding-top: 2.5rem;

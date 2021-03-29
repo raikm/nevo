@@ -131,6 +131,7 @@ export default {
       this.activeSpeakerState != null &&
       this.activeSpeakerState.playbackState === "PLAYING"
     ) {
+      console.log("set intervall")
       this.interval = setInterval(() => {
         this.updateSecondsInCurrentTrack();
       }, 1000);
