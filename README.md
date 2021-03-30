@@ -9,22 +9,23 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ---
 
 ### 🛫 Next Up
-```
- 📦 deploy automatic for tests
- 📦 write tests
- 📦 Implementing Routines in Home Assistant as preparation for short cut buttons on the bottom
+
+ 📦 unit tests
+ 📦 Dashboard Page V1 completely done without mockup data
+ 📦 Implementing Shortcut Buttons with Script Integration from Home Assistant
  📦 Change Light Statues with Websocket
  📦 First tests with health data export from the iPhone
 ```
 ---
 
-### 🛬 Latest Updates (22.03.2021)
+### 🛬 Latest Updates (Status: 30.03.2021)
 ```
- 🎉 Plant Dashboard Page V1  
+ 🎉 Plant Dashboard Page V1
  🎉 Websocketconnection to back-end (homeassistant)
- 🎉 Connect to Google API for Calendar Data V1 
+ 🎉 Connect to Google API for Calendar Data V1
  🎉 Public Transport API V1
  🎉 Connect to Sonos API V1 (Multiroom missing)
+ 🎉 GitHub Action Integration for Tests
 ```
 
 ---
