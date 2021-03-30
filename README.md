@@ -9,7 +9,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ---
 
 ### 🛫 Next Up
-
+```
  📦 unit tests
  📦 Dashboard Page V1 completely done without mockup data
  📦 Implementing Shortcut Buttons with Script Integration from Home Assistant
