@@ -111,6 +111,9 @@ export default {
 .plant-header {
   // width: 80%;
   // float: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .location-container {
@@ -162,6 +165,7 @@ export default {
   //grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 2%;
   grid-row-gap: 5%;
+  height: 100%;
 }
 
 .modal-overlay {

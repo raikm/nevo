@@ -14,7 +14,7 @@
     <div id="main-container">
       <Menu />
       <router-view id="page"></router-view>
-      <Newsfeed v-if="this.$store.getters.showNotification" />
+      <!-- <Newsfeed v-if="this.$store.getters.showNotification" /> -->
     </div>
   </div>
 </template>
@@ -22,7 +22,7 @@
 <script>
 import DateTimeBox from "@/components/DateTimeBox";
 import Menu from "@/components/Menu";
-import Newsfeed from "@/components/NewsFeed";
+// import Newsfeed from "@/components/NewsFeed";
 
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
@@ -40,7 +40,7 @@ export default {
   components: {
     DateTimeBox,
     Menu,
-    Newsfeed,
+    // Newsfeed,
   },
   created() {
     this.connectHomeassistantWebSocket();
@@ -50,10 +50,13 @@ export default {
 
   methods: {
     connectGoogleApi() {
-      if (this.$gapi.clientProvider.authInstance == null) return;
-      this.$gapi.login(() => {
-        this.$router.push("/");
+      console.log("connect");
+
+      // if (this.$gapi.clientProvider.authInstance == null) return;
+      this.$gapi.login().then(({ currentUser, hasGrantedScopes }) => {
+        console.log({ currentUser, hasGrantedScopes });
       });
+
       this.$gapi.getGapiClient().then((gapi) => {
         gapi.client.calendar.calendarList
           .list()
@@ -110,7 +113,7 @@ export default {
     //Debug
     // width: 65%;
     height: 100%;
-    overflow: hidden;
+    overflow-x: scroll;
     padding-top: 2.5rem;
     padding-right: 2.5rem;
   }

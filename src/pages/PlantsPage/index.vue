@@ -20,6 +20,11 @@
       </div>
     </div>
     <PlantCard :plantInformation="plantInformation" />
+    <div class="page-footer">
+
+      
+    </div>
+
   </div>
 </template>
 

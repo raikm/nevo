@@ -4,14 +4,24 @@ import DevicessPage from "../pages/DevicesPage";
 import LampsPage from "../pages/LampsPage";
 import PlantsPage from "../pages/PlantsPage";
 import PackagesPage from "../pages/PackagesPage";
-import SettingsPage from "../pages/SettingsPage";
 import SpotifyCallback from "../components/Callbacks/SpotifyCallback.vue";
 import DashboardPage from "../pages/DashboardPage";
+import SettingsPage from "../pages/SettingsPage";
+import General from "../pages/SettingsPage/General.vue"
+import Serverinfo from "../pages/SettingsPage/Server.vue"
+import Calendar from "../pages/SettingsPage/Calendar.vue"
+import Spotify from "../pages/SettingsPage/Spotify.vue"
+import HomeAssistant from "../pages/SettingsPage/HomeAssistant.vue"
+import Sonos from "../pages/SettingsPage/Sonos.vue"
+import PublicTransport from "../pages/SettingsPage/PublicTransport.vue"
+import Weather from "../pages/SettingsPage/Weather.vue"
+import Plants from "../pages/SettingsPage/Plants.vue"
+import PackageTracking from "../pages/SettingsPage/PackageTracking.vue"
 
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
       path: "/",
@@ -47,6 +57,58 @@ export default new Router({
       path: "/SettingsPage",
       name: "settings-page",
       component: SettingsPage,
+      children: [
+        {
+          path: "General",
+          name: "general",
+          component: General,
+        },
+        {
+          path: "Server",
+          name: "server",
+          component: Serverinfo,
+        },
+        {
+          path: "Calendar",
+          name: "calendar",
+          component: Calendar,
+        },
+        {
+          path: "Spotify",
+          name: "spotify",
+          component: Spotify,
+        },
+        {
+          path: "HomeAssistant",
+          name: "homeassistant",
+          component: HomeAssistant,
+        },
+        {
+          path: "Sonos",
+          name: "sonos",
+          component: Sonos,
+        },
+        {
+          path: "PublicTransport",
+          name: "publictransport",
+          component: PublicTransport,
+        },
+        {
+          path: "Weather",
+          name: "weather",
+          component: Weather,
+        },
+        {
+          path: "Plants",
+          name: "plants",
+          component: Plants,
+        },
+        {
+          path: "PackageTracking",
+          name: "packagetracking",
+          component: PackageTracking,
+        },
+      ],
     },
     {
       path: "/SpotifyCallback",

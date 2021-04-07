@@ -3,6 +3,10 @@ import colors from "../style/main-colors.scss";
 
 Vue.mixin({
   methods: {
+    cleanConfigName(configName) {
+      let cleanName = configName.replace("_", " ").toUpperCase();
+      return cleanName;
+    },
     changePage: function(path, name) {
       this.$router.push(path, () => {});
       let elements = document.getElementsByClassName("active");

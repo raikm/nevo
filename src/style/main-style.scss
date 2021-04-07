@@ -32,7 +32,7 @@ body {
   
 }
 
-.page-header {
+.page-header, .page-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -43,6 +43,7 @@ body {
 .page-header > div {
   margin: 0 0.5rem;
 }
+
 
 .basic-card {
   background-color: rgba(255, 255, 255, 0.9);
