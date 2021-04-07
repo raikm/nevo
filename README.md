@@ -10,8 +10,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
- 📦 unit tests
  📦 Dashboard Page V1 completely done without mockup data
+ 📦 unit tests
  📦 Implementing Shortcut Buttons with Script Integration from Home Assistant
  📦 Change Light Statues with Websocket
  📦 First tests with health data export from the iPhone
