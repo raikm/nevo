@@ -52,6 +52,6 @@ input:focus {
 }
 
 ::-ms-thumb {
-  width: 2px;
+  width: 0px;
 }
 </style>

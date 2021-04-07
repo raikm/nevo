@@ -40,6 +40,7 @@ export default new Vuex.Store({
     gCalendars: [],
     speakers: [],
     activeSpeaker: [],
+    spotifyAccessToken: ""
   },
   mutations: {
     //sync
@@ -86,6 +87,9 @@ export default new Vuex.Store({
         }
       }
     },
+    setSpotifyAccessToken(state, newAccessToken) {
+      state.spotifyAccessToken = newAccessToken;
+    },
   },
   modules: {},
   getters: {
@@ -102,5 +106,6 @@ export default new Vuex.Store({
     speakers: (state) => state.speakers,
     activeSpeaker: (state) => state.activeSpeaker,
     activeSpeakerState: (state) => state.activeSpeaker.state,
+    spotifyAccessToken: (state) => state.spotifyAccessToken,
   },
 });

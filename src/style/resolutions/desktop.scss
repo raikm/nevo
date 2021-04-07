@@ -24,16 +24,14 @@
     // margin: auto;
 
     .small-box {
-        height: 15vh;
-        max-height: 200px;
-
-      }
-      .big-box {
-          min-height: 200px;
-        height: 25vh;
-        // max-height: 250px;
-      }
+      height: 15vh;
+      max-height: 200px;
+    }
+    .big-box {
+      min-height: 200px;
+      height: 25vh;
+      // width: 10s0%;
+      // max-height: 250px;
+    }
   }
 }
-
-

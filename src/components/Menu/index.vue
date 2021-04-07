@@ -70,15 +70,12 @@
     >
       <svgicon class="menu-icon package-icon" icon="menu_package"></svgicon>
     </div>
-    <!-- <div
-            class="menu-button click-element"
-            @click="changePage('SettingsPage', 'automation-icon')"
-          >
-            <svgicon
-              class="menu-icon automation-icon"
-              icon="menu_settings"
-            ></svgicon>
-          </div> -->
+    <div
+      class="menu-button click-element"
+      @click="changePage('SettingsPage', 'automation-icon')"
+    >
+      <svgicon class="menu-icon automation-icon" icon="menu_settings"></svgicon>
+    </div>
   </div>
 </template>
 

@@ -1,62 +1,15 @@
 <template>
-  <div>
-    <div id="main-playlist-shortcuts">
-      <div class="columns">
-        <div class="column is-paddingless">
-          <div
-            class="playlist-shortcuts"
-            :key="playlist.id"
-            v-for="playlist in playlists.slice(3, 6)"
-          >
-            <button
-              class="playlist-button"
-              @click="startPlaylistOnSpotify(playlist.name)"
-            >
-              <svg class="playlist-icon" viewBox="0 0 50 50">
-                <path
-                  fill="#231F20"
-                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
-                />
-              </svg>
-
-              {{ playlist.name }}
-            </button>
-          </div>
-        </div>
-        <div class="column is-paddingless">
-          <div
-            class="playlist-shortcuts"
-            :key="playlist.id"
-            v-for="playlist in playlists.slice(0, 3)"
-          >
-            <button
-              class="playlist-button"
-              @click="startPlaylistOnSpotify(playlist.name)"
-            >
-              <svg class="playlist-icon" viewBox="0 0 50 50">
-                <path
-                  fill="#231F20"
-                  d="M8.667,15h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,15,8.667,15z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,37h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,37,8.667,37z"
-                />
-                <path
-                  fill="#231F20"
-                  d="M8.667,26h30c0.552,0,1-0.447,1-1s-0.448-1-1-1h-30c-0.552,0-1,0.447-1,1S8.114,26,8.667,26z"
-                /></svg
-              >{{ playlist.name }}
-            </button>
-          </div>
+  <div class="playlist-shortcuts-container">
+    <div class="playlist-shortcuts-container">
+      <div
+        class="playlist-cover-info-wrapper"
+        :key="playlist.id"
+        v-for="playlist in playlists"
+        @click="playPlaylist(playlist.uri)"
+      >
+        <img class="playlist-cover" :src="playlist.images[0].url" alt="" />
+        <div class="playlist-info">
+          {{ playlist.name }}
         </div>
       </div>
     </div>
@@ -65,94 +18,81 @@
 
 <script>
 import "../../../compiled-icons/music";
+import { mapGetters } from "vuex";
 
 export default {
   name: "MusicPlayerPlaylistController",
+  created() {
+    this.getAllPlaylists();
+  },
 
+  computed: {
+    ...mapGetters(["config", "activeSpeaker"]),
+  },
+  methods: {
+    getAllPlaylists() {
+      const config = {
+        headers: {
+          Authorization: `Bearer ${this.$store.getters.spotifyAccessToken}`,
+          "Content-Type": "application/json",
+        },
+      };
+      this.$axios
+        .get("https://api.spotify.com/v1/me/playlists", config)
+        .then((response) => {
+          if (response.data.items.length !== 0) {
+            this.playlists = response.data.items;
+          }
+        })
+        .catch((error) => this.showToastError(error.message));
+    },
+    playPlaylist(uri) {
+      this.$axios
+        .get(
+          `${this.config.sonos.rest_url}/Lounge/spotify/now/spotify:user:${uri}`
+        )
+        .then(() => {})
+        .catch((error) => this.showToastError(error.message));
+    },
+  },
   data() {
     return {
-      playlists: [
-        {
-          id: 1,
-          name: "Coffee",
-          cover: "./link",
-        },
-        {
-          id: 2,
-          name: "Morning",
-          cover: "./link",
-        },
-        {
-          id: 3,
-          name: "Cooking",
-          cover: "./link",
-        },
-        {
-          id: 4,
-          name: "Guests",
-          cover: "./link",
-        },
-        {
-          id: 5,
-          name: "Up",
-          cover: "./link",
-        },
-        {
-          id: 6,
-          name: "Hip Hop",
-          cover: "./link",
-        },
-      ],
+      playlists: [],
     };
   },
 };
 </script>
 
 <style lang="scss">
-#current-track {
-  width: 88%;
-  float: left;
+.playlist-shortcuts-container {
+  .playlist-shortcuts-container {
+    display: grid;
+    grid-gap: 5px;
+    //visible covers:
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-flow: column;
+    //hidden covers:
+    grid-auto-columns: minmax(100px, 1fr);
+    grid-template-rows: minmax(100px, 1fr);
+    overflow-x: scroll;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
 
-  #album-cover {
-    height: 30px;
-    width: 30px;
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 }
+.playlist-cover-info-wrapper {
+  .playlist-cover {
+    border-radius: 5px;
+  }
 
-.playlist-name {
-  padding-left: 0.5vh;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 55%;
-}
-
-#main-playlist-shortcuts {
-  // background: yellow;
-  // overflow: hidden;
-  height: 100%;
-  padding: 2vh 2.5%;
-}
-
-.playlist-icon {
-  float: left;
-  padding: 0.25vh;
-  height: 3vh;
-  width: 3vh;
-}
-
-.playlist-shortcuts {
-  text-align: left;
-  width: 100%;
-  padding: 0.3vh;
-}
-
-.playlist-button {
-  height: 3.5vh;
-  width: 100%;
-  font-size: 2vh;
-  text-align: left;
-  display: flex;
-  background: white;
-  align-items: center;
+  .playlist-info {
+    font-size: small;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 </style>

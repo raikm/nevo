@@ -74,7 +74,7 @@ export default {
       await createConnection({ auth }).then((conn) => {
         subscribeEntities(conn, (entities) => {
           //setHistory
-          console.log(entities);
+          // console.log(entities);
           this.$store.commit("setCurrentEntities", Object.values(entities));
         });
       });

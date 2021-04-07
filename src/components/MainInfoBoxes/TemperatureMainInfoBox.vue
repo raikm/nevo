@@ -51,16 +51,25 @@
 <script>
 import "@/compiled-icons/temperature";
 import "@/compiled-icons/humidity";
+import { mapGetters } from "vuex";
 
 export default {
-  mounted() {
-    this.getCurrentTemperature();
-    this.getCurrentHumidity();
+  computed: {
+    ...mapGetters(["currentEntities"]),
+  },
+  watch: {
+    currentEntities() {
+      this.getCurrentTemperature();
+      this.getCurrentHumidity();
+    },
   },
   methods: {
     getCurrentTemperature() {
+      // console.log("getCurrentTemperature");
+
       this.$store.getters.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.temperature")) {
+          // console.log(entity.state);
           this.temperatureInfo = parseFloat(entity.state).toFixed(1);
         }
       });

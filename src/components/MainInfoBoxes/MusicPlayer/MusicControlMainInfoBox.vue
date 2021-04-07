@@ -1,16 +1,19 @@
-//  v-if="
-//         this.activeSpeaker.length !== 0 && 
-//           (this.activeSpeakerState.playbackState === 'PLAYING' ||
-//             this.activeSpeakerState.playbackState === 'PAUSED')
-//       "
+// v-if=" // this.activeSpeaker.length !== 0 && //
+(this.activeSpeakerState.playbackState === 'PLAYING' || //
+this.activeSpeakerState.playbackState === 'PAUSED') // "
 
 <template>
   <div class="basic-card main-info-box main-info-box-big music-control-box">
     <MusicPlayerController
+      v-if="this.activeSpeaker.length !== 0"
       id="music-player"
-     
     />
-    <!-- <MusicPlayerPlaylistController id="music-control" /> -->
+    <MusicPlayerPlaylistController
+      v-if="
+        this.activeSpeaker.length === 0
+      "
+      id="music-control"
+    />
 
     <!-- TODO: put more in the HorizontalBarController -->
     <div id="volume-control-wrapper">
@@ -20,7 +23,6 @@
         @change-slider-value="changeVolume"
         :value="
           this.activeSpeaker.length !== 0 ? this.activeSpeakerState.volume : 0
-
         "
       />
       <div id="volume-icon-container">
@@ -31,7 +33,7 @@
 </template>
 
 <script>
-// import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
+import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
 import MusicPlayerController from "./MusicPlayerController";
 import HorizontalBarController from "@/components/InteractionController/HorizontalBarController";
 import "../../../compiled-icons/volume_medium";
@@ -40,12 +42,17 @@ import { mapGetters } from "vuex";
 export default {
   name: "MusicControlMainInfoBox",
   components: {
-    // MusicPlayerPlaylistController,
+    MusicPlayerPlaylistController,
     HorizontalBarController,
     MusicPlayerController,
   },
   computed: {
-    ...mapGetters(["speakers", "config", "activeSpeaker", "activeSpeakerState"]),
+    ...mapGetters([
+      "speakers",
+      "config",
+      "activeSpeaker",
+      "activeSpeakerState",
+    ]),
   },
   mounted() {
     this.setUpZones();
@@ -56,7 +63,10 @@ export default {
       this.$axios
         .get(this.config.sonos.rest_url + "/zones")
         .then((response) => {
-          this.$store.commit("setSpeakers", response.data.map(element => element.coordinator));
+          this.$store.commit(
+            "setSpeakers",
+            response.data.map((element) => element.coordinator)
+          );
           // this.setUpDefaultMainZones();
         })
         .catch((error) => {
@@ -77,9 +87,7 @@ export default {
     // },
     currentMainZoneAvailable() {
       this.speakers.find((zone) => {
-        if (
-          zone.coordinator.roomName === this.activeSpeaker.roomName
-        )
+        if (zone.coordinator.roomName === this.activeSpeaker.roomName)
           return true;
       });
       return false;
@@ -101,17 +109,24 @@ export default {
 #volume-control::-webkit-slider-thumb {
   -webkit-appearance: none;
   -webkit-touch-appearance: none;
-  width: 0px; /* 1 */
-  background: #fff;
+  width: 0px;
+  // color: #fff;
+  //  border: 0 !important;
+  //  background-color:#fff !important;
+  background-color: #fff;
   box-shadow: -100vw 0 0 100vw #ffffff;
+  cursor: none;
 }
 
 .music-control-box {
   height: 100%;
+  width: 100%;
 }
 
-#music-player {
+#music-player,
+#music-control {
   height: 75%;
+  width: 100%;
 }
 
 #volume-control-wrapper {
