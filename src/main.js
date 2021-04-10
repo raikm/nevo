@@ -4,8 +4,10 @@ import store from "./store";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
+//TODO only import toast
 import Buefy from "buefy";
 import "buefy/dist/buefy.css";
+
 import VueAxios from "./plugins/axios";
 //https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
 import VueSVGIcon from "vue-svgicon";
