@@ -7,16 +7,17 @@ import PackagesPage from "../pages/PackagesPage";
 import SpotifyCallback from "../components/Callbacks/SpotifyCallback.vue";
 import DashboardPage from "../pages/DashboardPage";
 import SettingsPage from "../pages/SettingsPage";
-import General from "../pages/SettingsPage/General.vue"
-import Serverinfo from "../pages/SettingsPage/Server.vue"
-import Calendar from "../pages/SettingsPage/Calendar.vue"
-import Spotify from "../pages/SettingsPage/Spotify.vue"
-import HomeAssistant from "../pages/SettingsPage/HomeAssistant.vue"
-import Sonos from "../pages/SettingsPage/Sonos.vue"
-import PublicTransport from "../pages/SettingsPage/PublicTransport.vue"
-import Weather from "../pages/SettingsPage/Weather.vue"
-import Plants from "../pages/SettingsPage/Plants.vue"
-import PackageTracking from "../pages/SettingsPage/PackageTracking.vue"
+import General from "../pages/SettingsPage/General.vue";
+import Serverinfo from "../pages/SettingsPage/Server.vue";
+import Calendar from "../pages/SettingsPage/Calendar.vue";
+import Spotify from "../pages/SettingsPage/Spotify.vue";
+import HomeAssistant from "../pages/SettingsPage/HomeAssistant.vue";
+import Sonos from "../pages/SettingsPage/Sonos.vue";
+import PublicTransport from "../pages/SettingsPage/PublicTransport.vue";
+import Weather from "../pages/SettingsPage/Weather.vue";
+import Plants from "../pages/SettingsPage/Plants.vue";
+import PackageTracking from "../pages/SettingsPage/PackageTracking.vue";
+import PlantsDetail from "../pages/SettingsPage/PlantsDetail.vue";
 
 Vue.use(Router);
 
@@ -102,6 +103,11 @@ export default new Router({
           path: "Plants",
           name: "plants",
           component: Plants,
+        },
+        {
+          path: "PlantsDetail",
+          name: "plantsdetail",
+          component: PlantsDetail,
         },
         {
           path: "PackageTracking",

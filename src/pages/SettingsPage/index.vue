@@ -1,7 +1,9 @@
 <template>
   <div class="setting-main-page">
     <div class="setting-menu">
-      <div class="setting-menu-wrapper basic-card">
+      <h1 class="title-1">Settings</h1>
+
+      <div class="setting-menu-wrapper element-wrapper">
         <div class="setting" @click="openSettingDetail('General')">
           <svgicon class="settings-icon" icon=""></svgicon>
           <div class="settings-title">General</div>
@@ -11,7 +13,7 @@
           <div class="settings-title">Server</div>
         </div>
       </div>
-      <div class="setting-menu-wrapper basic-card">
+      <div class="setting-menu-wrapper element-wrapper">
         <div class="setting" @click="openSettingDetail('Calendar')">
           <svgicon class="settings-icon" icon=""></svgicon>
           <div class="settings-title">Calendar</div>
@@ -37,11 +39,17 @@
           <div class="settings-title">Weather</div>
         </div>
         <div class="setting" @click="openSettingDetail('Plants')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon
+            class="settings-icon plant-icon active"
+            icon="menu_plant"
+          ></svgicon>
           <div class="settings-title">Plants</div>
         </div>
         <div class="setting" @click="openSettingDetail('PackageTracking')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon
+            class="settings-icon package-icon active"
+            icon="menu_package"
+          ></svgicon>
           <div class="settings-title">Package Tracking</div>
         </div>
       </div>
@@ -54,7 +62,8 @@
 
 <script>
 import { mapGetters } from "vuex";
-import "@/compiled-icons/";
+import "@/compiled-icons/menu_plant";
+import "@/compiled-icons/menu_package";
 
 export default {
   name: "SettingsPage",
@@ -66,10 +75,8 @@ export default {
   },
   methods: {
     openSettingDetail(childrenPageName) {
-      console.log("open: " + childrenPageName);
       this.$router.push(`/SettingsPage/${childrenPageName}`);
     },
-    
   },
 };
 </script>
@@ -87,15 +94,18 @@ export default {
       height: auto;
       margin-bottom: $standard-space;
       .setting {
-        height: 4vh;
         display: flex;
         align-items: center;
         .settings-icon {
-          height: 100%;
+          height: 80%;
+          padding: 0.3vh;
+          margin-right: 0.5vh;
+          border-radius: 5px;
+          background-color: rgba(211, 211, 211, 0.301);
         }
       }
       .setting:hover {
-        background-color: lightgray;
+        background-color: $main-light-gray;
         overflow: hidden;
       }
     }
@@ -104,11 +114,59 @@ export default {
     padding: 0 $standard-space;
   }
 }
+.element-wrapper-header {
+  width: 100%;
+  display: grid;
+  justify-content: right;
+}
 .element-wrapper {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   backdrop-filter: blur(10px);
   border-radius: 5px;
   margin: 1vh 0;
 }
 
+.element-wrapper > div {
+  border-bottom: 1px solid $main-light-gray;
+  margin-left: 15px;
+  height: 4vh;
+}
+.element-wrapper > div:last-child {
+  border: none;
+}
+.info-element {
+  height: 100%;
+}
+
+.lable-name {
+  font-weight: 500;
+}
+
+.info-text {
+  justify-self: right;
+  color: $main-gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  text-align: right;
+  margin-right: 5%;
+  font-size: 16px;
+}
+
+.input-element {
+  border: none;
+  text-align: right;
+  justify-self: right;
+  white-space: nowrap;
+  width: 100%;
+  text-align: right;
+  margin-right: 5%;
+  font-size: 16px;
+}
+
+.action-setting-element {
+  color: $main-blue;
+  cursor: pointer;
+}
 </style>

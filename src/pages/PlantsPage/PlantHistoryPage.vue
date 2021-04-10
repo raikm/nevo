@@ -363,9 +363,6 @@ export default {
 
 <style lang="scss">
 
-.plant-popup {
-  //height: auto;
-}
 
 .plant-main-info {
   margin: $standard-space;
@@ -418,7 +415,7 @@ export default {
   margin: $standard-space 0;
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   column-gap: $standard-space * 2;
 }
 
@@ -464,10 +461,9 @@ export default {
 
 .plant-detail-container {
   display: grid;
-  grid-template-columns: 1fr;
   row-gap: $standard-space;
   // min-height: 65%;
-  // width: 33.3%;
+  
 
   .plant-detail-header {
     // margin: -1.5% 1.5% 1.5% 1.5%;

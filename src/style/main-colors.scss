@@ -25,8 +25,11 @@ $main-background-color: rgb(252, 252, 252);
 
 
 :export {
+    
     mainBlue: $main-blue;
     mainGreen: $main-brown;
     mainYellow: $main-yellow;
     mainLightGray: $main-light-gray;
+    mainGray: $main-gray;
+    textColor: $text-color;
   }

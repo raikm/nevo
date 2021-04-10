@@ -31,9 +31,11 @@ export default {
   },
   methods: {
     getAllPlaylists() {
+      if (localStorage.getItem('spotify_access_token').length === 0) return;
+      console.log("GET ALL PLAYLISTS WITH TOKEN" + localStorage.getItem('spotify_access_token'))
       const config = {
         headers: {
-          Authorization: `Bearer ${this.$store.getters.spotifyAccessToken}`,
+          Authorization: `Bearer ${localStorage.getItem('spotify_access_token')}`,
           "Content-Type": "application/json",
         },
       };

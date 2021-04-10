@@ -112,8 +112,8 @@ $inactive-color: $main-gray;
 
 .plant-icon {
   fill: $inactive-color;
-  margin-left: 12%;
-  margin-right: 8%;
+  // margin-left: 12%;
+  // margin-right: 8%;
 }
 .plant-icon.active, .plant-icon:hover {
   fill: #639a67;
