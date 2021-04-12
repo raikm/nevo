@@ -1,68 +1,17 @@
 <template>
   <div>
-    <div
-      id="weather-box"
-      class="basic-card main-info-box main-info-box-small"
-      :style="{ backgroundImage: this.backgroundImage }"
-      v-if="currentWeather.weather"
-    >
-      <div id="weather-header">
-        <div id="weather-city-name">Salzburg</div>
-        <svgicon
-          id="weather-icon"
-          :icon="'Weather_' + currentWeather.weather[0].main"
-          :style="{
-            fill: currentWeatherIconColor(currentWeather.weather[0].main),
-          }"
-        ></svgicon>
-      </div>
-      <div id="temperature-info-overview">
-        <span id="temperature-outdoor-info"
-          >{{ Math.round(currentWeather.temp) }}°</span
-        >
-        <div id="weather-description">
-          <span>{{ currentWeather.weather[0].main }}</span>
-          <span
-            >H: {{ Math.round(todayForcast.temp.max) }}° L:
-            {{ Math.round(todayForcast.temp.min) }}°
-          </span>
-        </div>
-      </div>
-      <div id="temperature-hour-info">
-        <div
-          class="temperature-hour-content"
-          :key="tempHourInfo.index"
-          v-for="tempHourInfo in tempHourInfos"
-        >
-          <div class="weather-hour">
-            {{
-              new Date(
-                currentHour.setHours(currentHour.getHours() + 1)
-              ).getHours()
-            }}
-          </div>
-          <div class="weather-icon-wrapper">
-            <svgicon
-              class="weather-hour-icon"
-              width="1.5vh"
-              :icon="'Weather_' + currentWeather.weather[0].main"
-              :style="{
-                fill: currentWeatherIconColor(currentWeather.weather[0].main),
-              }"
-            ></svgicon>
-          </div>
-          <div class="weather-hour-temperature">
-            {{ Math.round(tempHourInfo.temp) }}°
-          </div>
-        </div>
-      </div>
+    <div class="forecast-stack-wrapper" v-if="Object.keys(this.weatherForecast).length > 0">
+      <DayForecast :weatherForecast="weatherForecast" />
+      <WeekForecast />
     </div>
     <div
+      v-else
       id="weather-box"
       class="basic-card main-info-box main-info-box-small"
       :style="{ backgroundImage: this.backgroundImage }"
-      v-else
-    ></div>
+    >
+      <div class="weather-service-info">Weather Service not available</div>
+    </div>
   </div>
 </template>
 
@@ -77,68 +26,34 @@ import "@/compiled-icons/Weather_Snow";
 import "@/compiled-icons/Weather_Sunrise";
 import "@/compiled-icons/Weather_Sunset";
 import "@/compiled-icons/Weather_Thunderstorm";
-
-import { mapState } from "vuex";
-import colors from "@/style/main-colors.scss";
-
+import DayForecast from "./DayForecast";
+import WeekForecast from "./WeekForecast";
 export default {
-  components: {},
-  props: [],
-  computed: mapState(["weather"]),
+  components: { DayForecast, WeekForecast },
+
   created() {
-    this.currentWeatherDataFormAPI();
+    this.weatherForecastDataFormAPI();
   },
-  mounted() {},
   methods: {
-    currentWeatherDataFormAPI() {
+    weatherForecastDataFormAPI() {
       if (this.$store.getters.config.weather.api_key.length === 0) return;
       const { api_key, open_weather_url } = this.$store.getters.config.weather;
 
       this.$axios
         .get(`${open_weather_url}&appid=${api_key}`, {})
         .then((response) => {
-          this.currentWeather = response.data.current;
-          this.todayForcast = response.data.daily[0];
-          this.defineBackground();
-          let _weatherHour = Object.values(response.data.hourly);
-
-          this.tempHourInfos = _weatherHour.slice(0, 6).filter((hour) => {
-            return hour;
-          });
+          console.log(response.data);
+          this.weatherForecast = response.data;
         })
         .catch((error) => {
-          this.showToastError(error.toString());
+          this.showToastError("Error while getting current Weather Data");
+          console.log(error);
         });
-    },
-    currentWeatherIconColor(weatherDescription) {
-      //TODO: define colors in SVGs/js
-      switch (weatherDescription) {
-        case "Clear":
-          return colors.mainYellow;
-        default:
-          return colors.mainLightGray;
-      }
-    },
-    defineBackground() {
-      let sunset = new Date(this.todayForcast.sunset);
-      let now = new Date();
-      // console.log(sunset.toLocaleTimeString() + " --- " + now.toLocaleTimeString())
-      if (sunset.getTime() < now.getTime()) {
-        this.backgroundImage =
-          "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
-      } else {
-        this.backgroundImage =
-          "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)";
-      }
     },
   },
   data() {
     return {
-      tempHourInfos: [],
-      todayForcast: {},
-      currentWeather: {},
-      currentHour: new Date(),
-      backgroundImage: "",
+      weatherForecast: {},
     };
   },
 };
@@ -215,5 +130,13 @@ export default {
       font-weight: 700;
     }
   }
+}
+
+.weather-service-info {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  color: $main-gray;
 }
 </style>
