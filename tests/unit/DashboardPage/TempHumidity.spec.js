@@ -6,19 +6,19 @@ import TempHumidity from "@/pages/DashboardPage/MainInfoBoxes/TempHumidity";
 const localVue = createLocalVue();
 localVue.use(Vuex);
 let wrapper;
-let getters;
+let state;
 let store;
 
 describe("TempHumidity Component and no data is given from Server (NaN)", () => {
   beforeEach(() => {
-    getters = {
-      currentEntities: () => [
+    state = {
+      currentEntities: [
         { entity_id: "sensor.temperature_mock", state: "NaN" },
         { entity_id: "sensor.humidity_mock", state: "NaN" },
       ],
     };
     store = new Vuex.Store({
-      getters,
+      state,
     });
     wrapper = mount(TempHumidity, { store, localVue });
   });
@@ -35,14 +35,14 @@ describe("TempHumidity Component and no data is given from Server (NaN)", () => 
 
 describe("TempHumidity Component and data is given from Server", () => {
   beforeEach(() => {
-    getters = {
-      currentEntities: () => [
-        { entity_id: "sensor.temperature_mock", state: "24.2" },
-        { entity_id: "sensor.humidity_mock", state: "88.2" },
+    state = {
+      currentEntities: [
+        { entity_id: "sensor.temperature_mock", state: "24.23" },
+        { entity_id: "sensor.humidity_mock", state: "88.22" },
       ],
     };
     store = new Vuex.Store({
-      getters,
+      state,
     });
     wrapper = mount(TempHumidity, { store, localVue });
   });
