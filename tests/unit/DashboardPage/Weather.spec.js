@@ -1,26 +1,15 @@
 import { mount, createLocalVue } from "@vue/test-utils";
-import Vuex from "vuex";
 
-import TempHumidity from "@/pages/DashboardPage/MainInfoBoxes/TempHumidity";
+import Weather from "@/pages/DashboardPage/MainInfoBoxes/Weather";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);
 let wrapper;
-let state;
 let store;
 
 describe("TempHumidity Component and no data is given from Server (NaN)", () => {
-  beforeAll(() => {
-    state = {
-      currentEntities: [
-        { entity_id: "sensor.temperature_mock", state: "NaN" },
-        { entity_id: "sensor.humidity_mock", state: "NaN" },
-      ],
-    };
-    store = new Vuex.Store({
-      state,
-    });
-    wrapper = mount(TempHumidity, { store, localVue });
+  setUp(() => {
+    wrapper = mount(Weather);
   });
 
   test("data of temp and humidity should be still null", () => {
@@ -34,7 +23,7 @@ describe("TempHumidity Component and no data is given from Server (NaN)", () => 
 });
 
 describe("TempHumidity Component and data is given from Server", () => {
-  beforeAll(() => {
+  beforeEach(() => {
     state = {
       currentEntities: [
         { entity_id: "sensor.temperature_mock", state: "24.23" },
@@ -56,3 +45,4 @@ describe("TempHumidity Component and data is given from Server", () => {
     expect(wrapper.find("#humidity-info").text()).toEqual("88.2%");
   });
 });
+
