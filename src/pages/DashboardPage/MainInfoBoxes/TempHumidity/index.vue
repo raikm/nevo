@@ -99,40 +99,40 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 4fr 1fr;
   height: 100%;
+
+  #temp-info {
+    font-size: 5vh;
+  }
+  #humidity-info {
+    font-size: 2vh;
+  }
 }
 
-.temperature-controller-container {
-  align-self: stretch;
-  display: grid;
-  width: 100%;
-  padding: 10%;
-  grid-auto-rows: 3.8vh;
-  grid-row-gap: 0;
-  justify-content: right;
-}
+// .temperature-controller-container {
+//   align-self: stretch;
+//   display: grid;
+//   width: 100%;
+//   padding: 10%;
+//   grid-auto-rows: 3.8vh;
+//   grid-row-gap: 0;
+//   justify-content: right;
+// }
+//
+// .temperature-change-button {
+//   height: 3.8vh;
+//   width: 3.8vh;
+//   border: 0px solid #000000;
+//   background-color: rgba(235, 234, 234, 0.611);
+//   font-size: x-large;
+//   color: rgba(201, 201, 201, 1);
+// }
 
-.temperature-change-button {
-  height: 3.8vh;
-  width: 3.8vh;
-  border: 0px solid #000000;
-  background-color: rgba(235, 234, 234, 0.611);
-  font-size: x-large;
-  color: rgba(201, 201, 201, 1);
-}
-
-#temp-info {
-  font-size: 5vh;
-}
-#humidity-info {
-  font-size: 2vh;
-}
-
-#temperature-up-button {
-  border-radius: 0 10px 10px 0;
-  transform: rotate(-90deg);
-}
-#temperature-down-button {
-  border-radius: 0 10px 10px 0;
-  transform: rotate(90deg);
-}
+// #temperature-up-button {
+//   border-radius: 0 10px 10px 0;
+//   transform: rotate(-90deg);
+// }
+// #temperature-down-button {
+//   border-radius: 0 10px 10px 0;
+//   transform: rotate(90deg);
+// }
 </style>
