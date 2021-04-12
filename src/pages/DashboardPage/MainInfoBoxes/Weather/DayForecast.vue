@@ -65,7 +65,6 @@ export default {
   computed: mapState(["weather"]),
   props: ["weatherForecast"],
   created() {
-    console.log(this.weatherForecast);
     this.currentWeather = this.weatherForecast.current;
     this.todayForecast = this.weatherForecast.daily[0];
     let _weatherHour = Object.values(this.weatherForecast.hourly);

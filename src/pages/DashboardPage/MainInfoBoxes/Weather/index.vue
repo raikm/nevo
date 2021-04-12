@@ -1,16 +1,18 @@
 <template>
   <div>
-    <div class="forecast-stack-wrapper" v-if="Object.keys(this.weatherForecast).length > 0">
+    <div
+      id="forecast-stack-wrapper"
+      v-if="Object.keys(this.weatherForecast).length > 0"
+    >
       <DayForecast :weatherForecast="weatherForecast" />
       <WeekForecast />
     </div>
     <div
       v-else
-      id="weather-box"
       class="basic-card main-info-box main-info-box-small"
       :style="{ backgroundImage: this.backgroundImage }"
     >
-      <div class="weather-service-info">Weather Service not available</div>
+      <div id="weather-service-info">Weather Service not available</div>
     </div>
   </div>
 </template>
@@ -28,26 +30,27 @@ import "@/compiled-icons/Weather_Sunset";
 import "@/compiled-icons/Weather_Thunderstorm";
 import DayForecast from "./DayForecast";
 import WeekForecast from "./WeekForecast";
+import { mapState } from "vuex";
 export default {
   components: { DayForecast, WeekForecast },
-
   created() {
-    this.weatherForecastDataFormAPI();
+    this.weatherForecastDataFromAPI();
+  },
+  computed: {
+    ...mapState(["config"]),
   },
   methods: {
-    weatherForecastDataFormAPI() {
-      if (this.$store.getters.config.weather.api_key.length === 0) return;
-      const { api_key, open_weather_url } = this.$store.getters.config.weather;
+    weatherForecastDataFromAPI() {
+      if (this.config.weather.api_key.length === 0) return;
+      const { api_key, open_weather_url } = this.config.weather;
 
       this.$axios
         .get(`${open_weather_url}&appid=${api_key}`, {})
         .then((response) => {
-          console.log(response.data);
           this.weatherForecast = response.data;
         })
         .catch((error) => {
-          this.showToastError("Error while getting current Weather Data");
-          console.log(error);
+          console.log(error.message);
         });
     },
   },
@@ -60,10 +63,6 @@ export default {
 </script>
 
 <style lang="scss">
-#weather-box {
-  color: white;
-}
-
 #weather-header {
   // background-color: chartreuse;
   height: 3vh;
@@ -132,7 +131,7 @@ export default {
   }
 }
 
-.weather-service-info {
+#weather-service-info {
   display: grid;
   justify-content: center;
   align-content: center;
