@@ -67,22 +67,21 @@
 </template>
 
 <script>
-import "../../compiled-icons/Weather_Clear";
-import "../../compiled-icons/Weather_Clouds_2";
-import "../../compiled-icons/Weather_Clouds_Day";
-import "../../compiled-icons/Weather_Clouds";
-import "../../compiled-icons/Weather_Mist";
-import "../../compiled-icons/Weather_Rain";
-import "../../compiled-icons/Weather_Snow";
-import "../../compiled-icons/Weather_Sunrise";
-import "../../compiled-icons/Weather_Sunset";
-import "../../compiled-icons/Weather_Thunderstorm";
+import "@/compiled-icons/Weather_Clear";
+import "@/compiled-icons/Weather_Clouds_2";
+import "@/compiled-icons/Weather_Clouds_Day";
+import "@/compiled-icons/Weather_Clouds";
+import "@/compiled-icons/Weather_Mist";
+import "@/compiled-icons/Weather_Rain";
+import "@/compiled-icons/Weather_Snow";
+import "@/compiled-icons/Weather_Sunrise";
+import "@/compiled-icons/Weather_Sunset";
+import "@/compiled-icons/Weather_Thunderstorm";
 
 import { mapState } from "vuex";
 import colors from "@/style/main-colors.scss";
 
 export default {
-  name: "WeatherMainInfoBox",
   components: {},
   props: [],
   computed: mapState(["weather"]),

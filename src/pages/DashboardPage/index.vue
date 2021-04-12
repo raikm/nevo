@@ -26,15 +26,15 @@
 </template>
 
 <script>
-import TemperatureMainInfoBox from "@/components/MainInfoBoxes/TemperatureMainInfoBox";
-import WeatherMainInfoBox from "@/components/MainInfoBoxes/WeatherMainInfoBox";
-import LightIntensityMainInfoBox from "@/components/MainInfoBoxes/LightIntensityMainInfoBox";
-import PublicTransportMainInfoBox from "@/components/MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
-import CalendarMainInfoBox from "@/components/MainInfoBoxes/Calendar/CalendarMainInfoBox";
-import MusicControlMainInfoBox from "@/components/MainInfoBoxes/MusicPlayer/MusicControlMainInfoBox";
-import MainSceneBox from "@/components/SceneBoxes/MainSceneBox";
-// import RoomControlBox from "@/components/ShortcutBoxes/RoomControlBox";
-// import EBikeMainInfoBox from "@/components/MainInfoBoxes/EBikeMainInfoBox";
+import TemperatureMainInfoBox from "./MainInfoBoxes/TempHumidity";
+import WeatherMainInfoBox from "./MainInfoBoxes/Weather";
+import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
+import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport/PublicTransportMainInfoBox";
+import CalendarMainInfoBox from "./MainInfoBoxes/Calendar/CalendarMainInfoBox";
+import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer/MusicControlMainInfoBox";
+import MainSceneBox from "./SceneBoxes/MainSceneBox";
+// import RoomControlBox from "./ShortcutBoxes/RoomControlBox";
+// import EBikeMainInfoBox from "./MainInfoBoxes/EBikeMainInfoBox";
 
 export default {
   name: "DashboardPage",

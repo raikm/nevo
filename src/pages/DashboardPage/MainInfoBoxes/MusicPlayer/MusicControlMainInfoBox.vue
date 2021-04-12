@@ -36,7 +36,7 @@ this.activeSpeakerState.playbackState === 'PAUSED') // "
 import MusicPlayerPlaylistController from "./MusicPlayerPlaylistController";
 import MusicPlayerController from "./MusicPlayerController";
 import HorizontalBarController from "@/components/InteractionController/HorizontalBarController";
-import "../../../compiled-icons/volume_medium";
+import "@/compiled-icons/volume_medium";
 import { mapGetters } from "vuex";
 
 export default {

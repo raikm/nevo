@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import "../../../compiled-icons/music";
+import "@/compiled-icons/music";
 import { mapGetters } from "vuex";
 
 export default {

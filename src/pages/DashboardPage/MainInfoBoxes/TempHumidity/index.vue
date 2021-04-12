@@ -1,6 +1,5 @@
 <template>
   <div
-    ref="tempbox"
     class="basic-card main-info-box main-info-box-small temperature-main-info-box"
   >
     <div class="main-info-header">
@@ -8,7 +7,6 @@
         Indoor temperature
       </h1>
     </div>
-
     <div class="main-box-body">
       <div
         class="temperature-humidity-value-wrapper"
@@ -16,18 +14,17 @@
         ref="temphumd"
       >
         <span
-          v-if="temperatureInfo != '99.9' && temperatureInfo != 'NaN'"
-          :style="{ fontSize: this.$refs.temphumd.clientHeight * 0.5 + 'px' }"
+          id="temp-info"
+          v-if="temperatureInfo != null && temperatureInfo != 'NaN'"
           >{{ temperatureInfo }}°C</span
         >
-        <span v-else :style="{ fontSize: '3vh' }">--</span>
-
+        <span id="temp-info" v-else>--</span>
         <span
-          v-if="humidityInfo != 999.9 && humidityInfo != 'NaN'"
-          :style="{ fontSize: this.$refs.temphumd.clientHeight * 0.2 + 'px' }"
+          id="humidity-info"
+          v-if="humidityInfo != null && humidityInfo != 'NaN'"
           >{{ humidityInfo }}%</span
         >
-        <span v-else>--</span>
+        <span id="humidity-info" v-else>--</span>
       </div>
 
       <!-- <div class="temperature-controller-container">
@@ -51,11 +48,15 @@
 <script>
 import "@/compiled-icons/temperature";
 import "@/compiled-icons/humidity";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
+  created() {
+    this.getCurrentTemperature();
+    this.getCurrentHumidity();
+  },
   computed: {
-    ...mapGetters(["currentEntities"]),
+    ...mapState(["currentEntities"]),
   },
   watch: {
     currentEntities() {
@@ -65,36 +66,30 @@ export default {
   },
   methods: {
     getCurrentTemperature() {
-      // console.log("getCurrentTemperature");
-
-      this.$store.getters.currentEntities.filter((entity) => {
+      this.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.temperature")) {
-          // console.log(entity.state);
-          this.temperatureInfo = parseFloat(entity.state).toFixed(1);
+          this.temperatureInfo = Number(entity.state).toFixed(1);
         }
       });
     },
     getCurrentHumidity() {
-      this.$store.getters.currentEntities.filter((entity) => {
+      this.currentEntities.filter((entity) => {
         if (entity.entity_id.startsWith("sensor.humidity")) {
-          this.humidityInfo = parseFloat(entity.state).toFixed(1);
+          this.humidityInfo = Number(entity.state).toFixed(1);
         }
       });
     },
   },
   data() {
     return {
-      temperatureInfo: 99.9,
-      humidityInfo: 999.9,
+      temperatureInfo: null,
+      humidityInfo: null,
     };
   },
 };
 </script>
 
 <style lang="scss">
-.temperature-main-info-box {
-}
-
 .temperature-humidity-wrapper {
   display: grid;
 }
@@ -103,7 +98,6 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 4fr 1fr;
-
   height: 100%;
 }
 
@@ -124,6 +118,13 @@ export default {
   background-color: rgba(235, 234, 234, 0.611);
   font-size: x-large;
   color: rgba(201, 201, 201, 1);
+}
+
+#temp-info {
+  font-size: 5vh;
+}
+#humidity-info {
+  font-size: 2vh;
 }
 
 #temperature-up-button {
