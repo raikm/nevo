@@ -50,7 +50,6 @@ export default {
 
   methods: {
     connectGoogleApi() {
-      console.log("connect");
 
       // if (this.$gapi.clientProvider.authInstance == null) return;
       this.$gapi.login().then(({ currentUser, hasGrantedScopes }) => {

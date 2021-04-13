@@ -58,6 +58,7 @@ describe("weather component and API available", () => {
         url = _url;
         data = _data;
         resolve({
+          // simple data response with incomplete arrays
           data: {
             lat: 47.8112,
             lon: 13.0332,
@@ -66,8 +67,6 @@ describe("weather component and API available", () => {
               sunrise: 1618201454,
               sunset: 1618249955,
               temp: 2.29,
-              feels_like: -2.13,
-              pressure: 1025,
               humidity: 87,
               uvi: 0.27,
               clouds: 75,
@@ -171,9 +170,8 @@ describe("weather component and API available", () => {
     expect(wrapper.findComponent(WeekForecast).exists()).toBe(true);
   });
   test('should show correct infos', () => {
-      //temperature-outdoor-info --> 2°C
-
-      //first hour temp in ARRAY --> 2.29
+      //TODO: temperature-outdoor-info --> 2°C
+      //TODO: first hour temp in ARRAY --> 2.29
       
   })
   

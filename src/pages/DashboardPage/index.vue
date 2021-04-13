@@ -13,8 +13,7 @@
       <CalendarMainInfoBox class="big-box" />
       <MusicControlMainInfoBox class="big-box" />
     </div>
-
-
+    
     <MainSceneBox
       ref="sceneButtons"
       :containerWidth="containerSceneWidth"
@@ -45,8 +44,6 @@ export default {
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
-    // RoomControlBox,
-    // EBikeMainInfoBox,
     MainSceneBox,
   },
   created() {},
