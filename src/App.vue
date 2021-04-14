@@ -5,7 +5,6 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, 
      user-scalable=0"
     />
-
     <div id="header-container">
       <div id="logo-container"></div>
       <div id="middle-header-container"></div>
@@ -32,6 +31,7 @@ import {
   subscribeEntities,
   createLongLivedTokenAuth,
 } from "home-assistant-js-websocket";
+import { mapGetters } from "vuex";
 
 // import io from 'socket.io-client'
 
@@ -42,6 +42,9 @@ export default {
     Menu,
     // Newsfeed,
   },
+  computed: {
+    ...mapGetters(["config"]),
+  },
   created() {
     this.connectHomeassistantWebSocket();
     this.connectSonosWebsocket();
@@ -50,22 +53,54 @@ export default {
 
   methods: {
     connectGoogleApi() {
+      window.gapi.load("client:auth2", this.initGoogleClient);
+    },
+    initGoogleClient() {
+      const {
+        api_key,
+        discovery_docs,
+        client_id,
+        scope,
+      } = this.config.google_calendar;
 
-      // if (this.$gapi.clientProvider.authInstance == null) return;
-      this.$gapi.login().then(({ currentUser, hasGrantedScopes }) => {
-        console.log({ currentUser, hasGrantedScopes });
-      });
+      window.gapi.client
+        .init({
+          apiKey: api_key,
+          discoveryDocs: discovery_docs,
+          clientId: client_id,
+          scope: scope,
+        })
+        .then(() => {
+          // Listen for sign-in state changes.
+          window.gapi.auth2
+            .getAuthInstance()
+            .isSignedIn.listen(this.updateSigninStatus);
 
-      this.$gapi.getGapiClient().then((gapi) => {
-        gapi.client.calendar.calendarList
-          .list()
-          .then((response) => {
-            this.$store.commit("setGCalendars", response.result.items);
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      });
+          // Handle the initial sign-in state.
+          this.updateSigninStatus(
+            window.gapi.auth2.getAuthInstance().isSignedIn.get()
+          );
+        }).catch((error) => {
+          console.error(error)
+        });
+    },
+    updateSigninStatus(isSignedIn) {
+      if (isSignedIn) {
+        console.log("isSignedIn: " + isSignedIn);
+        this.setGoogleCalendars();
+      } else {
+        console.log("isSignedIn: " + isSignedIn);
+      }
+    },
+    setGoogleCalendars() {
+      window.gapi.client.calendar.calendarList
+        .list()
+        .then((response) => {
+          this.$store.commit("setGCalendars", response.result.items);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     async connectHomeassistantWebSocket() {

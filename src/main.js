@@ -15,31 +15,6 @@ import "./mixins/helpersMixin";
 
 // import aftership from "./plugins/aftership";
 
-import VueGapi from "vue-gapi";
-let google_calendar;
-
-try {
-  ({ google_calendar } = require("../config.json"));
-} catch (error) {
-  if (error.code === "MODULE_NOT_FOUND") {
-    ({ google_calendar } = require("../config_example.json"));
-    console.error("CONFIG FILE NOT FOUND - EXAMPLE CONFIG IS BEEING USED");
-  } else {
-    console.error(error);
-  }
-}
-
-//TODO: Catch missing config.json
-
-const config = {
-  apiKey: google_calendar.api_key,
-  clientId: google_calendar.client_id,
-  scope: "https://www.googleapis.com/auth/calendar.readonly",
-  discoveryDocs: [
-    "https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
-  ],
-};
-
 import VueSocketIO from "vue-socket.io";
 Vue.use(
   new VueSocketIO({
@@ -51,7 +26,6 @@ Vue.use(
 Vue.use(VueAxios);
 // Vue.use(aftership);
 Vue.use(store);
-Vue.use(VueGapi, config);
 Vue.use(VueSVGIcon);
 Vue.use(Buefy);
 

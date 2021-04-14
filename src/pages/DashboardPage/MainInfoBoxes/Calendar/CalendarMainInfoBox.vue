@@ -58,13 +58,9 @@ export default {
   created() {},
   mounted() {
     let unsubscribe = null;
-
     unsubscribe = this.$store.subscribe(({ type }) => {
       if (type === "setGCalendars") {
-        this.$gapi.getGapiClient().then((gapi) => {
-          console.log(gapi);
-          this.getCalendarEvents(gapi, this.$store.getters.googleCalendars);
-        });
+        this.getCalendarEvents(window.gapi, this.$store.getters.googleCalendars);
         unsubscribe(); // So it only reacts once.
       }
     });
