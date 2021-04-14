@@ -2,7 +2,6 @@
   <div
     id="weather-box"
     class="basic-card main-info-box main-info-box-small"
-    :style="{ backgroundImage: this.backgroundImage }"
   >
     <div id="weather-header">
       <div id="weather-city-name">Salzburg</div>
@@ -72,7 +71,6 @@ export default {
     this.tempHourInfos = _weatherHour.slice(0, 6).filter((hour) => {
       return hour;
     });
-    this.defineBackground();
   },
   methods: {
     currentWeatherIconColor(weatherDescription) {
@@ -84,19 +82,6 @@ export default {
           return colors.mainLightGray;
       }
     },
-    defineBackground() {
-      let sunset = new Date(this.todayForecast.sunset);
-      let sunsetInMinutes = sunset.getHours() * 60 + sunset.getMinutes();
-      let now = new Date();
-      let nowInMinutes = now.getHours() * 60 + now.getMinutes();
-      if (sunsetInMinutes < nowInMinutes) {
-        this.backgroundImage =
-          "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
-      } else {
-        this.backgroundImage =
-          "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)";
-      }
-    },
   },
   data() {
     return {
@@ -104,7 +89,6 @@ export default {
       currentWeather: {},
       todayForecast: {},
       currentHour: new Date(),
-      backgroundImage: "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)",
     };
   },
 };

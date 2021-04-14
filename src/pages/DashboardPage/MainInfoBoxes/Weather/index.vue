@@ -4,7 +4,10 @@
       id="forecast-stack-wrapper"
       v-if="Object.keys(this.weatherForecast).length > 0"
     >
-      <DayForecast :weatherForecast="weatherForecast" />
+      <DayForecast
+        :style="{ backgroundImage: this.backgroundImage }"
+        :weatherForecast="weatherForecast"
+      />
       <WeekForecast />
     </div>
     <div
@@ -48,15 +51,45 @@ export default {
         .get(`${open_weather_url}&appid=${api_key}`, {})
         .then((response) => {
           this.weatherForecast = response.data;
+          this.defineBackground();
         })
         .catch((error) => {
           console.log(error.message);
         });
     },
+    defineBackground() {
+      let sunset = new Date(this.weatherForecast.daily[0].sunset);
+      let sunsetInMinutes = sunset.getHours() * 60 + sunset.getMinutes();
+      let now = new Date();
+      let nowInMinutes = now.getHours() * 60 + now.getMinutes();
+      //DAY
+      if (sunsetInMinutes > nowInMinutes) {
+        switch (this.weatherForecast.current.weather[0].main) {
+          case "Snow":
+            this.backgroundImage =
+              "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
+            break;
+          case "Rain":
+            this.backgroundImage =
+              "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
+            break;
+          default:
+            this.backgroundImage =
+              "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)";
+            break;
+        }
+      }
+      //NIGHT
+      else {
+        this.backgroundImage =
+          "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
+      }
+    },
   },
   data() {
     return {
       weatherForecast: {},
+      backgroundImage: "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)",
     };
   },
 };
