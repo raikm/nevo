@@ -32,13 +32,13 @@ export default {
   methods: {
     getAllPlaylists() {
       if (localStorage.getItem('spotify_access_token').length === 0) return;
-      console.log("GET ALL PLAYLISTS WITH TOKEN" + localStorage.getItem('spotify_access_token'))
       const config = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('spotify_access_token')}`,
           "Content-Type": "application/json",
         },
       };
+      //TODO diff between access token and refresh token
       this.$axios
         .get("https://api.spotify.com/v1/me/playlists", config)
         .then((response) => {
