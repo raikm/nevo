@@ -41,10 +41,13 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "PublicTransportMainInfoBox",
-  // components: { ETAInfo },
-  props: [],
+  computed: {
+    ...mapState(["config"]),
+  },
   created() {
     this.getDepatureTime();
     this.interval = setInterval(() => {
@@ -69,13 +72,6 @@ export default {
         // { id: "455102400", name: "Salzburg Aiglhof S-Bahn" },
         // { id: "455102300", name: "Salzburg Mülln-Altstadt S-Bahn" },
       ],
-      homeaddress: {
-        type: "location",
-        latitude: this.$store.getters.config.public_transport.home_address
-          .latitude,
-        longitude: this.$store.getters.config.public_transport.home_address
-          .longitude,
-      },
     };
   },
   methods: {
@@ -86,18 +82,13 @@ export default {
       return Math.abs(Math.round(difference));
     },
     getDepatureTime() {
-      if (this.$store.getters.config.public_transport.websocketUrl === "<IP_ADDRESS>") return;
-      this.departuresFromHome = []
+      this.departuresFromHome = [];
       const createRoundRobin = require("@derhuerst/round-robin-scheduler");
       const createClient = require("hafas-client-rpc/ws/client");
 
       const hafasClient = createClient(
         createRoundRobin,
-        [
-          "ws://" +
-            this.$store.getters.config.public_transport.websocketUrl +
-            ":3000",
-        ],
+        ["ws://" + this.config.public_transport.websocketUrl + ":3000"],
         (_, hafas) => {
           this.stationsNearHome.forEach((station) => {
             hafas.departures(station.id, { duration: 15 }).then((result) =>
@@ -121,14 +112,15 @@ export default {
 
       // console.log(hafasClient);
       hafasClient.on("message", () => {
-        // console.log("a message occurred!");
+        console.log("a message occurred!");
+        //TODO change departuresFromHome Data
       });
-      hafasClient.on("cnnection-open", () => {
-        console.log("connection-open");
-      });
-      hafasClient.on("event", () => {
-        console.log("event");
-      });
+      // hafasClient.on("connection-open", () => {
+      //   console.log("connection-open");
+      // });
+      // hafasClient.on("event", () => {
+      //   console.log("event");
+      // });
       hafasClient.on("error", console.error);
     },
     filterTime(depTime) {
