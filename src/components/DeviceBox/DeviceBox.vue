@@ -10,9 +10,7 @@
       ></svgicon>
     </div>
     <div class="device-box-title">
-      <div class="box-title">
-        {{ deviceTitle }}
-      </div>
+      {{ deviceTitle }}
     </div>
     <div class="device-box-status">
       {{ deviceStatus }}
@@ -32,8 +30,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
 .device-box {
   width: 6vw;
   min-width: 115px;
@@ -41,38 +37,26 @@ export default {
   height: 6vw;
   min-height: 115px;
   max-height: 140px;
+  display: grid;
+  grid-template-rows: 3fr 1fr 1fr;
 }
 
 .device-box-header {
-  height: 40%;
-  overflow: hidden;
-
+  // overflow: hidden;
   width: 100%;
 }
 
 .device-box-title {
-  height: 40%;
-  width: 100%;
-
+  // width: 100%;
   font-weight: 700;
   line-height: 100%;
-  display: flex;
-  font-size: 100%;
-  // width: 100%;
-
-  .box-title {
-    position: absolute;
-    bottom: 24%;
-    width: auto;
-   
-  }
+  height: 100%;
+  display: grid;
+  align-content: baseline;
 }
 
 .device-box-status {
   font-size: 100%;
-  width: auto;
-  height: 20%;
-  position: absolute;
   overflow: hidden;
 }
 </style>

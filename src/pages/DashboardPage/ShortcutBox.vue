@@ -1,19 +1,13 @@
 <template>
-  <div v-on:click="triggerShortcut()">
+  <div class="basic-card click-element shortcut-box" @click="triggerShortcut">
     <svgicon
-      class="scene-icon-2"
+      class="scene-icon"
       :icon="shortcut.entity_id.split('shortcut_')[1]"
-      
     ></svgicon>
-
-    <h1 class="scene-name-2">
-      {{ shortcut.attributes.friendly_name }}
-    </h1>
   </div>
 </template>
 
 <script>
-//npm run generate-icons
 import "@/compiled-icons/start_morning";
 import "@/compiled-icons/leave_home";
 import "@/compiled-icons/back_home";
@@ -21,6 +15,9 @@ import "@/compiled-icons/movie_mode";
 import "@/compiled-icons/cleanup";
 import "@/compiled-icons/night_mode";
 import "@/compiled-icons/plant_lights";
+import "@/compiled-icons/evening_mode";
+import "@/compiled-icons/shower_mode";
+import "@/compiled-icons/curtain";
 
 export default {
   props: ["shortcut"],
@@ -35,11 +32,10 @@ export default {
   },
   methods: {
     triggerShortcut() {
-      
       var bodyParameters = {
         entity_id: this.shortcut.entity_id,
       };
-      
+
       this.$axios
         .post(
           "http://192.168.1.217:8123/api/services/script/turn_on",
@@ -54,15 +50,14 @@ export default {
 </script>
 
 <style lang="scss">
-.scene-icon-2 {
-  height: 2.5vh;
-  width: 2.5vw;
+.shortcut-box {
+  display: flex;
+  justify-content: center;
 }
 
-.scene-name-2 {
-  margin-right: 1vh;
-  float: right;
-  font-size: large;
-  font-weight: 500;
+.scene-icon {
+  align-self: center;
+  height: 60%;
+  width: 60%;
 }
 </style>

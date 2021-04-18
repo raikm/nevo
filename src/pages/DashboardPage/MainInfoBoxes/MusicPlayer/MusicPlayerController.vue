@@ -131,7 +131,6 @@ export default {
       this.activeSpeakerState != null &&
       this.activeSpeakerState.playbackState === "PLAYING"
     ) {
-      console.log("set intervall")
       this.interval = setInterval(() => {
         this.updateSecondsInCurrentTrack();
       }, 1000);
@@ -211,7 +210,7 @@ export default {
     getChanges() {
       this.sockets.subscribe("change", (data) => {
         let result = JSON.parse(data.toString());
-        console.log(result);
+        // console.log(result);
         if (result.type === "transport-state") {
           this.$store.commit("updateSpeakers", result.data);
         }

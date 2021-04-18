@@ -181,7 +181,6 @@ import PlantTimeChanger from "./PlantTimeChanger";
 import PlantSettingsPage from "./PlantSettingsPage";
 import Chart from "chart.js";
 import "../../compiled-icons/soil_moist";
-import "../../compiled-icons/settings";
 import "../../compiled-icons/fertilizer";
 import "../../compiled-icons/sun";
 import colors from "../../style/main-colors.scss";

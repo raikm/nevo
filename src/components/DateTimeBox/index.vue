@@ -39,7 +39,8 @@ export default {
   font-size: $standard-title-big;
   justify-self: flex-end;
   text-align: center;
-  margin-right: 1.6%;
+  color: white;
+  //padding-right: 2.5rem;
   // width: 30%;
 }
 </style>

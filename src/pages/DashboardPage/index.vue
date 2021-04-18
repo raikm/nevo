@@ -14,13 +14,14 @@
       <MusicControlMainInfoBox class="big-box" />
     </div>
     
-    <MainSceneBox
-      ref="sceneButtons"
-      :containerWidth="containerSceneWidth"
-      id="scene-buttons"
-    />
-
-    <!-- <div>{{containerSceneWidth}}x{{containerSceneHeight}}</div> -->
+    <div class="shortcut-boxes">
+      <ShortcutBox
+        :key="shortcut.index"
+        v-for="shortcut in this.$store.getters.shortcutEntities"
+        :shortcut="shortcut"
+      />
+    </div>
+    <!-- <div>{{mainPageWidth}}x{{containerSceneHeight}}</div> -->
   </main>
 </template>
 
@@ -31,7 +32,8 @@ import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
 import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
 import CalendarMainInfoBox from "./MainInfoBoxes/Calendar/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer/MusicControlMainInfoBox";
-import MainSceneBox from "./SceneBoxes/MainSceneBox";
+import ShortcutBox from "./ShortcutBox";
+// import MainSceneBox from "./SceneBoxes/MainSceneBox";
 // import RoomControlBox from "./ShortcutBoxes/RoomControlBox";
 // import EBikeMainInfoBox from "./MainInfoBoxes/EBikeMainInfoBox";
 
@@ -44,24 +46,23 @@ export default {
     PublicTransportMainInfoBox,
     CalendarMainInfoBox,
     MusicControlMainInfoBox,
-    MainSceneBox,
+    ShortcutBox,
+    // MainSceneBox,
   },
   created() {},
   mounted() {
-    this.containerSceneWidth = window.innerWidth;
+    this.mainPageWidth = window.innerWidth;
     // this.containerSceneHeight = window.innerHeight;
-    
   },
   data() {
     return {
-      containerSceneWidth: 0,
+      mainPageWidth: 0,
     };
   },
 };
 </script>
 
 <style lang="scss">
-
 .main-info-box-small {
   height: 15vh;
 }
@@ -108,7 +109,7 @@ export default {
   overflow: auto;
   margin-top: $standard-space;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(10, 1fr);
   row-gap: $standard-space;
   column-gap: $standard-space;
   // width: 100%;
@@ -117,5 +118,19 @@ export default {
 
 #scene-buttons > div {
   // margin-right: 15px;
+}
+
+.shortcut-boxes {
+  display: inline-flex;
+  // grid-template-columns: repeat(10, 1fr);
+  // row-gap: $standard-space;
+  // column-gap: $standard-space;
+
+}
+
+.shortcut-boxes > div {
+    height: 8vh;
+  width: 10vh;
+  margin-right: $standard-space;
 }
 </style>

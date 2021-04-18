@@ -1,9 +1,12 @@
 <template>
   <div class="room-controler-box">
     <div id="room-light-control-container" :key="room.id" v-for="room in rooms">
-      <div class="room-light-control click-element"  :class="{ 'lamps-on' : room.status === 1}">
+      <div
+        class="room-light-control click-element"
+        :class="{ 'lamps-on': room.status === 1 }"
+      >
         <svgicon
-          :class="{ 'bulb-on' : room.status === 1}"
+          :class="{ 'bulb-on': room.status === 1 }"
           class="bulb-icon"
           icon="bulb"
           width="3vh"
@@ -28,37 +31,37 @@ export default {
         {
           id: 1,
           name: "Living Room",
-          status: 1
+          status: 1,
         },
         {
           id: 9,
           name: "Couch Area",
-          status: 1
+          status: 1,
         },
         {
           id: 2,
           name: "Kitchen",
-          status: 0
+          status: 0,
         },
         {
           id: 3,
           name: "Bed Room",
-          status: 0
+          status: 0,
         },
         {
           id: 4,
           name: "Office",
-          status: 1
+          status: 1,
         },
         {
           id: 5,
           name: "Entrance",
-          status: 0
+          status: 0,
         },
         {
           id: 6,
           name: "Dinning",
-          status: 0
+          status: 0,
         },
       ],
     };
@@ -67,8 +70,6 @@ export default {
 </script>
 
 <style lang="scss">
-
-
 .room-controler-box {
   display: flex;
   flex-wrap: nowrap;
@@ -83,14 +84,13 @@ export default {
 }
 #room-light-control-container {
   margin: auto 1.6%;
-  
 }
 .room-light-control {
   display: grid;
   border-color: rgb(255, 255, 255);
   border-width: 0px;
   border-style: solid;
-  background-color: rgba(255, 255, 255, .55);
+  background-color: rgba(255, 255, 255, 0.55);
   width: 6.5vh;
   height: 6.5vh;
   place-items: center;
@@ -100,26 +100,5 @@ export default {
 .room-light-control:hover {
 }
 
-.lamps-on{
-  background-color: rgba(255, 255, 255, .95);
-}
-
-.bulb-icon{
-  fill:rgba(243, 243, 243, 0.85); ;
-  
-}
-
-.bulb-on {
-  fill: #f2bd4b;
-  filter: url(#sofGlow);
-}
-
-.light-stand-body{
-  fill: $main-blue;
-}
-.light-bulb-body {
-  // stroke: rgb(66, 66, 66);
-  fill: rgb(230, 230, 230);
-}
 
 </style>

@@ -129,6 +129,7 @@ export default {
   width: 100%;
   height: 7vh;
   margin: 0 auto !important;
+  padding: 0 2.5rem !important; 
   display: grid;
   grid-template-columns: 10% 65% auto;
 }

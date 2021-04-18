@@ -37,7 +37,7 @@ export default {
     filterAllLightsFromDevices() {
       //TODO: only lights!
       const lights = this.$store.getters.currentEntities.filter((d) => {
-        console.log(d)
+        // console.log(d)
         return d.attributes["Room"] && d.entity_id.startsWith("light");
       });
 
@@ -68,10 +68,8 @@ export default {
 </script>
 
 <style lang="scss">
-
-
 .room-wrapper {
-  overflow: auto;
+  overflow-y: scroll;
 
   display: flex;
   flex-wrap: nowrap;
@@ -87,5 +85,29 @@ export default {
   max-width: 295px;
   height: 100%;
   margin-right: $standard-space;
+}
+
+
+
+.lamps-on {
+  background-color: rgba(255, 255, 255, 0.95);
+}
+
+.bulb-icon {
+  fill: rgb(230, 230, 230);
+}
+
+.bulb-on {
+  fill: #f2bd4b;
+  filter: url(#sofGlow);
+}
+
+.light-stand-body {
+  fill: $main-blue;
+}
+
+.light-bulb-body {
+  // stroke: rgb(66, 66, 66);
+  fill: rgb(230, 230, 230);
 }
 </style>

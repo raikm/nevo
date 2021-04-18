@@ -4,7 +4,6 @@
 @import "./resolutions/2560x1600_Lenovo.scss";
 @import "./resolutions/default-settings.scss";
 
-
 $standard-border-radius: 10px;
 $standard-title-big: 4rem;
 $standard-title-medium: 60%;
@@ -14,10 +13,6 @@ $standard-text-medium: 1.5vh;
 $standard-text-small: 1vh;
 
 $standard-space: 15px;
-
-
-
-
 
 body {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -29,10 +24,11 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   //https://webgradients.com/
-  
+  background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
 }
 
-.page-header, .page-footer {
+.page-header,
+.page-footer {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -43,7 +39,6 @@ body {
 .page-header > div {
   margin: 0 0.5rem;
 }
-
 
 .basic-card {
   background-color: rgba(255, 255, 255, 0.9);

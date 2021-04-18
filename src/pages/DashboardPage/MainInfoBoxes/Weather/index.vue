@@ -75,7 +75,7 @@ export default {
             break;
           default:
             this.backgroundImage =
-              "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)";
+              "linear-gradient(to right, #00b4db, #009cd1)";
             break;
         }
       }
