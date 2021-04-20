@@ -41,7 +41,7 @@ export default {
   methods: {
     leftEvent() {
       this.$emit("leftEvent");
-      console.log();
+      // console.log();
     },
   },
 };

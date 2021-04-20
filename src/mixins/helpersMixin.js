@@ -17,10 +17,14 @@ Vue.mixin({
 
       if (this.$router.currentRoute.name == "dashboard-page") {
         this.$store.commit("setShowNotification", true);
-        document.getElementById("page").style.width = "65%";
+        //document.getElementById("page").style.width = "65%";
+        document.getElementById("main-container").style.gridTemplateColumns =
+          "auto 70% 25%";
+        //grid-template-columns: auto 70% 25%;
       } else {
         this.$store.commit("setShowNotification", false);
-       
+        document.getElementById("main-container").style.gridTemplateColumns =
+          "auto 95%";
         // console.log(document.getElementById("page").style.width)
       }
     },
@@ -76,8 +80,7 @@ Vue.mixin({
       this.$axios
         .get("https://api.aftership.com/v4/trackings", {
           headers: {
-            "aftership-api-key": this.$store.getters.config.aftership
-              .api_key,
+            "aftership-api-key": this.$store.getters.config.aftership.api_key,
             "Content-Type": "application/json",
           },
         })
@@ -185,16 +188,30 @@ Vue.mixin({
 
         return `rgba(${r},${g},${b},${60 / 100})`;
       };
-
+      // console.log(data);
       return {
-        type: "line",
         data: {
           datasets: [
             {
+              type: "line",
               data: data,
-              borderWidth: 0,
+              borderWidth: 2,
+              borderColor: mainColor,
               backgroundColor: opactiyColor,
-              pointRadius: 2,
+              pointRadius: 0,
+              order: 2,
+            },
+            {
+              type: "line",
+              data: [
+                { x: start, y: min },
+                { x: end, y: min },
+              ],
+              borderWidth: 1,
+              borderColor: "rgba(235, 75, 0, 0.2)",
+              backgroundColor: "rgba(151,187,205,0)",
+              pointRadius: 0,
+              order: 1,
             },
           ],
         },
@@ -205,6 +222,7 @@ Vue.mixin({
             display: false,
           },
           scales: {
+
             xAxes: [
               {
                 type: "time",
@@ -216,24 +234,30 @@ Vue.mixin({
                   display: true,
                 },
                 ticks: {
-                  fontSize: 10,
+                  fontSize: 9,
                   maxTicksLimit: 6,
                   min: start,
                   max: end,
+                  display: true,
                 },
               },
             ],
             yAxes: [
               {
                 gridLines: {
-                  color: "rgba(0, 0, 0, 0)",
+                  color: colors.mainLightGray,
                   display: false,
                 },
                 ticks: {
+                  callback: function(value) {
+                    return value >= 1000 ? value / 1e3 + 'T' : value;
+                },
                   max: max,
-                  min: min,
+                  min: 0,
+                  fontSize: 9,
                   maxTicksLimit: 4,
                   display: true,
+                  padding: 1,
                 },
               },
             ],

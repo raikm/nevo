@@ -122,16 +122,18 @@ export default {
 
 .shortcut-boxes {
   display: inline-flex;
-  overflow: auto;
-  // grid-template-columns: repeat(10, 1fr);
+  overflow: scroll;
+  display: grid;
+
+  grid-template-columns: repeat(9, 1fr);
   // row-gap: $standard-space;
-  // column-gap: $standard-space;
+  column-gap: $standard-space;
 
 }
 
 .shortcut-boxes > div {
-    height: 8vh;
+  height: 8vh;
   width: 10vh;
-  margin-right: $standard-space;
+  
 }
 </style>

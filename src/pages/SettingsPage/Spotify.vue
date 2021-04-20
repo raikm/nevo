@@ -45,7 +45,7 @@ export default {
   components: { InfoElement, ActionElement },
   created() {
     if (window.location.search.length > 0) {
-      console.log("handleRedirect")
+      // console.log("handleRedirect")
       this.handleRedirect();
     }
   },

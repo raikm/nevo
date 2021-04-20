@@ -134,7 +134,7 @@ export default {
       let statusTextEl = document.getElementById("status-text");
       saveButtonEl.style.display = "none";
       statusTextEl.style.display = "inline";
-      console.log(result);
+      // console.log(result);
       if (result == true) {
         statusTextEl.innerText = "sucess";
       } else {

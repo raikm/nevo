@@ -20,6 +20,13 @@
 import InfoBox from "../NewsfeedBoxes/InfoBox";
 export default {
   components: { InfoBox },
+  mounted() {
+    if(this.infoBoxContentList.length === 0){
+       this.$store.commit("setShowNotification", false);
+        document.getElementById("main-container").style.gridTemplateColumns =
+          "auto auto 2%";
+    }
+  },
   data() {
     return {
       infoBoxContentList: [

@@ -362,6 +362,9 @@ export default {
 
 <style lang="scss">
 
+canvas{
+  width: 100%;
+}
 
 .plant-main-info {
   margin: $standard-space;
@@ -474,11 +477,12 @@ export default {
     border-radius: $standard-border-radius;
     border-color: rgb(243, 244, 254);
     border-width: 2px;
+    padding: 5px;
     border-style: solid;
     // margin: 1.6% 1.6%;
     height: auto;
     // overflow: hidden;
-    padding: $standard-space;
+    // padding: $standard-space;
     // width: 96.8%;
   }
 }

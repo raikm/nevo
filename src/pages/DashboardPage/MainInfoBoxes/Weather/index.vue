@@ -75,7 +75,7 @@ export default {
             break;
           default:
             this.backgroundImage =
-              "linear-gradient(to right, #00b4db, #009cd1)";
+              "linear-gradient(-150deg, #5ea5c9 100%, #2374bb 0%)";
             break;
         }
       }
@@ -100,7 +100,7 @@ export default {
   // background-color: chartreuse;
   height: 3vh;
   display: grid;
-
+  color: white;
   grid-template-columns: 4fr 1fr;
   #weather-city-name {
     font-size: $standard-text-medium;
@@ -115,7 +115,7 @@ export default {
   // background-color: red;
   height: 4vh;
   display: grid;
-
+  color: white;
   grid-template-columns: 2fr 4fr;
   #temperature-outdoor-info {
     font-size: $standard-text-big;
@@ -132,7 +132,7 @@ export default {
   // background-color: blue;
   height: 6vh;
   display: grid;
-
+  color: white;
   grid-template-columns: repeat(6, 1fr);
   column-gap: 1vh;
   .temperature-hour-content {

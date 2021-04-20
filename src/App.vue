@@ -17,7 +17,7 @@
     <div id="main-container">
       <Menu id="menu" />
       <router-view id="page"></router-view>
-      <Newsfeed id="newsfeed" />
+      <Newsfeed v-if="this.showNotification" id="newsfeed" />
     </div>
   </div>
 </template>
@@ -48,7 +48,7 @@ export default {
     Person,
   },
   computed: {
-    ...mapGetters(["config"]),
+    ...mapGetters(["config", "showNotification"]),
   },
   created() {
     this.connectHomeassistantWebSocket();
@@ -167,12 +167,13 @@ export default {
   #page {
     height: 100%;
     // overflow-x
-    overflow-y: scroll;
+    overflow-x: scroll;
     // padding-right: 2.5rem;
   }
   #newsfeed {
     margin: 0 $standard-space;
     overflow-y: scroll;
+    
   }
 }
 </style>
