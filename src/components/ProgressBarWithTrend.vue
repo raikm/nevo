@@ -45,6 +45,7 @@ export default {
   text-align: right;
   display: grid;
   align-content: center;
+  max-width: 100%;
   @keyframes load {
     0% {
       width: 0;

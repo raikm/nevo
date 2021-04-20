@@ -37,7 +37,7 @@ export default {
 <style lang="scss">
 #time-container {
   font-size: $standard-title-big;
-  justify-self: flex-end;
+  // justify-self: flex-end;
   text-align: center;
   color: white;
   //padding-right: 2.5rem;

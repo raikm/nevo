@@ -51,19 +51,6 @@ export default {
 </script>
 
 <style lang="scss">
-.newsfeed-header {
-  height: 2.5rem;
-}
-#newsfeed {
-  // border-radius: 40px 0px;
-  padding: 0 2.5rem 2.5rem 0;
-  // background-color: rgba(247, 246, 249, 1);
-  float: right;
-  // max-width: 450px;
-  width: 25%;
-  height: 100%;
-  overflow-y: auto;
-}
 
 #no-notification-box {
   width: 100%;

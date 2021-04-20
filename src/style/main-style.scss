@@ -25,6 +25,7 @@ body {
   font-size: 16px;
   //https://webgradients.com/
   background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%);
+  height: 100vh;;
 }
 
 .page-header,
@@ -33,7 +34,7 @@ body {
   flex-wrap: wrap;
   justify-content: flex-end;
   width: 100%;
-  height: 2.5rem;
+  margin: $standard-space 0;
 }
 
 .page-header > div {
@@ -58,7 +59,7 @@ body {
   border-radius: 10px;
   border-style: solid;
   padding: 1vh;
-  max-width: 28vw;
+  // max-width: 28vw;
   // width: 100%;
   // max-width: 40vh;
   // margin: 0 1.6%;
@@ -122,22 +123,6 @@ body {
   }
 }
 
-button {
-  // background-color: white;
-  // border-radius: 0.5vh;
-  // border-color: rgb(237, 238, 250);
-  // border-width: 1px;
-  // border-style: solid;
-  // color: $text-color;
-  // font-size: x-small;
-  // font-weight: 300;
-  // height: 50%;
-}
-
-button:hover {
-  // background-color: $main-blue;
-  // color: white;
-}
 
 .small-icon {
   height: 2vh;

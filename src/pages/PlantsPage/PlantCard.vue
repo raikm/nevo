@@ -102,7 +102,6 @@ export default {
 </script>
 
 <style lang="scss">
-
 .plant-header-container {
   display: grid;
   grid-template-columns: 80% 20%;
@@ -141,8 +140,6 @@ export default {
 }
 
 .plant-card {
-  float: left;
-  height: 100%;
   // width: 21.8%;
 }
 
@@ -160,12 +157,11 @@ export default {
 
 .plant-card-container {
   // margin-top: 1%;
-
+  
   display: grid;
-  //grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-column-gap: 2%;
-  grid-row-gap: 5%;
-  height: 100%;
+  grid-column-gap: $standard-space;
+  grid-row-gap: $standard-space;
+  // height:100%;
 }
 
 .modal-overlay {

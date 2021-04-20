@@ -1,5 +1,5 @@
 <template>
-  <div id="menu" class="main-menu">
+  <div >
     <div
       class="menu-button click-element"
       @click="changePage('/DashboardPage', 'dashboard-icon')"
@@ -60,11 +60,6 @@ import "@/compiled-icons/menu_settings";
 export default {};
 </script>
 
-<style>
-#menu {
-  border-radius: 0px 40px;
-  padding: 2.5rem;
-  float: left;
-  width: 10%;
-}
+<style lang="scss">
+
 </style>

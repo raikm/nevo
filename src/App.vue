@@ -7,13 +7,17 @@
     />
     <div id="header-container">
       <div id="logo-container"></div>
-      <div id="middle-header-container"></div>
+      <div id="middle-header-container">
+        <div class="persons">
+          <Person :key="n" v-for="n in 4" :n="n" />
+        </div>
+      </div>
       <DateTimeBox id="time-container" />
     </div>
     <div id="main-container">
-      <Menu />
+      <Menu id="menu" />
       <router-view id="page"></router-view>
-      <!-- <Newsfeed v-if="this.$store.getters.showNotification" /> -->
+      <Newsfeed id="newsfeed" />
     </div>
   </div>
 </template>
@@ -21,8 +25,8 @@
 <script>
 import DateTimeBox from "@/components/DateTimeBox";
 import Menu from "@/components/Menu";
-// import Newsfeed from "@/components/NewsFeed";
-
+import Newsfeed from "@/components/NewsFeed";
+import Person from "@/components/Person";
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
  */
@@ -40,7 +44,8 @@ export default {
   components: {
     DateTimeBox,
     Menu,
-    // Newsfeed,
+    Newsfeed,
+    Person,
   },
   computed: {
     ...mapGetters(["config"]),
@@ -80,8 +85,9 @@ export default {
           this.updateSigninStatus(
             window.gapi.auth2.getAuthInstance().isSignedIn.get()
           );
-        }).catch((error) => {
-          console.error(error)
+        })
+        .catch((error) => {
+          console.error(error);
         });
     },
     updateSigninStatus(isSignedIn) {
@@ -125,32 +131,48 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  height: 100%;
+}
+
 #header-container {
   width: 100%;
-  height: 7vh;
-  margin: 0 auto !important;
-  padding: 0 2.5rem !important; 
+  max-width: 1920px;
   display: grid;
-  grid-template-columns: 10% 65% auto;
+  grid-template-columns: auto 70% 25%;
+  height: 10%;
+  #logo-container {
+    width: 7.5vh;
+    margin: 0 $standard-space;
+  }
+  #middle-header-container {
+    align-self: center;
+    .persons {
+      // display: inline-flex;
+      display: none;
+    }
+  }
 }
 
 #main-container {
-  height: 93vh;
-  width: 100vw;
+  width: 100%;
   max-width: 1920px;
-  margin: 0 auto;
-
+  display: grid;
+  grid-template-columns: auto 70% 25%;
+  height: 90%;
+  overflow: hidden;
+  #menu {
+    margin: 0 $standard-space;
+  }
   #page {
-    // padding-right: 2.5rem;
-    float: left;
-    width: 90%;
-    max-width: 1400px;
-    //Debug
-    // width: 65%;
     height: 100%;
-    overflow-x: scroll;
-    padding-top: 2.5rem;
-    padding-right: 2.5rem;
+    // overflow-x
+    overflow-y: scroll;
+    // padding-right: 2.5rem;
+  }
+  #newsfeed {
+    margin: 0 $standard-space;
+    overflow-y: scroll;
   }
 }
 </style>
