@@ -10,9 +10,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
- 🏗 Dashboard Page V1 completely done without mockup data
  🏗 unit tests
- 📦 Implementing Shortcut Buttons with Script Integration from Home Assistant
  📦 Change Light Statues with Websocket
  📦 First tests with health data export from the iPhone
 ```
@@ -26,6 +24,8 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
  🎉 Public Transport API V1
  🎉 Connect to Sonos API V1 (Multiroom missing)
  🎉 GitHub Action Integration for Tests
+ 🎉 Dashboard Page V1 completely done without mockup data
+ 🎉 Implementing Shortcut Buttons with Script Integration from Home Assistant
 ```
 
 ---
