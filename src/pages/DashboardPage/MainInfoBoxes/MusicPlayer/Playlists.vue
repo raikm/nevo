@@ -1,31 +1,30 @@
 <template>
-  <div class="playlist-shortcuts-container-wrapper">
-    <div class="standard-button" @click="$emit('showPlaylists')">
-      ⟨ Back
-    </div>
-    <div class="playlist-shortcuts-container">
-      <div
-        class="playlist-cover-info-wrapper"
-        :key="playlist.id"
-        v-for="playlist in playlists"
-        @click="playPlaylist(playlist.uri)"
-      >
-        <img class="playlist-cover" :src="playlist.images[0].url" alt="" />
-        <div class="playlist-info">
-          {{ playlist.name }}
+  <div>
+    <div v-if="playlists.length !== 0" class="playlist-shortcuts-container-wrapper">
+      <div class="playlist-shortcuts-container">
+        <div
+          class="playlist-cover-info-wrapper"
+          :key="playlist.id"
+          v-for="playlist in playlists"
+          @click="playPlaylist(playlist.uri)"
+        >
+          <img class="playlist-cover" :src="playlist.images[0].url" alt="" />
+          <div class="playlist-info">
+            {{ playlist.name }}
+          </div>
         </div>
       </div>
-    </div>
-    <div id="stream-services">
-      <div class="standard-button">
+      <div id="stream-services">
+        <!-- <div class="standard-button">
         Apple
       </div>
       <div class="standard-button">
         Spotify
+      </div> -->
       </div>
     </div>
-    <div v-if="playlists.length === 0">
-      Setup Service in Settings
+    <div v-else class="service-info">
+      Service not available
     </div>
   </div>
 </template>
@@ -161,23 +160,6 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-}
-
-.standard-button {
-  width: 100%;
-  display: grid;
-  padding: 3px;
-  grid-template-columns: 2fr 6fr;
-  justify-content: center;
-  align-content: center;
-  font-size: 1.4vh;
-  border-radius: 3px;
-  height: 2.5vh;
-
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  background-color: white;
 }
 
 #stream-services {

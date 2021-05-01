@@ -254,3 +254,13 @@ $inactive-color: $main-gray;
     fill: #efeadd;
   }
 }
+
+
+.service-info {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  color: $main-gray;
+  text-align: center;
+}

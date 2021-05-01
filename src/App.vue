@@ -49,9 +49,9 @@ export default {
     ...mapGetters(["config", "showNotification"]),
   },
   created() {
-    this.connectHomeassistantWebSocket();
-    this.connectSonosWebsocket();
-    this.connectGoogleApi();
+    //this.connectHomeassistantWebSocket();
+    //this.connectSonosWebsocket();
+    // this.connectGoogleApi();
   },
 
   methods: {

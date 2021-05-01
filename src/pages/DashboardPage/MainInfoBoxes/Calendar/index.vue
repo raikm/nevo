@@ -1,50 +1,52 @@
 <template>
   <div class="basic-card main-info-box-big">
-    <div id="calendar-header">
-      <div id="day-info">
-        <span id="day-span">{{ this.$store.getters.currentDayOfTheWeek }}</span
-        ><span id="month-span"
-          >,
-          {{
-            new Date().getUTCDate() +
-              ". " +
-              new Date().toLocaleString("default", { month: "long" })
+    <div v-if="calendarAppointmentsSorted.length !== 0">
+      <div id="calendar-header">
+        <div id="day-info">
+          <span id="day-span">{{
+            this.$store.getters.currentDayOfTheWeek
           }}</span
-        >
+          ><span id="month-span"
+            >,
+            {{
+              new Date().getUTCDate() +
+                ". " +
+                new Date().toLocaleString("default", { month: "long" })
+            }}</span
+          >
+        </div>
       </div>
-      <!-- <div id="user-infos" :key="user.id" v-for="user in users">
-        <div class="user-info-circle click-element">
-          <div class="circle click-element">{{ user.short }}</div>
-        </div>
-      </div> -->
-    </div>
-    <div id="calendar-info-box">
-      <div class="main-info-content">
-        <div
-          id="calendar-appointment"
-          :key="appointment.id"
-          v-for="appointment in calendarAppointmentsSorted.slice(0, 3)"
-        >
-          <CalendarAppointment :appointment="appointment" />
-        </div>
-        <div
-          v-if="calendarAppointmentsSorted.length > 3"
-          class="preview-calendar-appointment"
-        >
+      <div id="calendar-info-box">
+        <div class="main-info-content">
           <div
+            id="calendar-appointment"
             :key="appointment.id"
-            v-for="appointment in calendarAppointmentsSorted.slice(3, 6)"
+            v-for="appointment in calendarAppointmentsSorted.slice(0, 3)"
+          >
+            <CalendarAppointment :appointment="appointment" />
+          </div>
+          <div
+            v-if="calendarAppointmentsSorted.length > 3"
+            class="preview-calendar-appointment"
           >
             <div
-              class="calendar-color-bar"
-              :style="{ background: appointment.calendarColor }"
-            ></div>
-          </div>
-          <div class="preview-text">
-            {{ calendarAppointmentsSorted.length - 3 }} more events
+              :key="appointment.id"
+              v-for="appointment in calendarAppointmentsSorted.slice(3, 6)"
+            >
+              <div
+                class="calendar-color-bar"
+                :style="{ background: appointment.calendarColor }"
+              ></div>
+            </div>
+            <div class="preview-text">
+              {{ calendarAppointmentsSorted.length - 3 }} more events
+            </div>
           </div>
         </div>
       </div>
+    </div>
+    <div v-else class="service-info">
+      Service not available
     </div>
   </div>
 </template>
@@ -53,14 +55,16 @@
 import CalendarAppointment from "./CalendarAppointment";
 
 export default {
-  name: "CalendarMainInfoBox",
   components: { CalendarAppointment },
   created() {},
   mounted() {
     let unsubscribe = null;
     unsubscribe = this.$store.subscribe(({ type }) => {
       if (type === "setGCalendars") {
-        this.getCalendarEvents(window.gapi, this.$store.getters.googleCalendars);
+        this.getCalendarEvents(
+          window.gapi,
+          this.$store.getters.googleCalendars
+        );
         unsubscribe(); // So it only reacts once.
       }
     });
@@ -109,21 +113,6 @@ export default {
   data() {
     return {
       calendarAppointmentsSorted: [],
-      users: [
-        {
-          id: 1,
-          short: "RM",
-          //calendar_ID
-        },
-        {
-          id: 2,
-          short: "VN",
-        },
-        {
-          id: 3,
-          short: "AR",
-        },
-      ],
     };
   },
 };
@@ -147,21 +136,6 @@ export default {
   font-size: $standard-text-medium;
   justify-self: left;
   align-self: center;
-}
-.user-info-circle {
-}
-.circle {
-  float: right;
-  text-align: center;
-  vertical-align: middle;
-  font-weight: 500;
-  line-height: 2.9vh;
-  border-radius: 50%;
-  border: 0px solid;
-  background-color: $main-white;
-  color: $main-blue;
-  height: 2.9vh;
-  width: 2.9vh;
 }
 
 #calendar-info-box {

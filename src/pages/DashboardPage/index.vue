@@ -10,7 +10,7 @@
       <LightIntensityMainInfoBox class="small-box" />
 
       <PublicTransportMainInfoBox class="big-box" />
-      <CalendarMainInfoBox class="big-box" />
+      <Calendar class="big-box" />
       <MusicControlMainInfoBox class="big-box" />
     </div>
     
@@ -30,7 +30,7 @@ import TemperatureMainInfoBox from "./MainInfoBoxes/TempHumidity";
 import WeatherMainInfoBox from "./MainInfoBoxes/Weather";
 import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
 import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
-import CalendarMainInfoBox from "./MainInfoBoxes/Calendar/CalendarMainInfoBox";
+import Calendar from "./MainInfoBoxes/Calendar";
 import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer";
 import ShortcutBox from "./ShortcutBox";
 
@@ -41,7 +41,7 @@ export default {
     WeatherMainInfoBox,
     LightIntensityMainInfoBox,
     PublicTransportMainInfoBox,
-    CalendarMainInfoBox,
+    Calendar,
     MusicControlMainInfoBox,
     ShortcutBox,
     // MainSceneBox,

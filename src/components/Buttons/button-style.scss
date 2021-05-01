@@ -1,0 +1,19 @@
+// so breit wie text
+// wenn overflow text dann ...
+// fix border-radius inn pixel
+
+.standard-button {
+    width: 100%;
+    display: grid;
+    padding: 3px;
+    justify-content: center;
+    align-content: center;
+    font-size: 1.4vh;
+    border-radius: 3px;
+    height: 2.5vh;
+  
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    background-color: white;
+  }

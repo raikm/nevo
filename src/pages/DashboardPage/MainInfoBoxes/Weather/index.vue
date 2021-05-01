@@ -15,7 +15,7 @@
       class="basic-card main-info-box main-info-box-small"
       :style="{ backgroundImage: this.backgroundImage }"
     >
-      <div id="weather-service-info">Weather Service not available</div>
+      <div class="service-info">Weather Service not available</div>
     </div>
   </div>
 </template>
@@ -164,11 +164,5 @@ export default {
   }
 }
 
-#weather-service-info {
-  display: grid;
-  justify-content: center;
-  align-content: center;
-  height: 100%;
-  color: $main-gray;
-}
+
 </style>
