@@ -6,7 +6,7 @@
         :key="humditySensor.entity_id"
         v-for="humditySensor in humiditySensors"
       >
-        <HeaderInfoBoxWithIcon
+        <InfoBoxWithIcon
           :iconName="'office'"
           :headerValue="
             humditySensor.state != 'unavailable'
@@ -30,14 +30,14 @@
 
 <script>
 import PlantCard from "./PlantCard";
-import "../../compiled-icons/reload";
-import HeaderInfoBoxWithIcon from "../../components/HeaderInfoBox/HeaderInfoBoxWithIcon";
+import "@/compiled-icons/reload";
+import InfoBoxWithIcon from "@/components/Pageheaders/InfoBoxWithIcon";
 import { mapState } from "vuex";
 
 export default {
   components: {
     PlantCard,
-    HeaderInfoBoxWithIcon,
+    InfoBoxWithIcon,
   },
   created() {
     {

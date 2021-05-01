@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import InfoElementWithMore from "./Components/InfoElementWithMore";
-import ActionElement from "./Components/ActionElement";
+import InfoElementWithMore from "@/components/InfoFields/InfoElementWithMore";
+import ActionElement from "@/components/Inputs/ActionElement";
 export default {
   name: "Plants",
   components: { InfoElementWithMore, ActionElement },

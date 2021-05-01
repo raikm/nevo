@@ -32,9 +32,9 @@
 import InfoPackageContent from './InfoPackageContent'
 import InfoPlantContent from './InfoPlantContent'
 import InfoDeviceContent from './InfoDeviceContent'
-import "../../compiled-icons/menu_plant";
-import "../../compiled-icons/menu_package";
-import "../../compiled-icons/washing_machine";
+import "@/compiled-icons/menu_plant";
+import "@/compiled-icons/menu_package";
+import "@/compiled-icons/washing_machine";
 
 export default {
   name: "InfoBox",

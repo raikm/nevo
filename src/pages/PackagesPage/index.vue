@@ -9,7 +9,7 @@
 
 <script>
 import PackageCard from "./PackageCard";
-import PopUpWindow from "../../components/PopUpWindow/PopUpWindow"
+import PopUpWindow from "../../components/PopUp"
 import NewPackageContent from "./NewPackageContent"
 
 export default {

@@ -33,9 +33,6 @@ import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
 import CalendarMainInfoBox from "./MainInfoBoxes/Calendar/CalendarMainInfoBox";
 import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer";
 import ShortcutBox from "./ShortcutBox";
-// import MainSceneBox from "./SceneBoxes/MainSceneBox";
-// import RoomControlBox from "./ShortcutBoxes/RoomControlBox";
-// import EBikeMainInfoBox from "./MainInfoBoxes/EBikeMainInfoBox";
 
 export default {
   name: "DashboardPage",

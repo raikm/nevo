@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import InfoElement from "./Components/InfoElement";
-import ActionElement from "./Components/ActionElement";
+import InfoElement from "@/components/Inputs/ActionElement";
+import ActionElement from "@/components/Inputs/ActionElement";
 import { mapGetters } from "vuex";
 
 export default {

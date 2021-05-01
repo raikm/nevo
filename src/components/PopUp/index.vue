@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  name: "PopUpWindow",
   props: [
     "windowWidth",
     "windowHeight",

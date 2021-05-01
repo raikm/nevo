@@ -4,7 +4,6 @@ import DevicessPage from "../pages/DevicesPage";
 import LampsPage from "../pages/LampsPage";
 import PlantsPage from "../pages/PlantsPage";
 import PackagesPage from "../pages/PackagesPage";
-import SpotifyCallback from "../components/Callbacks/SpotifyCallback.vue";
 import DashboardPage from "../pages/DashboardPage";
 import SettingsPage from "../pages/SettingsPage";
 import General from "../pages/SettingsPage/General.vue";
@@ -115,11 +114,6 @@ export default new Router({
           component: PackageTracking,
         },
       ],
-    },
-    {
-      path: "/SpotifyCallback",
-      name: "spotify-callback",
-      component: SpotifyCallback,
     },
   ],
 });

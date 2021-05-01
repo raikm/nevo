@@ -19,12 +19,11 @@
 </template>
 
 <script>
-import "../../compiled-icons/bulb";
-import "../../compiled-icons/stand_lamp";
-import "../../compiled-icons/spot";
+import "@/compiled-icons/bulb";
+import "@/compiled-icons/stand_lamp";
+import "@/compiled-icons/spot";
 
 export default {
-  // mounted() {console.log(this.iconName)},
   props: ["iconName", "deviceTitle", "deviceStatus"],
 };
 </script>

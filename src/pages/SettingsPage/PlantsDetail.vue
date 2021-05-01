@@ -123,9 +123,9 @@
 </template>
 
 <script>
-import EditableInfoElement from "./Components/EditableInfoElement";
-import InfoElement from "./Components/InfoElement";
-import ActionElement from "./Components/ActionElement";
+import EditableInfoElement from "@/components/Inputs/EditableInfoElement";
+import InfoElement from "@/components/Inputs/ActionElement";
+import ActionElement from "@/components/Inputs/ActionElement";
 export default {
   name: "Plant Detail",
   components: { EditableInfoElement, ActionElement, InfoElement },

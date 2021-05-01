@@ -35,7 +35,7 @@
                 <div class="plant-detail-title">Soil Moisture</div>
               </div>
 
-              <ProgressBarWithTrend
+              <PlantDataProgressBar
                 :barColor="colors.mainBlue"
                 :plantValue="currentPlant.soil_moisture"
                 :valueMinBorder="currentPlant.soil_moisture_borders.min"
@@ -62,7 +62,7 @@
                 <div class="plant-detail-title">Fertilizer</div>
               </div>
 
-              <ProgressBarWithTrend
+              <PlantDataProgressBar
                 :barColor="colors.mainGreen"
                 :plantValue="currentPlant.soil_fertility"
                 :valueMinBorder="currentPlant.soil_fertitlity_borders.min"
@@ -89,7 +89,7 @@
                 <div class="plant-detail-title">Sun Intensity</div>
               </div>
 
-              <ProgressBarWithTrend
+              <PlantDataProgressBar
                 :barColor="colors.mainYellow"
                 :plantValue="currentPlant.sunlight"
                 :valueMinBorder="currentPlant.sunlight_intensity_borders.min"
@@ -180,16 +180,16 @@
 import PlantTimeChanger from "./PlantTimeChanger";
 import PlantSettingsPage from "./PlantSettingsPage";
 import Chart from "chart.js";
-import "../../compiled-icons/soil_moist";
-import "../../compiled-icons/fertilizer";
-import "../../compiled-icons/sun";
+import "@/compiled-icons/soil_moist";
+import "@/compiled-icons/fertilizer";
+import "@/compiled-icons/sun";
 import colors from "../../style/main-colors.scss";
-import "../../compiled-icons/pin";
-import ProgressBarWithTrend from "../../components/ProgressBarWithTrend";
+import "@/compiled-icons/pin";
+import PlantDataProgressBar from "./PlantDataProgressBar";
 
 export default {
   name: "PlantHistoryPage",
-  components: { PlantTimeChanger, PlantSettingsPage, ProgressBarWithTrend },
+  components: { PlantTimeChanger, PlantSettingsPage, PlantDataProgressBar },
   props: ["currentPlant"],
   created: function() {
     this.getCurrentPlantData(this.currentPlant.id);

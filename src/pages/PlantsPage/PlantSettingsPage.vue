@@ -87,7 +87,7 @@
 </template>
 
 <script>
-import "../../compiled-icons/pin";
+import "@/compiled-icons/pin";
 
 export default {
   name: "PlantSetingsPage",

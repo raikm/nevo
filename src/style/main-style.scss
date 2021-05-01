@@ -1,8 +1,8 @@
 @import "./main-colors.scss";
 @import "./resolutions/ipad.scss";
 @import "./resolutions/desktop.scss";
-@import "./resolutions/2560x1600_Lenovo.scss";
-@import "./resolutions/default-settings.scss";
+// @import "./resolutions/2560x1600_Lenovo.scss";
+// @import "./resolutions/default-settings.scss";
 
 $standard-border-radius: 10px;
 $standard-title-big: 4rem;
@@ -44,25 +44,8 @@ body {
 .basic-card {
   background-color: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(10px);
-  // backdrop-filter: blur(10px) contrast(.98);
-  // box-shadow:
-  // 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-  // 0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-  // 0 12.5px 10px rgba(0, 0, 0, 0.06),
-  // 0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-  // 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  // 0 100px 80px rgba(0, 0, 0, 0.12);
-
-  border-width: 0;
-
   border-radius: 10px;
-  border-style: solid;
   padding: 1vh;
-  // max-width: 28vw;
-  // width: 100%;
-  // max-width: 40vh;
-  // margin: 0 1.6%;
-  // margin-bottom: 1.6%;
 }
 
 .main-info-content {
@@ -70,9 +53,6 @@ body {
 }
 
 .main-info-icon-container {
-  // border-radius: $standard-border-radius;
-  // border-style: solid;
-  // border-width: .1vh;
   float: left;
   height: 2.5vh;
   width: 2.5vh;

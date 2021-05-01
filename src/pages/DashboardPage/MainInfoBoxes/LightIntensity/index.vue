@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import HorizontalBarController from "@/components/InteractionController/HorizontalBarController";
+import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
 
 export default {
   name: "LightIntensityMainInfoBox",

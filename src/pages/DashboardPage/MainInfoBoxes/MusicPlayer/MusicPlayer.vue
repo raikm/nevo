@@ -124,7 +124,7 @@ import "@/compiled-icons/player_control_stop";
 import "@/compiled-icons/music";
 import "@/compiled-icons/sonos_speaker";
 import { mapGetters, mapState } from "vuex";
-import HorizontalBarController from "@/components/InteractionController/HorizontalBarController";
+import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
 
 export default {
   name: "MusicPlayer",

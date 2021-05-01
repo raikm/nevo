@@ -64,13 +64,13 @@
 <script>
 import PlantInfo from "./PlantInfo";
 import PlantHistoryPage from "./PlantHistoryPage";
-import PopUpWindow from "../../components/PopUpWindow/PopUpWindow";
+import PopUpWindow from "../../components/PopUp";
 
-import "../../compiled-icons/cancel";
-import "../../compiled-icons/couch";
-import "../../compiled-icons/dinning_table";
-import "../../compiled-icons/office";
-import "../../compiled-icons/loggia";
+import "@/compiled-icons/cancel";
+import "@/compiled-icons/couch";
+import "@/compiled-icons/dinning_table";
+import "@/compiled-icons/office";
+import "@/compiled-icons/loggia";
 
 export default {
   name: "PlantCard",

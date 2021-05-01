@@ -20,7 +20,7 @@
 
 <script>
 export default {
-  name: "ProgressBarWithTrend",
+  name: "PlantDataProgressBar",
   props: ["barColor", "valueMinBorder", "valueMaxBorder", "plantValue", "barHeight"],
   created() {},
   methods: {},

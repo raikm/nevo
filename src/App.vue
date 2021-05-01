@@ -12,20 +12,19 @@
           <Person :key="n" v-for="n in 4" :n="n" />
         </div>
       </div>
-      <DateTimeBox id="time-container" />
+      <DateTime id="time-container" />
     </div>
     <div id="main-container">
       <Menu id="menu" />
       <router-view id="page"></router-view>
-      <Newsfeed v-if="this.showNotification" id="newsfeed" />
+      <!-- <Newsfeed v-if="this.showNotification" id="newsfeed" /> -->
     </div>
   </div>
 </template>
 
 <script>
-import DateTimeBox from "@/components/DateTimeBox";
+import DateTime from "@/components/DateTime";
 import Menu from "@/components/Menu";
-import Newsfeed from "@/components/NewsFeed";
 import Person from "@/components/Person";
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
@@ -42,9 +41,8 @@ import { mapGetters } from "vuex";
 export default {
   name: "homeapp",
   components: {
-    DateTimeBox,
+    DateTime,
     Menu,
-    Newsfeed,
     Person,
   },
   computed: {
@@ -170,10 +168,10 @@ export default {
     overflow-x: scroll;
     // padding-right: 2.5rem;
   }
-  #newsfeed {
-    margin: 0 $standard-space;
-    overflow-y: scroll;
+  // #newsfeed {
+  //   margin: 0 $standard-space;
+  //   overflow-y: scroll;
     
-  }
+  // }
 }
 </style>

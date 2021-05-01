@@ -11,7 +11,7 @@
 
         <div class="plant-detail-title">Soil Moisture</div>
       </div>
-      <ProgressBarWithTrend
+      <PlantDataProgressBar
         :barColor="colors.mainBlue"
         :plantValue="plant.soil_moisture"
         :valueMinBorder="plant.soil_moisture_borders.min"
@@ -30,7 +30,7 @@
         <div class="plant-detail-title">Fertilizer</div>
       </div>
 
-      <ProgressBarWithTrend
+      <PlantDataProgressBar
         :barColor="colors.mainGreen"
         :plantValue="plant.soil_fertility"
         :valueMinBorder="plant.soil_fertitlity_borders.min"
@@ -48,7 +48,7 @@
         ></svgicon>
         <div class="plant-detail-title">Sun Intensity</div>
       </div>
-      <ProgressBarWithTrend
+      <PlantDataProgressBar
         :barColor="colors.mainYellow"
         :plantValue="plant.sunlight"
         :valueMinBorder="plant.sunlight_intensity_borders.min"
@@ -60,10 +60,10 @@
 </template>
 
 <script>
-import "../../compiled-icons/fertilizer";
-import "../../compiled-icons/sun";
-import "../../compiled-icons/soil_moist";
-import ProgressBarWithTrend from "../../components/ProgressBarWithTrend";
+import "@/compiled-icons/fertilizer";
+import "@/compiled-icons/sun";
+import "@/compiled-icons/soil_moist";
+import PlantDataProgressBar from "./PlantDataProgressBar";
 import colors from "../../style/main-colors.scss";
 
 export default {
@@ -74,7 +74,7 @@ export default {
       colors: colors,
     };
   },
-  components: { ProgressBarWithTrend },
+  components: { PlantDataProgressBar },
   mounted: function() {},
 };
 </script>

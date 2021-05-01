@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import InfoBox from "../NewsfeedBoxes/InfoBox";
+import InfoBox from "./NewsfeedBoxes/InfoBox";
 export default {
   components: { InfoBox },
   mounted() {

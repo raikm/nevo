@@ -267,5 +267,3 @@ Vue.mixin({
     },
   },
 });
-
-//TODO: showToast Methode
