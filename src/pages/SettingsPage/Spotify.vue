@@ -12,24 +12,22 @@
         ></InfoElement>
       </div>
     </div>
-        <div class="element-wrapper">
-    
-        <InfoElement
-          :lableName="'ACESS TOKEN'"
-          :infotext="localStorage.getItem('spotify_access_token')"
-        ></InfoElement>
+    <div class="element-wrapper">
+      <InfoElement
+        :lableName="'ACESS TOKEN'"
+        :infotext="localStorage.getItem('spotify_access_token')"
+      ></InfoElement>
     </div>
     <div
       v-if="localStorage.getItem('spotify_access_token') == null"
       class="element-wrapper"
       @click="requestAuthorization()"
     >
-      <ActionElement
-        lableName="Connect to Spotify"
-      ></ActionElement>
+      <ActionElement lableName="Connect to Spotify"></ActionElement>
     </div>
-    <div v-else class="element-wrapper"  @click="refreshAuthorization()">
-      <ActionElement lableName="Refresh Spotify Token"></ActionElement>
+    <h1 class="title-2">Spotify Playlists</h1>
+    <div class="element-wrapper">
+
     </div>
   </div>
 </template>
@@ -54,9 +52,8 @@ export default {
   },
   data() {
     return {
-      localStorage: localStorage
-    }
-
+      localStorage: localStorage,
+    };
   },
   methods: {
     requestAuthorization() {
@@ -69,9 +66,6 @@ export default {
       url += "&show_dialog=true";
       url += "&scope=playlist-read-private";
       window.location.href = url;
-    },
-    refreshAuthorization(){
-      this.showToastInfo("Not yet configured")
     },
     handleRedirect() {
       let code = this.getCode();
@@ -98,7 +92,9 @@ export default {
       const data = {
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: encodeURI(window.location.origin + "/SettingsPage/Spotify/"),
+        redirect_uri: encodeURI(
+          window.location.origin + "/SettingsPage/Spotify/"
+        ),
         client_id: this.config.spotify.client_id,
         client_secret: this.config.spotify.client_secret,
       };
@@ -111,8 +107,13 @@ export default {
         )
         .then((response) => {
           if (this.$store.getters.spotifyAccessToken.length === 0) {
-            if (response.data.access_token != null){
-              localStorage.setItem("spotify_access_token", response.data.access_token)
+            if (response.data.access_token != undefined) {
+              let access_token = response.data.access_token;
+              localStorage.setItem("spotify_access_token", access_token);
+            }
+            if (response.data.refresh_token != undefined) {
+              let refresh_token = response.data.refresh_token;
+              localStorage.setItem("spotify.refresh_token", refresh_token);
             }
           }
         })

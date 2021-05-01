@@ -112,7 +112,7 @@ export default {
 
       // console.log(hafasClient);
       hafasClient.on("message", () => {
-        console.log("a message occurred!");
+        // console.log("a message occurred!");
         //TODO change departuresFromHome Data
       });
       // hafasClient.on("connection-open", () => {

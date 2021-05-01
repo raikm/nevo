@@ -39,8 +39,8 @@ export default new Vuex.Store({
     dayOfTheWeek: getDayOfTheWeek(),
     gCalendars: [],
     speakers: [],
-    activeSpeaker: [],
-    spotifyAccessToken: ""
+    activeGroup: null,
+    spotifyAccessToken: "",
   },
   mutations: {
     //sync
@@ -56,37 +56,44 @@ export default new Vuex.Store({
     setGCalendars(state, updatedCalendars) {
       state.gCalendars = updatedCalendars;
     },
-    setSpeakers(state, newSpeakers) {
-      state.activeSpeaker =
-        newSpeakers.find((speaker) =>
-          speaker.state != null ? speaker.state.playbackState === "PLAYING" : []
-        ) || [];
-      //TODO necessary ?
+    setSpeakers(state, newSpeakerGroups) {
+      let newSpeakers = [];
+      newSpeakerGroups.forEach((speakergroup) => {
+        speakergroup.members.forEach((member) => {
+          newSpeakers.push(member);
+        });
+      });
+      newSpeakers.sort((a, b) => a.roomName.localeCompare(b.roomName));
+      state.activeGroup =
+        newSpeakerGroups.filter((speakerGroup) =>
+          speakerGroup.coordinator.state != null
+            ? speakerGroup.coordinator.state.playbackState === "PLAYING"
+            : []
+        )[0] || null;
       state.speakers = newSpeakers;
     },
     setNewSpeakerVolume(state, newVolumeObject) {
-      let result = state.speakers.find(
-        (speaker) => speaker.roomName === newVolumeObject.roomName
-      );
-      //BUGFIX: handle multiroom
-      if (result != null) {
-        let index = state.speakers.indexOf(result);
-        state.speakers[index].state.volume = newVolumeObject.newVolume;
-      }
+      // console.log("old: " + state.activeGroup.coordinator.state.volume)
+      // console.log(newVolumeObject.newVolume)
+      state.activeGroup.coordinator.state.volume = newVolumeObject.newVolume;
+      // console.log("new: " + state.activeGroup.coordinator.state.volume)
     },
-    updateSpeakers(state, updatedSpeakers) {
-      let result = state.speakers.find(
-        (speaker) => speaker.roomName === updatedSpeakers.roomName
-      );
-      if (result != null) {
-        let index = state.speakers.indexOf(result);
-        state.speakers[index] = updatedSpeakers;
-        if (updatedSpeakers.roomName === state.activeSpeaker.roomName) {
-          // console.log(updatedSpeakers)
-          state.activeSpeaker = updatedSpeakers;
-        }
-      }
-    },
+    // updateSpeakers(state, updatedSpeakers) {
+    //   console.log(updatedSpeakers)
+      
+    //   // let result = state.speakers.find(
+    //   //   (speaker) => speaker.roomName === updatedSpeakers.roomName
+    //   // );
+      
+    //   // if (result != null) {
+    //   //   let index = state.speakers.indexOf(result);
+    //   //   state.speakers[index] = updatedSpeakers;
+    //   //   if (updatedSpeakers.roomName === state.activeGroup.roomName) {
+    //   //     // console.log(updatedSpeakers)
+    //   //     state.activeGroup = updatedSpeakers;
+    //   //   }
+    //   // }
+    // },
     setSpotifyAccessToken(state, newAccessToken) {
       state.spotifyAccessToken = newAccessToken;
     },
@@ -104,8 +111,8 @@ export default new Vuex.Store({
     currentDayOfTheWeek: (state) => state.dayOfTheWeek,
     googleCalendars: (state) => state.gCalendars,
     speakers: (state) => state.speakers,
-    activeSpeaker: (state) => state.activeSpeaker,
-    activeSpeakerState: (state) => state.activeSpeaker.state,
+    activeGroup: (state) => state.activeGroup,
+    activeGroupState: (state) => state.activeGroup != null ? state.activeGroup.coordinator.state : null,
     spotifyAccessToken: (state) => state.spotifyAccessToken,
   },
 });
