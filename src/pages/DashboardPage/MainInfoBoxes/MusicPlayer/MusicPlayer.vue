@@ -1,115 +1,102 @@
 <template>
-  <div id="player" v-if="currentTrack.length !== 0">
-    <div id="title-info-container">
-      <div id="cover-img">
-        <img
-          id="album-cover"
-          :src="currentTrack.albumArtUri"
-          alt="CONFIGURATION MISSING"
-        />
-      </div>
-      <div id="title-info">
-        <div class="track-information-line" id="location">
-          <p>{{ activeSpeakerNames }}</p>
+  <div v-if="currentTrack.length !== 0">
+    <div id="player">
+      <div id="title-info-container">
+        <div id="cover-img">
+          <img
+            id="album-cover"
+            :src="currentTrack.absoluteAlbumArtUri"
+            alt=""
+          />
         </div>
-        <div class="track-information-line" id="title">
-          <p>{{ currentTrack.title }}</p>
-        </div>
-        <div class="track-information-line" id="artist">
-          <p>{{ currentTrack.artist }} - {{ currentTrack.album }}</p>
+        <div id="title-info">
+          <div class="track-information-line" id="location">
+            <p>{{ activeSpeakerNames }}</p>
+          </div>
+          <div class="track-information-line" id="title">
+            <p>{{ currentTrack.title }}</p>
+          </div>
+          <div class="track-information-line" id="artist">
+            <p>{{ currentTrack.artist }} - {{ currentTrack.album }}</p>
+          </div>
         </div>
       </div>
-    </div>
-    <div id="duration-info">
-      <!-- <div class="play-duration">{{ currentTrackSecondsString }}</div> -->
-      <div id="progress-track-wrapper">
-        <div
-          id="progress-track"
-          :style="{
-            width:
-              (this.currentTrackSeconds / this.currentTrack.duration) * 100 +
-              '%',
-          }"
-        ></div>
+      <div id="duration-info">
+        <!-- <div class="play-duration">{{ currentTrackSecondsString }}</div> -->
+        <div id="progress-track-wrapper">
+          <div
+            id="progress-track"
+            :style="{
+              width:
+                (this.currentTrackSeconds / this.currentTrack.duration) * 100 +
+                '%',
+            }"
+          ></div>
+        </div>
+        <!-- <div class="play-duration">{{ endTrackTime }}</div> -->
       </div>
-      <!-- <div class="play-duration">{{ endTrackTime }}</div> -->
-    </div>
 
-    <div id="player-control">
-      <div id="playlist-icon" @click="$emit('showPlaylists')">☰</div>
-      <svgicon
-        class="play-icon"
-        icon="player_control_backward"
-        :class="activeGroup == null ? 'player-icon-inactive' : ''"
-        @click="previousTrack"
-      ></svgicon>
-
-      <svgicon
-        v-if="currentPlaybackState === 'PLAYING'"
-        class="play-icon"
-        id="play"
-        icon="player_control_pause"
-        @click="pauseMusic"
-      ></svgicon>
-      <svgicon
-        v-else
-        class="play-icon"
-        id="play"
-        icon="player_control_play"
-        @click="resumeMusic"
-      ></svgicon>
-
-      <svgicon
-        class="play-icon"
-        :class="activeGroup == null ? 'player-icon-inactive' : ''"
-        icon="player_control_forward"
-        @click="nextTrack"
-      ></svgicon>
-      <svgicon
-        class="speaker-icon"
-        icon="sonos_speaker"
-        @click="showSpeaker"
-      ></svgicon>
-    </div>
-    <div id="speakers">
-      <div
-        class="speaker-element"
-        :class="
-          speaker.state.playbackState === 'PLAYING'
-            ? 'active-speaker'
-            : 'inactive-speaker'
-        "
-        :key="speaker.uuid"
-        v-for="speaker in this.speakers"
-        @click="changeState(speaker)"
-      >
+      <div id="player-control">
+        <div id="playlist-icon" @click="$emit('showPlaylists')">☰</div>
         <svgicon
-          class="speaker-icon-small"
+          class="play-icon"
+          icon="player_control_backward"
+          :class="activeGroup == null ? 'player-icon-inactive' : ''"
+          @click="previousTrack"
+        ></svgicon>
+
+        <svgicon
+          v-if="currentPlaybackState === 'PLAYING'"
+          class="play-icon"
+          id="play"
+          icon="player_control_pause"
+          @click="pauseMusic"
+        ></svgicon>
+        <svgicon
+          v-else
+          class="play-icon"
+          id="play"
+          icon="player_control_play"
+          @click="resumeMusic"
+        ></svgicon>
+
+        <svgicon
+          class="play-icon"
+          :class="activeGroup == null ? 'player-icon-inactive' : ''"
+          icon="player_control_forward"
+          @click="nextTrack"
+        ></svgicon>
+        <svgicon
+          class="speaker-icon"
           icon="sonos_speaker"
           @click="showSpeaker"
         ></svgicon>
-        <div class="speaker-element-name">{{ speaker.roomName }}</div>
       </div>
-      <div id="cancel-element" @click="hideSpeaker">×</div>
-    </div>
-    <div
-      v-if="this.activeGroup || this.latestActiveGroup"
-      id="volume-control-wrapper"
-    >
-      <HorizontalBarController
-        ref="volumeControl"
-        id="volume-control"
-        @change-slider-value="changeVolume"
-        :value="
-          this.activeGroup != null
-            ? this.activeGroup.coordinator.state.volume
-            : this.latestActiveGroup.coordinator.state.volume
-        "
-      />
-      <div id="volume-icon-container">
-        <svgicon id="volume-icon" icon="volume_medium"></svgicon>
+      <div
+        v-if="this.activeGroup || this.latestActiveGroup"
+        id="volume-control-wrapper"
+      >
+        <HorizontalBarController
+          ref="volumeControl"
+          id="volume-control"
+          @change-slider-value="changeVolume"
+          :value="
+            this.activeGroup != null
+              ? this.activeGroup.coordinator.state.volume
+              : this.latestActiveGroup.coordinator.state.volume
+          "
+        />
+        <div id="volume-icon-container">
+          <svgicon id="volume-icon" icon="volume_medium"></svgicon>
+        </div>
       </div>
     </div>
+    <Speaker
+      v-if="currentTrack.length !== 0"
+      id="speakers"
+      @hideSpeaker="hideSpeaker"
+      @changeVolume="changeVolume"
+    />
   </div>
 </template>
 
@@ -121,18 +108,18 @@ import "@/compiled-icons/player_control_forward";
 import "@/compiled-icons/player_control_pause";
 import "@/compiled-icons/player_control_play";
 import "@/compiled-icons/player_control_stop";
-import "@/compiled-icons/music";
 import "@/compiled-icons/sonos_speaker";
 import { mapGetters, mapState } from "vuex";
 import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
+import Speaker from "./Speaker";
 
 export default {
   name: "MusicPlayer",
   computed: {
     ...mapGetters(["activeGroupState", "config"]),
-    ...mapState(["activeGroup", "speakers"]),
+    ...mapState(["activeGroup"]),
   },
-  components: { HorizontalBarController },
+  components: { HorizontalBarController, Speaker },
   data() {
     return {
       currentTrackSeconds: 0,
@@ -275,16 +262,12 @@ export default {
       });
     },
     showSpeaker() {
-      document.getElementById("player-control").style.display = "none";
+      document.getElementById("player").style.display = "none";
       document.getElementById("speakers").style.display = "grid";
-      document.getElementById("title-info-container").style.display = "none";
-      document.getElementById("duration-info").style.display = "none";
     },
     hideSpeaker() {
-      document.getElementById("player-control").style.display = "grid";
+      document.getElementById("player").style.display = "grid";
       document.getElementById("speakers").style.display = "none";
-      document.getElementById("title-info-container").style.display = "grid";
-      document.getElementById("duration-info").style.display = "grid";
     },
     changeState(speaker) {
       if (speaker.state.playbackState !== "PLAYING") {
@@ -332,12 +315,15 @@ export default {
 
 <style lang="scss">
 #player {
-  display: grid;
-}
-#music-player {
   height: 100%;
   display: grid;
   grid-template-rows: 42% 10% 19% 20%;
+  row-gap: 2%;
+}
+#speakers {
+  height: 100%;
+  display: none;
+  grid-template-rows: 65% 20% 15%;
   row-gap: 2%;
 }
 
@@ -360,8 +346,8 @@ export default {
 
 #album-cover {
   // border-radius: 15px;
-  height: 80%;
-  width: 80%;
+  height: 95%;
+  width: 100%;
 }
 #title-info-container {
   display: grid;
@@ -439,49 +425,6 @@ export default {
 
 #play {
   fill: rgb(72, 72, 72);
-}
-
-#speakers {
-  display: none;
-  grid-template-columns: 1fr 1fr 1fr 1fr auto;
-  column-gap: 5px;
-  align-content: center;
-}
-
-.speaker-element {
-  display: grid;
-  padding: 3px;
-  grid-template-columns: 2fr 6fr;
-  justify-content: center;
-  align-content: center;
-  font-size: 1vh;
-  border-radius: 3px;
-  height: 2.5vh;
-  width: 100%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  fill: rgb(72, 72, 72);
-}
-
-.active-speaker {
-  background-color: white;
-}
-
-.inactive-speaker {
-  background-color: $main-light-gray;
-}
-.inactive-speaker:hover {
-  background-color: white;
-}
-.speaker-element-name {
-  justify-self: center;
-  align-self: center;
-}
-#cancel-element {
-  margin: 0 10px;
-  font-size: 1.5vh;
-  // align-self: center;
 }
 
 #playlist-icon {

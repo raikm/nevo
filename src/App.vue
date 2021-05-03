@@ -49,9 +49,9 @@ export default {
     ...mapGetters(["config", "showNotification"]),
   },
   created() {
-    //this.connectHomeassistantWebSocket();
-    //this.connectSonosWebsocket();
-    // this.connectGoogleApi();
+    this.connectHomeassistantWebSocket();
+    this.connectSonosWebsocket();
+    this.connectGoogleApi();
   },
 
   methods: {
@@ -90,10 +90,9 @@ export default {
     },
     updateSigninStatus(isSignedIn) {
       if (isSignedIn) {
-        console.log("isSignedIn: " + isSignedIn);
         this.setGoogleCalendars();
       } else {
-        console.log("isSignedIn: " + isSignedIn);
+        console.log("Google Service not set up")
       }
     },
     setGoogleCalendars() {
@@ -171,7 +170,7 @@ export default {
   // #newsfeed {
   //   margin: 0 $standard-space;
   //   overflow-y: scroll;
-    
+
   // }
 }
 </style>

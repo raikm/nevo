@@ -26,7 +26,9 @@ Vue.use(
 Vue.use(VueAxios);
 // Vue.use(aftership);
 Vue.use(store);
-Vue.use(VueSVGIcon);
+Vue.use(VueSVGIcon, {
+  isOriginalDefault: true
+});
 Vue.use(Buefy);
 
 Vue.config.productionTip = false;

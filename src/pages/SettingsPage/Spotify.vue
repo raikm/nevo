@@ -113,7 +113,7 @@ export default {
             }
             if (response.data.refresh_token != undefined) {
               let refresh_token = response.data.refresh_token;
-              localStorage.setItem("spotify.refresh_token", refresh_token);
+              localStorage.setItem("spotify_refresh_token", refresh_token);
             }
           }
         })

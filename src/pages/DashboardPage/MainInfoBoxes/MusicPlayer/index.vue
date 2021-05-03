@@ -1,7 +1,10 @@
 <template>
   <div class="basic-card main-info-box main-info-box-big music-control-box">
-    <MusicPlayer v-if="showMusicPlayer" id="music-player"   @showPlaylists="showPlaylists" />
-    <Playlists v-else id="music-control" @showPlaylists="showPlaylists"/>
+    <MusicPlayer
+      v-if="showMusicPlayer"
+      @showPlaylists="showPlaylists"
+    />
+    <Playlists v-else id="music-control" @showPlaylists="showPlaylists" />
   </div>
 </template>
 
@@ -54,9 +57,10 @@ export default {
           this.showToastError(error.toString());
         });
     },
-    showPlaylists(){
-      this.showMusicPlayer = this.showMusicPlayer === false ? this.showMusicPlayer = true : false;
-    }
+    showPlaylists() {
+      this.showMusicPlayer =
+        this.showMusicPlayer === false ? (this.showMusicPlayer = true) : false;
+    },
   },
 };
 </script>
@@ -75,8 +79,13 @@ export default {
 }
 
 .music-control-box {
-  // height: 100%;
-  // width: 100%;
+  height: 100%;
+  width: 100%;
   display: grid;
+}
+#music-control {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 </style>

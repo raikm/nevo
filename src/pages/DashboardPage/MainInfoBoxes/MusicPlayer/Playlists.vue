@@ -1,6 +1,9 @@
 <template>
   <div>
-    <div v-if="playlists.length !== 0" class="playlist-shortcuts-container-wrapper">
+    <div
+      v-if="playlists.length !== 0"
+      class="playlist-shortcuts-container-wrapper"
+    >
       <div class="playlist-shortcuts-container">
         <div
           class="playlist-cover-info-wrapper"
@@ -14,13 +17,16 @@
           </div>
         </div>
       </div>
+
       <div id="stream-services">
-        <!-- <div class="standard-button">
-        Apple
+        <buttonicon iconName="spotify" lableName="Spotify" />
+        <buttonicon iconName="apple_music" lableName="Apple Music" />
       </div>
-      <div class="standard-button">
-        Spotify
-      </div> -->
+      <div v-if="this.activeGroupState != null" @click="$emit('showPlaylists')">
+        <CurrentSongPreview
+          :currentTrack="this.activeGroupState.currentTrack"
+          
+        />
       </div>
     </div>
     <div v-else class="service-info">
@@ -30,18 +36,19 @@
 </template>
 
 <script>
-import "@/compiled-icons/music";
 import { mapGetters } from "vuex";
 import qs from "qs";
+import buttonicon from "@/components/Buttons/button-w-icon";
+import CurrentSongPreview from "./CurrentSongPreview.vue";
 
 export default {
   name: "Playlists",
   created() {
     this.getAllPlaylists();
   },
-
+  components: { buttonicon, CurrentSongPreview },
   computed: {
-    ...mapGetters(["config", "activeGroup"]),
+    ...mapGetters(["config", "activeGroup", "activeGroupState"]),
   },
   methods: {
     getAllPlaylists() {
@@ -62,9 +69,10 @@ export default {
           }
         })
         //catch 401
-        .catch((error) => {
-          if (error.status == 401) this.refreshAccessToken();
-          else console.error(error);
+        .catch(() => {
+          this.refreshAccessToken();
+          // if (error.status == 401) this.refreshAccessToken();
+          // else console.error(error);
         });
     },
     refreshAccessToken() {
@@ -99,7 +107,7 @@ export default {
             }
             if (response.data.refresh_token != undefined) {
               let refresh_token = response.data.refresh_token;
-              localStorage.setItem("spotify.refresh_token", refresh_token);
+              localStorage.setItem("spotify_refresh_token", refresh_token);
             }
           }
         })
@@ -128,7 +136,10 @@ export default {
 <style lang="scss">
 .playlist-shortcuts-container-wrapper {
   width: 100%;
+  height: 100%;
   overflow: hidden;
+  display: grid;
+  grid-template-rows: 60% 30% 10%;
 }
 
 .playlist-shortcuts-container {
@@ -163,8 +174,12 @@ export default {
 }
 
 #stream-services {
+  justify-self: right;
+  display: inline-flex;
+  height: 100%;
+  overflow: hidden;
   display: grid;
-  grid-template-columns: 20% 20% auto;
-  column-gap: 5px;
+  grid-template-columns: 50% 50%;
+  column-gap: 5%;
 }
 </style>
