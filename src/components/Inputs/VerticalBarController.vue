@@ -1,39 +1,34 @@
 <template>
-
-<!-- :value="sliderValue" -->
+  <!-- :value="sliderValue" -->
   <input
     orient="vertical"
     class="vertical-slider-control click-element"
     type="range"
     min="0"
     max="100"
+    v-model="sliderValue"
+    @change="changeSliderValue"
   />
 </template>
 
 <script>
 export default {
   name: "VerticalBarController",
-  props: ['value']
+  props: ["value"],
 };
 </script>
 
 <style lang="scss">
-.vertical-slider-control-container {
-  background-color: rgba(245, 245, 245, 0.171);
-      
-  // border-radius: 10px; //TODO define in main css
-  width: 100%;
-}
 
-.vertical-slider-control{
+.vertical-slider-control {
   border-radius: 10px;
-  border: 0px solid #f3f4fe;;
+  border: 1px solid #f3f4fe;
 
   -webkit-appearance: none;
   -webkit-touch-appearance: none;
   overflow: hidden;
   background-color: rgba(245, 245, 245, 0.571);
-  transform: rotate(270deg);
+  
 }
 
 input:focus {
@@ -41,12 +36,6 @@ input:focus {
 }
 
 ::-ms-thumb {
-  width: 2px;
+  width: 0px;
 }
-
-
-
-
 </style>
-
-

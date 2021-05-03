@@ -32,41 +32,7 @@ export default {
   },
   methods: {
     startAuth() {
-      window.gapi.load("client:auth2", this.initGoogleClient);
-    },
-    initGoogleClient() {
-      const {
-        api_key,
-        discovery_docs,
-        client_id,
-        scope,
-      } = this.config.google_calendar;
-
-      window.gapi.client
-        .init({
-          apiKey: api_key,
-          discoveryDocs: discovery_docs,
-          clientId: client_id,
-          scope: scope,
-        })
-        .then(() => {
-          // Listen for sign-in state changes.
-          window.gapi.auth2
-            .getAuthInstance()
-            .isSignedIn.listen(this.updateSigninStatus);
-
-          // Handle the initial sign-in state.
-          this.updateSigninStatus(
-            window.gapi.auth2.getAuthInstance().isSignedIn.get()
-          );
-        });
-    },
-    updateSigninStatus(isSignedIn) {
-      if (isSignedIn) {
-        console.log("isSignedIn: " + isSignedIn);
-      } else {
-        console.log("isSignedIn: " + isSignedIn);
-      }
+      window.gapi.auth2.getAuthInstance().signIn();
     },
   },
 };
