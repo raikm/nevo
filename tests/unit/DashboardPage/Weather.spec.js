@@ -43,7 +43,7 @@ describe("weather component and API not available", () => {
   });
 
   test("should render Service offline container", () => {
-    expect(wrapper.find("#weather-service-info").exists()).toBe(true);
+    expect(wrapper.find(".service-info").exists()).toBe(true);
   });
   test("should not render any weather information", () => {
     expect(wrapper.find("#forecast-stack-wrapper").exists()).toBe(false);
