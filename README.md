@@ -10,6 +10,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
+ 📦 Bugfixes Plant Page
  🏗 unit tests
  📦 Change Light Statues with Websocket
  📦 Working Light Page
