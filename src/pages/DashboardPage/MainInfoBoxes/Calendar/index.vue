@@ -1,6 +1,6 @@
 <template>
   <div class="basic-card main-info-box-big">
-    <div v-if="calendarAppointmentsSorted.length !== 0">
+    <div v-if="gCalendars">
       <div id="calendar-header">
         <div id="day-info">
           <span id="day-span">{{
@@ -53,40 +53,104 @@
 
 <script>
 import CalendarAppointment from "./CalendarAppointment";
+import { mapGetters } from "vuex";
 
 export default {
   components: { CalendarAppointment },
-  created() {},
+  created() {
+    this.connectGoogleApi();
+  },
+  computed: {
+    ...mapGetters(["config"]),
+    nextStartDay() {
+      return new Date(this.startDay).setDate(new Date().getDate() + 1);
+    },
+    nextEndDay() {
+      return new Date(this.endDay).setDate(new Date().getDate() + 1);
+    },
+  },
   mounted() {
-    let unsubscribe = null;
-    unsubscribe = this.$store.subscribe(({ type }) => {
-      if (type === "setGCalendars") {
-        this.getCalendarEvents(
-          window.gapi,
-          this.$store.getters.googleCalendars
-        );
-        unsubscribe(); // So it only reacts once.
-      }
-    });
+    // this.getCalendarEvents(this.startDay, this.endDay);
+  },
+  data() {
+    return {
+      calendarAppointmentsSorted: [],
+      gCalendars: null,
+      startDay: new Date().setHours(0, 0, 0, 0),
+      endDay: new Date().setHours(23, 59, 59, 999),
+    };
   },
   methods: {
-    getCalendarEvents(gapiClient, calendars) {
-      //define start and end of day
-      let startDay = new Date();
-      startDay.setHours(0, 0, 0, 0);
-      let endDay = new Date();
-      endDay.setHours(23, 59, 59, 999);
+    connectGoogleApi() {
+      window.gapi.load("client:auth2", this.initGoogleClient);
+    },
+    initGoogleClient() {
+      const {
+        api_key,
+        discovery_docs,
+        client_id,
+        scope,
+      } = this.config.google_calendar;
+
+      window.gapi.client
+        .init({
+          apiKey: api_key,
+          discoveryDocs: discovery_docs,
+          clientId: client_id,
+          scope: scope,
+          ux_mode: "redirect",
+          redirect_uri: "http://localhost:8081/",
+        })
+        .then(() => {
+          // Listen for sign-in state changes.
+          window.gapi.auth2
+            .getAuthInstance()
+            .isSignedIn.listen(this.updateSigninStatus);
+
+          // Handle the initial sign-in state.
+          this.updateSigninStatus(
+            window.gapi.auth2.getAuthInstance().isSignedIn.get()
+          );
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+    updateSigninStatus(isSignedIn) {
+      if (isSignedIn) {
+        this.setGoogleCalendars();
+      } else {
+        console.log("Google Service not set up");
+      }
+    },
+    showNextDay() {
+      this.getCalendarEvents(this.nextStartDay, this.nextEndDay);
+    },
+    setGoogleCalendars() {
+      window.gapi.client.calendar.calendarList
+        .list()
+        .then((response) => {
+          this.gCalendars = response.result.items;
+          this.getCalendarEvents(this.startDay, this.endDay);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    getCalendarEvents(startDay, endDay) {
+      if (this.gCalendars == null) return;
+      console.log("getCalendarEvent:" + new Date(startDay));
       //remove calendarweeks infos
-      calendars = calendars.filter(function(obj) {
+      let calendars = this.gCalendars.filter(function(obj) {
         return obj.id !== "e_2_de#weeknum@group.v.calendar.google.com";
       });
       for (let i = 0; i < calendars.length; i++) {
         let calendarColor = calendars[i].backgroundColor;
-        gapiClient.client.calendar.events
+        window.gapi.client.calendar.events
           .list({
             calendarId: calendars[i].id,
-            timeMin: startDay.toISOString(),
-            timeMax: endDay.toISOString(),
+            timeMin: new Date(startDay).toISOString(),
+            timeMax: new Date(endDay).toISOString(),
             showDeleted: false,
             singleEvents: true,
             orderBy: "startTime",
@@ -104,16 +168,17 @@ export default {
               }
             });
           })
+          .then(() => {})
           .catch((error) => {
             console.log(error);
           });
+        // console.log("before?");
       }
+
+      // if (this.calendarAppointmentsSorted.length === 0) {
+      //   this.showNextDay()
+      // }
     },
-  },
-  data() {
-    return {
-      calendarAppointmentsSorted: [],
-    };
   },
 };
 </script>

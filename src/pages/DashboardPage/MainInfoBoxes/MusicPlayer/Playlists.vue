@@ -52,7 +52,7 @@ export default {
   },
   methods: {
     getAllPlaylists() {
-      if (localStorage.getItem("spotify_access_token").length === 0) return;
+      if (localStorage.getItem("spotify_access_token") == null) return;
       const config = {
         headers: {
           Authorization: `Bearer ${localStorage.getItem(
