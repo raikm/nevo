@@ -10,24 +10,30 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
- 🏗 unit tests
- 📦 Change Light Statues with Websocket
+ 📦 Bugfixes Plant Page
+ 📦 Bugfixes Music Player
+ 📦 Plant Settings: show new nearby sennsors
+ 📦 unit tests
+ 📦 Working Light Page V1
  📦 First tests with health data export from the iPhone
 ```
 ---
 
-### 🛬 Latest Updates (Status: 30.03.2021)
+### 🛬 Latest Updates (Status: 03.05.2021)
+```
+ 🎉 Dashboard Page V1 completely done without mockup data
+
+```
+
+### 🏛 Past Major Updates
 ```
  🎉 Plant Dashboard Page V1
  🎉 Websocketconnection to back-end (homeassistant)
- 🎉 Connect to Google API for Calendar Data V1
- 🎉 Public Transport API V1
- 🎉 Connect to Sonos API V1 (Multiroom missing)
- 🎉 GitHub Action Integration for Tests
- 🎉 Dashboard Page V1 completely done without mockup data
- 🎉 Implementing Shortcut Buttons with Script Integration from Home Assistant
+ 🎉 Calendar Data (Google API) V1
+ 🎉 Public Transport (Hafas API) V1 
+ 🎉 Music Player (Sonos API) V1
+ 🎉 Implementing Shortcut Buttons (homeassistant)
 ```
-
 ---
 
 ## Project setup
