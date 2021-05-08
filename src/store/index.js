@@ -33,6 +33,7 @@ function getDayOfTheWeek() {
 export default new Vuex.Store({
   state: {
     currentEntities: [],
+    hAConnection: null,
     config: config,
     showNotification: true,
     weather: {},
@@ -46,6 +47,9 @@ export default new Vuex.Store({
     //sync
     setCurrentEntities(state, updatedEntities) {
       state.currentEntities = updatedEntities;
+    },
+    setHaConnection(state, newHaConnection) {
+      state.hAConnection = newHaConnection;
     },
     setWeather(state, updatedWeather) {
       state.weather = updatedWeather;
@@ -101,6 +105,7 @@ export default new Vuex.Store({
   modules: {},
   getters: {
     currentEntities: (state) => state.currentEntities,
+    hAConnection: (state) => state.hAConnection,
     shortcutEntities: (state) =>
       state.currentEntities.filter((entity) =>
         entity.entity_id.startsWith("script.shortcut_")

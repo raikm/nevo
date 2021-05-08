@@ -2,9 +2,9 @@
 var icon = require('vue-svgicon')
 icon.register({
   'menu_rooms': {
-    width: 335,
-    height: 335,
-    viewBox: '0 0 335 335',
-    data: '<rect pid="0" x="5" y="5" width="325" height="325" rx="25" _stroke="#686868" stroke-width="15"/><path pid="1" d="M335 167H167v168" _stroke="#686868" stroke-width="15"/>'
+    width: 550,
+    height: 550,
+    viewBox: '0 0 550 550',
+    data: '<path pid="0" d="M342.436 60.833H85.064c-12.922 0-23.397 10.476-23.397 23.398v257.372c0 12.922 10.475 23.397 23.397 23.397h257.372c12.922 0 23.397-10.475 23.397-23.397V84.231c0-12.922-10.475-23.398-23.397-23.398z" _fill="#fff" _stroke="#535353" stroke-opacity=".87" stroke-width="30"/><rect pid="1" x="123.333" y="123.333" width="426.667" height="426.667" rx="80" _fill="#fff"/><path pid="2" d="M465.769 184.167H208.397c-12.922 0-23.397 10.475-23.397 23.397v257.372c0 12.922 10.475 23.397 23.397 23.397h257.372c12.922 0 23.398-10.475 23.398-23.397V207.564c0-12.922-10.476-23.397-23.398-23.397z" _fill="#F7F7F7" fill-opacity=".96" _stroke="#535353" stroke-opacity=".87" stroke-width="30"/>'
   }
 })

@@ -39,7 +39,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["speakers", "config", "activeGroup"]),
+    ...mapGetters(["config", "activeGroup"]),
   },
   mounted() {
     this.setUpZones();

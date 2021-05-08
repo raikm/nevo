@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted() {
-    document.getElementById("page").style.width = "90%";
+    // document.getElementById("page").style.width = "90%";
   },
   computed: mapState(["currentEntities"]),
   watch: {

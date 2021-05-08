@@ -32,6 +32,7 @@ import Person from "@/components/Person";
 import {
   createConnection,
   subscribeEntities,
+  // subscribeServices,
   createLongLivedTokenAuth,
 } from "home-assistant-js-websocket";
 import { mapGetters } from "vuex";
@@ -46,11 +47,10 @@ export default {
     Person,
   },
   computed: {
-    ...mapGetters(["config", "showNotification"]),
+    ...mapGetters(["config", "showNotification", "hAConnection"]),
   },
   created() {
     this.connectHomeassistantWebSocket();
-    this.connectSonosWebsocket();
   },
 
   methods: {
@@ -59,17 +59,19 @@ export default {
         this.$store.getters.config.homeassistant.hassUrl,
         this.$store.getters.config.homeassistant.life_time_token_raik
       );
-      await createConnection({ auth }).then((conn) => {
-        subscribeEntities(conn, (entities) => {
-          //setHistory
-          // console.log(entities);
-          this.$store.commit("setCurrentEntities", Object.values(entities));
-        });
+      // await createConnection({ auth }).then((conn) => {
+      //   subscribeEntities(conn, (entities) => {
+      //     this.$store.commit("setCurrentEntities", Object.values(entities));
+      //   });
+
+      // });
+      let _hAconnection = await createConnection({ auth });
+      this.$store.commit("setHaConnection", _hAconnection);
+
+      subscribeEntities(this.hAConnection, (entities) => {
+        this.$store.commit("setCurrentEntities", Object.values(entities));
       });
-    },
-    connectSonosWebsocket() {
-      // console.log("start socket: " + this.$store.getters.config.sonos.websocketURL)
-      // io(this.$store.getters.config.sonos.sonosURL);
+      // subscribeServices(this.hAconnection, (services) => console.log("New services!", services));
     },
   },
 };
@@ -103,7 +105,7 @@ export default {
   width: 100%;
   max-width: 1920px;
   display: grid;
-  grid-template-columns: auto 70% 25%;
+  grid-template-columns: auto 90% 2.5%;
   height: 90%;
   overflow: hidden;
   #menu {

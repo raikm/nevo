@@ -5,11 +5,11 @@
 
       <div class="setting-menu-wrapper element-wrapper">
         <div class="setting" @click="openSettingDetail('General')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon class="settings-icon" icon="gear"></svgicon>
           <div class="settings-title">General</div>
         </div>
         <div class="setting" @click="openSettingDetail('Server')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon class="settings-icon" icon="server"></svgicon>
           <div class="settings-title">Server</div>
         </div>
       </div>
@@ -19,12 +19,8 @@
           <div class="settings-title">Calendar</div>
         </div>
         <div class="setting" @click="openSettingDetail('Spotify')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon class="settings-icon" icon="spotify_without_background"></svgicon>
           <div class="settings-title">Spotify</div>
-        </div>
-        <div class="setting" @click="openSettingDetail('HomeAssistant')">
-          <svgicon class="settings-icon" icon=""></svgicon>
-          <div class="settings-title">Home Assistant</div>
         </div>
         <div class="setting" @click="openSettingDetail('Sonos')">
           <svgicon class="settings-icon" icon=""></svgicon>
@@ -62,9 +58,12 @@
 
 <script>
 import { mapGetters } from "vuex";
-import "@/compiled-icons/menu_plant";
+import "@/compiled-icons/menu_plants";
 import "@/compiled-icons/menu_package";
-
+import "@/compiled-icons/gear";
+import "@/compiled-icons/server";
+import "@/compiled-icons/apple_music";
+import "@/compiled-icons/spotify_without_background";
 export default {
   name: "SettingsPage",
   created() {
@@ -102,6 +101,7 @@ export default {
           margin-right: 0.5vh;
           border-radius: 5px;
           background-color: rgba(211, 211, 211, 0.301);
+          fill: none;
         }
       }
       .setting:hover {

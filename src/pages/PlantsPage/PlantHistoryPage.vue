@@ -184,7 +184,6 @@ import "@/compiled-icons/soil_moist";
 import "@/compiled-icons/fertilizer";
 import "@/compiled-icons/sun";
 import colors from "../../style/main-colors.scss";
-import "@/compiled-icons/pin";
 import PlantDataProgressBar from "./PlantDataProgressBar";
 
 export default {

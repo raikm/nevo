@@ -1,5 +1,8 @@
 <template>
-  <div class="basic-card click-element device-box">
+  <div
+    class="basic-card click-element device-box"
+    @click="clickDeviceBox"
+  >
     <div class="device-box-header">
       <svgicon
         class="bulb-icon"
@@ -22,9 +25,15 @@
 import "@/compiled-icons/bulb";
 import "@/compiled-icons/stand_lamp";
 import "@/compiled-icons/spot";
+import "@/compiled-icons/plant_lights";
 
 export default {
-  props: ["iconName", "deviceTitle", "deviceStatus"],
+  props: ["iconName", "deviceTitle", "deviceStatus", "deviceId"],
+  methods: {
+    clickDeviceBox(){
+      this.$emit('click-device-box', this.deviceId, this.deviceStatus)
+    }
+  }
 };
 </script>
 
@@ -37,12 +46,15 @@ export default {
   min-height: 115px;
   max-height: 140px;
   display: grid;
-  grid-template-rows: 3fr 1fr 1fr;
+  grid-template-rows: 3fr 1fr auto;
+  justify-self: center;
+  align-self: center;
 }
 
 .device-box-header {
   // overflow: hidden;
   width: 100%;
+  
 }
 
 .device-box-title {

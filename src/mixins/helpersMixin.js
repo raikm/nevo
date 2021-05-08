@@ -23,8 +23,8 @@ Vue.mixin({
         //grid-template-columns: auto 70% 25%;
       } else {
         this.$store.commit("setShowNotification", false);
-        document.getElementById("main-container").style.gridTemplateColumns =
-          "auto 95%";
+        // document.getElementById("main-container").style.gridTemplateColumns =
+        //   "auto 95%";
         // console.log(document.getElementById("page").style.width)
       }
     },

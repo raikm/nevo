@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="page-header"></div>
+    <div class="page-header">
+      <InfoBoxWithIcon :iconName="'bulb'" headerValue="Turn off all lights" />
+    </div>
     <div class="room-wrapper">
       <div
         class="room-with-lamps"
@@ -15,14 +17,18 @@
 
 <script>
 import { mapState } from "vuex";
+import InfoBoxWithIcon from "@/components/Pageheaders/InfoBoxWithIcon";
 
 import Room from "./Room";
 
 export default {
   name: "LampsPage",
-  components: { Room },
+  components: { Room, InfoBoxWithIcon },
   created() {
     this.getDeviceStates();
+  },
+  mounted() {
+    // document.getElementById("page").style.width = "90%";
   },
   computed: mapState(["currentEntities"]),
   watch: {
@@ -75,19 +81,17 @@ export default {
   flex-wrap: nowrap;
   // width: 100%;
   // justify-content: space-between;
-  width: 100%;
+  // width: 100%;
   height: 100%;
 }
 
 .room-with-lamps {
-  min-width: 295px;
-  width: 6vw * 2;
+  // min-width: 295px;
+  // width: 6vw * 2;
   max-width: 295px;
   height: 100%;
   margin-right: $standard-space;
 }
-
-
 
 .lamps-on {
   background-color: rgba(255, 255, 255, 0.95);
