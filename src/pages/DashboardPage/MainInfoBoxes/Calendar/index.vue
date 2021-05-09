@@ -1,6 +1,7 @@
 <template>
   <div class="basic-card main-info-box-big">
-    <div v-if="gCalendars">
+    <!--  TODO return back   <div v-if="gCalendars"> -->
+    <div v-if="calendarAppointmentsSorted.length > 0">
       <div id="calendar-header">
         <div id="day-info">
           <span id="day-span">{{
