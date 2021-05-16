@@ -1,7 +1,6 @@
 <template>
   <div class="basic-card main-info-box-big">
-    <!--  TODO return back   <div v-if="gCalendars"> -->
-    <div v-if="calendarAppointmentsSorted.length > 0">
+    <div v-if="gCalendars">
       <div id="calendar-header">
         <div id="day-info">
           <span id="day-span">{{
@@ -75,71 +74,7 @@ export default {
   },
   data() {
     return {
-      calendarAppointmentsSorted: [
-        {
-          kind: "calendar#event",
-          etag: '"3240921344999000"',
-          id: "_6kskchi48gqj6ba67114cb9k8l132b9o68p3cb9o652jec1l6gq44d1k6c",
-          status: "confirmed",
-          htmlLink:
-            "https://www.google.com/calendar/event?eid=XzZrc2tjaGk0OGdxajZiYTY3MTE0Y2I5azhsMTMyYjlvNjhwM2NiOW82NTJqZWMxbDZncTQ0ZDFrNmMgY19sODEwYjZjY3UzMmJ0NzE4bnUxM2c2aGdkc0Bn",
-          created: "2021-05-08T07:54:22.000Z",
-          updated: "2021-05-08T08:00:47.231Z",
-          summary: "Homeproject",
-          creator: { email: "mail@raik-mueller.com" },
-          organizer: {
-            email: "c_l810b6ccu32bt718nu13g6hgds@group.calendar.google.com",
-            displayName: "Meals",
-            self: true,
-          },
-          start: {
-            dateTime: "2021-05-08T14:00:00+02:00",
-            timeZone: "Europe/Vienna",
-          },
-          end: {
-            dateTime: "2021-05-08T16:00:00+02:00",
-            timeZone: "Europe/Vienna",
-          },
-          iCalUID: "59FFDD53-F8BF-4EB1-8226-81E70544B443",
-          sequence: 1,
-          reminders: { useDefault: false },
-          eventType: "default",
-          calendarColor: "#0095ff",
-        },
-        {
-          kind: "calendar#event",
-          etag: '"3240921308647000"',
-          id: "_652kcc2368pk6b9j75338b9k88p30ba284s4ab9h60rkacpg8go4adi468",
-          status: "confirmed",
-          htmlLink:
-            "https://www.google.com/calendar/event?eid=XzY1MmtjYzIzNjhwazZiOWo3NTMzOGI5azg4cDMwYmEyODRzNGFiOWg2MHJrYWNwZzhnbzRhZGk0NjggY19sODEwYjZjY3UzMmJ0NzE4bnUxM2c2aGdkc0Bn",
-          created: "2021-05-08T07:54:10.000Z",
-          updated: "2021-05-08T08:00:58.094Z",
-          summary: "Dinner with Friends",
-          creator: { email: "mail@raik-mueller.com" },
-          organizer: {
-            email: "c_l810b6ccu32bt718nu13g6hgds@group.calendar.google.com",
-            displayName: "Meals",
-            self: true,
-          },
-          start: {
-            dateTime: "2021-05-09T18:00:00+02:00",
-            timeZone: "Europe/Vienna",
-          },
-          end: {
-            dateTime: "2021-05-09T20:00:00+02:00",
-            timeZone: "Europe/Vienna",
-          },
-          iCalUID: "1EF0C23C-39F4-4B20-BA8E-107E30D0E6D2",
-          sequence: 1,
-          reminders: {
-            useDefault: false,
-            overrides: [{ method: "popup", minutes: 10 }],
-          },
-          eventType: "default",
-          calendarColor: "#ffea00",
-        },
-      ],
+      calendarAppointmentsSorted: [],
       gCalendars: null,
       startDay: new Date().setHours(0, 0, 0, 0),
       endDay: new Date().setHours(23, 59, 59, 999),

@@ -12,7 +12,7 @@
           <Person :key="n" v-for="n in 4" :n="n" />
         </div>
       </div>
-      <DateTime id="time-container" />
+      <!-- <DateTime/> -->
     </div>
     <div id="main-container">
       <Menu id="menu" />
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import DateTime from "@/components/DateTime";
+// import DateTime from "@/components/DateTime";
 import Menu from "@/components/Menu";
 import Person from "@/components/Person";
 /**
@@ -42,7 +42,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "homeapp",
   components: {
-    DateTime,
+    // DateTime,
     Menu,
     Person,
   },
@@ -86,7 +86,7 @@ export default {
   width: 100%;
   max-width: 1920px;
   display: grid;
-  grid-template-columns: auto 70% 25%;
+  grid-template-columns: 10% 70% 20%;
   height: 10%;
   #logo-container {
     width: 7.5vh;

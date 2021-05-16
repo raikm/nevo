@@ -1,5 +1,5 @@
 <template>
-  <div v-if="currentTrack.length !== 0">
+  <div class="player-wrapper" v-if="currentTrack.length !== 0">
     <div id="player">
       <div id="title-info-container">
         <div id="cover-img">
@@ -314,6 +314,11 @@ export default {
 </script>
 
 <style lang="scss">
+.player-wrapper{
+  // height: 100%;
+  // overflow: hidden;
+}
+
 #player {
   height: 100%;
   display: grid;
@@ -321,7 +326,7 @@ export default {
   row-gap: 2%;
 }
 #speakers {
-  height: 100%;
+  // height: 100%;
   display: none;
   grid-template-rows: 65% 20% 15%;
   row-gap: 2%;
@@ -346,15 +351,15 @@ export default {
 
 #album-cover {
   // border-radius: 15px;
-  height: 95%;
+  height: 100%;
   width: 100%;
 }
 #title-info-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-column-gap: 5%;
-  height: 100%;
-  width: 100%;
+  // height: 100%;
+  // width: 100%;
   overflow: hidden;
 }
 
@@ -435,7 +440,7 @@ export default {
 }
 
 #volume-control-wrapper {
-  max-height: 10vh;
+  // max-height: 10vh;
   position: relative;
 }
 
@@ -446,7 +451,7 @@ export default {
   pointer-events: none;
 }
 #volume-icon {
-  height: 2vh;
+  // height: 2vh;
   margin: 1.5vh;
   fill: lightgray;
 }

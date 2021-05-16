@@ -5,46 +5,53 @@
 
       <div class="setting-menu-wrapper element-wrapper">
         <div class="setting" @click="openSettingDetail('General')">
-          <svgicon class="settings-icon" icon="gear"></svgicon>
+          <svgicon class="settings-icon" icon="settings_general"></svgicon>
           <div class="settings-title">General</div>
         </div>
         <div class="setting" @click="openSettingDetail('Server')">
-          <svgicon class="settings-icon" icon="server"></svgicon>
+          <svgicon class="settings-icon" icon="settings_server"></svgicon>
           <div class="settings-title">Server</div>
         </div>
       </div>
       <div class="setting-menu-wrapper element-wrapper">
         <div class="setting" @click="openSettingDetail('Calendar')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon class="settings-icon" icon="settings_calendar"></svgicon>
           <div class="settings-title">Calendar</div>
         </div>
         <div class="setting" @click="openSettingDetail('Spotify')">
-          <svgicon class="settings-icon" icon="spotify_without_background"></svgicon>
+          <svgicon class="settings-icon" icon="settings_spotify"></svgicon>
           <div class="settings-title">Spotify</div>
         </div>
-        <div class="setting" @click="openSettingDetail('Sonos')">
-          <svgicon class="settings-icon" icon=""></svgicon>
-          <div class="settings-title">Sonos</div>
+        <div class="setting" @click="openSettingDetail('AppleMusic')">
+          <svgicon class="settings-icon" icon="settings_apple_music"></svgicon>
+          <div class="settings-title">Apple Music</div>
+        </div>
+        <div class="setting" @click="openSettingDetail('Speaker')">
+          <svgicon class="settings-icon" icon="settings_speaker"></svgicon>
+          <div class="settings-title">Speaker</div>
         </div>
         <div class="setting" @click="openSettingDetail('PublicTransport')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon
+            class="settings-icon"
+            icon="settings_public_transport"
+          ></svgicon>
           <div class="settings-title">Public Transport</div>
         </div>
         <div class="setting" @click="openSettingDetail('Weather')">
-          <svgicon class="settings-icon" icon=""></svgicon>
+          <svgicon class="settings-icon" icon="settings_weather"></svgicon>
           <div class="settings-title">Weather</div>
         </div>
         <div class="setting" @click="openSettingDetail('Plants')">
           <svgicon
             class="settings-icon plant-icon active"
-            icon="menu_plant"
+            icon="settings_plants"
           ></svgicon>
           <div class="settings-title">Plants</div>
         </div>
         <div class="setting" @click="openSettingDetail('PackageTracking')">
           <svgicon
             class="settings-icon package-icon active"
-            icon="menu_package"
+            icon="settings_package"
           ></svgicon>
           <div class="settings-title">Package Tracking</div>
         </div>
@@ -58,12 +65,17 @@
 
 <script>
 import { mapGetters } from "vuex";
-import "@/compiled-icons/menu_plants";
-import "@/compiled-icons/menu_package";
-import "@/compiled-icons/gear";
-import "@/compiled-icons/server";
-import "@/compiled-icons/apple_music";
-import "@/compiled-icons/spotify_without_background";
+import "@/compiled-icons/settings_apple_music";
+import "@/compiled-icons/settings_calendar";
+import "@/compiled-icons/settings_general";
+import "@/compiled-icons/settings_public_transport";
+import "@/compiled-icons/settings_server";
+import "@/compiled-icons/settings_speaker";
+import "@/compiled-icons/settings_spotify";
+import "@/compiled-icons/settings_weather";
+import "@/compiled-icons/settings_package";
+import "@/compiled-icons/settings_plants";
+
 export default {
   name: "SettingsPage",
   created() {
@@ -86,7 +98,10 @@ export default {
   grid-template-columns: 2fr 6fr;
   .setting-menu {
     // background-color: yellow;
-    border-right: 1px solid black;
+    border-right: 1px solid rgba(0, 0, 0, 0.5);
+    margin-bottom: $standard-space*4;
+    min-width: 260px;
+    max-width: 380px;
     .setting-menu-wrapper {
       margin-right: $standard-space;
       padding: 0 !important;
@@ -97,10 +112,11 @@ export default {
         align-items: center;
         .settings-icon {
           height: 80%;
-          padding: 0.3vh;
           margin-right: 0.5vh;
+          border: solid;
+          border-width: 1px; 
+          border-color: rgba(0, 0, 0, 0.1);
           border-radius: 5px;
-          background-color: rgba(211, 211, 211, 0.301);
           fill: none;
         }
       }
@@ -128,7 +144,7 @@ export default {
 
 .element-wrapper > div {
   border-bottom: 1px solid $main-light-gray;
-  margin-left: 15px;
+  padding-left: 15px;
   height: 4vh;
 }
 .element-wrapper > div:last-child {

@@ -11,8 +11,24 @@
         ></InfoElementWithMore>
       </div>
     </div>
-    <div class="element-wrapper" @click="openNewPlantPage()">
+    <div class="element-wrapper" @click="showPlantsensorFinder = true">
       <ActionElement lableName="Add new Plant"></ActionElement>
+    </div>
+    <div class="popup-container">
+      <transition name="fade" appear>
+        <div
+          v-if="showPlantsensorFinder"
+          @click="showPlantsensorFinder = false"
+        ></div>
+      </transition>
+      <transition name="slide" appear>
+        <div class="popup-window" v-if="showPlantsensorFinder">
+          <PopUpWindow :windowWidth="30" popupTitle="Add new Plantsensors"   @leftEvent="showPlantsensorFinder = false" :leftInfo="'Close'"
+            rightInfo="Save">
+            <component :is="plantSensorFinderPage"></component>
+          </PopUpWindow>
+        </div>
+      </transition>
     </div>
   </div>
 </template>
@@ -20,15 +36,25 @@
 <script>
 import InfoElementWithMore from "@/components/InfoFields/InfoElementWithMore";
 import ActionElement from "@/components/Inputs/ActionElement";
+import PopUpWindow from "../../components/PopUp";
+import PlantSensorFinder from "./PlantSensorFinder";
+
 export default {
   name: "Plants",
-  components: { InfoElementWithMore, ActionElement },
+  components: {
+    InfoElementWithMore,
+    ActionElement,
+    PopUpWindow,
+    PlantSensorFinder,
+  },
   created() {
     this.getAllPlants();
   },
   data() {
     return {
       plants: [],
+      plantSensorFinderPage: "PlantSensorFinder",
+      showPlantsensorFinder: false,
     };
   },
   methods: {

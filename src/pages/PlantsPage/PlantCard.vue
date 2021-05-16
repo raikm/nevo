@@ -44,9 +44,9 @@
             :windowWidth="90"
             :windowHeight="50"
             :popupTitle="currentPlant.name"
-            :leftInfo="'Close'"
+            leftInfo="Close"
             :rightInfo="currentPlant.temperature.split('.')[0] + '°C'"
-            @leftEvent="closeDialog"
+            @leftEvent="showPlantHistory = false"
           >
             <component
               :is="historyPage"
@@ -93,9 +93,6 @@ export default {
       if (plantInfoText != "NULL") {
         this.showToastInfo(plantInfoText);
       }
-    },
-    closeDialog() {
-      this.showPlantHistory = false;
     },
   },
 };
@@ -161,8 +158,16 @@ export default {
   display: grid;
   grid-column-gap: $standard-space;
   grid-row-gap: $standard-space;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
   // height:100%;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.plant-card-container::-webkit-scrollbar {
+  display: none;
+}
+
 
 .modal-overlay {
   position: absolute;

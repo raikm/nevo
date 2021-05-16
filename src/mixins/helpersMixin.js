@@ -7,13 +7,13 @@ Vue.mixin({
       let cleanName = configName.replace("_", " ").toUpperCase();
       return cleanName;
     },
-    changePage: function(path, name) {
+    changePage: function(path) {
       this.$router.push(path, () => {});
-      let elements = document.getElementsByClassName("active");
-      for (let i = 0; i < elements.length; i++) {
-        elements[0].classList.remove("active");
-      }
-      document.getElementsByClassName(name)[0].classList.add("active");
+      // let elements = document.getElementsByClassName("active");
+      // for (let i = 0; i < elements.length; i++) {
+      //   elements[0].classList.remove("active");
+      // }
+      // document.getElementsByClassName(name)[0].classList.add("active");
 
       if (this.$router.currentRoute.name == "dashboard-page") {
         this.$store.commit("setShowNotification", true);

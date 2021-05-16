@@ -10,7 +10,8 @@ import General from "../pages/SettingsPage/General.vue";
 import Serverinfo from "../pages/SettingsPage/Server.vue";
 import Calendar from "../pages/SettingsPage/Calendar.vue";
 import Spotify from "../pages/SettingsPage/Spotify.vue";
-import Sonos from "../pages/SettingsPage/Sonos.vue";
+import AppleMusic from "../pages/SettingsPage/AppleMusic.vue";
+import Speaker from "../pages/SettingsPage/Speaker.vue";
 import PublicTransport from "../pages/SettingsPage/PublicTransport.vue";
 import Weather from "../pages/SettingsPage/Weather.vue";
 import Plants from "../pages/SettingsPage/Plants.vue";
@@ -78,9 +79,14 @@ export default new Router({
           component: Spotify,
         },
         {
-          path: "Sonos",
-          name: "sonos",
-          component: Sonos,
+          path: "AppleMusic",
+          name: "applemusic",
+          component: AppleMusic,
+        },
+        {
+          path: "Speaker",
+          name: "speaker",
+          component: Speaker,
         },
         {
           path: "PublicTransport",
