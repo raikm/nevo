@@ -269,23 +269,7 @@ export default {
       document.getElementById("player").style.display = "grid";
       document.getElementById("speakers").style.display = "none";
     },
-    changeState(speaker) {
-      if (speaker.state.playbackState !== "PLAYING") {
-        this.$axios
-          .get(
-            `${this.config.sonos.rest_url}/${speaker.roomName}/join/${this.activeGroup.coordinator.roomName}`
-          )
-          .catch((error) => {
-            this.showToastError(error.toString());
-          });
-      } else if (speaker.state.playbackState === "PLAYING") {
-        this.$axios
-          .get(`${this.config.sonos.rest_url}/${speaker.roomName}/leave`)
-          .catch((error) => {
-            this.showToastError(error.toString());
-          });
-      }
-    },
+  
     activeRoomNames() {
       // let result = activeGroup.forEach(obj => obj.members.roomName + ", ")
       let result = "";
@@ -326,7 +310,7 @@ export default {
   row-gap: 2%;
 }
 #speakers {
-  // height: 100%;
+  height: 100%;
   display: none;
   grid-template-rows: 65% 20% 15%;
   row-gap: 2%;

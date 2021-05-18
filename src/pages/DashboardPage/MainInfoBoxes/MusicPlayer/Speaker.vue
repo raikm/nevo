@@ -49,13 +49,32 @@
 <script>
 import CurrentSongPreview from "./CurrentSongPreview.vue";
 import { mapGetters, mapState } from "vuex";
-import HorizontalBarController from "@/components/Inputs/HorizontalBarController"
+import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
 export default {
   computed: {
-    ...mapGetters(["activeGroupState"]),
+    ...mapGetters(["activeGroupState", "config"]),
     ...mapState(["activeGroup", "speakers"]),
   },
   components: { CurrentSongPreview, HorizontalBarController },
+  methods: {
+    changeState(speaker) {
+      if (speaker.state.playbackState !== "PLAYING") {
+        this.$axios
+          .get(
+            `${this.config.sonos.rest_url}/${speaker.roomName}/join/${this.activeGroup.coordinator.roomName}`
+          )
+          .catch((error) => {
+            this.showToastError(error.toString());
+          });
+      } else if (speaker.state.playbackState === "PLAYING") {
+        this.$axios
+          .get(`${this.config.sonos.rest_url}/${speaker.roomName}/leave`)
+          .catch((error) => {
+            this.showToastError(error.toString());
+          });
+      }
+    },
+  },
 };
 </script>
 

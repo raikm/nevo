@@ -24,13 +24,13 @@
         id="third_toggle"
         name="toggle_option"
       />
-      <label @click="changeRange(borderHalfDayRange)" for="first_toggle"
+      <label @click="changeRange(12)" for="first_toggle"
         ><div class="time-text">Last 12 Hours</div></label
       >
-      <label @click="changeRange(borderDayRange)" for="second_toggle"
+      <label @click="changeRange(24)" for="second_toggle"
         ><div class="time-text">Last 24 Hours</div></label
       >
-      <label @click="changeRange(borderTwoWeekRange)" for="third_toggle"
+      <label @click="changeRange(336)" for="third_toggle"
         ><div class="time-text">Last 14 Days</div></label
       >
       <div class="toggle_option_slider"></div>
@@ -40,34 +40,30 @@
 
 <script>
 export default {
-  name: "PlantTimeChanger",
-  props: ["borderRange"],
   mounted: function() {},
-  data() {
-    return {
-      borderHalfDayRange: {
-        start: new Date(new Date().setHours(new Date().getHours() - 12)),
-        end: Date.now(),
-      },
-      borderDayRange: {
-        start: new Date(new Date().setHours(new Date().getHours() - 24)),
-        end: Date.now(),
-      },
-      borderTwoWeekRange: {
-        start: new Date(new Date().setDate(new Date().getDate() - 14)),
-        end: Date.now(),
-      },
-      borderMonthRange: {
-        start: new Date(new Date().setDate(new Date().getDate() - 14)),
-        end: Date.now(),
-      },
-    };
-  },
+  // data() {
+    // return {
+    //   borderHalfDayRange: {
+    //     start: new Date(new Date().setHours(new Date().getHours() - 12)),
+    //     end: Date.now(),
+    //   },
+    //   borderDayRange: {
+    //     start: new Date(new Date().setHours(new Date().getHours() - 24)),
+    //     end: Date.now(),
+    //   },
+    //   borderTwoWeekRange: {
+    //     start: new Date(new Date().setDate(new Date().getDate() - 14)),
+    //     end: Date.now(),
+    //   },
+    //   borderMonthRange: {
+    //     start: new Date(new Date().setDate(new Date().getDate() - 14)),
+    //     end: Date.now(),
+    //   },
+    // };
+  // },
   methods: {
     changeRange(newRange) {
-      let _borderRange = this.borderRange;
-      _borderRange = newRange;
-      this.$emit("update-range", _borderRange);
+      this.$emit("update-range", newRange);
     },
   },
 };

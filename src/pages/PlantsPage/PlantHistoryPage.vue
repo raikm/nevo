@@ -4,10 +4,7 @@
       <div class="plant-header-popup">
         <div></div>
 
-        <PlantTimeChanger
-          :borderRange="borderRange"
-          @update-range="updateRange"
-        />
+        <PlantTimeChanger @update-range="updateRange" />
 
         <!-- <div class="temperature-info">
         {{ currentPlant.temperature.split(".")[0] }}°C
@@ -195,7 +192,7 @@ export default {
   },
   watch: {
     borderRange: function() {
-      this.createCharts();
+      this.getCurrentPlantData(this.currentPlant.id);
     },
   },
   data() {
@@ -210,10 +207,7 @@ export default {
       // soilmoisutreDisplayArray: [],
       // sunlightDisplayArray: [],
 
-      borderRange: {
-        start: new Date(new Date().setHours(new Date().getHours() - 12)),
-        end: new Date(),
-      },
+      borderRange: 12,
 
       pastWaterReviewArray: [0, 0, 0, 0, 0, 0, 0],
       pastFertilizerReviewArray: [0, 0, 0, 0, 0, 0, 0],
@@ -234,11 +228,20 @@ export default {
     },
     getCurrentPlantData(plant_id) {
       this.$axios
-        .get(this.$store.getters.config.homeserver.url + ":8080/planthistory/" + plant_id + "/", {})
+        .get(
+          this.$store.getters.config.homeserver.url +
+            ":8080/planthistory/" +
+            plant_id +
+            "/" +
+            this.borderRange +
+            "/",
+          {}
+        )
         .then((response) => {
           this.prepareHistoryData(response.data);
         })
         .catch((error) => {
+          console.log(error);
           this.showToastError(error.toString());
         });
     },
@@ -281,8 +284,9 @@ export default {
 
       const ctx = document.getElementById(chartId);
       let timeFormat = "hA";
-      let start = this.borderRange.start;
-      let end = this.borderRange.end;
+      console.log(planDetailArray);
+      let start = planDetailArray[0].timestamp;
+      let end = planDetailArray[planDetailArray.length - 1].timestamp;
       let plantChart = this.preparePlantChart(
         data,
         plantDetailValueBorder.min,
@@ -319,6 +323,9 @@ export default {
       );
     },
     prepareHistoryData(historyData) {
+      this.soilfertitlityArray = []
+      this.soilmoistureArray = []
+      this.sunlightIntensityArray = []
       Object.keys(historyData).forEach((key) => {
         let plantData = historyData[key];
 
@@ -360,8 +367,7 @@ export default {
 </script>
 
 <style lang="scss">
-
-canvas{
+canvas {
   width: 100%;
 }
 
@@ -464,7 +470,6 @@ canvas{
   display: grid;
   row-gap: $standard-space;
   // min-height: 65%;
-  
 
   .plant-detail-header {
     // margin: -1.5% 1.5% 1.5% 1.5%;
