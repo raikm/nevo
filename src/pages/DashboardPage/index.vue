@@ -66,7 +66,7 @@ export default {
 .main-info-box-small div {
 }
 
-.main-info-box-big {
+.large-widget {
   height: 25vh;
   max-height: 25vh;
 }

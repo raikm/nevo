@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-big">
+  <div class="basic-card main-info-box large-widget">
     <div class="public-transport-box">
       <div class="public-transport-header">
         <div

@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-big music-control-box">
+  <div class="basic-card main-info-box large-widget music-control-box">
     <MusicPlayer
       v-if="showMusicPlayer"
       @showPlaylists="showPlaylists"

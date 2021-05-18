@@ -1,52 +1,51 @@
 <template>
-  <div class="basic-card main-info-box-big">
-    <div v-if="gCalendars">
-      <div id="calendar-header">
-        <div id="day-info">
-          <span id="day-span">{{
-            this.$store.getters.currentDayOfTheWeek
-          }}</span
-          ><span id="month-span"
-            >,
-            {{
-              new Date().getUTCDate() +
-                ". " +
-                new Date().toLocaleString("default", { month: "long" })
-            }}</span
-          >
-        </div>
-      </div>
-      <div id="calendar-info-box">
-        <div class="main-info-content">
-          <div
-            id="calendar-appointment"
-            :key="appointment.id"
-            v-for="appointment in calendarAppointmentsSorted.slice(0, 3)"
-          >
-            <CalendarAppointment :appointment="appointment" />
-          </div>
-          <div
-            v-if="calendarAppointmentsSorted.length > 3"
-            class="preview-calendar-appointment"
-          >
-            <div
-              :key="appointment.id"
-              v-for="appointment in calendarAppointmentsSorted.slice(3, 6)"
-            >
-              <div
-                class="calendar-color-bar"
-                :style="{ background: appointment.calendarColor }"
-              ></div>
-            </div>
-            <div class="preview-text">
-              {{ calendarAppointmentsSorted.length - 3 }} more events
-            </div>
-          </div>
-        </div>
+  <div class="basic-card large-widget">
+    <div id="calendar-header">
+      <div id="calendar-info">
+        <div id="calendar-day-info">{{ title.title }}</div>
+        <div id="calendar-month-info">, {{ title.dateMonth }}</div>
       </div>
     </div>
-    <div v-else class="service-info">
+
+    <div v-if="!gCalendars" class="calendar-body service-info">
       Service not available
+    </div>
+
+    <div
+      v-else-if="this.appointments.length === 0"
+      class="calendar-body no-events-info"
+    >
+      No events today
+    </div>
+
+    <div v-else class="calendar-body">
+      <div class="calendar-events">
+        <div class="calendar-next-events">
+          <CalendarAppointment
+            v-for="appointment in appointments.slice(0, 3)"
+            :key="appointment.id"
+            :appointment="appointment"
+          />
+        </div>
+
+        <div
+          v-if="appointments.length > 3"
+          class="preview-calendar-appointment"
+        >
+          <div
+            :key="appointment.id"
+            v-for="appointment in appointments.slice(3, 6)"
+          >
+            <div
+              class="calendar-color-bar"
+              :style="{ background: appointment.calendarColor }"
+            ></div>
+          </div>
+          <div class="preview-text">
+            {{ appointments.length - 3 }} more events
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -68,13 +67,38 @@ export default {
     nextEndDay() {
       return new Date(this.endDay).setDate(new Date().getDate() + 1);
     },
+    title() {
+      let now = new Date();
+      if (
+        this.appointments.length > 0 &&
+        new Date(this.appointments[0].start.dateTime).getDate() ==
+          new Date(this.nextStartDay).getDate()
+      ) {
+        let tomorrow = now.setDate(now.getDate() + 1);
+        tomorrow = new Date(tomorrow);
+        let dateMonth =
+          tomorrow.getUTCDate() +
+          ". " +
+          tomorrow.toLocaleString("default", { month: "long" });
+        return { title: "Tomorrow", dateMonth: dateMonth };
+      } else {
+        let dateMonth =
+          now.getUTCDate() +
+          ". " +
+          now.toLocaleString("default", { month: "long" });
+        return {
+          title: this.$store.getters.currentDayOfTheWeek,
+          dateMonth: dateMonth,
+        };
+      }
+    },
   },
   mounted() {
     // this.getCalendarEvents(this.startDay, this.endDay);
   },
   data() {
     return {
-      calendarAppointmentsSorted: [],
+      appointments: [],
       gCalendars: null,
       startDay: new Date().setHours(0, 0, 0, 0),
       endDay: new Date().setHours(23, 59, 59, 999),
@@ -124,7 +148,13 @@ export default {
       }
     },
     showNextDay() {
-      this.getCalendarEvents(this.nextStartDay, this.nextEndDay);
+      if (
+        new Date(this.appointments[0].start.dateTime).getDate() !=
+          new Date(this.nextStartDay).getDate() &&
+        new Date().getHours() >= 18
+      ) {
+        this.getCalendarEvents(this.nextStartDay, this.nextEndDay);
+      }
     },
     setGoogleCalendars() {
       window.gapi.client.calendar.calendarList
@@ -137,18 +167,19 @@ export default {
           console.log(error);
         });
     },
-    getCalendarEvents(startDay, endDay) {
+    async getCalendarEvents(startDay, endDay) {
       if (this.gCalendars == null) return;
-      console.log("getCalendarEvent:" + new Date(startDay));
+
       //remove calendarweeks infos
       let calendars = this.gCalendars.filter(function(obj) {
         return obj.id !== "e_2_de#weeknum@group.v.calendar.google.com";
       });
-      for (let i = 0; i < calendars.length; i++) {
-        let calendarColor = calendars[i].backgroundColor;
-        window.gapi.client.calendar.events
+
+      for await (let calendar of calendars) {
+        let calendarColor = calendar.backgroundColor;
+        await window.gapi.client.calendar.events
           .list({
-            calendarId: calendars[i].id,
+            calendarId: calendar.id,
             timeMin: new Date(startDay).toISOString(),
             timeMax: new Date(endDay).toISOString(),
             showDeleted: false,
@@ -159,8 +190,8 @@ export default {
             response.result.items.forEach((entry) => {
               if (new Date(entry.end.dateTime) > new Date()) {
                 entry["calendarColor"] = calendarColor;
-                this.calendarAppointmentsSorted.push(entry);
-                this.calendarAppointmentsSorted.sort((a, b) =>
+                this.appointments.push(entry);
+                this.appointments.sort((a, b) =>
                   new Date(a.start.dateTime) > new Date(b.start.dateTime)
                     ? 1
                     : -1
@@ -172,12 +203,10 @@ export default {
           .catch((error) => {
             console.log(error);
           });
-        // console.log("before?");
       }
-
-      // if (this.calendarAppointmentsSorted.length === 0) {
-      //   this.showNextDay()
-      // }
+      if (this.appointments.length === 0) {
+        this.showNextDay();
+      }
     },
   },
 };
@@ -185,33 +214,35 @@ export default {
 
 <style lang="scss">
 #calendar-header {
-  display: grid;
-  grid-template-columns: 4.5fr 1fr 1fr 1fr;
-  margin-bottom: 1vh;
-}
+  height: 15%;
+  #calendar-day-info {
+    color: $main-red;
+    font-weight: bold;
+  }
 
-#day-span {
-  color: $main-red;
-  font-weight: bold;
+  #calendar-info {
+    display: flex;
+    font-size: $standard-text-medium;
+  }
 }
-
-#user-infos {
-}
-#day-info {
-  font-size: $standard-text-medium;
-  justify-self: left;
-  align-self: center;
-}
-
-#calendar-info-box {
-  float: left;
-  margin-right: 10px;
+#calendar-body {
+  height: 85%;
   width: 100%;
+}
+
+.calendar-events {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 95% 5%;
+
+  .calendar-next-events {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .preview-calendar-appointment {
   display: flex;
-  height: 2vh;
   width: 100%;
 }
 
