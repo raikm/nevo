@@ -14,7 +14,7 @@ import "@/compiled-icons/back_home";
 import "@/compiled-icons/movie_mode";
 import "@/compiled-icons/cleanup";
 import "@/compiled-icons/night_mode";
-import "@/compiled-icons/plant_lights";
+import "@/compiled-icons/light_plant_light";
 import "@/compiled-icons/evening_mode";
 import "@/compiled-icons/shower_mode";
 import "@/compiled-icons/curtain";

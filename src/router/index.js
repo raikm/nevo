@@ -1,11 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import DevicessPage from "../pages/DevicesPage";
-import LampsPage from "../pages/LampsPage";
+import DevicesPage from "../pages/DevicesPage";
 import PlantsPage from "../pages/PlantsPage";
 import PackagesPage from "../pages/PackagesPage";
 import DashboardPage from "../pages/DashboardPage";
 import SettingsPage from "../pages/SettingsPage";
+import RoomsPage from "../pages/RoomsPage";
 import General from "../pages/SettingsPage/General.vue";
 import Serverinfo from "../pages/SettingsPage/Server.vue";
 import Calendar from "../pages/SettingsPage/Calendar.vue";
@@ -34,14 +34,14 @@ export default new Router({
       component: DashboardPage,
     },
     {
-      path: "/LampsPage",
-      name: "lamps-page",
-      component: LampsPage,
-    },
-    {
       path: "/DevicessPage",
       name: "devices-page",
-      component: DevicessPage,
+      component: DevicesPage,
+    },
+    {
+      path: "/RoomsPage",
+      name: "room-page",
+      component: RoomsPage,
     },
     {
       path: "/PlantsPage",

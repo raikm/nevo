@@ -1,13 +1,13 @@
 <template>
-  <div
-    class="basic-card click-element device-box"
-    @click="clickDeviceBox"
-  >
+  <div class="basic-card click-element device-box" @click="clickLight">
     <div class="device-box-header">
       <svgicon
         class="bulb-icon"
-        :class="{ 'bulb-on': deviceStatus === 'on' }"
-        :icon="iconName"
+        :class="{
+          'light-off': deviceStatus === 'off',
+          'light-unavailable': deviceStatus === 'unavailable',
+        }"
+        :icon="'light_' + iconName"
         height="100%"
         width="30%"
       ></svgicon>
@@ -22,18 +22,18 @@
 </template>
 
 <script>
-import "@/compiled-icons/bulb";
-import "@/compiled-icons/stand_lamp";
-import "@/compiled-icons/spot";
-import "@/compiled-icons/plant_lights";
+import "@/compiled-icons/light_bulb";
+import "@/compiled-icons/light_stand_lamp";
+import "@/compiled-icons/light_spot";
+import "@/compiled-icons/light_plant_light";
 
 export default {
   props: ["iconName", "deviceTitle", "deviceStatus", "deviceId"],
   methods: {
-    clickDeviceBox(){
-      this.$emit('click-device-box', this.deviceId, this.deviceStatus)
-    }
-  }
+    clickLight() {
+      this.$emit("click-light", this.deviceId, this.deviceStatus);
+    },
+  },
 };
 </script>
 
@@ -54,7 +54,6 @@ export default {
 .device-box-header {
   // overflow: hidden;
   width: 100%;
-  
 }
 
 .device-box-title {
@@ -69,5 +68,28 @@ export default {
 .device-box-status {
   font-size: 100%;
   overflow: hidden;
+}
+
+.light-off {
+  .accessoir-path {
+    fill: rgb(112, 112, 112);
+  }
+}
+.light-off {
+  .light-path {
+    fill: rgb(182, 182, 182);
+  }
+}
+
+.light-unavailable {
+  .accessoir-path {
+    fill: rgba(112, 112, 112, 0.5);
+  }
+}
+
+.light-unavailable {
+  .light-path {
+    fill: rgba(182, 182, 182, 0.5);
+  }
 }
 </style>

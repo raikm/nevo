@@ -120,16 +120,16 @@ $inactive-color: $main-gray;
   fill: #639a67;
 }
 
-.device-icon {
-  fill: $inactive-color;
-  margin-left: 17%;
-  margin-right: 3%;
-}
+// .device-icon {
+//   fill: $inactive-color;
+//   margin-left: 17%;
+//   margin-right: 3%;
+// }
 
-.device-icon.active,
-.device-icon:hover {
-  fill: $main-yellow-2;
-}
+// .device-icon.active,
+// .device-icon:hover {
+//   fill: $main-yellow-2;
+// }
 
 .package-icon {
   stroke: $inactive-color;

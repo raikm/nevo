@@ -8,7 +8,7 @@
     </div>
     <div
       class="menu-button click-element"
-      @click="changePage('/LampsPage', 'lamp-icon')"
+      @click="changePage('/RoomsPage', 'lamp-icon')"
     >
       <svgicon class="menu-icon" icon="menu_lamp"></svgicon>
     </div>

@@ -95,7 +95,7 @@ export default {
 }
 
 .main-info-title-big {
-  font-size: 200%;
+  font-size: 1.5rem;
 }
 
 #scene-buttons {
