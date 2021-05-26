@@ -10,25 +10,25 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
- 📦 Bugfixes Plant Page
- 📦 Bugfixes Music Player
- 📦 Plant Settings: show new nearby sennsors
- 📦 unit tests
- 📦 Working Light Page V1
+ 📦 Bugfixes - Plant Page
+ 📦 Bugfixes - Music Player
+ 📦 Plant Settings: show nearby sensors
+ 📦 Unit Testing
+ 📦 Ready to use: Light Page V1
  📦 First tests with health data export from the iPhone
 ```
 ---
 
 ### 🛬 Latest Updates (Status: 03.05.2021)
 ```
- 🎉 Dashboard Page V1 completely done without mockup data
+ 🎉 Dashboard Page V1 completly done without mockup data
 
 ```
 
 ### 🏛 Past Major Updates
 ```
  🎉 Plant Dashboard Page V1
- 🎉 Websocketconnection to back-end (homeassistant)
+ 🎉 Websocket-connection to back-end (homeassistant)
  🎉 Calendar Data (Google API) V1
  🎉 Public Transport (Hafas API) V1 
  🎉 Music Player (Sonos API) V1
