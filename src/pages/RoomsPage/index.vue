@@ -85,25 +85,6 @@ export default {
         this.rooms.push(room);
       }
     },
-    // filterAllDevices() {
-    //   //TODO: only lights!
-    //   const lights = this.$store.getters.currentEntities.filter((d) => {
-    //     // console.log(d)
-    //     return d.attributes["Room"] && d.attributes["RoomDevice"];
-    //   });
-
-    //   if (this.rooms.length > 0) this.rooms = [];
-    //   for (let i = 0; i < roomNames.length; i++) {
-    //     // sort lights into Rooms
-    //     let room = lights.filter((d) => {
-    //       return d.attributes.Room == roomNames[i];
-    //     });
-    //     room.roomName = roomNames[i];
-    //     this.rooms.push(room);
-    //   }
-    // },
-    //switch
-    //vacuum
   },
   data() {
     return {

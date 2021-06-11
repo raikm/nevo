@@ -331,9 +331,7 @@ export default {
 
         let plantDataTimestamp = new Date(plantData.timestamp);
         plantDataTimestamp.setHours(plantDataTimestamp.getHours() - 1); //TODO: more general for time changes
-        // if (plantDataTimestamp <  this.borderRange.start){
-        //   return
-        // }
+       
         // --- SOIL FERTILITY
         let _plantSoilfertility = {
           timestamp: plantDataTimestamp,

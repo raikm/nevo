@@ -1,19 +1,13 @@
 import Vue from "vue";
-import axios from "axios";
 import store from "./store";
 import App from "./App.vue";
-import "./registerServiceWorker";
 import router from "./router";
-//TODO only import toast
-import Buefy from "buefy";
-import "buefy/dist/buefy.css";
-
-import VueAxios from "./plugins/axios";
+import axios from "axios";
+import {ToastProgrammatic as Toast} from "buefy";
+import "./registerServiceWorker";
 //https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
 import VueSVGIcon from "vue-svgicon";
 import "./mixins/helpersMixin";
-
-// import aftership from "./plugins/aftership";
 
 import VueSocketIO from "vue-socket.io";
 Vue.use(
@@ -23,18 +17,17 @@ Vue.use(
   })
 );
 
-Vue.use(VueAxios);
-// Vue.use(aftership);
 Vue.use(store);
+Vue.use(Toast)
 Vue.use(VueSVGIcon, {
   isOriginalDefault: true
 });
-Vue.use(Buefy);
 
 Vue.config.productionTip = false;
 Vue.http = Vue.prototype.$http = axios;
 window.axios = require("axios");
 window.aftership = require("aftership");
+
 
 new Vue({
   router,

@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     currentWeatherIconColor(weatherDescription) {
-      //TODO: define colors in SVGs/js
       switch (weatherDescription) {
         case "Clear":
           return colors.mainYellow;

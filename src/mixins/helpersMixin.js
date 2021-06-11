@@ -9,42 +9,14 @@ Vue.mixin({
     },
     changePage: function(path) {
       this.$router.push(path, () => {});
-      // let elements = document.getElementsByClassName("active");
-      // for (let i = 0; i < elements.length; i++) {
-      //   elements[0].classList.remove("active");
-      // }
-      // document.getElementsByClassName(name)[0].classList.add("active");
-
       if (this.$router.currentRoute.name == "dashboard-page") {
         this.$store.commit("setShowNotification", true);
-        //document.getElementById("page").style.width = "65%";
         document.getElementById("main-container").style.gridTemplateColumns =
           "auto 70% 25%";
-        //grid-template-columns: auto 70% 25%;
       } else {
         this.$store.commit("setShowNotification", false);
-        // document.getElementById("main-container").style.gridTemplateColumns =
-        //   "auto 95%";
-        // console.log(document.getElementById("page").style.width)
       }
     },
-    showToastError(text) {
-      this.$buefy.toast.open({
-        duration: 5000,
-        message: text,
-        position: "is-bottom",
-        type: "is-danger",
-      });
-    },
-    showToastInfo(text) {
-      this.$buefy.toast.open({
-        duration: 5000,
-        message: text,
-        position: "is-bottom",
-        type: "is-light",
-      });
-    },
-
     defineSupplierShort(supplier) {
       if (supplier.includes("AUSTRIAN")) {
         return supplier.replace("AUSTRIAN ", "");
@@ -143,11 +115,6 @@ Vue.mixin({
     },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
     preparePlantChart(data, min, max, mainColor, timeFormat, start, end) {
-      // console.log(start)
-      // console.log(end)
-      // const dataModified = data.filter(entry => entry.length > 6);
-      // console.log(data)
-
       const opactiyColor = () => {
         let hex = mainColor.replace("#", "");
 
@@ -195,7 +162,6 @@ Vue.mixin({
             display: false,
           },
           scales: {
-
             xAxes: [
               {
                 type: "time",
@@ -223,8 +189,8 @@ Vue.mixin({
                 },
                 ticks: {
                   callback: function(value) {
-                    return value >= 1000 ? value / 1e3 + 'T' : value;
-                },
+                    return value >= 1000 ? value / 1e3 + "T" : value;
+                  },
                   max: max,
                   min: 0,
                   fontSize: 9,
