@@ -116,33 +116,6 @@ Vue.mixin({
           this.showToastError(error);
         });
     },
-    simplifyArray(displayArray) {
-      // let simpliedArray = []
-
-      displayArray.forEach((element) => {
-        let duplicates = displayArray.filter(
-          (e) => e.timestamp.getHours() == element.timestamp.getHours()
-        );
-        if (duplicates.length > 1) {
-          //let newestDate = duplicates.map(e => e.timestamp ).sort().reverse()[0]
-          //console.log(newestDate)
-          //TODO: delete now all from the duplicated who dont have this date
-        }
-      });
-      // let hour = timestamp.getHours();
-      // let minutes = timestamp.getMinutes();
-      // if (!Number.isInteger(hour / 2)) {
-      //   if (minutes > 30) {
-      //     hour = hour + 1;
-      //   } else {
-      //     hour += 1;
-      //   }
-      // }
-      // timestamp.setMinutes(0);
-      // timestamp.setSeconds(0);
-      // timestamp.setHours(hour);
-      return displayArray;
-    },
     cleanUpOldData(plantDataTimestamp, plantDetailArray) {
       for (let i = 0; i < plantDetailArray.length; i++) {
         if (
