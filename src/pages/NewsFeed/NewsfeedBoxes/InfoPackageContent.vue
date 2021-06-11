@@ -7,7 +7,6 @@
         <td width="15%">
           <img
             class="delivery-icon"
-            src="../../../public/img/icons/postcar.svg"
           />
         </td>
       </tr>

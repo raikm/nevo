@@ -4,7 +4,6 @@
       <div class="first-row">
         <img
           class="delivery-icon"
-          src="../../../public/img/icons/shipping-and-delivery.svg"
         />
       </div>
       <div class="column is-paddingless is-2 supplier">
@@ -32,7 +31,6 @@
       <div class="first-row">
         <img
           class="delivery-icon"
-          src="../../../public/img/icons/shipping-and-delivery.svg"
         />
       </div>
       <div class="column is-paddingless is-2">
