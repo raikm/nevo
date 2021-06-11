@@ -17,7 +17,7 @@ export default {
       this.defineCurrentFormatedTime();
     }, 1000);
   },
-  destroyed() {
+  unmounted() {
     clearInterval(this.interval);
     // this.connection.suspend();
   },
