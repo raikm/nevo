@@ -21,7 +21,7 @@ import colors from "@/style/main-colors.scss";
 
 export default {
   props: ["lableName", "infotext", "askForVerify", "readonly"],
-  created() {
+  mounted() {
     this.readonly = true;
   },
   methods: {

@@ -7,8 +7,8 @@ import WeekForecast from "@/pages/DashboardPage/MainInfoBoxes/Weather/WeekForeca
 import VueSVGIcon from "vue-svgicon";
 
 let wrapper;
-let url = "";
-let data = "";
+// let url = "";
+// let data = "";
 let state;
 let store;
 
@@ -54,7 +54,7 @@ describe("weather component and API not available", () => {
 describe("weather component and API available", () => {
   const mockAxiosSuccess = {
     get: (_url, _data) => {
-      return new Promise((resolve, reject) => {
+      return new Promise((resolve, _) => {
         url = _url;
         data = _data;
         resolve({

@@ -145,7 +145,6 @@ $inactive-color: $main-gray;
 .package-icon:hover {
   stroke: transparent;
   stroke-width: 0;
-  //TODO: access main defined colors from COLOR PALLETTE
   $package-color: $main-yellow;
   $package-second-color: $main-yellow-2;
   .package-top {
