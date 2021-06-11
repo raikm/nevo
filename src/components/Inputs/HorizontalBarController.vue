@@ -32,8 +32,6 @@ export default {
 <style lang="scss">
 .horizonal-slider-control-container {
   background-color: rgba(245, 245, 245, 0.171);
-
-  // border-radius: 10px; //TODO define in main css
   width: 100%;
 }
 
