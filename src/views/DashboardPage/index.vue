@@ -1,14 +1,11 @@
 <template>
   <main>
-    <!-- <div class="standard-information-row-container-small">
-      <RoomControlBox class="Room-Control-Box" />
-      <EBikeMainInfoBox class="EBike-Box" /> 
-    </div> -->
-    <div class="standard-information-row-container">
-      <TemperatureMainInfoBox class="small-box" />
-      <WeatherMainInfoBox class="small-box" />
-      <LightIntensityMainInfoBox class="small-box" />
-
+    
+<div class="standard-information-row-container">
+      <!--<TemperatureMainInfoBox class="small-box" />
+           <WeatherMainInfoBox class="small-box" /> -->
+      <!-- <LightIntensityMainInfoBox class="small-box" /> -->
+<!--
       <PublicTransportMainInfoBox class="big-box" />
       <Calendar class="big-box" />
       <MusicControlMainInfoBox class="big-box" />
@@ -19,31 +16,31 @@
         :key="shortcut.index"
         v-for="shortcut in this.$store.getters.shortcutEntities"
         :shortcut="shortcut"
-      />
+      /> -->
     </div>
     <!-- <div>{{mainPageWidth}}x{{containerSceneHeight}}</div> -->
   </main>
 </template>
 
-<script>
-import TemperatureMainInfoBox from "./MainInfoBoxes/TempHumidity";
-import WeatherMainInfoBox from "./MainInfoBoxes/Weather";
-import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
-import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
-import Calendar from "./MainInfoBoxes/Calendar";
-import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer";
-import ShortcutBox from "./ShortcutBox";
+<script lang="ts">
+// import TemperatureMainInfoBox from "./MainInfoBoxes/TempHumidity/index.vue";
+// import WeatherMainInfoBox from "./MainInfoBoxes/Weather";
+// import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
+// import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
+// import Calendar from "./MainInfoBoxes/Calendar";
+// import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer";
+// import ShortcutBox from "./ShortcutBox";
 
 export default {
   name: "DashboardPage",
   components: {
-    TemperatureMainInfoBox,
-    WeatherMainInfoBox,
-    LightIntensityMainInfoBox,
-    PublicTransportMainInfoBox,
-    Calendar,
-    MusicControlMainInfoBox,
-    ShortcutBox,
+    // TemperatureMainInfoBox,
+    // WeatherMainInfoBox,
+    // LightIntensityMainInfoBox,
+    // PublicTransportMainInfoBox,
+    // Calendar,
+    // MusicControlMainInfoBox,
+    // ShortcutBox,
     // MainSceneBox,
   },
   created() {},

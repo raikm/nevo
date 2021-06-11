@@ -1,29 +1,36 @@
+import { Timestamp } from "rxjs";
 import Vue from "vue";
-import colors from "../style/main-colors.scss";
+// import colors from "../style/main-colors.scss";
+import {useStore} from 'vuex'
+import { useRouter } from "vue-router";
+import axios from "axios";
+const store = useStore();
+const router = useRouter();
 
-Vue.mixin({
+
+const mixin = {
   methods: {
-    cleanConfigName(configName) {
+    cleanConfigName(configName: string) {
       let cleanName = configName.replace("_", " ").toUpperCase();
       return cleanName;
     },
-    changePage: function(path) {
-      this.$router.push(path, () => {});
-      if (this.$router.currentRoute.name == "dashboard-page") {
-        this.$store.commit("setShowNotification", true);
-        document.getElementById("main-container").style.gridTemplateColumns =
-          "auto 70% 25%";
+    changePage: function(path: string) {
+      router.push(path);
+      if (router.currentRoute.value.name == "dashboard-page") {
+        store.commit("setShowNotification", true);
+        // document.getElementById("main-container").style.?gridTemplateColumns =
+        //   "auto 70% 25%";
       } else {
-        this.$store.commit("setShowNotification", false);
+        store.commit("setShowNotification", false);
       }
     },
-    defineSupplierShort(supplier) {
+    defineSupplierShort(supplier: string) {
       if (supplier.includes("AUSTRIAN")) {
         return supplier.replace("AUSTRIAN ", "");
       }
       return supplier;
     },
-    defineStatusTagColor(status) {
+    defineStatusTagColor(status: string) {
       let green = "#53c66ebd";
       let greenAlternative = "#53c66ebd";
       let yellow = "#e3ea60bd";
@@ -45,18 +52,19 @@ Vue.mixin({
       }
       return backgroundColor;
     },
-    getPackageInfos(packages) {
+    getPackageInfos(packages: Array<object>) {
       if (packages.length > 1) {
         packages = [];
       }
-      this.$axios
+      axios
         .get("https://api.aftership.com/v4/trackings", {
           headers: {
-            "aftership-api-key": this.$store.getters.config.aftership.api_key,
+            "aftership-api-key": store.getters.config.aftership.api_key,
             "Content-Type": "application/json",
           },
         })
-        .then((response) => {
+        // TODO declare specefic type
+        .then((response: any) => {
           let packagesInformation = response.data.data.trackings;
           for (let i = 0; i < packagesInformation.length; i++) {
             let info = packagesInformation[i];
@@ -81,40 +89,41 @@ Vue.mixin({
               delivery_information: "",
               backgroundColor: backgroundColor,
             };
-            this.packages.push(p);
+            packages.push(p);
           }
         })
-        .catch((error) => {
-          this.showToastError(error);
+        .catch((error: Error) => {
+          // this.showToastError(error);
+          console.log(error)
         });
     },
-    cleanUpOldData(plantDataTimestamp, plantDetailArray) {
-      for (let i = 0; i < plantDetailArray.length; i++) {
-        if (
-          plantDetailArray[i].timestamp.getDate() ===
-            plantDataTimestamp.getDate() &&
-          plantDetailArray[i].timestamp.getTime() ===
-            plantDataTimestamp.getTime()
-        ) {
-          plantDetailArray.splice(i);
-        }
-      }
-    },
-    convertHex(hexCode, opacity) {
-      let hex = hexCode.replace("#", "");
+    // cleanUpOldData(plantDataTimestamp: Date, plantDetailArray: Array) {
+    //   for (let i = 0; i < plantDetailArray.length; i++) {
+    //     if (
+    //       plantDetailArray[i].timestamp.getDate() ===
+    //         plantDataTimestamp.getDate() &&
+    //       plantDetailArray[i].timestamp.getTime() ===
+    //         plantDataTimestamp.getTime()
+    //     ) {
+    //       plantDetailArray.splice(i);
+    //     }
+    //   }
+    // },
+    // convertHex(hexCode, opacity) {
+    //   let hex = hexCode.replace("#", "");
 
-      if (hex.length === 3) {
-        hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-      }
+    //   if (hex.length === 3) {
+    //     hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+    //   }
 
-      let r = parseInt(hex.substring(0, 2), 16),
-        g = parseInt(hex.substring(2, 4), 16),
-        b = parseInt(hex.substring(4, 6), 16);
+    //   let r = parseInt(hex.substring(0, 2), 16),
+    //     g = parseInt(hex.substring(2, 4), 16),
+    //     b = parseInt(hex.substring(4, 6), 16);
 
-      return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
-    },
+    //   return "rgba(" + r + "," + g + "," + b + "," + opacity / 100 + ")";
+    // },
     //TODO: make to one generic method: https://gist.github.com/danieliser/b4b24c9f772066bcf0a6
-    preparePlantChart(data, min, max, mainColor, timeFormat, start, end) {
+    preparePlantChart(data: object, min: number, max: number, mainColor: String, timeFormat: String, start: Date, end: Date) {
       const opactiyColor = () => {
         let hex = mainColor.replace("#", "");
 
@@ -169,7 +178,7 @@ Vue.mixin({
                   parser: timeFormat,
                 },
                 gridLines: {
-                  color: colors.mainLightGray,
+                  // color: colors.mainLightGray,
                   display: true,
                 },
                 ticks: {
@@ -184,11 +193,11 @@ Vue.mixin({
             yAxes: [
               {
                 gridLines: {
-                  color: colors.mainLightGray,
+                  // color: colors.mainLightGray,
                   display: false,
                 },
                 ticks: {
-                  callback: function(value) {
+                  callback: function(value: number) {
                     return value >= 1000 ? value / 1e3 + "T" : value;
                   },
                   max: max,
@@ -205,4 +214,6 @@ Vue.mixin({
       };
     },
   },
-});
+};
+
+export default mixin;

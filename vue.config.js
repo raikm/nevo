@@ -13,14 +13,14 @@ module.exports = {
   devServer: {
     disableHostCheck: true,
 
-    proxy: {
-      "/*": {
-        target: "http://localhost:8081",
-        secure: false,
-        prependPath: false,
-        proxyTimeout: 1000 * 60 * 10,
-        timeout: 1000 * 60 * 10,
-      },
-    },
+    // proxy: {
+    //   "/*": {
+    //     target: "http://localhost:8081/",
+    //     secure: false,
+    //     prependPath: false,
+    //     proxyTimeout: 1000 * 60 * 10,
+    //     timeout: 1000 * 60 * 10,
+    //   },
+    // },
   },
 };

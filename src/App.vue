@@ -29,12 +29,12 @@ import Person from "@/components/Person";
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
  */
-import {
-  createConnection,
-  subscribeEntities,
-  // subscribeServices,
-  createLongLivedTokenAuth,
-} from "home-assistant-js-websocket";
+// import {
+//   createConnection,
+//   subscribeEntities,
+//   // subscribeServices,
+//   createLongLivedTokenAuth,
+// } from "home-assistant-js-websocket";
 import { mapGetters } from "vuex";
 
 // import io from 'socket.io-client'
@@ -50,29 +50,29 @@ export default {
     ...mapGetters(["config", "showNotification", "hAConnection"]),
   },
   created() {
-    this.connectHomeassistantWebSocket();
+    // this.connectHomeassistantWebSocket();
   },
 
   methods: {
-    async connectHomeassistantWebSocket() {
-      const auth = createLongLivedTokenAuth(
-        this.$store.getters.config.homeassistant.hassUrl,
-        this.$store.getters.config.homeassistant.life_time_token_raik
-      );
-      // await createConnection({ auth }).then((conn) => {
-      //   subscribeEntities(conn, (entities) => {
-      //     this.$store.commit("setCurrentEntities", Object.values(entities));
-      //   });
+    // async connectHomeassistantWebSocket() {
+    //   const auth = createLongLivedTokenAuth(
+    //     this.$store.getters.config.homeassistant.hassUrl,
+    //     this.$store.getters.config.homeassistant.life_time_token_raik
+    //   );
+    //   // await createConnection({ auth }).then((conn) => {
+    //   //   subscribeEntities(conn, (entities) => {
+    //   //     this.$store.commit("setCurrentEntities", Object.values(entities));
+    //   //   });
 
-      // });
-      let _hAconnection = await createConnection({ auth });
-      this.$store.commit("setHaConnection", _hAconnection);
+    //   // });
+    //   let _hAconnection = await createConnection({ auth });
+    //   this.$store.commit("setHaConnection", _hAconnection);
 
-      subscribeEntities(this.hAConnection, (entities) => {
-        this.$store.commit("setCurrentEntities", Object.values(entities));
-      });
-      // subscribeServices(this.hAconnection, (services) => console.log("New services!", services));
-    },
+    //   subscribeEntities(this.hAConnection, (entities) => {
+    //     this.$store.commit("setCurrentEntities", Object.values(entities));
+    //   });
+    //   // subscribeServices(this.hAconnection, (services) => console.log("New services!", services));
+    // },
   },
 };
 </script>

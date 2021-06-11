@@ -159,7 +159,7 @@ export default {
       this.updateSecondsInCurrentTrack();
     }, 1000);
   },
-  destroyed() {
+  unmounted() {
     clearInterval(this.interval);
   },
   methods: {

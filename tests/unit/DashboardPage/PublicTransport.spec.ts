@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
-import PublicTransport from "@/pages/DashboardPage/MainInfoBoxes/PublicTransport";
+import PublicTransport from "@/views/DashboardPage/MainInfoBoxes/PublicTransport";
 
 let wrapper;
 

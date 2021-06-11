@@ -1,28 +1,25 @@
-import Vue from "vue";
-import Router from "vue-router";
-import DevicesPage from "../pages/DevicesPage";
-import PlantsPage from "../pages/PlantsPage";
-import PackagesPage from "../pages/PackagesPage";
-import DashboardPage from "../pages/DashboardPage";
-import SettingsPage from "../pages/SettingsPage";
-import RoomsPage from "../pages/RoomsPage";
-import General from "../pages/SettingsPage/General.vue";
-import Serverinfo from "../pages/SettingsPage/Server.vue";
-import Calendar from "../pages/SettingsPage/Calendar.vue";
-import Spotify from "../pages/SettingsPage/Spotify.vue";
-import AppleMusic from "../pages/SettingsPage/AppleMusic.vue";
-import Speaker from "../pages/SettingsPage/Speaker.vue";
-import PublicTransport from "../pages/SettingsPage/PublicTransport.vue";
-import Weather from "../pages/SettingsPage/Weather.vue";
-import Plants from "../pages/SettingsPage/Plants.vue";
-import PackageTracking from "../pages/SettingsPage/PackageTracking.vue";
-import PlantsDetail from "../pages/SettingsPage/PlantsDetail.vue";
+import { createRouter, createWebHistory } from "vue-router";
+import DashboardPage from "../views/DashboardPage/index.vue";
+import DevicesPage from "../views/DevicesPage/index.vue";
+import PackagesPage from "../views/PackagesPage/index.vue";
+import PlantsPage from "../views/PlantsPage/index.vue";
+import RoomsPage from "../views/RoomsPage/index.vue";
+import SettingsPage from "../views/SettingsPage/index.vue";
 
-Vue.use(Router);
+import General from "../views/SettingsPage/General.vue";
+import Serverinfo from "../views/SettingsPage/Server.vue";
+import Calendar from "../views/SettingsPage/Calendar.vue";
+import Spotify from "../views/SettingsPage/Spotify.vue";
+import AppleMusic from "../views/SettingsPage/AppleMusic.vue";
+import Speaker from "../views/SettingsPage/Speaker.vue";
+import PublicTransport from "../views/SettingsPage/PublicTransport.vue";
+import Weather from "../views/SettingsPage/Weather.vue";
+import Plants from "../views/SettingsPage/Plants.vue";
+import PackageTracking from "../views/SettingsPage/PackageTracking.vue";
+import PlantsDetail from "../views/SettingsPage/PlantsDetail.vue";
 
-export default new Router({
-  mode: "history",
-  routes: [
+
+const routes = [
     {
       path: "/",
       name: "dashboard-page",
@@ -115,5 +112,12 @@ export default new Router({
         },
       ],
     },
-  ],
+  ]
+
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
 });
+
+export default router;

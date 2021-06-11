@@ -1,7 +1,7 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
-import TempHumidity from "@/pages/DashboardPage/MainInfoBoxes/TempHumidity";
+import TempHumidity from "@/views/DashboardPage/MainInfoBoxes/TempHumidity";
 
 const localVue = createLocalVue();
 localVue.use(Vuex);

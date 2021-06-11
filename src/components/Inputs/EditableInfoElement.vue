@@ -22,7 +22,7 @@ import colors from "@/style/main-colors.scss";
 export default {
   props: ["lableName", "infotext", "askForVerify", "readonly"],
   mounted() {
-    this.readonly = true;
+    // this.readonly = true;
   },
   methods: {
     //@blur="onFocusOut"

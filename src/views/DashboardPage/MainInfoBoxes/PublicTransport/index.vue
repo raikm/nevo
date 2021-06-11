@@ -130,7 +130,7 @@ export default {
       return false;
     },
   },
-  destroyed() {
+  unmounted() {
     clearInterval(this.interval);
   },
 };

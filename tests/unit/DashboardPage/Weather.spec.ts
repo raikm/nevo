@@ -1,9 +1,9 @@
 import { mount, createLocalVue } from "@vue/test-utils";
 import Vuex from "vuex";
 
-import Weather from "@/pages/DashboardPage/MainInfoBoxes/Weather";
-import DayForecast from "@/pages/DashboardPage/MainInfoBoxes/Weather/DayForecast";
-import WeekForecast from "@/pages/DashboardPage/MainInfoBoxes/Weather/WeekForecast";
+import Weather from "@/views/DashboardPage/MainInfoBoxes/Weather";
+import DayForecast from "@/views/DashboardPage/MainInfoBoxes/Weather/DayForecast";
+import WeekForecast from "@/views/DashboardPage/MainInfoBoxes/Weather/WeekForecast";
 import VueSVGIcon from "vue-svgicon";
 
 let wrapper;
