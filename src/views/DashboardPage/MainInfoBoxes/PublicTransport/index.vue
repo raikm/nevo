@@ -43,7 +43,9 @@
 <script>
 import { mapState } from "vuex";
 
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent( {
   name: "PublicTransportMainInfoBox",
   computed: {
     ...mapState(["config"]),
@@ -133,7 +135,7 @@ export default {
   unmounted() {
     clearInterval(this.interval);
   },
-};
+});
 </script>
 
 <style lang="scss">

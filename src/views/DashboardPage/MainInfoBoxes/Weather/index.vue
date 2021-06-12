@@ -42,7 +42,6 @@ export default defineComponent( {
   },
   methods: {
     weatherForecastDataFromAPI() {
-      console.log(this.$store)
       if (this.$store.state.config.weather.api_key.length === 0) return;
       const { api_key, open_weather_url } = this.$store.state.config.weather;
 

@@ -1,27 +1,27 @@
-import Vue, { createApp } from "vue";
+import { createApp } from "vue";
+
 import store from "./store";
-import App from "./App.vue";
 import router from "./router";
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import axios from "axios";
+import VueAxios from "vue-axios";
+import mixin from "./mixins/helpersMixin";
+import App from "./App.vue";
 
-import { ToastProgrammatic as Toast } from "buefy";
-import "./registerServiceWorker";
-//https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
-// import VueSVGIcon from "vue-svgicon";
-import "./mixins/helpersMixin";
-// import VueSocketIO from 'vue-3-socket.io'
-import mixin from "./mixins/helpersMixin"
-
-// Vue.http = Vue.prototype.$http = axios;
-// window.axios = require("axios");
-// window.aftership = require("aftership");
-
-const app = createApp(App)
+const app = createApp(App);
 app.mixin(mixin);
 app.use(store);
 app.use(router);
-app.use(VueAxios, axios)
+app.use(VueAxios, axios);
+app.mount("#app");
+
+// import "./registerServiceWorker";
+// import { ToastProgrammatic as Toast } from "buefy";
+//https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
+// import VueSVGIcon from "vue-svgicon";
+// Vue.http = Vue.prototype.$http = axios;
+// window.axios = require("axios");
+// window.aftership = require("aftership");
+// import VueSocketIO from 'vue-3-socket.io'
 // app.use(VueSVGIcon, {
 //   isOriginalDefault: true,
 // });
@@ -33,4 +33,3 @@ app.use(VueAxios, axios)
 
 // app.use(socketio);
 
-app.mount("#app");

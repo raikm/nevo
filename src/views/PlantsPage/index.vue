@@ -77,7 +77,7 @@ export default {
     getLastPlantData() {
       this.axios
         .get(
-          this.$store.getters.config.homeserver.url + ":8080/getLatestPlantUpdates/",
+          this.$store.state.config.homeserver.url + ":8080/getLatestPlantUpdates/",
           {}
         )
         .then((response) => {

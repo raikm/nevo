@@ -15,13 +15,13 @@
       >
         <span
           id="temp-info"
-          v-if="temperatureInfo != null && temperatureInfo != 'NaN'"
+          v-if="temperatureInfo.length !== 0 && temperatureInfo != 'NaN'"
           >{{ temperatureInfo }}°C</span
         >
         <span id="temp-info" v-else>--</span>
         <span
           id="humidity-info"
-          v-if="humidityInfo != null && humidityInfo != 'NaN'"
+          v-if="humidityInfo.length !== 0 && humidityInfo != 'NaN'"
           >{{ humidityInfo }}%</span
         >
         <span id="humidity-info" v-else>--</span>
@@ -50,30 +50,32 @@ import "@/compiled-icons/temperature";
 import "@/compiled-icons/humidity";
 import { mapState } from "vuex";
 
-export default {
+import { defineComponent } from 'vue'
+
+export default defineComponent( {
   created() {
-    this.getCurrentTemperature();
-    this.getCurrentHumidity();
+    this.setCurrentTemperature();
+    this.setCurrentHumidity();
   },
   computed: {
     ...mapState(["currentEntities"]),
   },
   watch: {
     currentEntities() {
-      this.getCurrentTemperature();
-      this.getCurrentHumidity();
+      this.setCurrentTemperature();
+      this.setCurrentHumidity();
     },
   },
   methods: {
-    getCurrentTemperature() {
-      this.currentEntities.filter((entity) => {
+    setCurrentTemperature() : void {
+      this.currentEntities.filter((entity: any) => {
         if (entity.entity_id.startsWith("sensor.temperature")) {
           this.temperatureInfo = Number(entity.state).toFixed(1);
         }
       });
     },
-    getCurrentHumidity() {
-      this.currentEntities.filter((entity) => {
+    setCurrentHumidity() : void {
+      this.currentEntities.filter((entity: any) => {
         if (entity.entity_id.startsWith("sensor.humidity")) {
           this.humidityInfo = Number(entity.state).toFixed(1);
         }
@@ -82,11 +84,11 @@ export default {
   },
   data() {
     return {
-      temperatureInfo: null,
-      humidityInfo: null,
+      temperatureInfo: "",
+      humidityInfo: "",
     };
   },
-};
+});
 </script>
 
 <style lang="scss">

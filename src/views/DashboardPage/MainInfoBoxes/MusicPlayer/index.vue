@@ -12,7 +12,7 @@
 import Playlists from "./Playlists";
 import MusicPlayer from "./MusicPlayer";
 import "@/compiled-icons/volume_medium";
-import { mapGetters } from "vuex";
+import { mapGetters,mapState } from "vuex";
 
 export default {
   components: {
@@ -39,7 +39,8 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(["config", "activeGroup"]),
+    ...mapState(["config"]),
+    ...mapGetters(["activeGroup"]),
   },
   mounted() {
     this.setUpZones();

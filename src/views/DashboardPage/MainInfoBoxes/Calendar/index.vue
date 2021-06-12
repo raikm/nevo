@@ -52,7 +52,7 @@
 
 <script>
 import CalendarAppointment from "./CalendarAppointment";
-import { mapGetters } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   components: { CalendarAppointment },
@@ -60,7 +60,7 @@ export default {
     this.connectGoogleApi();
   },
   computed: {
-    ...mapGetters(["config"]),
+    ...mapState(["config"]),
     nextStartDay() {
       return new Date(this.startDay).setDate(new Date().getDate() + 1);
     },
