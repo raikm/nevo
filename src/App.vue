@@ -12,7 +12,7 @@
           <Person :key="n" v-for="n in 4" :n="n" />
         </div>
       </div>
-      <!-- <DateTime/> -->
+      <DateTime/>
     </div>
     <div id="main-container">
       <Menu id="menu" />
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-// import DateTime from "@/components/DateTime";
+import DateTime from "@/components/DateTime";
 import Menu from "@/components/Menu";
 import Person from "@/components/Person";
 /**
@@ -42,7 +42,7 @@ import { mapGetters } from "vuex";
 export default {
   name: "homeapp",
   components: {
-    // DateTime,
+    DateTime,
     Menu,
     Person,
   },
@@ -63,11 +63,9 @@ export default {
     //   //   subscribeEntities(conn, (entities) => {
     //   //     this.$store.commit("setCurrentEntities", Object.values(entities));
     //   //   });
-
     //   // });
     //   let _hAconnection = await createConnection({ auth });
     //   this.$store.commit("setHaConnection", _hAconnection);
-
     //   subscribeEntities(this.hAConnection, (entities) => {
     //     this.$store.commit("setCurrentEntities", Object.values(entities));
     //   });

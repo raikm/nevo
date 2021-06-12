@@ -34,6 +34,7 @@
     "socket.io-client": "^4.0.1",
     "vue": "^3.0.0-beta.1",
     "vue-3-socket.io": "^1.0.2",
+    "vue-axios": "^3.2.4",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-alpha.6",
     "vuex": "^4.0.0-alpha.1"
