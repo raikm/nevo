@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     getAllPlants() {
-      this.$axios
+      this.axios
         .get(this.$store.getters.config.homeserver.url + ":8080/getAllPlants/")
         .then((response) => {
           this.plants = response.data;

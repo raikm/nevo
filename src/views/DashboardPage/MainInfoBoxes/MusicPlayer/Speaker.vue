@@ -59,7 +59,7 @@ export default {
   methods: {
     changeState(speaker) {
       if (speaker.state.playbackState !== "PLAYING") {
-        this.$axios
+        this.axios
           .get(
             `${this.config.sonos.rest_url}/${speaker.roomName}/join/${this.activeGroup.coordinator.roomName}`
           )
@@ -67,7 +67,7 @@ export default {
             this.showToastError(error.toString());
           });
       } else if (speaker.state.playbackState === "PLAYING") {
-        this.$axios
+        this.axios
           .get(`${this.config.sonos.rest_url}/${speaker.roomName}/leave`)
           .catch((error) => {
             this.showToastError(error.toString());

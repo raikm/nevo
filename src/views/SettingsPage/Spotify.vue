@@ -99,7 +99,7 @@ export default {
         client_secret: this.config.spotify.client_secret,
       };
       //TODO: only if access token not avaible in store
-      this.$axios
+      this.axios
         .post(
           "https://accounts.spotify.com/api/token",
           qs.stringify(data),

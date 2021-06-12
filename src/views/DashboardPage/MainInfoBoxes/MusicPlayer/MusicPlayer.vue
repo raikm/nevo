@@ -203,7 +203,7 @@ export default {
           ? this.activeGroup.coordinator.roomName
           : this.latestActiveGroup.coordinator.roomName;
 
-      this.$axios
+      this.axios
         .get(`${this.config.sonos.rest_url}/${roomName}/play`)
         .then((this.currentPlaybackState = "PLAYING"))
         .catch((error) => {
@@ -211,7 +211,7 @@ export default {
         });
     },
     pauseMusic() {
-      this.$axios
+      this.axios
         .get(
           `${this.config.sonos.rest_url}/${this.activeGroup.coordinator.roomName}/pause`
         )
@@ -220,7 +220,7 @@ export default {
         });
     },
     nextTrack() {
-      this.$axios
+      this.axios
         .get(
           `${this.config.sonos.rest_url}/${this.activeGroup.coordinator.roomName}/next`
         )
@@ -230,7 +230,7 @@ export default {
         });
     },
     previousTrack() {
-      this.$axios
+      this.axios
         .get(
           `${this.config.sonos.rest_url}/${this.activeGroup.coordinator.roomName}/previous`
         )
@@ -244,7 +244,7 @@ export default {
         let result = JSON.parse(data.toString());
         if (result.type === "transport-state") {
           // this.$store.commit("updateSpeakers", result.data);
-          this.$axios
+          this.axios
             .get(this.config.sonos.rest_url + "/zones")
             .then((response) => {
               this.$store.commit("setSpeakers", response.data);
@@ -285,7 +285,7 @@ export default {
       this.activeSpeakerNames = result;
     },
     changeVolume(newVolume) {
-      this.$axios
+      this.axios
         .get(
           `${this.config.sonos.rest_url}/${this.activeGroup.coordinator.roomName}/groupVolume/${newVolume}`
         )

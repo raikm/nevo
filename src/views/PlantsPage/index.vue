@@ -75,7 +75,7 @@ export default {
       return require(image.url.default);
     },
     getLastPlantData() {
-      this.$axios
+      this.axios
         .get(
           this.$store.getters.config.homeserver.url + ":8080/getLatestPlantUpdates/",
           {}
@@ -89,7 +89,7 @@ export default {
     },
     reloadPlantData() {
       document.getElementById("reload-icon").setAttribute("class", "rotating");
-      this.$axios
+      this.axios
         .get(
           this.$store.getters.config.homeserver.url +
             ":8080/reload_plant_data/",

@@ -36,7 +36,7 @@ export default {
         entity_id: this.shortcut.entity_id,
       };
 
-      this.$axios
+      this.axios
         .post(
           "http://192.168.1.217:8123/api/services/script/turn_on",
           bodyParameters,

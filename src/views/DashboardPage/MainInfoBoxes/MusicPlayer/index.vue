@@ -48,7 +48,7 @@ export default {
   methods: {
     setUpZones() {
       if (this.config.sonos.rest_url === "<IP_ADDRESS>") return;
-      this.$axios
+      this.axios
         .get(this.config.sonos.rest_url + "/zones")
         .then((response) => {
           this.$store.commit("setSpeakers", response.data);

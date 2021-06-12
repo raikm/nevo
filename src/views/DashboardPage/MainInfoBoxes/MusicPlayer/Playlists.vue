@@ -61,7 +61,7 @@ export default {
           "Content-Type": "application/json",
         },
       };
-      this.$axios
+      this.axios
         .get("https://api.spotify.com/v1/me/playlists", config)
         .then((response) => {
           if (response.data.items.length !== 0) {
@@ -93,7 +93,7 @@ export default {
         refresh_token: refresh_token,
         client_id: this.config.spotify.client_id,
       };
-      this.$axios
+      this.axios
         .post(
           "https://accounts.spotify.com/api/token",
           qs.stringify(data),
@@ -116,7 +116,7 @@ export default {
         });
     },
     playPlaylist(uri) {
-      this.$axios
+      this.axios
         .get(
           `${this.config.sonos.rest_url}/Lounge/spotify/now/spotify:user:${uri}`
         )

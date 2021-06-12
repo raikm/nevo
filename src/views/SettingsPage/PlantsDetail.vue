@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     getAvailableAddresses() {
-      this.$axios
+      this.axios
         .get(
           `${this.$store.getters.config.homeserver.url}:8080/getAvailableMacAddresses/`
         )
@@ -153,7 +153,7 @@ export default {
         });
     },
     setAvailableID() {
-      this.$axios
+      this.axios
         .get(`${this.$store.getters.config.homeserver.url}:8080/getNewId/`)
         .then((response) => {
           if (typeof response.data === "number") {
@@ -171,7 +171,7 @@ export default {
     },
     saveChanges() {
       //check if mendetory fields are filledup
-      this.$axios
+      this.axios
         .put(
           `${this.$store.getters.config.homeserver.url}:8080/create_update_plant/${this.plant.id}/`,
           this.plant

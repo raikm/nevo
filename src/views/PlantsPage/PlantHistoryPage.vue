@@ -227,7 +227,7 @@ export default {
       this.borderRange = borderRange;
     },
     getCurrentPlantData(plant_id) {
-      this.$axios
+      this.axios
         .get(
           this.$store.getters.config.homeserver.url +
             ":8080/planthistory/" +
