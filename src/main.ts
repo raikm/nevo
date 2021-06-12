@@ -1,8 +1,10 @@
 import Vue, { createApp } from "vue";
-// import store from "./store";
+import store from "./store";
 import App from "./App.vue";
 import router from "./router";
-import axios from "axios";
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+
 import { ToastProgrammatic as Toast } from "buefy";
 import "./registerServiceWorker";
 //https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
@@ -17,8 +19,9 @@ import mixin from "./mixins/helpersMixin"
 
 const app = createApp(App)
 app.mixin(mixin);
-// app.use(store);
+app.use(store);
 app.use(router);
+app.use(VueAxios, axios)
 // app.use(VueSVGIcon, {
 //   isOriginalDefault: true,
 // });
