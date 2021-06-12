@@ -45,7 +45,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import "@/compiled-icons/temperature";
 import "@/compiled-icons/humidity";
 import { mapState } from "vuex";

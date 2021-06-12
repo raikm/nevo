@@ -1,56 +1,52 @@
 <template>
   <main>
-    
-<div class="standard-information-row-container">
-      <!--<TemperatureMainInfoBox class="small-box" />
-           <WeatherMainInfoBox class="small-box" /> -->
+    <div class="standard-information-row-container">
+      <!-- <TemperatureMainInfoBox class="small-box" /> -->
+      <WeatherMainInfoBox class="small-box" />
       <!-- <LightIntensityMainInfoBox class="small-box" /> -->
-<!--
-      <PublicTransportMainInfoBox class="big-box" />
-      <Calendar class="big-box" />
-      <MusicControlMainInfoBox class="big-box" />
+      <!-- <PublicTransportMainInfoBox class="big-box" /> -->
+      <!-- <Calendar class="big-box" /> -->
+      <!-- <MusicControlMainInfoBox class="big-box" /> -->
     </div>
     
-    <div class="shortcut-boxes">
+    <!-- <div class="shortcut-boxes">
       <ShortcutBox
         :key="shortcut.index"
         v-for="shortcut in this.$store.getters.shortcutEntities"
         :shortcut="shortcut"
-      /> -->
-    </div>
+      />
+    </div> -->
     <!-- <div>{{mainPageWidth}}x{{containerSceneHeight}}</div> -->
   </main>
 </template>
 
 <script lang="ts">
 // import TemperatureMainInfoBox from "./MainInfoBoxes/TempHumidity/index.vue";
-// import WeatherMainInfoBox from "./MainInfoBoxes/Weather";
-// import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity";
-// import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport";
-// import Calendar from "./MainInfoBoxes/Calendar";
-// import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer";
-// import ShortcutBox from "./ShortcutBox";
+import WeatherMainInfoBox from "./MainInfoBoxes/Weather/index.vue";
+// import LightIntensityMainInfoBox from "./MainInfoBoxes/LightIntensity/index.vue";
+// import PublicTransportMainInfoBox from "./MainInfoBoxes/PublicTransport/index.vue";
+// import Calendar from "./MainInfoBoxes/Calendar/index.vue";
+// import MusicControlMainInfoBox from "./MainInfoBoxes/MusicPlayer/index.vue";
+// import ShortcutBox from "./ShortcutBox.vue";
 
 export default {
   name: "DashboardPage",
   components: {
     // TemperatureMainInfoBox,
-    // WeatherMainInfoBox,
+    WeatherMainInfoBox,
     // LightIntensityMainInfoBox,
     // PublicTransportMainInfoBox,
     // Calendar,
     // MusicControlMainInfoBox,
     // ShortcutBox,
-    // MainSceneBox,
   },
-  created() {},
   mounted() {
-    this.mainPageWidth = window.innerWidth;
+    // this.mainPageWidth = window.innerWidth;
     // this.containerSceneHeight = window.innerHeight;
   },
   data() {
     return {
-      mainPageWidth: 0,
+      // mainPageWidth: 0,
     };
   },
 };
@@ -60,8 +56,7 @@ export default {
 .main-info-box-small {
   height: 15vh;
 }
-.main-info-box-small div {
-}
+
 
 .large-widget {
   height: 25vh;
@@ -108,10 +103,6 @@ export default {
   column-gap: $standard-space;
   // width: 100%;
   // justify-content: space-between;
-}
-
-#scene-buttons > div {
-  // margin-right: 15px;
 }
 
 .shortcut-boxes {

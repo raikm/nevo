@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import "@/compiled-icons/Weather_Clear";
 import "@/compiled-icons/Weather_Clouds_2";
 import "@/compiled-icons/Weather_Clouds_Day";
@@ -31,29 +31,28 @@ import "@/compiled-icons/Weather_Snow";
 import "@/compiled-icons/Weather_Sunrise";
 import "@/compiled-icons/Weather_Sunset";
 import "@/compiled-icons/Weather_Thunderstorm";
-import DayForecast from "./DayForecast";
-import WeekForecast from "./WeekForecast";
-import { mapState } from "vuex";
-export default {
+import DayForecast from "./DayForecast.vue";
+import WeekForecast from "./WeekForecast.vue";
+import { defineComponent } from 'vue'
+
+export default defineComponent( {
   components: { DayForecast, WeekForecast },
   created() {
     this.weatherForecastDataFromAPI();
   },
-  computed: {
-    ...mapState(["config"]),
-  },
   methods: {
     weatherForecastDataFromAPI() {
-      if (this.config.weather.api_key.length === 0) return;
-      const { api_key, open_weather_url } = this.config.weather;
+      console.log(this.$store)
+      if (this.$store.state.config.weather.api_key.length === 0) return;
+      const { api_key, open_weather_url } = this.$store.state.config.weather;
 
-      this.$axios
+      this.axios
         .get(`${open_weather_url}&appid=${api_key}`, {})
-        .then((response) => {
+        .then((response: any) => {
           this.weatherForecast = response.data;
           this.defineBackground();
         })
-        .catch((error) => {
+        .catch((error: any) => {
           console.log(error.message);
         });
     },
@@ -88,11 +87,11 @@ export default {
   },
   data() {
     return {
-      weatherForecast: {},
+      weatherForecast: {} as any,
       backgroundImage: "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)",
     };
   },
-};
+});
 </script>
 
 <style lang="scss">
