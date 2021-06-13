@@ -17,18 +17,20 @@
   .standard-information-row-container {
     column-gap: 15px;
     row-gap: 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    display: flex;
+    flex-wrap: wrap;
     //grid-template-rows: ;
     margin-bottom: 1.6%;
     // margin: auto;
+    width: 100%;
 
     .small-box {
-      height: 15vh;
-      max-height: 200px;
+      height: 100px;
+      width: 380px;
     }
     .big-box {
-      height: 25vh;
+      height: 200px;
+      width: 380px;
       // max-width: 35vh;
       // max-height: 250px;
     }

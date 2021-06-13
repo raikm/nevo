@@ -79,7 +79,7 @@ export default {
         sunlight_intensity_borders: { min: "", max: "", currency: "" },
         temperature_borders: { min: "", max: "", currency: "" },
       };
-      this.$router.push({
+      this.router.push({
         path: "/SettingsPage/PlantsDetail",
         query: newPlantObj,
       });

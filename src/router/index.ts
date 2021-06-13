@@ -25,11 +25,11 @@ const routes = [
       name: "dashboard-page",
       component: DashboardPage,
     },
-    {
-      path: "/DashboardPage",
-      name: "dashboard-page",
-      component: DashboardPage,
-    },
+    // {
+    //   path: "/DashboardPage",
+    //   name: "dashboard-page",
+    //   component: DashboardPage,
+    // },
     {
       path: "/DevicessPage",
       name: "devices-page",

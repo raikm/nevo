@@ -79,14 +79,14 @@ import "@/compiled-icons/settings_plants";
 export default {
   name: "SettingsPage",
   created() {
-    // this.$router.push("SettingsPage/General");
+    // this.router.push("SettingsPage/General");
   },
   computed: {
     ...mapGetters(["config"]),
   },
   methods: {
     openSettingDetail(childrenPageName) {
-      this.$router.push(`/SettingsPage/${childrenPageName}`);
+      this.router.push(`/SettingsPage/${childrenPageName}`);
     },
   },
 };

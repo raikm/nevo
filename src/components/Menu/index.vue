@@ -2,7 +2,7 @@
   <div>
     <div
       class="menu-button click-element"
-      @click="changePage('/DashboardPage', 'dashboard-icon')"
+      @click="changePage('/', 'dashboard-icon')"
     >
       <svgicon class="menu-icon" icon="menu_dashboard"></svgicon>
     </div>
@@ -27,14 +27,17 @@
   </div>
 </template>
 w
-<script>
+<script lang="ts">
 import "@/compiled-icons/menu_dashboard";
 import "@/compiled-icons/menu_lamp";
 import "@/compiled-icons/menu_package";
 import "@/compiled-icons/menu_plants";
 import "@/compiled-icons/menu_rooms";
 
-export default {};
+export default {
+
+
+};
 </script>
 
 <style lang="scss"></style>

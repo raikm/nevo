@@ -68,7 +68,6 @@ export default {
           console.log(entity);
           this.humiditySensors.push(entity);
         }
-        // console.log(this.humiditySensors);
       });
     },
     imagePath(image) {

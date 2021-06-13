@@ -42,65 +42,65 @@ const store = createStore({
     };
   },
   mutations: {
-    //sync
-    // setCurrentEntities(state, updatedEntities) {
-    //   state.currentEntities = updatedEntities;
+    // sync
+    setCurrentEntities(state, updatedEntities) {
+      state.currentEntities = updatedEntities;
+    },
+    setHaConnection(state, newHaConnection) {
+      state.hAConnection = newHaConnection;
+    },
+    // setWeather(state:any, updatedWeather) {
+    //   state.weather = updatedWeather;
     // },
-    // setHaConnection(state, newHaConnection) {
-    //   state.hAConnection = newHaConnection;
-    // },
-    // // setWeather(state:any, updatedWeather) {
-    // //   state.weather = updatedWeather;
-    // // },
-    // setShowNotification(state, notificationStatus) {
-    //   state.showNotification = notificationStatus;
-    // },
-    // setGCalendars(state, updatedCalendars) {
-    //   state.gCalendars = updatedCalendars;
-    // },
-    // setSpeakers(state, newSpeakerGroups) {
-    //   let newSpeakers: any = [];
-    //   newSpeakerGroups.forEach((speakergroup: any) => {
-    //     speakergroup.members.forEach((member: any) => {
-    //       newSpeakers.push(member);
-    //     });
-    //   });
-    //   newSpeakers.sort((a: any, b: any) =>
-    //     a.roomName.localeCompare(b.roomName)
-    //   );
-    //   state.activeGroup =
-    //     newSpeakerGroups.filter((speakerGroup: any) =>
-    //       speakerGroup.coordinator.state != null
-    //         ? speakerGroup.coordinator.state.playbackState === "PLAYING"
-    //         : []
-    //     )[0] || null;
-    //   state.speakers = newSpeakers;
-    // },
-    // setNewSpeakerVolume(state: any, newVolumeObject) {
-    //   // console.log("old: " + state.activeGroup.coordinator.state.volume)
-    //   // console.log(newVolumeObject.newVolume)
-    //   state.activeGroup.coordinator.state.volume = newVolumeObject.newVolume;
-    //   // console.log("new: " + state.activeGroup.coordinator.state.volume)
-    // },
-    // updateSpeakers(state, updatedSpeakers) {
-    //   console.log(updatedSpeakers)
+    setShowNotification(state, notificationStatus) {
+      state.showNotification = notificationStatus;
+    },
+    setGCalendars(state, updatedCalendars) {
+      state.gCalendars = updatedCalendars;
+    },
+    setSpeakers(state, newSpeakerGroups) {
+      let newSpeakers: any = [];
+      newSpeakerGroups.forEach((speakergroup: any) => {
+        speakergroup.members.forEach((member: any) => {
+          newSpeakers.push(member);
+        });
+      });
+      newSpeakers.sort((a: any, b: any) =>
+        a.roomName.localeCompare(b.roomName)
+      );
+      state.activeGroup =
+        newSpeakerGroups.filter((speakerGroup: any) =>
+          speakerGroup.coordinator.state != null
+            ? speakerGroup.coordinator.state.playbackState === "PLAYING"
+            : []
+        )[0] || null;
+      state.speakers = newSpeakers;
+    },
+    setNewSpeakerVolume(state: any, newVolumeObject) {
+      // console.log("old: " + state.activeGroup.coordinator.state.volume)
+      // console.log(newVolumeObject.newVolume)
+      state.activeGroup.coordinator.state.volume = newVolumeObject.newVolume;
+      // console.log("new: " + state.activeGroup.coordinator.state.volume)
+    },
+    updateSpeakers(state, updatedSpeakers) {
+      console.log(updatedSpeakers)
 
-    //   // let result = state.speakers.find(
-    //   //   (speaker) => speaker.roomName === updatedSpeakers.roomName
-    //   // );
+      // let result = state.speakers.find(
+      //   (speaker) => speaker.roomName === updatedSpeakers.roomName
+      // );
 
-    //   // if (result != null) {
-    //   //   let index = state.speakers.indexOf(result);
-    //   //   state.speakers[index] = updatedSpeakers;
-    //   //   if (updatedSpeakers.roomName === state.activeGroup.roomName) {
-    //   //     // console.log(updatedSpeakers)
-    //   //     state.activeGroup = updatedSpeakers;
-    //   //   }
-    //   // }
-    // },
-    // setSpotifyAccessToken(state, newAccessToken) {
-    //   state.spotifyAccessToken = newAccessToken;
-    // },
+      // if (result != null) {
+      //   let index = state.speakers.indexOf(result);
+      //   state.speakers[index] = updatedSpeakers;
+      //   if (updatedSpeakers.roomName === state.activeGroup.roomName) {
+      //     // console.log(updatedSpeakers)
+      //     state.activeGroup = updatedSpeakers;
+      //   }
+      // }
+    },
+    setSpotifyAccessToken(state, newAccessToken) {
+      state.spotifyAccessToken = newAccessToken;
+    },
   },
   modules: {},
   getters: {

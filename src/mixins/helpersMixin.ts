@@ -1,11 +1,11 @@
 import { Timestamp } from "rxjs";
-import Vue from "vue";
+
 // import colors from "../style/main-colors.scss";
-import {useStore} from 'vuex'
-import { useRouter } from "vue-router";
+import router from "../router";
+import store from "../store";
+
 import axios from "axios";
-const store = useStore();
-const router = useRouter();
+
 
 
 const mixin = {

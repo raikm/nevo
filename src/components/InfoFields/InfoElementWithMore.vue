@@ -11,7 +11,7 @@ export default {
   props: ["lableName", "infotext", "detailPageName", "data"],
   methods: {
     openDetails() {
-      this.$router.push({path: `/SettingsPage/${this.detailPageName}`, query: this.data});
+      this.router.push({path: `/SettingsPage/${this.detailPageName}`, query: this.data});
     },
   },
 };

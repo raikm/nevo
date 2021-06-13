@@ -83,11 +83,49 @@ body {
   }
 }
 
-//OLD
+//TODO OLD
 .main-info-icon {
   float: left;
   height: 3vh;
 }
+
+.main-info-box-small {
+  
+}
+
+
+.large-widget {
+  
+  
+}
+
+.main-info-header {
+  height: 20%;
+  // margin-bottom: 1.6%;
+
+  // overflow: hidden;
+  .main-info-title {
+    font-size: 1.8vh;
+  }
+}
+
+.main-box-body {
+  height: 80%;
+}
+
+.main-info-header-medium {
+  // display: inline-flex;
+  font-size: 1.5em;
+  //line-height: 3vh;
+  margin-bottom: 1.6%;
+  font-weight: 500;
+  // overflow: hidden;
+}
+
+.main-info-title-big {
+  font-size: 1.5rem;
+}
+
 
 .click-element:active {
   animation: bounce-in 0.5s;

@@ -15,7 +15,6 @@ app.use(VueAxios, axios);
 app.mount("#app");
 
 // import "./registerServiceWorker";
-// import { ToastProgrammatic as Toast } from "buefy";
 //https://www.digitalocean.com/community/tutorials/vuejs-using-svg-icons
 // import VueSVGIcon from "vue-svgicon";
 // Vue.http = Vue.prototype.$http = axios;

@@ -53,42 +53,6 @@ export default {
 </script>
 
 <style lang="scss">
-.main-info-box-small {
-  height: 15vh;
-}
-
-
-.large-widget {
-  height: 25vh;
-  max-height: 25vh;
-}
-
-.main-info-header {
-  height: 20%;
-  // margin-bottom: 1.6%;
-
-  // overflow: hidden;
-  .main-info-title {
-    font-size: 1.8vh;
-  }
-}
-
-.main-box-body {
-  height: 80%;
-}
-
-.main-info-header-medium {
-  // display: inline-flex;
-  font-size: 1.5em;
-  //line-height: 3vh;
-  margin-bottom: 1.6%;
-  font-weight: 500;
-  // overflow: hidden;
-}
-
-.main-info-title-big {
-  font-size: 1.5rem;
-}
 
 #scene-buttons {
   height: auto;

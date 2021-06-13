@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="basic-card main-info-box main-info-box-small">
     <div
-      id="forecast-stack-wrapper"
+      
       v-if="Object.keys(this.weatherForecast).length > 0"
     >
       <DayForecast
@@ -94,6 +94,7 @@ export default defineComponent( {
 </script>
 
 <style lang="scss">
+
 #weather-header {
   // background-color: chartreuse;
   height: 3vh;
