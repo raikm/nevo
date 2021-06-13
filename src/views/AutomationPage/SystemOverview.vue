@@ -3,7 +3,7 @@
     <div
       v-for="status in systemStatus"
       :key="status.name"
-      class="basic-card system-status-info-card"
+      class="box white-box system-status-info-card"
     >
      <div
           class="status-color"

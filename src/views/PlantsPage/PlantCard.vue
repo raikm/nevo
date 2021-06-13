@@ -1,7 +1,7 @@
 <template>
   <div class="plant-card-container">
     <div
-      class="basic-card plant-card click-element"
+      class="box white-box plant-card click-element"
       v-bind:key="plant.plant_id"
       v-for="plant in plantInformation"
       @click="

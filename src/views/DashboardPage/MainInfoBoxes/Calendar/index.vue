@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card large-widget">
+  <div>
     <div id="calendar-header">
       <div id="calendar-info">
         <div id="calendar-day-info">{{ title.title }}</div>

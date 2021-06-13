@@ -8,9 +8,9 @@ $standard-border-radius: 10px;
 $standard-title-big: 4rem;
 $standard-title-medium: 60%;
 
-$standard-text-big: 2.5vh;
-$standard-text-medium: 1.5vh;
-$standard-text-small: 1vh;
+$standard-text-big: 22px;
+$standard-text-medium: 15px;
+$standard-text-small: small;
 
 $standard-space: 15px;
 
@@ -48,11 +48,16 @@ body {
   margin: 0 0.5rem;
 }
 
-.basic-card {
+.box {
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 10px;
+  overflow: hidden;
+}
+
+.white-box {
   background-color: rgb(255, 255, 255);
   backdrop-filter: blur(10px);
-  border-radius: 10px;
-  padding: 1vh;
 }
 
 .main-info-content {
@@ -89,14 +94,7 @@ body {
   height: 3vh;
 }
 
-.main-info-box-small {
-  
-}
-
-
 .large-widget {
-  
-  
 }
 
 .main-info-header {
@@ -104,9 +102,9 @@ body {
   // margin-bottom: 1.6%;
 
   // overflow: hidden;
-  .main-info-title {
-    font-size: 1.8vh;
-  }
+}
+.main-info-title {
+  font-size: $standard-text-medium;
 }
 
 .main-box-body {
@@ -125,7 +123,6 @@ body {
 .main-info-title-big {
   font-size: 1.5rem;
 }
-
 
 .click-element:active {
   animation: bounce-in 0.5s;
@@ -210,4 +207,3 @@ body {
   border-style: solid;
   cursor: none;
 }
-

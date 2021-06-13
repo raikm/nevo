@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-small">
+  <div>
     <div id="light-intensity-info-box" :lightintensityInfo="lightintensityInfo">
       <div class="main-info-header">
         <h1 class="main-info-title">
@@ -13,22 +13,22 @@
         ></div>
       </div> -->
 
-      <div id="light-intensity-control-wrapper">
+      <!-- <div id="light-intensity-control-wrapper">
         <HorizontalBarController
           id="light-intensity-control"
           :iconName="'sun'"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
 
 <script>
-import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
+// import HorizontalBarController from "@/components/Inputs/HorizontalBarController";
 
 export default {
   name: "LightIntensityMainInfoBox",
-  components: { HorizontalBarController },
+  // components: { HorizontalBarController },
   props: [],
   data() {
     return {

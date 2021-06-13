@@ -1,22 +1,14 @@
 <template>
-  <div class="basic-card main-info-box main-info-box-small">
-    <div
-      
-      v-if="Object.keys(this.weatherForecast).length > 0"
-    >
-      <DayForecast
-        :style="{ backgroundImage: this.backgroundImage }"
-        :weatherForecast="weatherForecast"
-      />
-      <WeekForecast />
-    </div>
-    <div
-      v-else
-      class="basic-card main-info-box main-info-box-small"
-      :style="{ backgroundImage: this.backgroundImage }"
-    >
-      <div class="service-info">Weather Service not available</div>
-    </div>
+  <div
+
+    v-if="Object.keys(this.weatherForecast).length > 0"
+    :style="{ backgroundImage: this.backgroundImage }"
+  >
+    <DayForecast class="forecast" :weatherForecast="weatherForecast" />
+    <WeekForecast class="forecast" />
+  </div>
+  <div v-else>
+    <div class="white-box service-info">Weather Service not available</div>
   </div>
 </template>
 
@@ -33,9 +25,9 @@ import "@/compiled-icons/Weather_Sunset";
 import "@/compiled-icons/Weather_Thunderstorm";
 import DayForecast from "./DayForecast.vue";
 import WeekForecast from "./WeekForecast.vue";
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
-export default defineComponent( {
+export default defineComponent({
   components: { DayForecast, WeekForecast },
   created() {
     this.weatherForecastDataFromAPI();
@@ -94,16 +86,16 @@ export default defineComponent( {
 </script>
 
 <style lang="scss">
+.forecast{
+  height: 100%;
+}
 
 #weather-header {
   // background-color: chartreuse;
-  height: 3vh;
+  height: 20%;
   display: grid;
   color: white;
   grid-template-columns: 4fr 1fr;
-  #weather-city-name {
-    font-size: $standard-text-medium;
-  }
   #weather-icon {
     height: 100%;
     justify-self: right;
@@ -112,7 +104,7 @@ export default defineComponent( {
 
 #temperature-info-overview {
   // background-color: red;
-  height: 4vh;
+  height: 40%;
   display: grid;
   color: white;
   grid-template-columns: 2fr 4fr;
@@ -129,7 +121,7 @@ export default defineComponent( {
 
 #temperature-hour-info {
   // background-color: blue;
-  height: 6vh;
+  height: 40%;
   display: grid;
   color: white;
   grid-template-columns: repeat(6, 1fr);
@@ -137,13 +129,13 @@ export default defineComponent( {
   .temperature-hour-content {
     // text-align: center;
     display: grid;
-    grid-template-rows: 1.5vh 3vh 1.5vh;
+    grid-template-rows: 13px 25px 13px;
 
     // justify-items: center;
     align-items: center;
 
     .weather-hour {
-      font-size: 1.3vh;
+      font-size:$standard-text-small;
       opacity: 80%;
     }
     .weather-icon-wrapper {
@@ -157,11 +149,9 @@ export default defineComponent( {
     }
 
     .weather-hour-temperature {
-      font-size: 1.2vh;
+      font-size: $standard-text-small;
       font-weight: 700;
     }
   }
 }
-
-
 </style>

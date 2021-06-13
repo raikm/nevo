@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card click-element device-box" @click="clickDevice">
+  <div class="box white-box click-element device-box" @click="clickDevice">
     <div class="device-box-header">
       <svgicon
         class="device-icon"

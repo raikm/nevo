@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="basic-card main-info-box main-info-box-small temperature-main-info-box"
-  >
+  <div>
     <div class="main-info-header">
       <h1 class="main-info-title" id="temperature-header">
         Indoor temperature

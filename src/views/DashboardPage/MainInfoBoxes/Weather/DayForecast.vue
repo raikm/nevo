@@ -1,9 +1,6 @@
 <template>
-  <div
-    id="weather-box"
-    class="basic-card main-info-box main-info-box-small"
-  >
-    <div id="weather-header">
+  <div>
+    <div class="main-info-title" id="weather-header">
       <div id="weather-city-name">Salzburg</div>
       <svgicon
         id="weather-icon"

@@ -1,12 +1,12 @@
 <template>
-  <main>
+  <div>
     <div class="standard-information-row-container">
-      <TemperatureMainInfoBox class="small-box" />
-      <WeatherMainInfoBox class="small-box" />
-      <LightIntensityMainInfoBox class="small-box" />
-      <PublicTransportMainInfoBox class="big-box" />
-      <Calendar class="big-box" />
-      <MusicControlMainInfoBox class="big-box" />
+      <TemperatureMainInfoBox class="box white-box small-box" />
+      <WeatherMainInfoBox class="box small-box" />
+      <LightIntensityMainInfoBox class="box white-box small-box" />
+      <PublicTransportMainInfoBox class="box white-box large-box" />
+      <Calendar class="box white-box large-box" />
+      <MusicControlMainInfoBox class="box white-box large-box" />
     </div>
     
     <div class="shortcut-boxes">
@@ -17,7 +17,7 @@
       />
     </div>
     <!-- <div>{{mainPageWidth}}x{{containerSceneHeight}}</div> -->
-  </main>
+  </div>
 </template>
 
 <script lang="ts">
@@ -53,6 +53,7 @@ export default {
 </script>
 
 <style lang="scss">
+
 
 #scene-buttons {
   height: auto;

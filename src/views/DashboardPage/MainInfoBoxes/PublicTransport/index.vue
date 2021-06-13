@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card main-info-box large-widget">
+  <div>
     <div class="public-transport-box">
       <div class="public-transport-header">
         <div
@@ -150,6 +150,7 @@ export default defineComponent( {
 .public-transport-content {
   display: grid;
   grid-template-columns: 1fr 8fr 4fr;
+  height: 18px;
   column-gap: 5px;
   font-size: $standard-text-medium;
 }

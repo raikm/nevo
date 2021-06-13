@@ -1,10 +1,10 @@
 <template>
-    <div class="basic-card" id="overview">
+    <div class="box white-box" id="overview">
       <h1 class="main-info-header systemsettings-header" >Automations</h1>
       <div
         v-for="status in scriptStatus"
         :key="status.name"
-        class="basic-card automation-status-info-card"
+        class="box white-box automation-status-info-card"
       >
         <div
           class="status-color"

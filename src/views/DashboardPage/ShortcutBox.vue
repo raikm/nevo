@@ -1,5 +1,5 @@
 <template>
-  <div class="basic-card click-element shortcut-box" @click="triggerShortcut">
+  <div class="box white-box click-element shortcut-box" @click="triggerShortcut">
     <svgicon
       class="scene-icon"
       :icon="shortcut.entity_id.split('shortcut_')[1]"
