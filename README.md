@@ -22,6 +22,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ### 🛬 Latest Updates (Status: 03.05.2021)
 ```
  🎉 Dashboard Page V1 completly done without mockup data
+ 🎉 Migration to Vue3 and Typescript
 
 ```
 
