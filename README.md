@@ -10,10 +10,12 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 
 ### 🛫 Next Up
 ```
+ 📦 Vue3 + Typescript
  📦 Bugfixes - Plant Page
  📦 Bugfixes - Music Player
  📦 Plant Settings: show nearby sensors
  📦 Unit Testing
+ 📦 Transform to Vite
  📦 Ready to use: Light Page V1
  📦 First tests with health data export from the iPhone
 ```
