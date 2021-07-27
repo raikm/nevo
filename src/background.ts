@@ -1,5 +1,5 @@
 "use strict";
-import { app, protocol, BrowserWindow } from "electron";
+import { app, protocol, BrowserWindow, remote } from "electron";
 import { createProtocol } from "vue-cli-plugin-electron-builder/lib";
 import installExtension, { VUEJS_DEVTOOLS } from "electron-devtools-installer";
 const isDevelopment = process.env.NODE_ENV !== "production";
@@ -25,7 +25,7 @@ async function createWindow() {
   if (process.env.WEBPACK_DEV_SERVER_URL) {
     
     /* change to localhost:8080 - this is manuelly added since I need a permission to google api and if I want to access my app from another app it is not localhost anymore and blocked */
-    await win.loadURL("http://localhost:8081/");
+    await win.loadURL("http://localhost:8080");
     // Load the url of the dev server if in development mode
     // await win.loadURL(process.env.WEBPACK_DEV_SERVER_URL)
     

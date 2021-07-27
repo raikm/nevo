@@ -3,12 +3,16 @@
     <div class="public-transport-box">
       <div class="public-transport-header">
         <div
-          class="public-transport-header-title public-transport-header-title-line"
+          class="
+            public-transport-header-title public-transport-header-title-line
+          "
         >
           Line
         </div>
         <div
-          class="public-transport-header-title public-transport-header-direction"
+          class="
+            public-transport-header-title public-transport-header-direction
+          "
         >
           Direction
         </div>
@@ -24,9 +28,9 @@
         >
           <div
             class="public-transport-header-title-line-info"
-            :class="transport.line.name.replace(/\s/g, '')"
+            :class="transport.line.product"
           >
-            {{ transport.line.name.replace(/^\D+/g, "") }}
+            {{ transport.line.name }}
           </div>
           <div class="public-transport-header-direction-info">
             {{ transport.direction }}
@@ -40,40 +44,22 @@
   </div>
 </template>
 
-<script>
+<script >
 import { mapState } from "vuex";
+import { defineComponent } from "vue";
 
-import { defineComponent } from 'vue'
-
-export default defineComponent( {
+export default defineComponent({
   name: "PublicTransportMainInfoBox",
   computed: {
     ...mapState(["config"]),
   },
   created() {
-    this.getDepatureTime();
-    this.interval = setInterval(() => {
-      try {
-        this.getDepatureTime();
-      } catch (e) {
-        console.error("Hafas Client ist not setup: " + e);
-      }
-    }, 20000);
+    this.connectToHafasWebSocket();
   },
   data() {
     return {
-      departuresFromHome: [],
-      favoriteLineIds: ["svv-1-2-j21-1", "svv-1-4-j21-1", "svv-1-12-j21-1"],
-      stationsNearHome: [
-        { id: "455654100", name: "Salzburg Stadtwerk Lehen" },
-        { id: "455079400", name: "Salzburg Roseggerstraße" },
-        // { id: "455104600", name: "Salzburg Kuenburgstraße" }, //define bus lines who have to be filtered out
-        // { id: "455081900", name: "Salzburg Strubergasse" },
-        // { id: "455079300", name: "Salzburg Esshaverstraße" },
-        // { id: "455001300", name: "Salzburg Gaswerkgasse" },
-        // { id: "455102400", name: "Salzburg Aiglhof S-Bahn" },
-        // { id: "455102300", name: "Salzburg Mülln-Altstadt S-Bahn" },
-      ],
+      hafasConnection: null,
+      departuresFromHome: null,
     };
   },
   methods: {
@@ -83,63 +69,29 @@ export default defineComponent( {
       difference /= 60;
       return Math.abs(Math.round(difference));
     },
-    getDepatureTime() {
-      this.departuresFromHome = [];
-      const createRoundRobin = require("@derhuerst/round-robin-scheduler");
-      const createClient = require("hafas-client-rpc/ws/client");
-
-      const hafasClient = createClient(
-        createRoundRobin,
-        ["ws://" + this.config.public_transport.websocketUrl + ":3000"],
-        (_, hafas) => {
-          this.stationsNearHome.forEach((station) => {
-            hafas.departures(station.id, { duration: 15 }).then((result) =>
-              result.forEach((element) => {
-                // check if bus/train belongs to favorite lines
-                if (
-                  this.filterTime(element.plannedWhen) &&
-                  (this.favoriteLineIds.includes(element.line.id) ||
-                    element.line.product === "bahn-s-bahn")
-                ) {
-                  this.departuresFromHome.push(element);
-                  this.departuresFromHome.sort((a, b) =>
-                    new Date(a.plannedWhen) > new Date(b.plannedWhen) ? 1 : -1
-                  );
-                }
-              })
-            );
-          });
-        }
-      );
-
-      // console.log(hafasClient);
-      hafasClient.on("message", () => {
-        // console.log("a message occurred!");
-      });
-      // hafasClient.on("connection-open", () => {
-      //   console.log("connection-open");
-      // });
-      // hafasClient.on("event", () => {
-      //   console.log("event");
-      // });
-      hafasClient.on("error", console.error);
-    },
-    filterTime(depTime) {
-      let time3MinutesExtra = new Date();
-      time3MinutesExtra.setMinutes(time3MinutesExtra.getMinutes() + 3);
-      time3MinutesExtra = new Date(time3MinutesExtra);
-      if (new Date(depTime) >= time3MinutesExtra) return true;
-      return false;
+    connectToHafasWebSocket() {
+      console.log("start websocket connection");
+      console.log(this.config.public_transport.websocketUrl);
+      // this.hafasConnection = new WebSocket(
+      //   `ws://${this.config.public_transport.websocketUrl}`
+      // );
+      let self = this;
+      this.hafasConnection = new WebSocket(`ws://localhost:3000`);
+      this.hafasConnection.onmessage = function (event) {
+        // console.log(JSON.parse(event.data));
+        self.departuresFromHome = JSON.parse(event.data);
+        console.log(self.departuresFromHome);
+      };
     },
   },
   unmounted() {
-    clearInterval(this.interval);
+    this.hafasConnection.close();
   },
 });
 </script>
 
 <style lang="scss">
-@import "./PublicTransportSalzburg.scss";
+@import "./PublicTransportBerlin.scss";
 
 .public-transport-box {
   height: 95%;
@@ -150,13 +102,13 @@ export default defineComponent( {
 .public-transport-content {
   display: grid;
   grid-template-columns: 1fr 8fr 4fr;
-  height: 18px;
+  height: 22px;
   column-gap: 5px;
   font-size: $standard-text-medium;
 }
 
 .public-transport-content-wrapper {
-  margin-top: 1vh;
+  margin-top: 5px;
 }
 
 .public-transport-header {
@@ -166,15 +118,17 @@ export default defineComponent( {
 .public-transport-header-title {
 }
 
-.public-transport-header-title-line,
-.public-transport-header-title-line-info {
+.public-transport-header-title-line {
   text-align: center;
   font-weight: bold;
 }
 .public-transport-header-title-line-info {
   border-radius: 4px;
   color: white;
-  margin: 0.1vh 0;
+  margin: 2px 0;
+  display: grid;
+  align-content: center;
+  justify-content: center;
 }
 
 .public-transport-header-direction,

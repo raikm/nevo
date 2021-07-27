@@ -65,6 +65,7 @@
 
 <script>
 import { mapGetters } from "vuex";
+import router from "../../router/index";
 import "@/compiled-icons/settings_apple_music";
 import "@/compiled-icons/settings_calendar";
 import "@/compiled-icons/settings_general";
@@ -86,7 +87,7 @@ export default {
   },
   methods: {
     openSettingDetail(childrenPageName) {
-      this.router.push(`/SettingsPage/${childrenPageName}`);
+      router.push(`/SettingsPage/${childrenPageName}`);
     },
   },
 };
@@ -99,7 +100,7 @@ export default {
   .setting-menu {
     // background-color: yellow;
     border-right: 1px solid rgba(0, 0, 0, 0.5);
-    margin-bottom: $standard-space*4;
+    margin-bottom: $standard-space * 4;
     min-width: 260px;
     max-width: 380px;
     .setting-menu-wrapper {
@@ -114,7 +115,7 @@ export default {
           height: 80%;
           margin-right: 0.5vh;
           border: solid;
-          border-width: 1px; 
+          border-width: 1px;
           border-color: rgba(0, 0, 0, 0.1);
           border-radius: 5px;
           fill: none;
@@ -145,13 +146,15 @@ export default {
 .element-wrapper > div {
   border-bottom: 1px solid $main-light-gray;
   padding-left: 15px;
-  height: 4vh;
+  height: 35px;
 }
 .element-wrapper > div:last-child {
   border: none;
 }
 .info-element {
   height: 100%;
+  display: flexbox;
+  align-items: center;
 }
 
 .lable-name {

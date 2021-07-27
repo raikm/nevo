@@ -1,9 +1,6 @@
 <template>
   <div class="music-control-box">
-    <MusicPlayer
-      v-if="showMusicPlayer"
-      @showPlaylists="showPlaylists"
-    />
+    <MusicPlayer v-if="showMusicPlayer" @showPlaylists="showPlaylists" />
     <Playlists v-else id="music-control" @showPlaylists="showPlaylists" />
   </div>
 </template>
@@ -12,12 +9,16 @@
 import Playlists from "./Playlists";
 import MusicPlayer from "./MusicPlayer";
 import "@/compiled-icons/volume_medium";
-import { mapGetters,mapState } from "vuex";
+import { mapGetters, mapState } from "vuex";
 
 export default {
   components: {
     Playlists,
     MusicPlayer,
+  },
+  computed: {
+    ...mapState(["config"]),
+    ...mapGetters(["activeGroup"]),
   },
   data() {
     return {
@@ -27,6 +28,7 @@ export default {
   watch: {
     activeGroup() {
       let timeout;
+      console.log(this.activeGroup);
       if (this.activeGroup == null) {
         console.log("close player in 5min");
         timeout = setTimeout(() => {
@@ -37,10 +39,6 @@ export default {
         this.showMusicPlayer = true;
       }
     },
-  },
-  computed: {
-    ...mapState(["config"]),
-    ...mapGetters(["activeGroup"]),
   },
   mounted() {
     this.setUpZones();
@@ -55,7 +53,7 @@ export default {
           this.$store.commit("setSpeakers", response.data);
         })
         .catch((error) => {
-          this.showToastError(error.toString());
+          console.log(error.toString());
         });
     },
     showPlaylists() {

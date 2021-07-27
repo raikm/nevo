@@ -37,6 +37,7 @@
     "vue-axios": "^3.2.4",
     "vue-class-component": "^8.0.0-0",
     "vue-router": "^4.0.0-alpha.6",
+    "vue-socket.io": "^3.0.10",
     "vuex": "^4.0.0-alpha.1"
   },
   "devDependencies": {

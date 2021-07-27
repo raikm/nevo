@@ -12,7 +12,7 @@
           <Person :key="n" v-for="n in 4" :n="n" />
         </div>
       </div>
-      <DateTime/>
+      <DateTime />
     </div>
     <div id="main-container">
       <Menu id="menu" />
@@ -26,6 +26,7 @@
 import DateTime from "@/components/DateTime";
 import Menu from "@/components/Menu";
 import Person from "@/components/Person";
+
 /**
  * get websocket for homeassistant here: https://github.com/home-assistant/home-assistant-js-websocket. (use period)
  */

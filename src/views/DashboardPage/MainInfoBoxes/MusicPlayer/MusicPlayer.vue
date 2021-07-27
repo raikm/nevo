@@ -250,7 +250,7 @@ export default {
               this.$store.commit("setSpeakers", response.data);
             })
             .catch((error) => {
-              this.showToastError(error.toString());
+              console.log(error.toString());
             });
         }
         if (result.type === "topology-change") {
@@ -269,7 +269,7 @@ export default {
       document.getElementById("player").style.display = "grid";
       document.getElementById("speakers").style.display = "none";
     },
-  
+
     activeRoomNames() {
       // let result = activeGroup.forEach(obj => obj.members.roomName + ", ")
       let result = "";
@@ -280,8 +280,8 @@ export default {
       ) {
         result += this.activeGroup.members[index].roomName + ", ";
       }
-      result += this.activeGroup.members[this.activeGroup.members.length - 1]
-        .roomName;
+      result +=
+        this.activeGroup.members[this.activeGroup.members.length - 1].roomName;
       this.activeSpeakerNames = result;
     },
     changeVolume(newVolume) {
@@ -298,7 +298,7 @@ export default {
 </script>
 
 <style lang="scss">
-.player-wrapper{
+.player-wrapper {
   // height: 100%;
   // overflow: hidden;
 }

@@ -4,6 +4,7 @@ import store from "./store";
 import router from "./router";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import VueSocketIO from 'vue-socket.io'
 import mixin from "./mixins/helpersMixin";
 import App from "./App.vue";
 
@@ -12,6 +13,12 @@ app.mixin(mixin);
 app.use(store);
 app.use(router);
 app.use(VueAxios, axios);
+//connection: "http://192.168.1.217:5008",
+// app.use()
+app.config.globalProperties.$socket = new VueSocketIO({
+    debug: true,
+    connection: 'http://192.168.1.217:5008',
+})
 app.mount("#app");
 
 // import "./registerServiceWorker";
@@ -20,15 +27,6 @@ app.mount("#app");
 // Vue.http = Vue.prototype.$http = axios;
 // window.axios = require("axios");
 // window.aftership = require("aftership");
-// import VueSocketIO from 'vue-3-socket.io'
 // app.use(VueSVGIcon, {
 //   isOriginalDefault: true,
 // });
-
-// const socketio = new VueSocketIO({
-//   debug: true,
-//   connection: 'http://192.168.1.217:5008',
-// });
-
-// app.use(socketio);
-

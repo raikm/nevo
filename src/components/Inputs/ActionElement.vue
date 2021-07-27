@@ -11,17 +11,17 @@ export default {
 </script>
 
 <style lang="scss">
-.info-element {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  padding: 0 1vh;
-  height: 3vh;
-  align-items: center;
-  
-}
+// .info-element {
+//   display: grid;
+//   grid-template-columns: 2fr 1fr;
+//   padding: 0 1vh;
+//   height: 3vh;
+//   align-items: center;
 
-.action-name {
-  color: $main-blue;
-  cursor: pointer;
-}
+// }
+
+// .action-name {
+//   color: $main-blue;
+//   cursor: pointer;
+// }
 </style>
