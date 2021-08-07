@@ -37,6 +37,9 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
  🎉 Music Player (Sonos API) V1
  🎉 Implementing Shortcut Buttons (homeassistant)
 ```
+
+[![Latest Updates](https://img.youtube.com/vi/Tr8btqHs8_k/0.jpg)](https://www.youtube.com/watch?v=Tr8btqHs8_k)
+
 ---
 
 ## Project setup
