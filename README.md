@@ -2,6 +2,16 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
+### 🧗🏼 Short Update (Status: 29.08.2021)
+
+```
+This is still an ongoing project but since I started my first fulltime-job
+in July 2021 after finishing my master studies, I have limited time. 
+
+The 🛫 Nextup Section shows the work packages I am currently working on.
+ 
+```
+
 ![March 2021](/doc/current_status_may_2021.png?)
 
 ![Build](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
@@ -38,7 +48,11 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
  🎉 Implementing Shortcut Buttons (homeassistant)
 ```
 
-[![Latest Updates](https://img.youtube.com/vi/Tr8btqHs8_k/0.jpg)](https://www.youtube.com/watch?v=Tr8btqHs8_k)
+### 🎥 Dashboard on Youtube
+
+<p align="left">
+ <a href="https://www.youtube.com/watch?v=Tr8btqHs8_k"> <img src="https://img.youtube.com/vi/Tr8btqHs8_k/0.jpg" /></a>
+</p>
 
 ---
 
