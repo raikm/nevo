@@ -1,6 +1,5 @@
 .DS_Store
-node_modules
-/dist
+
 
 # local env files
 .env.local
@@ -23,9 +22,14 @@ yarn-error.log*
 config.json
 
 #Electron-builder output
-/dist_electron
 homeapp-darwin-x64
 /public
+
+# Builds
+build/
+/dist
+dist_electron/
+
 
 # Logs
 logs
@@ -113,7 +117,3 @@ typings/
 
 # Webpack
 .webpack/
-
-# Builds
-build/
-dist_electron/
