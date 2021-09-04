@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "main": "./src/main/index.ts",
   "scripts": {
-    "vite:dev": "vite",
+    "vite:dev": "vite --host",
     "build": "vue-tsc --noEmit && vite build",
     "serve": "vite preview",
     "electron": "wait-on tcp:3000 && cross-env IS_DEV=true electron .",
@@ -14,11 +14,11 @@
     "app:build": "npm run build:for:electron && npm run electron:builder"
   },
   "dependencies": {
-    "vue": "^3.1.1",
-    "electron-devtools-installer": "^3.2.0"
+    "electron-devtools-installer": "^3.2.0",
+    "vue": "^3.1.1"
   },
   "devDependencies": {
-    "@types/node": "^16.6.1",
+    "@types/node": "^16.7.10",
     "@vitejs/plugin-vue": "^1.1.5",
     "@vue/compiler-sfc": "^3.0.5",
     "concurrently": "^6.2.1",

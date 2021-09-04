@@ -1,7 +1,6 @@
 
 
 //TODO: import installExtension, { VUEJS3_DEVTOOLS } from 'electron-devtools-installer';
-require('electron-devtools-installer');
 
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
@@ -17,7 +16,8 @@ function createWindow() {
       contextIsolation: false,     
       webSecurity: false,
       nodeIntegration: true
-  }
+  },
+  titleBarStyle: "hidden",
 });
 
 

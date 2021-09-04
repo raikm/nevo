@@ -1,6 +1,22 @@
+<template>
+	<div>
+		<div class="menu-button click-element"></div>
+		<div class="menu-button click-element"></div>
+		<div class="menu-button click-element"></div>
+		<div class="menu-button click-element"></div>
+	</div>
+</template>
+
+<script lang="ts">
+	import { defineComponent } from "vue";
+
+	export default defineComponent({});
+</script>
+
+<style lang="scss">
 @import "../../styles/panoramastyle.scss", "../../styles/panoramaVariables.scss";
 
-$inactive-color: $main-gray;
+$inactive-color: $gray;
 
 .active {
   animation: bounce-in 0.5s;
@@ -28,9 +44,7 @@ $inactive-color: $main-gray;
   height: 60px;
   width: 60px;
 
-  margin-bottom: 2.5vh;
-  margin-left: auto;
-  margin-right: auto;
+  margin-bottom: $standard-space;
   text-align: center;
 }
 
@@ -59,10 +73,10 @@ $inactive-color: $main-gray;
 .dashboard-icon.active,
 .dashboard-icon:hover {
   .box-1 {
-    fill: $main-orange;
+    fill: $orange;
   }
   .box-2 {
-    fill: $main-orange-2;
+    fill: $orange-2;
   }
 }
 .lamp-icon {
@@ -89,8 +103,8 @@ $inactive-color: $main-gray;
 
 .lamp-icon.active,
 .lamp-icon:hover {
-  $light-color: $main-orange;
-  $light-color-2: $main-orange-2;
+  $light-color: $orange;
+  $light-color-2: $orange-2;
   .lampcable {
     fill: #465a61;
   }
@@ -129,7 +143,7 @@ $inactive-color: $main-gray;
 
 // .device-icon.active,
 // .device-icon:hover {
-//   fill: $main-yellow-2;
+//   fill: $yellow-2;
 // }
 
 .package-icon {
@@ -146,8 +160,8 @@ $inactive-color: $main-gray;
 .package-icon:hover {
   stroke: transparent;
   stroke-width: 0;
-  $package-color: $main-yellow;
-  $package-second-color: $main-yellow-2;
+  $package-color: $yellow;
+  $package-second-color: $yellow-2;
   .package-top {
     fill: $package-color;
   }
@@ -183,7 +197,7 @@ $inactive-color: $main-gray;
 .calendar-icon.active,
 .calendar-icon:hover {
   #calendar-day {
-    color: $main-red;
+    color: $red;
   }
 }
 .automation-icon {
@@ -200,16 +214,16 @@ $inactive-color: $main-gray;
   stroke: transparent;
   stroke-width: 0;
   .automation-ball {
-    fill: $main-yellow;
+    fill: $yellow;
   }
   .automation-ball-2 {
-    fill: $main-orange;
+    fill: $orange;
   }
   .automation-ball-shadow {
-    fill: $main-yellow-2;
+    fill: $yellow-2;
   }
   .automation-ball-2-shadow {
-    fill: $main-orange-2;
+    fill: $orange-2;
   }
   .automation-arrow {
     fill: #465a61;
@@ -262,6 +276,7 @@ $inactive-color: $main-gray;
   justify-content: center;
   align-content: center;
   height: 100%;
-  color: $main-gray;
+  color: $gray;
   text-align: center;
 }
+</style>
