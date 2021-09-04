@@ -27,6 +27,7 @@
     "electron-builder": "^22.11.7",
     "typescript": "^4.3.4",
     "vite": "^2.3.7",
+    "vite-svg-loader": "^2.2.0",
     "vue-tsc": "^0.3.0",
     "wait-on": "^6.0.0"
   },

@@ -1,6 +1,8 @@
 import vue from '@vitejs/plugin-vue'
 import { resolve } from 'path'
 import { defineConfig } from 'vite'
+import svgLoader from 'vite-svg-loader'
+
 const root = resolve(__dirname, 'src/render')
 const outDir = resolve(__dirname, 'dist/render')
 const path = require('path');
@@ -18,6 +20,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src/render'),
     },
   },
-  plugins: [vue()],
+  plugins: [vue(), svgLoader()],
   
 })
