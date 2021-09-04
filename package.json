@@ -1,7 +1,6 @@
 {
-  "name": "template",
-  "version": "0.0.0",
-  "description": "template for vite-electron-ts",
+  "name": "homepanorama",
+  "version": "0.0.1",
   "main": "./src/main/index.ts",
   "scripts": {
     "vite:dev": "vite",
@@ -15,7 +14,8 @@
     "app:build": "npm run build:for:electron && npm run electron:builder"
   },
   "dependencies": {
-    "vue": "^3.1.1"
+    "vue": "^3.1.1",
+    "electron-devtools-installer": "^3.2.0"
   },
   "devDependencies": {
     "@types/node": "^16.6.1",
@@ -25,7 +25,6 @@
     "cross-env": "^7.0.3",
     "electron": "^14.0.0",
     "electron-builder": "^22.11.7",
-    "electron-devtools-installer": "^3.2.0",
     "typescript": "^4.3.4",
     "vite": "^2.3.7",
     "vue-tsc": "^0.3.0",
@@ -37,8 +36,8 @@
     "electron"
   ],
   "build": {
-    "appId": "com.my-website.my-app",
-    "productName": "MyApp",
+    "appId": "com.homepanorama.app",
+    "productName": "Homepanorama",
     "mac": {
       "category": "public.app-category.utilities"
     },
