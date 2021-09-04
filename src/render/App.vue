@@ -7,8 +7,7 @@
 	</div>
 	<div id="main">
 		<Menu />
-		<div></div>
-		<!-- Routerview -->
+		<router-view></router-view>
 	</div>
 	<div id="footer"></div>
 </template>
