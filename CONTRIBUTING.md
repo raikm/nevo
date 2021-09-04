@@ -8,12 +8,12 @@
 - Proposing new features
 - Becoming a maintainer
 
-## Useful background / Used Technologies
-- Python
+## Useful background / Current Technologies
 - VueJS
-- CSS
 - Docker
 - Homeassistant
+- Python (Backend Projects)
+- Python Django (Backend Projects)
 
 ## GitHub Flow
 The goal is to integrae GitHub Flow more and more to make this project stable with testing and test buildings

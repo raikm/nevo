@@ -1,0 +1,267 @@
+@import "../../styles/panoramastyle.scss", "../../styles/panoramaVariables.scss";
+
+$inactive-color: $main-gray;
+
+.active {
+  animation: bounce-in 0.5s;
+}
+
+@keyframes bounce-in {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.98);
+  }
+}
+
+.menu-button {
+  background-color: rgba(255, 255, 255, 1);
+  backdrop-filter: blur(10px);
+  border-color: rgb(243, 244, 254);
+  border-style: solid;
+  border-radius: 10px;
+  border-width: 0;
+
+  display: flex;
+
+  height: 60px;
+  width: 60px;
+
+  margin-bottom: 2.5vh;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.menu-button:hover {
+  transform: scale(0.98);
+}
+
+.menu-icon {
+  margin: 12%;
+  width: 78%;
+  height: 78%;
+  
+}
+.dashboard-icon {
+  margin: 15%;
+  width: 70%;
+  height: 70%;
+  .box-1 {
+    fill: $inactive-color;
+  }
+  .box-2 {
+    fill: $inactive-color;
+  }
+}
+
+.dashboard-icon.active,
+.dashboard-icon:hover {
+  .box-1 {
+    fill: $main-orange;
+  }
+  .box-2 {
+    fill: $main-orange-2;
+  }
+}
+.lamp-icon {
+  $light-color: transparent;
+  .lampcable {
+    fill: $inactive-color;
+  }
+  .lampshade-holder {
+    fill: $inactive-color;
+  }
+  .lampshade {
+    fill: $inactive-color;
+  }
+  .lampshade-shadow {
+    fill: $inactive-color;
+  }
+  .light {
+    fill: $light-color;
+  }
+  .light-shine {
+    fill: $light-color;
+  }
+}
+
+.lamp-icon.active,
+.lamp-icon:hover {
+  $light-color: $main-orange;
+  $light-color-2: $main-orange-2;
+  .lampcable {
+    fill: #465a61;
+  }
+  .lampshade-holder {
+    fill: #596c76;
+  }
+  .lampshade {
+    fill: #7a8c98;
+  }
+  .lampshade-shadow {
+    fill: #596c76;
+  }
+  .light {
+    fill: $light-color;
+  }
+  .light-shine {
+    fill: $light-color-2;
+  }
+}
+
+.plant-icon {
+  fill: $inactive-color;
+  // margin-left: 12%;
+  // margin-right: 8%;
+}
+.plant-icon.active,
+.plant-icon:hover {
+  fill: #639a67;
+}
+
+// .device-icon {
+//   fill: $inactive-color;
+//   margin-left: 17%;
+//   margin-right: 3%;
+// }
+
+// .device-icon.active,
+// .device-icon:hover {
+//   fill: $main-yellow-2;
+// }
+
+.package-icon {
+  stroke: $inactive-color;
+  stroke-width: 0.4em;
+  fill: none;
+  .package-tape,
+  .package-stripes {
+    fill: $inactive-color;
+  }
+}
+
+.package-icon.active,
+.package-icon:hover {
+  stroke: transparent;
+  stroke-width: 0;
+  $package-color: $main-yellow;
+  $package-second-color: $main-yellow-2;
+  .package-top {
+    fill: $package-color;
+  }
+  .package-tape {
+    fill: #ff8087;
+  }
+  .package-stripes {
+    fill: #fff6d8;
+  }
+
+  .package-right-front {
+    fill: $package-color;
+  }
+  .package-left-front {
+    fill: $package-second-color;
+  }
+}
+
+.calendar-icon {
+  #calendar-day {
+    color: $inactive-color;
+    font-weight: 500;
+  }
+  #calendar-date {
+    height: 70%;
+    // line-height: 90%;
+    font-size: 2.8vh;
+    line-height: 3vh;
+    top: -50%;
+  }
+}
+
+.calendar-icon.active,
+.calendar-icon:hover {
+  #calendar-day {
+    color: $main-red;
+  }
+}
+.automation-icon {
+  fill: $inactive-color;
+  .automation-ball,
+  .automation-ball-2,
+  .automation-arrow {
+    stroke: $inactive-color;
+    stroke-width: 0.05em;
+  }
+}
+
+.automation-icon.active {
+  stroke: transparent;
+  stroke-width: 0;
+  .automation-ball {
+    fill: $main-yellow;
+  }
+  .automation-ball-2 {
+    fill: $main-orange;
+  }
+  .automation-ball-shadow {
+    fill: $main-yellow-2;
+  }
+  .automation-ball-2-shadow {
+    fill: $main-orange-2;
+  }
+  .automation-arrow {
+    fill: #465a61;
+  }
+}
+
+#package-menu-button {
+  padding: 3%;
+}
+
+.settings-icon {
+  fill: $inactive-color;
+  .big-gear-ring {
+    fill: rgb(209, 209, 209);
+  }
+  .small-gear-main {
+    fill: rgb(209, 209, 209);
+  }
+  .small-gear-ring {
+    fill: $inactive-color;
+  }
+}
+
+.settings-icon.active,
+.settings-icon:hover {
+  fill: #3c6eaa;
+  .big-gear-ring {
+    fill: #3c6eaa;
+  }
+  .big-gear-ring {
+    fill: #ffcb39;
+  }
+  .big-gear-ring-shadow {
+    fill: #efb82e;
+  }
+  .small-gear-shadow {
+    fill: #365889;
+  }
+  .small-gear-main {
+    fill: #4e8ad1;
+  }
+  .small-gear-ring {
+    fill: #efeadd;
+  }
+}
+
+
+.service-info {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  height: 100%;
+  color: $main-gray;
+  text-align: center;
+}
