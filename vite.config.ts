@@ -3,6 +3,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 const root = resolve(__dirname, 'src/render')
 const outDir = resolve(__dirname, 'dist/render')
+const path = require('path');
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -11,6 +12,11 @@ export default defineConfig({
   build: {
     outDir,
     emptyOutDir: true
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src/render'),
+    },
   },
   plugins: [vue()],
   
