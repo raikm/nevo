@@ -1,5 +1,4 @@
 <template>
-
 	<div id="header">
 		<!-- logo / icon -->
 		<!-- Show People at home -->
@@ -13,14 +12,39 @@
 </template>
 
 <script lang="ts">
+	// Components
 	import Menu from "@/components/menu/index.vue";
 	import { defineComponent } from "vue";
+	// Config
 	import config from "../../config.json";
+	// Websockets
+	import {
+		createConnection,
+		subscribeEntities,
+		// subscribeServices,
+		createLongLivedTokenAuth,
+	} from "home-assistant-js-websocket";
+	import { Config } from "./types/config.interface";
+
 	export default defineComponent({
 		components: { Menu },
-		async created(){
-			this.$store.commit("setConfigFile", config)
-		}
+		created() {
+			this.$store.commit("setConfigFile", config);
+			this.createHomeassistantWebsocketConnection();
+		},
+		methods: {
+			async createHomeassistantWebsocketConnection() {
+				const auth = createLongLivedTokenAuth(
+					(config as Config).homeassistant.hassUrl,
+					(config as Config).homeassistant.life_time_token_raik
+				);
+				let connection = await createConnection({ auth });
+				//this.$store.commit("setHaConnection", _hAconnection);
+				subscribeEntities(connection, (entities) => {
+					this.$store.commit("setHaEntities", entities);
+				});
+			},
+		},
 	});
 </script>
 
@@ -37,7 +61,6 @@
 		display: grid;
 		grid-template-columns: 1fr 9fr;
 		padding: 15px;
-
 	}
 	#footer {
 		// background: black;
