@@ -15,9 +15,12 @@
 <script lang="ts">
 	import Menu from "@/components/menu/index.vue";
 	import { defineComponent } from "vue";
-
+	import config from "../../config.json";
 	export default defineComponent({
 		components: { Menu },
+		async created(){
+			this.$store.commit("setConfigFile", config)
+		}
 	});
 </script>
 

@@ -14,9 +14,12 @@
     "app:build": "npm run build:for:electron && npm run electron:builder"
   },
   "dependencies": {
+    "axios": "^0.21.2",
     "electron-devtools-installer": "^3.2.0",
     "vue": "^3.1.1",
-    "vue-router": "^4.0.11"
+    "vue-axios": "^3.2.5",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@types/node": "^16.7.10",
