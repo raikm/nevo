@@ -16,7 +16,14 @@ const store = createStore({
           setHaEntities(state: any, updatedEntities: HaEntities){
             state.haEntities = updatedEntities;
           }
-      }
+      },
+      getters: {
+        homeclimateSensors: state => {
+          return Object.values(state.haEntities).filter((entity: any) => { 
+            return entity.attributes?.type === "homeclimate"
+          })
+      },
+    }
 });
 
 export default store;

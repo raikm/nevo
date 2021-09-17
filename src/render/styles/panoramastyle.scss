@@ -13,7 +13,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
   //https://webgradients.com/
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  background-image: linear-gradient(120deg, #FAF4E1 0%, #eed8b2 100%);
   height: 100vh;
 }
 
@@ -44,9 +44,15 @@ body {
   overflow: hidden;
 }
 
-.white-box {
+.box-white {
   background-color: rgb(255, 255, 255);
   backdrop-filter: blur(10px);
+}
+
+.box-xs-wrapper{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 15px;
 }
 
 .main-info-content {
@@ -195,4 +201,8 @@ body {
   border-radius: 10px;
   border-style: solid;
   cursor: none;
+}
+
+@mixin borderstyle {
+  
 }

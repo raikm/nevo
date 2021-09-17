@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import maindashboard from "../views/maindashboard/index.vue";
 // import DevicesPage from "../views/DevicesPage/index.vue";
 // import PackagesPage from "../views/PackagesPage/index.vue";
@@ -28,8 +28,8 @@ const routes = [
   ]
 
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes: routes,
-});
+  const router = createRouter({
+    history: createWebHashHistory(),
+    routes,
+  });
 export default router;

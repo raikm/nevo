@@ -21,6 +21,7 @@
 	import {
 		createConnection,
 		subscribeEntities,
+		entitiesColl,
 		// subscribeServices,
 		createLongLivedTokenAuth,
 	} from "home-assistant-js-websocket";
@@ -39,7 +40,6 @@
 					(config as Config).homeassistant.life_time_token_raik
 				);
 				let connection = await createConnection({ auth });
-				//this.$store.commit("setHaConnection", _hAconnection);
 				subscribeEntities(connection, (entities) => {
 					this.$store.commit("setHaEntities", entities);
 				});
