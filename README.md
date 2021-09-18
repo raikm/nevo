@@ -8,13 +8,15 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 This is still an ongoing project but since I started my first fulltime-job
 in July 2021 after finishing my master studies, I have limited time. 
 
-The 🛫 Nextup Section shows the work packages I am currently working on.
+The 🛫 Nextup Section shows the work packages I am currently working on. Currently you see changes in the electron-vite-vue3-ts Branch
  
 ```
-<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 
 ![March 2021](/doc/current_status_may_2021.png?)
 
+
+<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 ![Build](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
 ![Unit Tests](https://github.com/raikm/homepanorama/actions/workflows/unit_tests.yml/badge.svg)
 ---
