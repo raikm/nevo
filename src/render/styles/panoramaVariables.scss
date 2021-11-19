@@ -15,10 +15,10 @@ $white: rgb(250, 250, 250);
 $white-smoke: rgb(245, 245, 245);
 $black: black;
 $red: #bd312d;
-$yellow: #FFE17D;
-$yellow-2: #FFC350;  // a little darker
+$yellow: #ffe17d;
+$yellow-2: #ffc350; // a little darker
 $orange: #ffa384;
-$orange-2:#fdb441; // a little darker
+$orange-2: #fdb441; // a little darker
 $green: #4a7277;
 $grren-alt: #83c5be;
 $blue: #007bffcc;
@@ -28,13 +28,12 @@ $background-color: rgb(252, 252, 252);
 $standard-border-radius: 15px;
 $standard-space: 15px;
 
-
 // export for using in scripts
-:export {    
-    mainBlue: $blue;
-    mainGreen: $green;
-    mainYellow: $yellow;
-    mainLightGray: $light-gray;
-    mainGray: $gray;
-    textColor: $text-color;
-  }
+:export {
+  mainBlue: $blue;
+  mainGreen: $green;
+  mainYellow: $yellow;
+  mainLightGray: $light-gray;
+  mainGray: $gray;
+  textColor: $text-color;
+}

@@ -1,17 +1,23 @@
 <template>
 	<div>
-		<div class="menu-button click-element"><DashboardIcon /></div>
-		<div class="menu-button click-element"><LampsIcon /></div>
-		<div class="menu-button click-element"><PlantIcon  /></div>
-		<div class="menu-button click-element"><RoomsIcon /></div>
+		<div @click="$router.push('/')" class="menu-button click-element">
+			<DashboardIcon />
+		</div>
+		<!-- <div @click="$router.push('/roomdashboard')" class="menu-button click-element"><LampsIcon /></div> -->
+		<div
+			@click="$router.push('/plantdashboard')"
+			class="menu-button click-element"
+		>
+			<PlantIcon />
+		</div>
+		<div @click="$router.push('/roomdashboard')" class="menu-button click-element"><RoomsIcon /></div>
 	</div>
 </template>
 
 <script setup lang="ts">
 	import DashboardIcon from "../../assets/icons/menu_dashboard.svg";
-	import LampsIcon from "../../assets/icons/menu_lamp.svg";
-	import PlantIcon from "../../assets/icons/menu_plants.svg";
-	import RoomsIcon from "../../assets/icons/menu_rooms.svg";
+import PlantIcon from "../../assets/icons/menu_plants.svg";
+import RoomsIcon from "../../assets/icons/menu_rooms.svg";
 </script>
 
 <style lang="scss">

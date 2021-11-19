@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import maindashboard from "../views/maindashboard/index.vue";
 // import DevicesPage from "../views/DevicesPage/index.vue";
 // import PackagesPage from "../views/PackagesPage/index.vue";
-// import PlantsPage from "../views/PlantsPage/index.vue";
+import plantdashboard from "../views/plantdashboard/index.vue";
 // import RoomsPage from "../views/RoomsPage/index.vue";
 // import SettingsPage from "../views/SettingsPage/index.vue";
 
@@ -18,18 +18,21 @@ import maindashboard from "../views/maindashboard/index.vue";
 // import PackageTracking from "../views/SettingsPage/PackageTracking.vue";
 // import PlantsDetail from "../views/SettingsPage/PlantsDetail.vue";
 
-
 const routes = [
-    {
-      path: "/",
-      name: "maindashboard-page",
-      component: maindashboard,
-    }
-  ]
+  {
+    path: "/",
+    name: "maindashboard-page",
+    component: maindashboard,
+  },
+  {
+    path: "/plantdashboard",
+    name: "plantdashboard-page",
+    component: plantdashboard,
+  },
+];
 
-
-  const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
-  });
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes,
+});
 export default router;
