@@ -1,4 +1,4 @@
-# HOMEPANORAMA
+# NEVO
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
