@@ -26,7 +26,7 @@ Currently you see changes in the electron-vite-vue3-ts Branch
 
 ### 🛫 Next Up
 ```
- 📦 Boxes from Main Pages ready for 
+ 📦 Boxes from Main Pages ready for production in Vue3 and Typescript
  📦 Unit Testing
  📦 Ready to use: Light Page V1
  📦 First tests with health data export from the iPhone
@@ -68,13 +68,3 @@ SmartMirrors handle the overview context but are limited with controls (e.g. via
 This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
 
 To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
-
-## History
-##### Plant Dashboard January 2021
-![Jan 2021](doc/current_statues_plant_dashboard.png?)
-
-##### December 2020
-![](/doc/current_status_december_2020.png?)
-
-##### August 2020
-![Aug 2020](/doc/current_statues.png?)
