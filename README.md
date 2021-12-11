@@ -8,41 +8,38 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 This is still an ongoing project but since I started my first fulltime-job
 in July 2021 after finishing my master studies, I have limited time. 
 
-The 🛫 Nextup Section shows the work packages I am currently working on. Currently you see changes in the electron-vite-vue3-ts Branch
+The 🛫 Nextup Section shows the work packages I am currently working on.
+Currently you see changes in the electron-vite-vue3-ts Branch
  
 ```
+
+<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 
 
 ![March 2021](/doc/current_status_may_2021.png?)
 
 
-<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
+
 ![Build](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
 ![Unit Tests](https://github.com/raikm/homepanorama/actions/workflows/unit_tests.yml/badge.svg)
 ---
 
 ### 🛫 Next Up
 ```
- 📦 Vue3 + Typescript
- 📦 Bugfixes - Plant Page
- 📦 Bugfixes - Music Player
- 📦 Plant Settings: show nearby sensors
+ 📦 Boxes from Main Pages ready for 
  📦 Unit Testing
- 📦 Transform to Vite
  📦 Ready to use: Light Page V1
  📦 First tests with health data export from the iPhone
+ 📦 Bugfixes - Music Player
+ 📦 Plant Settings: show nearby sensors
 ```
 ---
 
-### 🛬 Latest Updates (Status: 03.05.2021)
-```
- 🎉 Dashboard Page V1 completly done without mockup data
- 🎉 Migration to Vue3 and Typescript
-
-```
 
 ### 🏛 Past Major Updates
 ```
+ 🎉 Transform to Vite
+ 🎉 Vue3 + Typescript for Main Pages
  🎉 Plant Dashboard Page V1
  🎉 Websocket-connection to back-end (homeassistant)
  🎉 Calendar Data (Google API) V1
@@ -58,20 +55,6 @@ The 🛫 Nextup Section shows the work packages I am currently working on. Curre
 </p>
 
 ---
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-```
-config.json example in wiki!
-```
 
 ## Intention
 Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
