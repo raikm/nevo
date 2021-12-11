@@ -1,4 +1,4 @@
-# NEVO
+# nevo
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
@@ -22,6 +22,7 @@ Currently you see changes in the electron-vite-vue3-ts Branch
 
 ![Build](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
 ![Unit Tests](https://github.com/raikm/homepanorama/actions/workflows/unit_tests.yml/badge.svg)
+
 ---
 
 ### 🛫 Next Up
@@ -56,7 +57,7 @@ Currently you see changes in the electron-vite-vue3-ts Branch
 
 ---
 
-## Intention
+### Intention
 Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
 
 With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
