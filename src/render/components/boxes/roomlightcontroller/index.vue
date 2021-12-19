@@ -1,7 +1,7 @@
 <template>
 	<div class="box-xs-wrapper room-light-controller-wrapper">
 		<div class="roomlight-button" :key="room" v-for="room in homerooms">
-			<div></div>
+			<div>💡</div>
 			<span class="room-name">{{ room.attributes.friendly_name }}</span>
 		</div>
 
@@ -15,7 +15,7 @@
 <script lang="ts">
 
 import { computed, defineComponent } from "vue";
-import { useStore } from 'vuex'
+import { useStore } from 'vuex';
 
 export default defineComponent({
 	setup() {

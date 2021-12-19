@@ -1,5 +1,5 @@
 <template>
-	<div class="box-xs-wrapper">
+	<div class="homeclimate-wrapper">
 		<div :key="index" v-for="(sensors, index) in rooms" class="box-xs temperature-box">
 			<div class="homeclimate-info-title">{{ sensors[0].attributes.Room }}</div>
 			<div class="homeclimate-info">{{ currentTemperature(sensors) }}</div>
@@ -12,10 +12,10 @@
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
-
 import { defineComponent } from "vue";
+import { mapGetters } from "vuex";
 import { Sensor } from "../../../types/haEntities.interface";
+
 export default defineComponent({
 	created() {
 		// this.setCurrentTemperature();
@@ -78,8 +78,14 @@ export default defineComponent({
 <style lang="scss">
 @import "../../../styles/panoramastyle.scss";
 
-.box-xs-wrapper {
+.homeclimate-wrapper {
+	// Bug: so war just quick fix
 	height: 100%;
+	width: 350px !important;
+	display: flex;
+	column-gap: 15px;
+	row-gap: 15px;
+	flex-wrap: wrap;
 }
 .temperature-box {
 	border-radius: $standard-border-radius;
