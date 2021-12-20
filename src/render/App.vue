@@ -14,18 +14,15 @@
 <script lang="ts">
 // Components
 import Menu from "@/components/menu/index.vue";
-import { defineComponent } from "vue";
-// Config
-import config from "../../config.json";
 // Websockets
 import {
 	createConnection,
-	subscribeEntities,
-	entitiesColl,
 	// subscribeServices,
-	createLongLivedTokenAuth,
+	createLongLivedTokenAuth, subscribeEntities
 } from "home-assistant-js-websocket";
-import { Config } from "./types/config.interface";
+import { defineComponent } from "vue";
+// Config
+import config from "../../config.json";
 
 export default defineComponent({
 	components: { Menu },
@@ -36,8 +33,8 @@ export default defineComponent({
 	methods: {
 		async createHomeassistantWebsocketConnection() {
 			const auth = createLongLivedTokenAuth(
-				(config as Config).homeassistant.hassUrl,
-				(config as Config).homeassistant.life_time_token_raik
+				config.homeassistant.hassUrl,
+				config.homeassistant.life_time_token_raik
 			);
 			let connection = await createConnection({ auth });
 			subscribeEntities(connection, (entities) => {

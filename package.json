@@ -22,6 +22,7 @@
     "vue": "^3.1.1",
     "vue-axios": "^3.2.5",
     "vue-router": "^4.0.11",
+    "vue-socket.io": "^3.0.10",
     "vuex": "^4.0.2"
   },
   "devDependencies": {
