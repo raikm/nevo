@@ -132,7 +132,7 @@ export default defineComponent({
     // watch sonos changes
     const socket: Socket = inject('socket')!;
     socket.on("connect", () => console.log("connection"));
-    console.log(socket)
+    //TODO console.log(socket)
     socket.on("change", () => {
       // let result = JSON.parse(data.toString());
       getZones()

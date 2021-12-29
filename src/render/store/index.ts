@@ -2,7 +2,12 @@ import { createStore } from "vuex";
 import { Config } from "../../render/types/config.interface";
 import { HaEntities } from "../types/haEntities.interface";
 
-const store = createStore({
+export interface RootState {
+  config: Config;
+  haEntities: HaEntities;
+}
+
+const store = createStore<RootState>({
   state() {
     return {
       config: {} as Config,
