@@ -18,8 +18,7 @@ import { Sensor } from "../../../types/haEntities.interface";
 
 export default defineComponent({
 	created() {
-		// this.setCurrentTemperature();
-		// this.setCurrentHumidity();
+		this.grouphomeclimateSensors();
 	},
 	computed: {
 		...mapGetters(["homeclimateSensors"]),
@@ -99,6 +98,7 @@ export default defineComponent({
 .homeclimate-info {
 	padding: 5px 0;
 	font-size: $standard-text-medium;
+	font-weight: 500;
 	color: $black;
 }
 </style>
