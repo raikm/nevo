@@ -2,8 +2,8 @@
     <div>
         <div id="calendar-header">
             <div id="calendar-info">
-                <!-- TODO <div id="calendar-day-info">{{ title.title }}</div>
-                <div id="calendar-month-info">, {{ title.dateMonth }}</div>-->
+                <div id="calendar-day-info">{{ title.title }}</div>
+                <div id="calendar-month-info">, {{ title.dateMonth }}</div>
             </div>
         </div>
 
@@ -39,10 +39,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from 'vue';
+import { computed, defineComponent, inject, ref } from 'vue';
 import { VueGapi } from 'vue-gapi';
+import store from '../../../store';
 import { Entry, GapiResult, Item } from '../../../types/gapiResult';
 import CalendarAppointment from "./CalendarAppointment.vue";
+
 export default defineComponent({
     components: { CalendarAppointment },
     setup() {
@@ -50,24 +52,35 @@ export default defineComponent({
 
         const gCalendars = ref([] as Item[])
         const appointments = ref([] as Entry[])
+
+
         const startDay = ref(new Date().setHours(0, 0, 0, 0))
         const endDay = ref(new Date().setHours(23, 59, 59, 999))
+
+        const nextStartDay = computed(() => {
+            return new Date(startDay.value).setDate(new Date().getDate() + 1);
+        })
+
+        const nextEndDay = computed(() => {
+            return new Date(endDay.value).setDate(new Date().getDate() + 1);
+        })
 
         const initClient = async () => {
             if (!await gapi.isSignedIn()) {
                 await gapi.login()
             }
         }
+
         const setGoogleCalendars = async () => {
-            const gapieClient = await gapi.getGapiClient()
-            await gapieClient.client.calendar.calendarList
+            const gapiClient = await gapi.getGapiClient()
+            await gapiClient.client.calendar.calendarList
                 .list()
                 .then((response: any) => {
                     gCalendars.value = (response.result as GapiResult).items;
                     getCalendarEvents()
                 })
-                .catch((error: any) => {
-                    console.log(error);
+                .catch((error: Error) => {
+                    console.log(error.message);
                 });
         }
 
@@ -79,9 +92,9 @@ export default defineComponent({
             });
             for await (let calendar of calendars) {
                 let calendarColor = calendar.backgroundColor;
-                const gapieClient = await gapi.getGapiClient()
+                const gapiClient = await gapi.getGapiClient()
 
-                await gapieClient.client.calendar.events
+                await gapiClient.client.calendar.events
                     .list({
                         calendarId: calendar.id,
                         timeMin: new Date(startDay.value).toISOString(),
@@ -103,7 +116,6 @@ export default defineComponent({
                             }
                         });
                     })
-                    .then(() => { })
                     .catch((error: Error) => {
                         console.log(error.message);
                     });
@@ -113,14 +125,36 @@ export default defineComponent({
         //     this.showNextDay();
         // }
 
-
-
+        const title = computed(() => {
+            let now = new Date();
+            if (
+                appointments.value.length > 0 &&
+                new Date(appointments.value[0].start.dateTime).getDate() ==
+                new Date(nextStartDay.value).getDate()
+            ) {
+                let tomorrow: any = now.setDate(now.getDate() + 1);
+                tomorrow = new Date(tomorrow);
+                let dateMonth =
+                    tomorrow.getUTCDate() +
+                    ". " +
+                    tomorrow.toLocaleString("default", { month: "long" });
+                return { title: "Tomorrow", dateMonth: dateMonth };
+            } else {
+                let dateMonth =
+                    now.getUTCDate() +
+                    ". " +
+                    now.toLocaleString("default", { month: "long" });
+                return {
+                    title: store.state.dayOfTheWeek,
+                    dateMonth: dateMonth,
+                };
+            }
+        })
 
         initClient()
         setGoogleCalendars()
 
-
-        return { gCalendars, appointments }
+        return { gCalendars, appointments, title }
     }
 })
 </script>

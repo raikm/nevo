@@ -7,13 +7,13 @@
         </div>
         <div id="title-info">
           <div class="track-information-line" id="location">
-            <p>{{ activeSpeakerNames }}</p>
+            <div>{{ activeSpeakerNames }}</div>
           </div>
           <div class="track-information-line" id="title">
-            <p>{{ currentTrack.title }}</p>
+            <div>{{ currentTrack.title }}</div>
           </div>
           <div class="track-information-line" id="artist">
-            <p>{{ currentTrack.artist }} - {{ currentTrack.album }}</p>
+            <div>{{ currentTrack.artist }} - {{ currentTrack.album }}</div>
           </div>
         </div>
       </div>
@@ -33,27 +33,113 @@
       </div>
 
       <div id="player-control">
-        <div id="playlist-icon" @click="$emit('showPlaylists')">☰</div>
-      </div>
-      <div v-if="activeGroup || latestActiveGroup" id="volume-control-wrapper">
-        <!-- <HorizontalBarController
-          ref="volumeControl"
-          id="volume-control"
-          @change-slider-value="changeVolume"
-          :value="
-            activeGroup != null
-              ? activeGroup.coordinator.state.volume
-              : latestActiveGroup.coordinator.state.volume
-          "
-        />-->
-        <div id="volume-icon-container">
-          <!-- <svgicon id="volume-icon" icon="volume_medium"></svgicon> -->
-        </div>
-      </div>
-    </div>
+        <svg
+          @click="$emit('showPlaylists')"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="0 0 62.246 62.246"
+          style="enable-background:new 0 0 62.246 62.246;"
+          xml:space="preserve"
+        >
+          <g>
+            <path
+              d="M57.548,45.107H19.965c-2.595,0-4.699,2.105-4.699,4.701c0,2.594,2.104,4.699,4.699,4.699h37.583
+		c2.594,0,4.698-2.105,4.698-4.699C62.246,47.213,60.142,45.107,57.548,45.107z"
+            />
+            <path
+              d="M57.548,26.402H19.965c-2.595,0-4.699,2.104-4.699,4.7c0,2.595,2.104,4.699,4.699,4.699h37.583
+		c2.594,0,4.698-2.104,4.698-4.699S60.142,26.402,57.548,26.402z"
+            />
+            <path
+              d="M19.965,17.096h37.583c2.594,0,4.698-2.104,4.698-4.7s-2.104-4.699-4.698-4.699H19.965c-2.595,0-4.699,2.104-4.699,4.699
+		C15.266,14.991,17.37,17.096,19.965,17.096z"
+            />
+            <circle cx="4.77" cy="12.439" r="4.77" />
+            <circle cx="4.77" cy="31.102" r="4.769" />
+            <circle cx="4.77" cy="49.807" r="4.77" />
+          </g>
+        </svg>
 
-    <div>
-      <!-- TODO Speaker Element -->
+        <svg
+          width="126"
+          height="108"
+          viewBox="0 0 126 108"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.03 0.686005C6.742 0.686005 0.0220032 7.405 0.0220032 15.694V92.312C0.0220032 100.6 6.741 107.32 15.03 107.32C23.319 107.32 30.038 100.601 30.038 92.312V54.003V15.694C30.038 7.405 23.319 0.686005 15.03 0.686005Z"
+            fill="#070405"
+          />
+          <path
+            d="M120.33 1.87201C118.876 1.03301 117.254 0.613007 115.632 0.613007C114.01 0.613007 112.388 1.03301 110.935 1.87201L34.735 45.866C31.828 47.544 30.037 50.646 30.037 54.002C30.037 57.358 31.828 60.46 34.735 62.138L110.935 106.132C112.388 106.971 114.01 107.391 115.632 107.391C117.254 107.391 118.876 106.971 120.33 106.132C123.237 104.454 125.027 101.352 125.027 97.996V10.008C125.028 6.652 123.237 3.55001 120.33 1.87201Z"
+            fill="#070405"
+          />
+        </svg>
+        <svg
+          v-if="activeGroupState.playbackState != 'PLAYING'"
+          width="96"
+          height="108"
+          viewBox="0 0 96 108"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.685 106.128C7.138 106.967 8.761 107.387 10.383 107.387C12.005 107.387 13.627 106.967 15.081 106.128L91.28 62.134C94.187 60.456 95.978 57.354 95.978 53.997C95.978 50.641 94.187 47.539 91.28 45.861L15.08 1.867C13.626 1.028 12.005 0.608002 10.382 0.608002C8.75999 0.608002 7.13799 1.028 5.68399 1.867C2.77699 3.545 0.985992 6.647 0.985992 10.003V97.991C0.987992 101.348 2.779 104.45 5.685 106.128Z"
+            fill="#070405"
+          />
+        </svg>
+        <svg
+          v-else-if="activeGroupState.playbackState == 'PLAYING'"
+          width="76"
+          height="108"
+          viewBox="0 0 76 108"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M15.413 0.753998C7.12399 0.753998 0.404999 7.473 0.404999 15.762V92.38C0.404999 100.668 7.12399 107.388 15.413 107.388C23.701 107.388 30.42 100.669 30.42 92.38V15.761C30.42 7.473 23.701 0.753998 15.413 0.753998Z"
+            fill="#070405"
+          />
+          <path
+            d="M60.435 0.753998C52.147 0.753998 45.427 7.473 45.427 15.762V92.38C45.427 100.668 52.146 107.388 60.435 107.388C68.724 107.388 75.443 100.669 75.443 92.38V15.761C75.443 7.473 68.724 0.753998 60.435 0.753998Z"
+            fill="#070405"
+          />
+        </svg>
+        <svg
+          width="126"
+          height="108"
+          viewBox="0 0 126 108"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M110.97 0.686005C102.682 0.686005 95.962 7.405 95.962 15.694V54.003V92.312C95.962 100.6 102.681 107.32 110.97 107.32C119.258 107.32 125.978 100.601 125.978 92.312V15.694C125.978 7.405 119.258 0.686005 110.97 0.686005Z"
+            fill="#070405"
+          />
+          <path
+            d="M91.265 45.866L15.065 1.87201C13.612 1.03301 11.99 0.613007 10.368 0.613007C8.74601 0.613007 7.12401 1.03301 5.67001 1.87201C2.76301 3.55001 0.972992 6.652 0.972992 10.008V97.996C0.972992 101.352 2.76401 104.454 5.67001 106.132C7.12401 106.971 8.74601 107.391 10.368 107.391C11.99 107.391 13.612 106.971 15.065 106.132L91.265 62.138C94.172 60.46 95.962 57.358 95.962 54.002C95.962 50.646 94.171 47.544 91.265 45.866Z"
+            fill="#070405"
+          />
+        </svg>
+        <svg
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M17.2 7.20001C16.3 8.10001 16 18.3 16 47C16 90.3 15.7 88.6 23.4 92.1C27 93.7 30.2 94 50 94C69.8 94 73 93.7 76.6 92.1C84.3 88.6 84 90.3 84 47C84 18.3 83.7 8.10001 82.8 7.20001C81.1 5.50001 18.9 5.50001 17.2 7.20001ZM80 13V16H50H20V13V10H50H80V13ZM80 51V82H50H20V51V20H50H80V51ZM78 86.6C78 86.9 76.4 87.8 74.5 88.6C69.5 90.6 30.5 90.6 25.5 88.6C23.6 87.8 22 86.9 22 86.6C22 86.2 34.6 86 50 86C65.4 86 78 86.2 78 86.6Z"
+            fill="black"
+          />
+        </svg>
+      </div>
+      <volume-slider :sliderValue="activeGroupState.volume" />
     </div>
   </div>
 </template>
@@ -64,8 +150,10 @@ import { Socket } from 'socket.io-client'
 import { computed, defineComponent, inject, ref } from 'vue'
 import store from '../../../store'
 import { Speaker, Zone } from './sonosTypes'
+import VolumeSlider from './VolumeSlider.vue'
 
 export default defineComponent({
+  components: { VolumeSlider },
   setup() {
     let zones = ref([] as Zone[]) // TODO Zone Zypes
     const getZones = () => {
@@ -172,25 +260,35 @@ export default defineComponent({
   grid-template-rows: 65% 20% 15%;
   row-gap: 2%;
 }
-.track-information-line p {
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
+.track-information-line {
+  // overflow: hidden;
+  margin-top: 3px;
+  // display: -webkit-box;
+  // -webkit-line-clamp: 1;
+  // -webkit-box-orient: vertical;
 }
 #player-control {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 0%;
-  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  height: 100%;
 }
+
+#player-control > svg {
+  height: 20px;
+  width: 20px;
+}
+
 #cover-img {
-  // align-self: flex-end;
+  display: grid;
 }
 #album-cover {
-  // border-radius: 15px;
-  height: 100%;
-  width: 100%;
+  align-self: flex-end;
+  border-radius: 5px;
+  height: 80px;
+  width: 80px;
 }
 #title-info-container {
   display: grid;
@@ -202,16 +300,20 @@ export default defineComponent({
 }
 #title-info {
   align-self: flex-end;
-  padding-bottom: 5%;
+  // padding-bottom: 5%;
   width: 100%;
-}
-#artist {
-  font-size: 1vh;
-  width: 100%;
-  overflow: hidden;
+  // display: grid;
+  // justify-content: baseline;
 }
 #location {
-  font-size: 0.8vh;
+  font-size: x-small;
+  opacity: 70%;
+}
+#artist {
+  font-size: x-small;
+  width: 100%;
+
+  overflow: hidden;
 }
 #duration-info {
   display: grid;

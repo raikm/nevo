@@ -5,6 +5,22 @@ import { HaEntities } from "../types/haEntities.interface";
 export interface RootState {
   config: Config;
   haEntities: HaEntities;
+  dayOfTheWeek: string;
+}
+
+function getDayOfTheWeek() {
+  let date = new Date();
+  const weekday = new Array(
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  );
+
+  return weekday[date.getDay()];
 }
 
 const store = createStore<RootState>({
@@ -12,6 +28,7 @@ const store = createStore<RootState>({
     return {
       config: {} as Config,
       haEntities: {} as HaEntities,
+      dayOfTheWeek: getDayOfTheWeek(),
     };
   },
   mutations: {
