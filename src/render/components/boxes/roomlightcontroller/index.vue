@@ -1,28 +1,46 @@
 <template>
 	<div class="box-xs-wrapper room-light-controller-wrapper">
-		<div class="roomlight-button" :key="room" v-for="room in homerooms">
-			<div>💡</div>
+		<div
+			class="roomlight-button"
+			:key="room.entity_id"
+			v-for="room in homerooms"
+			@click="triggerGroupState(room.entity_id, room.state)"
+		>
+			<div v-if="room.state == 'on'">💡</div>
+			<div v-else-if="room.state == 'off'">⭕️</div>
 			<span class="room-name">{{ room.attributes.friendly_name }}</span>
 		</div>
-
-		<!-- <div class="roomlight-button roomlight-button-on">
-			<div>i</div>
-			<span class="room-name">_ROOM_NAME_</span>
-		</div>-->
 	</div>
 </template>
 
 <script lang="ts">
 
 import { computed, defineComponent } from "vue";
-import { useStore } from 'vuex';
+import store from '../../../store';
+import { Homeroom } from "./homeroom";
 
 export default defineComponent({
 	setup() {
-		const store = useStore()
+
+		const triggerGroupState = (entity_id: string, state: string) => {
+			if (state === "unavailable") return;
+			let service = state == "on" ? "turn_off" : "turn_on";
+			let domain = entity_id.split(".")[0];
+			store.state.haConnection.sendMessagePromise({
+				type: "call_service",
+				domain: domain,
+				service: service,
+				service_data: {
+					entity_id: entity_id,
+				},
+			});
+
+		}
+
 		return {
 			// access a state in computed function
-			homerooms: computed(() => store.getters.homerooms),
+			homerooms: computed(() => store.getters.homerooms as Homeroom[]),
+			triggerGroupState
 		}
 	}
 });

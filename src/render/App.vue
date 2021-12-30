@@ -17,8 +17,8 @@ import Menu from "@/components/menu/index.vue";
 // Websockets
 import {
 	createConnection,
-	// subscribeServices,
-	createLongLivedTokenAuth, subscribeEntities
+	// subscribeServices,	
+createLongLivedTokenAuth, subscribeEntities
 } from "home-assistant-js-websocket";
 import { defineComponent } from "vue";
 // Config
@@ -40,6 +40,7 @@ export default defineComponent({
 			subscribeEntities(connection, (entities) => {
 				this.$store.commit("setHaEntities", entities);
 			});
+			this.$store.commit("setHaConnection", connection);
 		},
 	},
 });

@@ -1,9 +1,11 @@
 import { createStore } from "vuex";
 import { Config } from "../../render/types/config.interface";
+import { HaConnection } from "../types/haConnection";
 import { HaEntities } from "../types/haEntities.interface";
 
 export interface RootState {
   config: Config;
+  haConnection: HaConnection;
   haEntities: HaEntities;
   dayOfTheWeek: string;
 }
@@ -29,6 +31,7 @@ const store = createStore<RootState>({
       config: {} as Config,
       haEntities: {} as HaEntities,
       dayOfTheWeek: getDayOfTheWeek(),
+      haConnection: {} as HaConnection,
     };
   },
   mutations: {
@@ -37,6 +40,9 @@ const store = createStore<RootState>({
     },
     setHaEntities(state: any, updatedEntities: HaEntities) {
       state.haEntities = updatedEntities;
+    },
+    setHaConnection(state, newHaConnection) {
+      state.haConnection = newHaConnection;
     },
   },
   getters: {
