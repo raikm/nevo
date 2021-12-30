@@ -149,7 +149,7 @@ import axios from 'axios'
 import { Socket } from 'socket.io-client'
 import { computed, defineComponent, inject, ref } from 'vue'
 import store from '../../../store'
-import { Speaker, Zone } from './sonosTypes'
+import { Speaker, Zone } from '../../../types/sonosTypes'
 import VolumeSlider from './VolumeSlider.vue'
 
 export default defineComponent({

@@ -1,6 +1,6 @@
 <template>
 	<div class="homeclimate-wrapper">
-		<div :key="index" v-for="(sensors, index) in rooms" class="box-xs temperature-box">
+		<div :key="index" v-for="(sensors, index) in rooms" class="box box-xs temperature-box">
 			<div class="homeclimate-info-title">{{ sensors[0].attributes.Room }}</div>
 			<div class="homeclimate-info">{{ currentTemperature(sensors) }}</div>
 

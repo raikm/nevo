@@ -8,6 +8,7 @@
 		>
 			<div v-if="room.state == 'on'">💡</div>
 			<div v-else-if="room.state == 'off'">⭕️</div>
+			<div v-else-if="room.state == 'unavailable'">🚧</div>
 			<span class="room-name">{{ room.attributes.friendly_name }}</span>
 		</div>
 	</div>
@@ -17,7 +18,7 @@
 
 import { computed, defineComponent } from "vue";
 import store from '../../../store';
-import { Homeroom } from "./homeroom";
+import { Homeroom } from "../../../types/homeroom";
 
 export default defineComponent({
 	setup() {
