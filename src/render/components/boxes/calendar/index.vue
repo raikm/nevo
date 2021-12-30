@@ -160,10 +160,11 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "../../../styles/panoramaVariables.scss";
 #calendar-header {
     height: 15%;
     #calendar-day-info {
-        color: red;
+        color: $red;
         font-weight: bold;
     }
     #calendar-info {

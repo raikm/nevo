@@ -1,15 +1,18 @@
 <template>
-	<div class="box-xs-wrapper room-light-controller-wrapper">
-		<div
-			class="roomlight-button"
-			:key="room.entity_id"
-			v-for="room in homerooms"
-			@click="triggerGroupState(room.entity_id, room.state)"
-		>
-			<div v-if="room.state == 'on'">💡</div>
-			<div v-else-if="room.state == 'off'">⭕️</div>
-			<div v-else-if="room.state == 'unavailable'">🚧</div>
-			<span class="room-name">{{ room.attributes.friendly_name }}</span>
+	<div class="room-light-controller-wrapper">
+		<div class="room-light-controller">
+			<div
+				class="roomlight-button"
+				:class="room.state == 'on' ? 'roomlight-button-on' : 'roomlight-button-off'"
+				:key="room.entity_id"
+				v-for="room in homerooms"
+				@click="triggerGroupState(room.entity_id, room.state)"
+			>
+				<div v-if="room.state == 'on'">💡</div>
+				<div v-else-if="room.state == 'off'">⭕️</div>
+				<div v-else-if="room.state == 'unavailable'">🚧</div>
+				<span class="room-name">{{ room.attributes.friendly_name }}</span>
+			</div>
 		</div>
 	</div>
 </template>
@@ -49,16 +52,19 @@ export default defineComponent({
 
 <style lang="scss">
 .room-light-controller-wrapper {
+	width: 100%;
+}
+
+.room-light-controller {
 	display: grid;
-	//visible covers:
 	grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+	column-gap: 25px;
+	grid-auto-columns: minmax(110px, 1fr);
 	grid-auto-flow: column;
-	//hidden covers:
-	// grid-auto-columns: minmax(110px, 1fr);
-	// grid-template-rows: minmax(110px, 1fr);
 	overflow-x: scroll;
-	// max-width: 100%;
 	-webkit-overflow-scrolling: touch;
+	width: 100%;
+	height: 100%;
 	&::-webkit-scrollbar {
 		display: none;
 	}
@@ -69,17 +75,24 @@ export default defineComponent({
 	height: 60px;
 	width: 100px;
 	border-radius: 12px;
+	margin: 5px;
 	// background: gray;
 	display: grid;
 	grid-template-rows: 4fr 1fr;
 	padding: 10px;
+	border: solid 1px rgba(222, 222, 222, 0.176);
+	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
 
-	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease 0s;
 	cursor: pointer;
 }
 
 .roomlight-button-on {
+	background-color: white;
+}
+
+.roomlight-button-off {
+	background-color: rgba(236, 236, 236, 0.5);
 }
 
 .room-name {
