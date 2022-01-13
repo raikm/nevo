@@ -18,7 +18,7 @@ import Menu from "@/components/menu/index.vue";
 import {
 	createConnection,
 	// subscribeServices,	
-createLongLivedTokenAuth, subscribeEntities
+	createLongLivedTokenAuth, subscribeEntities
 } from "home-assistant-js-websocket";
 import { defineComponent } from "vue";
 // Config
@@ -29,6 +29,7 @@ export default defineComponent({
 	created() {
 		this.$store.commit("setConfigFile", config);
 		this.createHomeassistantWebsocketConnection();
+		this.getScreensize()
 	},
 	methods: {
 		async createHomeassistantWebsocketConnection() {
@@ -42,6 +43,10 @@ export default defineComponent({
 			});
 			this.$store.commit("setHaConnection", connection);
 		},
+		getScreensize() {
+			console.log(window.screen.height)
+			console.log(window.screen.width)
+		}
 	},
 });
 </script>

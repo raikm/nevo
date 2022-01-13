@@ -1,4 +1,5 @@
 .DS_Store
+ios
 
 
 # local env files
@@ -117,3 +118,5 @@ typings/
 
 # Webpack
 .webpack/
+
+
