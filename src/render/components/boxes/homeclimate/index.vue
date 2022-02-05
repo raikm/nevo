@@ -75,7 +75,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../../../styles/panoramastyle.scss";
+@import "../../../styles/mainstyle.scss";
 
 .homeclimate-wrapper {
 	// Bug: so war just quick fix

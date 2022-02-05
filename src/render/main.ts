@@ -1,6 +1,6 @@
 import "@/styles/displayresolution.scss";
-import "@/styles/panoramastyle.scss";
-import "@/styles/panoramaVariables.scss";
+import "@/styles/mainstyle.scss";
+import "@/styles/variables.scss";
 import axios from "axios";
 import { createApp } from "vue";
 import VueAxios from "vue-axios";

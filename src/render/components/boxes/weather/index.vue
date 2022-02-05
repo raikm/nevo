@@ -68,7 +68,7 @@
 </script>
 
 <style lang="scss">
-	@import "../../../styles/panoramaVariables.scss";
+	@import "../../../styles/variables.scss";
 
 	.forecast {
 		height: 100%;

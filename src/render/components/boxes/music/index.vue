@@ -1,7 +1,7 @@
 <template>
     <div class="music-wrapper">
         <div class="music-main">
-            <template v-if="musicPlaying">
+            <template v-if="!musicPlaying">
                 <Player />
             </template>
             <template v-else>

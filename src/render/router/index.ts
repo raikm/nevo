@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import maindashboard from "../views/maindashboard/index.vue";
+import mobiledashboard from "../views/mobiledashboard/index.vue";
 // import DevicesPage from "../views/DevicesPage/index.vue";
 // import PackagesPage from "../views/PackagesPage/index.vue";
 import plantdashboard from "../views/plantdashboard/index.vue";
@@ -23,6 +24,11 @@ const routes = [
     path: "/",
     name: "maindashboard-page",
     component: maindashboard,
+  },
+  {
+    path: "/mobile",
+    name: "mobiledashboard-page",
+    component: mobiledashboard,
   },
   {
     path: "/plantdashboard",

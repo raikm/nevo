@@ -65,7 +65,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 import { Plant } from "../../types/plant.interface";
-import * as colors from "../../styles/panoramaVariables.scss";
+import * as colors from "../../styles/variables.scss";
 
 import PlantDataProgressBar from "./PlantDataProgressBar.vue";
 import CouchIcon from "../../assets/icons/location_couch.svg";
@@ -117,7 +117,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../../styles/panoramaVariables.scss";
+@import "../../styles/variables.scss";
 
 .plant-header-container {
   display: grid;

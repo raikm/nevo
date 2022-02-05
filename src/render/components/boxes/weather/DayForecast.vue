@@ -43,7 +43,7 @@
 </template>
 
 <script lang="ts">
-import colors from "../../../styles/panoramaVariables.scss";
+import colors from "../../../styles/variables.scss";
 import ClearIcon from "../../../assets/icons/weather_clear.svg";
 import CloudsIcon from "../../../assets/icons/weather_clouds.svg";
 import RainIcon from "../../../assets/icons/weather_rain.svg";
