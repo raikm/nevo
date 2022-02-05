@@ -5,22 +5,21 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-    props: {
-        sliderValue: {
-            type: Number,
-            required: true,
-        },
-    },
-    setup() {
+<script lang="ts" setup>import { ref, watch } from 'vue';
 
 
-        return {}
-    }
-})
+
+const props = defineProps<{ sliderValue: number }>()
+
+const emit = defineEmits(['change-slider-value'])
+
+watch(() => props.sliderValue, (newValue) => {
+    emit('change-slider-value', newValue)
+
+});
+
+
+
 </script>
 
 <style lang="scss" scoped>

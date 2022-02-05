@@ -1,8 +1,13 @@
 <template>
     <div class="music-wrapper">
         <div class="music-main">
-            <template v-if="!musicPlaying">
-                <Player />
+            <template v-if="musicPlaying || latestActiveGroup">
+                <Player
+                    :activeGroup="activeGroup"
+                    :latestActiveGroup="latestActiveGroup"
+                    @update-zones="updateZones"
+                    @standby="showStandbyScreen"
+                />
             </template>
             <template v-else>
                 <Shortcuts></Shortcuts>
@@ -12,20 +17,47 @@
     </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { computed, onMounted, ref } from 'vue';
+import useSonoService from '../../../../service/music/sonos.service';
+import { Zone } from '../../../types/sonosTypes';
 import Player from './Player.vue';
 import Shortcuts from './Shortcuts.vue';
-export default defineComponent({
-    components: { Player, Shortcuts },
-    setup() {
-        let musicPlaying = ref(true);
 
-        return {
-            musicPlaying
-        }
-    }
+const sonosService = useSonoService()
+
+
+const zones = ref<Zone[]>([])
+
+
+const musicPlaying = computed(() => {
+    return activeGroup.value == null ? false : true
 })
+
+const activeGroup = computed(() => {
+    return zones.value.filter((zone: Zone) =>
+        zone.coordinator.state != null
+            ? zone.coordinator.state.playbackState === "PLAYING"
+            : []
+    )[0] || null;
+});
+
+const latestActiveGroup = ref<Zone>()
+
+const showStandbyScreen = () => {
+
+}
+
+const updateZones = async () => {
+    latestActiveGroup.value = activeGroup.value
+    zones.value = await sonosService.getZones()
+}
+
+onMounted(async () => {
+    await updateZones()
+})
+
+
 </script>
 
 <style lang="scss">

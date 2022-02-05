@@ -65,6 +65,7 @@
         </svg>
 
         <svg
+          @click="previous"
           width="126"
           height="108"
           viewBox="0 0 126 108"
@@ -82,6 +83,7 @@
         </svg>
         <svg
           v-if="activeGroupState.playbackState != 'PLAYING'"
+          @click="resume"
           width="96"
           height="108"
           viewBox="0 0 96 108"
@@ -95,6 +97,7 @@
         </svg>
         <svg
           v-else-if="activeGroupState.playbackState == 'PLAYING'"
+          @click="pause"
           width="76"
           height="108"
           viewBox="0 0 76 108"
@@ -111,6 +114,7 @@
           />
         </svg>
         <svg
+          @click="next"
           width="126"
           height="108"
           viewBox="0 0 126 108"
@@ -139,108 +143,114 @@
           />
         </svg>
       </div>
-      <volume-slider :sliderValue="activeGroupState.volume" />
+      <volume-slider :sliderValue="activeGroupState.volume" @change-slider-value="updateVolume" />
     </div>
   </div>
 </template>
 
-<script lang="ts">
-import axios from 'axios'
+<script lang="ts" setup>
 import { Socket } from 'socket.io-client'
-import { computed, defineComponent, inject, ref } from 'vue'
-import store from '../../../store'
+import { computed, inject, ref } from 'vue'
+import useSonoService from '../../../../service/music/sonos.service'
 import { Speaker, Zone } from '../../../types/sonosTypes'
 import VolumeSlider from './VolumeSlider.vue'
 
-export default defineComponent({
-  components: { VolumeSlider },
-  setup() {
-    let zones = ref([] as Zone[]) // TODO Zone Zypes
-    const getZones = () => {
-      axios.get(
-        `${store.state.config.sonos.rest_url}/zones`
-      ).then((response: any) => {
-        zones.value = response.data
-      }).catch((error: Error) => {
-        console.log(error.message.toString());
-      });
-    }
-    getZones()
+const sonosService = useSonoService()
+const zones = ref<Zone[]>([])
 
-    // 2. copy elements and see which computed elements are needed
+const props = defineProps<{ activeGroup: Zone, latestActiveGroup: Zone }>()
 
-    const activeGroup = computed(() => {
-      return zones.value.filter((zone: Zone) =>
-        zone.coordinator.state != null
-          ? zone.coordinator.state.playbackState === "PLAYING"
-          : []
-      )[0] || null;
+
+const speakers = computed(() => {
+
+  let speakers: Speaker[] = []
+
+  zones.value.forEach((zone: Zone) => {
+    zone.members.forEach((member: Speaker) => {
+      speakers.push(member);
     });
+  });
 
+  speakers.sort((a: Speaker, b: Speaker) =>
+    a.roomName.localeCompare(b.roomName)
+  );
 
-    // ?
-    let latestActiveGroup = ref();
+  return speakers
+});
 
-    const speakers = computed(() => {
+const activeGroupState = computed(() => { return props.activeGroup != null ? (props.activeGroup as any).coordinator.state : null }); // TODO
+const currentTrack = computed(() => { { return activeGroupState.value != null ? (activeGroupState.value as any).currentTrack : props.latestActiveGroup.coordinator.state.currentTrack } });
+const volumeOfActiveZone = computed(() => { return activeGroupState.value != null ? (activeGroupState.value as any).volume : 0 });
 
-      let speakers: Speaker[] = []
-
-      zones.value.forEach((zone: Zone) => {
-        zone.members.forEach((member: Speaker) => {
-          speakers.push(member);
-        });
-      });
-
-      speakers.sort((a: Speaker, b: Speaker) =>
-        a.roomName.localeCompare(b.roomName)
-      );
-
-      return speakers
-    });
-
-    const activeGroupState = computed(() => { return activeGroup.value != null ? (activeGroup.value as any).coordinator.state : null }); // TODO
-    const currentTrack = computed(() => { { return activeGroupState.value != null ? (activeGroupState.value as any).currentTrack : "" } });
-    const volumeOfActiveZone = computed(() => { return activeGroupState.value != null ? (activeGroupState.value as any).volume : 0 });
-
-    const activeSpeakerNames = computed(() => {
-      let result = "";
-      for (
-        let index = 0;
-        index < activeGroup.value.members.length - 1;
-        index++
-      ) {
-        result += activeGroup.value.members[index].roomName + ", ";
-      }
-      result += activeGroup.value.members[activeGroup.value.members.length - 1].roomName;
-      return result;
-    });
-
-
-
-    // watch sonos changes
-    const socket: Socket = inject('socket')!;
-    socket.on("connect", () => console.log("connection"));
-    //TODO console.log(socket)
-    socket.on("change", () => {
-      // let result = JSON.parse(data.toString());
-      getZones()
-      console.log("change")
-      // if (result.type === "transport-state") {
-      //   // snapshot of player
-      //   getZones()
-      // }
-      // else if (result.type === "topology-change") {
-      //   // snapshot of zones
-      //   getZones()
-      // }
-      // else if (result.type === "volume-change") {
-      //   getZones()
-      // }
-    });
-
-    return { zones, activeGroup, latestActiveGroup, activeGroupState, speakers, volumeOfActiveZone, currentTrack, activeSpeakerNames }
+const activeSpeakerNames = computed(() => {
+  let result = "";
+  for (
+    let index = 0;
+    index < props.activeGroup.members.length - 1;
+    index++
+  ) {
+    result += props.activeGroup.members[index].roomName + ", ";
   }
-})
+  result += props.activeGroup.members[props.activeGroup.members.length - 1].roomName;
+  return result;
+});
+
+
+
+
+// watch sonos changes
+const socket: Socket = inject('socket')!;
+const emit = defineEmits(['update-zones', 'showPlaylists', 'standby'])
+
+socket.on("change", (data) => {
+  let result = JSON.parse(data.toString());
+  // getZones() // TODO: send emit
+  emit('update-zones')
+  if (result.type === "transport-state") {
+    // snapshot of player
+
+    // getZones()
+  }
+  else if (result.type === "topology-change") {
+    // snapshot of zones
+
+  }
+  else if (result.type === "volume-change") {
+
+  }
+});
+
+
+
+// actions
+const resume = async () => {
+  const roomName =
+    props.activeGroup != null
+      ? props.activeGroup.coordinator.roomName
+      : props.latestActiveGroup.coordinator.roomName;
+  await sonosService.resume(roomName)
+
+}
+
+const pause = () => {
+  emit('standby')
+  sonosService.pauseMusic(props.activeGroup.coordinator.roomName)
+}
+
+const next = () => {
+  sonosService.nextTrack(props.activeGroup.coordinator.roomName)
+}
+
+const previous = () => {
+  sonosService.previousTrack(props.activeGroup.coordinator.roomName)
+}
+
+const updateVolume = (newVolume: number) => {
+  console.log(newVolume)
+  // sonosService.updateVolume(props.activeGroup.coordinator.roomName, newVolume)
+}
+
+
 </script>
 
 <style lang="scss">

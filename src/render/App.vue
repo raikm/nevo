@@ -25,8 +25,8 @@ import Menu from "@/components/menu/index.vue";
 // Websockets
 import {
 	createConnection,
-	// subscribeServices,											
-	createLongLivedTokenAuth, subscribeEntities
+	// subscribeServices,													
+createLongLivedTokenAuth, subscribeEntities
 } from "home-assistant-js-websocket";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 // Config
@@ -61,7 +61,7 @@ const isMobile = computed(() => {
 		return true;
 	}
 	else {
-		router.push('/');
+		// router.push('/');
 		return false;
 	}
 })
@@ -72,7 +72,7 @@ createHomeassistantWebsocketConnection();
 if (isMobile.value) {
 	router.push('/mobile');
 } else {
-	router.push('/');
+	// router.push('/');
 }
 
 </script>
