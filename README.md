@@ -14,10 +14,7 @@ The 🛫 Nextup Section shows the work packages I am currently working on.
 
 <a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 
-![March 2021](/doc/current_status_may_2021.png?)
-
-![Build](https://github.com/raikm/homepanorama/actions/workflows/main.yml/badge.svg)
-![Unit Tests](https://github.com/raikm/homepanorama/actions/workflows/unit_tests.yml/badge.svg)
+![March 2021](/docs/images/current_status_may_2021.png?)
 
 ---
 
