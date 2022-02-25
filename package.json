@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx dev --project=dashboard",
+    "start-dashboard": "nx dev --project=dashboard",
+    "start-mobile": "nx dev --project=mobile",
     "build": "nx app:build --project=dashboard",
     "test": "nx test"
   },
   "private": true,
   "devDependencies": {
     "@angular-devkit/schematics": "^13.2.5",
-    "@capacitor/cli": "^3.4.1",
     "@nrwl/cli": "13.8.3",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "13.8.3",
@@ -35,8 +35,6 @@
     "wait-on": "^6.0.0"
   },
   "dependencies": {
-    "@capacitor/core": "^3.4.1",
-    "@capacitor/ios": "^3.3.4",
     "@types/gapi.auth2": "^0.0.55",
     "axios": "^0.21.2",
     "electron-devtools-installer": "^3.2.0",

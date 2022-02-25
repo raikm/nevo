@@ -30,7 +30,7 @@ import {
 } from "home-assistant-js-websocket";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 // Config
-import config from "../../config.json";
+import config from "../../../../config.json";
 import router from "./router";
 import store from "./store";
 

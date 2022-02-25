@@ -1,8 +1,11 @@
 .DS_Store
-ios
 apps/dashboard/dist
+apps/dashboard/src/dist
 apps/dashboard/dist_electron
 apps/dashboard/ios
+apps/mobile/dist
+apps/mobile
+config.json
 
 # local env files
 .env.local
@@ -22,7 +25,6 @@ yarn-error.log*
 *.sln
 *.sw?
 *.cfg
-config.json
 
 #Electron-builder output
 homeapp-darwin-x64

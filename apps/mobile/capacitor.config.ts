@@ -1,10 +1,10 @@
-import { CapacitorConfig } from '@capacitor/cli';
+import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
   appId: 'com.nevo.app',
   appName: 'nevo',
-  webDir: 'www',
-  bundledWebRuntime: false
-};
+  webDir: 'dist',
+  bundledWebRuntime: false,
+}
 
-export default config;
+export default config
