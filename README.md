@@ -2,7 +2,7 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
-### 🧗🏼 Short Update (Status: 29.08.2021)
+### 🧗🏼 Short Update (Status: 25.02.2022)
 
 ```
 This is still an ongoing project but since I started my first fulltime-job
@@ -17,6 +17,41 @@ The 🛫 Nextup Section shows the work packages I am currently working on.
 ![March 2021](/docs/images/current_status_may_2021.png?)
 
 ---
+
+
+
+### 🛫 Next Up
+
+```
+ 📦 NX Integration -> Mono repository
+ 📦 Split into two frontend apps (incl. mobile)
+ 📦 Capacity Stability
+ 📦 Ready to use: Light Page V1
+ 📦 Plant Settings: show nearby sensors
+ 📦 Unit Testing
+```
+---
+### 🛬 Latest Updates
+
+```
+ 🎉 Capacity Integration for iOS development
+ 🎉 Boxes from Main Pages ready for production in Vue3 and Typescript
+ 🎉 First tests with health data export from the iPhone (HealthExport App)
+ 🎉 Bugfixes - Music Player
+```
+---
+### 🏛 Past Major Updates
+
+```
+ 🎉 Transform to Vite
+ 🎉 Vue3 + Typescript for Main Pages
+ 🎉 Plant Dashboard Page V1
+ 🎉 Websocket-connection to back-end (homeassistant)
+ 🎉 Calendar Data (Google API) V1
+ 🎉 Public Transport (Hafas API) V1
+ 🎉 Music Player (Sonos API) V1
+ 🎉 Implementing Shortcut Buttons (homeassistant)
+```
 
 ### Intention
 
@@ -40,28 +75,4 @@ To sum up, the motivation is to create an application that extends the functiona
 
 ---
 
-### 🛫 Next Up
 
-```
- 📦 Boxes from Main Pages ready for production in Vue3 and Typescript
- 📦 Unit Testing
- 📦 Ready to use: Light Page V1
- 📦 First tests with health data export from the iPhone
- 📦 Bugfixes - Music Player
- 📦 Plant Settings: show nearby sensors
-```
-
----
-
-### 🏛 Past Major Updates
-
-```
- 🎉 Transform to Vite
- 🎉 Vue3 + Typescript for Main Pages
- 🎉 Plant Dashboard Page V1
- 🎉 Websocket-connection to back-end (homeassistant)
- 🎉 Calendar Data (Google API) V1
- 🎉 Public Transport (Hafas API) V1
- 🎉 Music Player (Sonos API) V1
- 🎉 Implementing Shortcut Buttons (homeassistant)
-```
