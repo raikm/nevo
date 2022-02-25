@@ -1,0 +1,77 @@
+{
+  "name": "homepanorama",
+  "version": "0.0.1",
+  "main": "src/main/index.js",
+  "scripts": {
+    "vite:dev": "vite --host",
+    "build": "vite build",
+    "serve": "vite preview",
+    "electron": "wait-on tcp:8081 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "dev": "concurrently -k \"cross-env BROWSER=none npm run vite:dev\" \"npm run electron\"",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "cross-env ELECTRON=true vite build",
+    "app:build": "npm run build:for:electron && npm run electron:builder"
+  },
+  "dependencies": {
+    "@capacitor/core": "^3.3.4",
+    "@capacitor/ios": "^3.3.4",
+    "@types/gapi.auth2": "^0.0.55",
+    "axios": "^0.21.2",
+    "electron-devtools-installer": "^3.2.0",
+    "home-assistant-js-websocket": "^5.11.1",
+    "qs": "^6.10.3",
+    "sass": "^1.45.0",
+    "socket.io-client": "^4.4.0",
+    "vue": "^3.1.1",
+    "vue-axios": "^3.2.5",
+    "vue-gapi": "^2.0.0",
+    "vue-router": "^4.0.11",
+    "vuex": "^4.0.2"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^3.3.4",
+    "@types/gapi": "^0.0.41",
+    "@types/hafas-client": "^5.12.1",
+    "@types/node": "^16.7.10",
+    "@types/qs": "^6.9.7",
+    "@types/websocket": "^1.0.4",
+    "@vitejs/plugin-vue": "^1.1.5",
+    "@vue/compiler-sfc": "^3.0.5",
+    "concurrently": "^6.2.1",
+    "cross-env": "^7.0.3",
+    "electron": "^14.0.0",
+    "electron-builder": "^22.11.7",
+    "node-sass": "^6.0.1",
+    "sass-loader": "^12.2.0",
+    "typescript": "^4.3.4",
+    "vite": "^2.3.7",
+    "vite-svg-loader": "^2.2.0",
+    "vue-tsc": "^0.3.0",
+    "wait-on": "^6.0.0"
+  },
+  "keywords": [
+    "vite",
+    "vue",
+    "electron"
+  ],
+  "build": {
+    "appId": "com.homepanorama.app",
+    "productName": "Homepanorama",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  }
+}

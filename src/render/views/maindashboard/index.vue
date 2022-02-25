@@ -1,0 +1,34 @@
+<template>
+	<div>
+		<div id="boxes">
+			<HomeClimate class="dashboard-box box-s" />
+			<WeatherBox class="box dashboard-box box-s" />
+			<RoomLightController class="box dashboard-box box-s box-white" />
+			<PublicTransport class="box dashboard-box box-m box-white" />
+			<Calendar class="box dashboard-box box-m box-white" />
+			<Music class="box dashboard-box box-m box-white" />
+		</div>
+	</div>
+</template>
+
+<script lang="ts">
+import { defineComponent } from "vue";
+import Calendar from "../../components/boxes/calendar/index.vue";
+import HomeClimate from "../../components/boxes/homeclimate/index.vue";
+import Music from "../../components/boxes/music/index.vue";
+import PublicTransport from "../../components/boxes/publictransport/index.vue";
+import RoomLightController from "../../components/boxes/roomlightcontroller/index.vue";
+import WeatherBox from "../../components/boxes/weather/index.vue";
+export default defineComponent({
+	components: { WeatherBox, HomeClimate, RoomLightController, PublicTransport, Calendar, Music },
+});
+</script>
+
+<style lang="scss" scoped>
+#boxes {
+	display: flex;
+	column-gap: 15px;
+	row-gap: 15px;
+	flex-wrap: wrap;
+}
+</style>
