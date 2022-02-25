@@ -1,6 +1,6 @@
 import '@/styles/displayresolution.scss'
-import '@/styles/mainstyle.scss'
 import '@/styles/variables.scss'
+import '@lib'
 import axios from 'axios'
 import { createApp } from 'vue'
 import VueAxios from 'vue-axios'

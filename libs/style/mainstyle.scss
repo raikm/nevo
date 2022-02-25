@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import './variables.scss';
 
 body {
   -webkit-touch-callout: none; /* iOS Safari */
@@ -9,9 +9,13 @@ body {
   user-select: none; /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: 16px;
+
+  // height: 100vh;
+}
+
+#dashboard {
   //https://webgradients.com/
   background-image: linear-gradient(120deg, #faf4e1 0%, #eed8b2 100%);
-  height: 100vh;
 }
 
 html,

@@ -1,5 +1,5 @@
 <template>
-  <template v-if="!isMobile">
+  <template id="dashboard" v-if="!isMobile">
     <div id="header">
       <!-- logo / icon -->
       <!-- Show People at home -->

@@ -2,7 +2,12 @@
 
 </script>
 
-<template></template>
+<template>
+  <router-view></router-view>
+</template>
 
-<style>
+<style lang="scss">
+// TODO: libs by @
+@import "../../../libs/style/mainstyle.scss";
+@import "../../../libs/style/variables.scss";
 </style>
