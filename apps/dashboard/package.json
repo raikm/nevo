@@ -13,9 +13,12 @@
     "app:build": "npm run build:for:electron && npm run electron:builder"
   },
   "dependencies": {
+    "@capacitor/core": "^3.4.1",
+    "@capacitor/ios": "^3.4.1",
     "vue": "^3.2.16"
   },
   "devDependencies": {
+    "@capacitor/cli": "^3.4.1",
     "@vitejs/plugin-vue": "^2.0.1",
     "electron": "17.1.0",
     "electron-builder": "^22.14.13",

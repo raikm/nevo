@@ -1,6 +1,8 @@
 .DS_Store
 ios
-
+apps/dashboard/dist
+apps/dashboard/dist_electron
+apps/dashboard/ios
 
 # local env files
 .env.local
