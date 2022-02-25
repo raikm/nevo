@@ -1,6 +1,0 @@
-{
-	"appId": "com.nevo.app",
-	"appName": "nevo",
-	"webDir": "dist/render",
-	"bundledWebRuntime": false
-}

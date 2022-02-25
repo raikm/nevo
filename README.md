@@ -1,78 +1,94 @@
-# nevo
-
-The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
-
-### 🧗🏼 Short Update (Status: 25.02.2022)
-
-```
-This is still an ongoing project but since I started my first fulltime-job
-in July 2021 after finishing my master studies, I have limited time.
-
-The 🛫 Nextup Section shows the work packages I am currently working on.
-
-```
-
-<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
-
-![March 2021](/docs/images/current_status_may_2021.png?)
-
----
 
 
+# Nevo
 
-### 🛫 Next Up
+This project was generated using [Nx](https://nx.dev).
 
-```
- 📦 NX Integration -> Mono repository
- 📦 Split into two frontend apps (incl. mobile)
- 📦 Capacity Stability
- 📦 Ready to use: Light Page V1
- 📦 Plant Settings: show nearby sensors
- 📦 Unit Testing
-```
----
-### 🛬 Latest Updates
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
 
-```
- 🎉 Capacity Integration for iOS development
- 🎉 Boxes from Main Pages ready for production in Vue3 and Typescript
- 🎉 First tests with health data export from the iPhone (HealthExport App)
- 🎉 Bugfixes - Music Player
-```
----
-### 🏛 Past Major Updates
+🔎 **Smart, Fast and Extensible Build System**
 
-```
- 🎉 Transform to Vite
- 🎉 Vue3 + Typescript for Main Pages
- 🎉 Plant Dashboard Page V1
- 🎉 Websocket-connection to back-end (homeassistant)
- 🎉 Calendar Data (Google API) V1
- 🎉 Public Transport (Hafas API) V1
- 🎉 Music Player (Sonos API) V1
- 🎉 Implementing Shortcut Buttons (homeassistant)
-```
+## Adding capabilities to your workspace
 
-### Intention
+Nx supports many plugins which add capabilities for developing different types of applications and different tools.
 
-Home automation plus tidy and clean design is not often going hand in hand. When you lookup at [Google](https://www.google.com/search?q=home+dashboard&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjf4JDPxrrpAhUHyaQKHaLNCPAQ_AUoAXoECAwQAw&biw=1309&bih=717) for “home dashboards”, the solutions and ideas look overwhelming, crowded or not thoughtfully designed (personal opinion).
+These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
 
-With [openhab](https://www.openhab.org/) for example, you can merge devices and services from different companies. The backend provides a lot of functionally. But the frontend [solutions](https://www.openhab.org/docs/configuration/habpanel.html) are not attractive to the eye (again, personal opinion) but very customisable in terms of home automation control.
+Below are our core plugins:
 
-The [Apple Homekit App](https://support.apple.com/library/content/dam/edam/applecare/images/de_DE/macos/macos-mojave-ios12-macbook-iphone-x-home-app-notifications-hero-crop.jpg), for example, provides a thoughtful interface but only allows you to control devices and see their information. If you considering to hang it on your wall as a control-center, you would have to buy a very expensive “screen” (iPad).
+- [React](https://reactjs.org)
+  - `npm install --save-dev @nrwl/react`
+- Web (no framework frontends)
+  - `npm install --save-dev @nrwl/web`
+- [Angular](https://angular.io)
+  - `npm install --save-dev @nrwl/angular`
+- [Nest](https://nestjs.com)
+  - `npm install --save-dev @nrwl/nest`
+- [Express](https://expressjs.com)
+  - `npm install --save-dev @nrwl/express`
+- [Node](https://nodejs.org)
+  - `npm install --save-dev @nrwl/node`
 
-SmartMirrors handle the overview context but are limited with controls (e.g. via Amazon Alexa)
+There are also many [community plugins](https://nx.dev/community) you could add.
 
-This project should provide a platform independent solution. I found inspiration on [dribble](https://dribbble.com/9raik/collections/2054777-HomeApp), [medium](https://onezero.medium.com/the-morning-paper-revisited-35b407822494) or in interesting [talks](https://www.youtube.com/watch?v=aZZCZpc0AcY) about dashboard design. The problem is that they are often just design-concepts or limited in there features.
+## Generate an application
 
-To sum up, the motivation is to create an application that extends the functionally beyond controlling. So integrate as many services (e.g. weather, public-transport, calendar infos) as possible without setting back on the design.
+Run `nx g @nrwl/react:app my-app` to generate an application.
 
-### 🎥 Dashboard on Youtube
+> You can use any of the plugins above to generate applications as well.
 
-<p align="left">
- <a href="https://www.youtube.com/watch?v=Tr8btqHs8_k"> <img src="https://img.youtube.com/vi/Tr8btqHs8_k/0.jpg" /></a>
-</p>
+When using Nx, you can create multiple applications and libraries in the same workspace.
 
----
+## Generate a library
+
+Run `nx g @nrwl/react:lib my-lib` to generate a library.
+
+> You can also use any of the plugins above to generate libraries as well.
+
+Libraries are shareable across libraries and applications. They can be imported from `@nevo/mylib`.
+
+## Development server
+
+Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+## Code scaffolding
+
+Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+
+## Build
+
+Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+
+## Running unit tests
+
+Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+
+Run `nx affected:test` to execute the unit tests affected by a change.
+
+## Running end-to-end tests
+
+Run `nx e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+
+Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+
+## Understand your workspace
+
+Run `nx graph` to see a diagram of the dependencies of your projects.
+
+## Further help
+
+Visit the [Nx Documentation](https://nx.dev) to learn more.
 
 
+
+## ☁ Nx Cloud
+
+### Distributed Computation Caching & Distributed Task Execution
+
+<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+
+Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+
+Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+
+Visit [Nx Cloud](https://nx.app/) to learn more.

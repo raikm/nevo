@@ -1,0 +1,50 @@
+{
+  "name": "vite-vue3",
+  "version": "0.0.1",
+  "main": "src/main/index.js",
+  "scripts": {
+    "vite:dev": "vite --host",
+    "serve": "vite preview",
+    "electron": "wait-on tcp:8081 && cross-env IS_DEV=true electron .",
+    "electron:pack": "electron-builder --dir",
+    "dev": "concurrently -k \"cross-env BROWSER=none npm run vite:dev\" \"npm run electron\"",
+    "electron:builder": "electron-builder",
+    "build:for:electron": "cross-env ELECTRON=true vite build",
+    "app:build": "npm run build:for:electron && npm run electron:builder"
+  },
+  "dependencies": {
+    "vue": "^3.2.16"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.0.1",
+    "electron": "17.1.0",
+    "electron-builder": "^22.14.13",
+    "typescript": "^4.4.3",
+    "vite": "^2.7.10",
+    "vue-tsc": "^0.30.2"
+  },
+  "keywords": [
+    "vite",
+    "vue",
+    "electron"
+  ],
+  "build": {
+    "appId": "com.homepanorama.app",
+    "productName": "Homepanorama",
+    "mac": {
+      "category": "public.app-category.utilities"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist_electron"
+    }
+  }
+}
