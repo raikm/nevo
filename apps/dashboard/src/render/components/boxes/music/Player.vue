@@ -83,22 +83,9 @@
             fill="#070405"
           />
         </svg>
+
         <svg
-          v-if="activeGroupState.playbackState != 'PLAYING'"
-          @click="resume"
-          width="96"
-          height="108"
-          viewBox="0 0 96 108"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M5.685 106.128C7.138 106.967 8.761 107.387 10.383 107.387C12.005 107.387 13.627 106.967 15.081 106.128L91.28 62.134C94.187 60.456 95.978 57.354 95.978 53.997C95.978 50.641 94.187 47.539 91.28 45.861L15.08 1.867C13.626 1.028 12.005 0.608002 10.382 0.608002C8.75999 0.608002 7.13799 1.028 5.68399 1.867C2.77699 3.545 0.985992 6.647 0.985992 10.003V97.991C0.987992 101.348 2.779 104.45 5.685 106.128Z"
-            fill="#070405"
-          />
-        </svg>
-        <svg
-          v-else-if="activeGroupState.playbackState == 'PLAYING'"
+          v-if="activeGroupState.playbackState == 'PLAYING'"
           @click="pause"
           width="76"
           height="108"
@@ -112,6 +99,20 @@
           />
           <path
             d="M60.435 0.753998C52.147 0.753998 45.427 7.473 45.427 15.762V92.38C45.427 100.668 52.146 107.388 60.435 107.388C68.724 107.388 75.443 100.669 75.443 92.38V15.761C75.443 7.473 68.724 0.753998 60.435 0.753998Z"
+            fill="#070405"
+          />
+        </svg>
+        <svg
+          v-else
+          @click="resume"
+          width="96"
+          height="108"
+          viewBox="0 0 96 108"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M5.685 106.128C7.138 106.967 8.761 107.387 10.383 107.387C12.005 107.387 13.627 106.967 15.081 106.128L91.28 62.134C94.187 60.456 95.978 57.354 95.978 53.997C95.978 50.641 94.187 47.539 91.28 45.861L15.08 1.867C13.626 1.028 12.005 0.608002 10.382 0.608002C8.75999 0.608002 7.13799 1.028 5.68399 1.867C2.77699 3.545 0.985992 6.647 0.985992 10.003V97.991C0.987992 101.348 2.779 104.45 5.685 106.128Z"
             fill="#070405"
           />
         </svg>
@@ -249,7 +250,7 @@ const previous = () => {
 
 const updateVolume = (newVolume: number) => {
   console.log(newVolume)
-  // sonosService.updateVolume(props.activeGroup.coordinator.roomName, newVolume)
+  sonosService.updateVolume(props.activeGroup.coordinator.roomName, newVolume)
 }
 
 const currentTrackSeconds = ref(0);
@@ -272,7 +273,7 @@ onUnmounted(() => {
 //watch
 // activeGroupState.value.elapsedTime
 watch(() => activeGroupState.value, () => {
-  currentTrackSeconds.value = activeGroupState.value.elapsedTime
+  if (activeGroupState) currentTrackSeconds.value = activeGroupState.value.elapsedTime
 
 });
 
