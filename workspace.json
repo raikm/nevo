@@ -2,7 +2,6 @@
   "version": 2,
   "projects": {
     "dashboard": "apps/dashboard",
-    "mobile": "apps/mobile",
-    "style": "libs/style"
+    "mobile": "apps/mobile"
   }
 }

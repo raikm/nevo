@@ -1,7 +1,7 @@
 export interface Notification {
-  type: 'plants' | 'devices' // TODO: enum
+  type: 'plants' | 'devices'
   title: String
-  description: String
+  description?: String
   created: Date
   archived: Boolean
 }
