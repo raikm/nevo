@@ -23,7 +23,6 @@ The 🛫 Nextup Section shows the work packages I am currently working on.
 ### 🛫 Next Up
 
 ```
- 📦 NX Integration -> Mono repository
  📦 Split into two frontend apps (incl. mobile)
  📦 Capacity Stability
  📦 Ready to use: Light Page V1
@@ -34,6 +33,7 @@ The 🛫 Nextup Section shows the work packages I am currently working on.
 ### 🛬 Latest Updates
 
 ```
+ 🎉 NX Integration -> Mono repository
  🎉 Capacity Integration for iOS development
  🎉 Boxes from Main Pages ready for production in Vue3 and Typescript
  🎉 First tests with health data export from the iPhone (HealthExport App)
