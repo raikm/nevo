@@ -41,7 +41,7 @@ const createHomeassistantWebsocketConnection = async () => {
   );
   let connection = await createConnection({ auth });
   subscribeEntities(connection, (entities) => {
-    store.commit("setHaEntities", entities);
+    store.commit("setHaEntities", Object.values(entities));
   });
   store.commit("setHaConnection", connection);
 }

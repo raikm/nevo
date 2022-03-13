@@ -64,16 +64,12 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
-import { Plant } from "../../types/plant.interface";
-import * as colors from "../../styles/variables.scss";
-
-import PlantDataProgressBar from "./PlantDataProgressBar.vue";
+import * as colors from "../../../../../../libs/style/variables.scss";
 import CouchIcon from "../../assets/icons/location_couch.svg";
-import OfficeIcon from "../../assets/icons/location_office.svg";
-import KitchenIcon from "../../assets/icons/location_office.svg";
-import BedroomIcon from "../../assets/icons/location_office.svg";
-import EntranceIcon from "../../assets/icons/location_office.svg";
-import Bedroom_balconyIcon from "../../assets/icons/location_office.svg";
+import { default as BedroomIcon, default as Bedroom_balconyIcon, default as EntranceIcon, default as KitchenIcon, default as OfficeIcon } from "../../assets/icons/location_office.svg";
+import { Plant } from "../../types/plant.interface";
+import PlantDataProgressBar from "./PlantDataProgressBar.vue";
+
 
 export default defineComponent({
   name: "PlantCards",
@@ -117,7 +113,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../../styles/variables.scss";
+@import "../../../../../../libs/style/variables.scss";
 
 .plant-header-container {
   display: grid;

@@ -28,7 +28,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "../../styles/variables.scss";
+@import "../../../../../../libs/style/variables.scss";
 
 .progress-bar-container {
   width: 100%;

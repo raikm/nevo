@@ -1,9 +1,8 @@
-import { createRouter, createWebHashHistory } from "vue-router";
-import maindashboard from "../views/maindashboard/index.vue";
-import mobiledashboard from "../views/mobiledashboard/index.vue";
+import { createRouter, createWebHashHistory } from 'vue-router'
+import maindashboard from '../views/maindashboard/index.vue'
 // import DevicesPage from "../views/DevicesPage/index.vue";
 // import PackagesPage from "../views/PackagesPage/index.vue";
-import plantdashboard from "../views/plantdashboard/index.vue";
+import plantdashboard from '../views/plantdashboard/index.vue'
 // import RoomsPage from "../views/RoomsPage/index.vue";
 // import SettingsPage from "../views/SettingsPage/index.vue";
 
@@ -21,24 +20,19 @@ import plantdashboard from "../views/plantdashboard/index.vue";
 
 const routes = [
   {
-    path: "/",
-    name: "maindashboard-page",
+    path: '/',
+    name: 'maindashboard-page',
     component: maindashboard,
   },
   {
-    path: "/mobile",
-    name: "mobiledashboard-page",
-    component: mobiledashboard,
-  },
-  {
-    path: "/plantdashboard",
-    name: "plantdashboard-page",
+    path: '/plantdashboard',
+    name: 'plantdashboard-page',
     component: plantdashboard,
   },
-];
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
-});
-export default router;
+})
+export default router
