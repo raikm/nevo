@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "start-dashboard": "nx dev --project=dashboard",
+    "start-vite": "nx run dashboard:serve",
     "start-mobile": "nx dev --project=mobile",
     "build": "nx app:build --project=dashboard",
     "test": "nx test"

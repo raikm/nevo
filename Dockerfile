@@ -11,4 +11,4 @@ COPY . .
 EXPOSE 8080
 
 # CMD ["npm", "run", "vite:dev"]
-CMD ["npm", "run", "start-dashboard"]
+CMD ["npm", "run", "dashboard:serve"]
