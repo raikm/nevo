@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@capacitor/core": "^3.4.1",
-    "@capacitor/ios": "^3.4.1",
+    "@capacitor/ios": "^3.4.3",
     "@capacitor/network": "^1.0.7",
     "vue": "^3.2.16"
   },

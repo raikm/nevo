@@ -4,15 +4,6 @@
   "sourceRoot": "apps/dashboard/src",
   "tags": [],
   "targets": {
-    "serve": {
-      "executor": "nx-plugin-vite:serve",
-      "options": {
-        "configFile": "apps/dashboard/vite.config.ts",
-        "port": 8081,
-        "host": false,
-        "https": false
-      }
-    },
     "preview": {
       "executor": "nx-plugin-vite:preview",
       "options": {
@@ -28,6 +19,12 @@
         "write": true,
         "emitAtRootLevel": false,
         "manifest": true
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/workspace:run-script",
+      "options": {
+        "script": "serve"
       }
     }
   }
