@@ -4,9 +4,9 @@
       <!-- logo / icon -->
       <!-- Show People at home -->
       <!-- Show Date and Time -->
+      <Menu />
     </div>
     <div id="main">
-      <Menu />
       <router-view class="content-container"></router-view>
       <!-- {{ getScreensize() }} -->
     </div>
@@ -82,6 +82,7 @@ if (isMobile.value) {
   display: grid;
   grid-template-rows: 10% 85% 5%;
   height: 100%;
+  background-color: #ebcbae;
 }
 #header {
   // background: black;
@@ -97,9 +98,6 @@ if (isMobile.value) {
   // background: black;
 }
 
-#dashboard {
-  background-color: #fff8dc;
-}
 .content-container {
   overflow-y: auto;
   padding: 0 15px;

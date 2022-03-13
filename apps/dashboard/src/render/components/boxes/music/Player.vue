@@ -18,22 +18,23 @@
         </div>
       </div>
       <div id="duration-info">
-        <!-- <div class="play-duration">{{ currentTrackSecondsString }}</div> -->
+        <div class="play-duration">{{ currentTrackSecondsString }}</div>
         <div id="progress-track-wrapper">
-          <!-- <div
+          <div
             id="progress-track"
             :style="{
               width:
-                (currentTrackSeconds / this.currentTrack.duration) * 100 +
+                (currentTrackSeconds / currentTrack.duration) * 100 +
                 '%',
+              maxWidth: '100%'
             }"
-          ></div>-->
+          ></div>
         </div>
-        <!-- <div class="play-duration">{{ endTrackTime }}</div> -->
+        <div class="play-duration">{{ endTrackTime }}</div>
       </div>
 
       <div id="player-control">
-        <svg
+        <!-- <svg
           @click="$emit('showPlaylists')"
           version="1.1"
           id="Capa_1"
@@ -62,7 +63,8 @@
             <circle cx="4.77" cy="31.102" r="4.769" />
             <circle cx="4.77" cy="49.807" r="4.77" />
           </g>
-        </svg>
+        </svg>-->
+        <div></div>
 
         <svg
           @click="previous"
@@ -130,7 +132,7 @@
             fill="#070405"
           />
         </svg>
-        <svg
+        <!-- <svg
           width="100"
           height="100"
           viewBox="0 0 100 100"
@@ -141,7 +143,8 @@
             d="M17.2 7.20001C16.3 8.10001 16 18.3 16 47C16 90.3 15.7 88.6 23.4 92.1C27 93.7 30.2 94 50 94C69.8 94 73 93.7 76.6 92.1C84.3 88.6 84 90.3 84 47C84 18.3 83.7 8.10001 82.8 7.20001C81.1 5.50001 18.9 5.50001 17.2 7.20001ZM80 13V16H50H20V13V10H50H80V13ZM80 51V82H50H20V51V20H50H80V51ZM78 86.6C78 86.9 76.4 87.8 74.5 88.6C69.5 90.6 30.5 90.6 25.5 88.6C23.6 87.8 22 86.9 22 86.6C22 86.2 34.6 86 50 86C65.4 86 78 86.2 78 86.6Z"
             fill="black"
           />
-        </svg>
+        </svg>-->
+        <div></div>
       </div>
       <volume-slider :sliderValue="activeGroupState.volume" @change-slider-value="updateVolume" />
     </div>
@@ -150,9 +153,9 @@
 
 <script lang="ts" setup>
 import { Socket } from 'socket.io-client'
-import { computed, inject, ref } from 'vue'
+import { computed, inject, onMounted, onUnmounted, ref, watch } from 'vue'
 import useSonoService from '../../../../service/music/sonos.service'
-import { Speaker, Zone } from '../../../types/sonosTypes'
+import { CurrentTrack, Speaker, Zone } from '../../../types/sonosTypes'
 import VolumeSlider from './VolumeSlider.vue'
 
 const sonosService = useSonoService()
@@ -204,19 +207,18 @@ const emit = defineEmits(['update-zones', 'showPlaylists', 'standby'])
 
 socket.on("change", (data) => {
   let result = JSON.parse(data.toString());
+
   // getZones() // TODO: send emit
   emit('update-zones')
+  updateTimeInfos()
   if (result.type === "transport-state") {
     // snapshot of player
-
     // getZones()
   }
   else if (result.type === "topology-change") {
     // snapshot of zones
-
   }
   else if (result.type === "volume-change") {
-
   }
 });
 
@@ -250,6 +252,63 @@ const updateVolume = (newVolume: number) => {
   // sonosService.updateVolume(props.activeGroup.coordinator.roomName, newVolume)
 }
 
+const currentTrackSeconds = ref(0);
+const currentTrackSecondsString = ref("")
+const endTrackTime = ref("")
+const interval = ref(0);
+
+
+
+onMounted(() => {
+  interval.value = setInterval(() => {
+    updateSecondsInCurrentTrack();
+  }, 1000);
+})
+onUnmounted(() => {
+  clearInterval(interval.value);
+
+})
+
+//watch
+// activeGroupState.value.elapsedTime
+watch(() => activeGroupState.value, () => {
+  currentTrackSeconds.value = activeGroupState.value.elapsedTime
+
+});
+
+
+const updateSecondsInCurrentTrack = () => {
+  currentTrackSeconds.value += 1;
+  elapsedTimeToFormatedString();
+
+}
+
+const elapsedTimeToFormatedString = () => {
+  currentTrackSecondsString.value = getFormatedTimeString(
+    currentTrackSeconds.value
+  );
+}
+
+const endTimeToFormatedString = () => {
+  endTrackTime.value = getFormatedTimeString((currentTrack.value as CurrentTrack).duration);
+}
+
+const getFormatedTimeString = (seconds: number) => {
+  let durationTime = new Date(0);
+  durationTime.setHours(0);
+  durationTime.setSeconds(seconds);
+  const durationTimeString = durationTime.toLocaleTimeString();
+  if (durationTimeString.split(":")[1][0] === "0")
+    return durationTimeString.slice(4, 8);
+  return durationTimeString.slice(3, 8);
+}
+
+const updateTimeInfos = () => {
+  currentTrackSeconds.value = activeGroupState.value.elapsedTime
+  endTimeToFormatedString()
+}
+
+endTimeToFormatedString()
 
 </script>
 
@@ -328,8 +387,8 @@ const updateVolume = (newVolume: number) => {
 #duration-info {
   display: grid;
   width: 100%;
-  // grid-template-columns: 1fr 8fr 1fr;
-  // margin: 5% 0%;
+  grid-template-columns: 1fr 8fr 1fr;
+  margin: 5% 0%;
 }
 .play-duration {
   font-size: 10px;

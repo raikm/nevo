@@ -1,6 +1,6 @@
 <template>
   <div class="shortcut-pill" @click="triggerShortcut">
-    <span>{{ shortcut.attributes.friendly_name }}</span>
+    <span>⠕ {{ shortcut.attributes.friendly_name }}</span>
   </div>
 </template>
 
@@ -44,7 +44,7 @@ const triggerShortcut = () => {
 
 .shortcut-pill {
   margin: 1rem 1px;
-
+  background-color: white;
   border-radius: 99px;
   height: 2rem;
   display: grid;

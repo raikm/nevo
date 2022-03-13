@@ -1,18 +1,21 @@
-import { io } from "socket.io-client";
+import { io } from 'socket.io-client'
 // const Socketio: Plugin = {
 //   install: async (app: App, options: any): Promise<void> => {
 //     app.provide("socket", io(options.connection));
 //   },
 // };
 // export { Socketio };
-import { App } from "vue";
+import { App } from 'vue'
 
 export default {
   install: (app: App, options: any) => {
-    const socket = io(options.connection, { transports: ["websocket"] });
+    console.log(options)
+    const socket = io(options.connection, { transports: ['websocket'] })
+    // socket.on('connection', () => {
 
-    app.config.globalProperties.$socket = socket;
+    // })
+    app.config.globalProperties.$socket = socket
 
-    app.provide("socket", socket);
+    app.provide('socket', socket)
   },
-};
+}

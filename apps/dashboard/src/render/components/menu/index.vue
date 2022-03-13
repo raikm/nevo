@@ -1,24 +1,52 @@
 <template>
-  <div>
-    <div @click="$router.push('/')" class="menu-button click-element">
-      <DashboardIcon />
+  <div id="menu-pills">
+    <div @click="router.push('/')" class="menu-button-new click-element active">
+      <span>Dashboard</span>
     </div>
-    <!-- <div @click="$router.push('/roomdashboard')" class="menu-button click-element"><LampsIcon /></div> -->
-    <div @click="$router.push('/plantdashboard')" class="menu-button click-element">
-      <PlantIcon />
+    <div @click="router.push('/roomdashboard')" class="menu-button-new click-element">
+      <span>Rooms</span>
     </div>
-    <!-- <div @click="$router.push('/roomdashboard')" class="menu-button click-element"><RoomsIcon /></div> -->
+    <div @click="router.push('/plantdashboard')" class="menu-button-new click-element">
+      <span>Plants</span>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import DashboardIcon from "../../assets/icons/menu_dashboard.svg";
-import PlantIcon from "../../assets/icons/menu_plants.svg";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
 </script>
 
 <style lang="scss">
 @import "../../../../../../libs/style/mainstyle.scss",
   "../../../../../../libs/style/variables.scss";
+
+#menu-pills {
+  width: 100%;
+  display: inline-flex;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  column-gap: $standard-space;
+  margin: $standard-space * 2;
+
+  .menu-button-new {
+    margin: 1rem 1px;
+    border-radius: 99px;
+    height: 2rem;
+    display: grid;
+    place-items: center;
+    font-size: 0.8rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    backdrop-filter: saturate(130%) blur(20px);
+    background-color: rgb(244, 244, 244);
+  }
+
+  .active {
+    background-color: white;
+  }
+}
 
 $inactive-color: $gray;
 
