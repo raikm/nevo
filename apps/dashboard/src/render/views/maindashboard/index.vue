@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="dashboard-wrapper">
     <div id="boxes">
       <HomeClimate class="dashboard-box box-s" />
       <WeatherBox class="box dashboard-box box-s" />
@@ -29,6 +29,10 @@ import Shortcut from "../../components/Shortcut.vue";
 <style lang="scss" scoped>
 @import "../../../../../../libs/style/mainstyle.scss";
 
+#dashboard-wrapper {
+  position: relative;
+}
+
 #boxes {
   display: flex;
   column-gap: 15px;
@@ -37,6 +41,9 @@ import Shortcut from "../../components/Shortcut.vue";
 }
 
 #shortcuts {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
   display: inline-flex;
   overflow: scroll;
   display: grid;

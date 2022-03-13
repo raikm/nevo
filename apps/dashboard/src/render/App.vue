@@ -97,6 +97,9 @@ if (isMobile.value) {
   // background: black;
 }
 
+#dashboard {
+  background-color: #fff8dc;
+}
 .content-container {
   overflow-y: auto;
   padding: 0 15px;
