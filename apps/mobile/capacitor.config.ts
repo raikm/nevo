@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli'
 
 const config: CapacitorConfig = {
-  appId: 'com.nevo.app',
+  appId: 'com.nevo.mobile.app',
   appName: 'nevo',
   webDir: 'dist',
   bundledWebRuntime: false,

@@ -3,15 +3,17 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start-dashboard": "nx dev --project=dashboard",
-    "start-vite": "nx run dashboard:serve",
-    "start-mobile": "nx dev --project=mobile",
-    "build": "nx app:build --project=dashboard",
+    "dashboard": "nx dev --project=dashboard",
+    "vite": "nx run dashboard:serve",
+    "mobile": "nx dev --project=mobile",
+    "build-dashboard": "nx app:build --project=dashboard",
+    "build-mobile": "nx build --project=mobile",
     "test": "nx test"
   },
   "private": true,
   "devDependencies": {
     "@angular-devkit/schematics": "^13.2.5",
+    "@capacitor/cli": "^3.4.3",
     "@nrwl/cli": "13.8.3",
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "13.8.3",
@@ -39,6 +41,7 @@
     "wait-on": "^6.0.0"
   },
   "dependencies": {
+    "@capacitor/core": "^3.4.3",
     "@types/gapi.auth2": "^0.0.55",
     "axios": "^0.21.2",
     "electron-devtools-installer": "^3.2.0",
@@ -49,7 +52,7 @@
     "vue": "^3.2.16",
     "vue-axios": "^3.2.5",
     "vue-gapi": "^2.0.0",
-    "vue-router": "4.0.9",
+    "vue-router": "4.0.14",
     "vuex": "^4.0.2"
   },
   "keywords": [

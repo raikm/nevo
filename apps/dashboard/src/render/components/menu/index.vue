@@ -13,9 +13,8 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+import router from "../../router";
 
-const router = useRouter();
 </script>
 
 <style lang="scss">
@@ -26,6 +25,8 @@ const router = useRouter();
   width: 100%;
   display: inline-flex;
   overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   display: grid;
   grid-template-columns: repeat(9, 1fr);
   column-gap: $standard-space;
@@ -46,6 +47,10 @@ const router = useRouter();
   .active {
     background-color: white;
   }
+}
+
+#menu-pills::-webkit-scrollbar {
+  display: none;
 }
 
 $inactive-color: $gray;

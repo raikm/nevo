@@ -31,7 +31,6 @@ import {
 import { computed, onMounted, onUnmounted, ref } from "vue";
 // Config
 import config from "../../../../config.json";
-import router from "./router";
 import store from "./store";
 
 const createHomeassistantWebsocketConnection = async () => {
@@ -56,24 +55,24 @@ const width = computed(() => windowWidth.value)
 
 
 const isMobile = computed(() => {
-  if (width.value <= 760) {
-    router.push('/mobile');
-    return true;
-  }
-  else {
-    // router.push('/');
-    return false;
-  }
+  // if (width.value <= 760) {
+  //   router.push('/mobile');
+  //   return true;
+  // }
+  // else {
+  //   // router.push('/');
+  //   return false;
+  // }
 })
 
 store.commit("setConfigFile", config);
 createHomeassistantWebsocketConnection();
 
-if (isMobile.value) {
-  router.push('/mobile');
-} else {
-  // router.push('/');
-}
+// if (isMobile.value) {
+//   router.push('/mobile');
+// } else {
+//   // router.push('/');
+// }
 
 </script>
 

@@ -79,6 +79,12 @@ export default defineComponent({
   overflow: scroll;
   scrollbar-width: 0;
   height: 85%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.public-transport-content-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 .public-transport-header {

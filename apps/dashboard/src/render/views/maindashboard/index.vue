@@ -31,6 +31,12 @@ import Shortcut from "../../components/Shortcut.vue";
 
 #dashboard-wrapper {
   position: relative;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+#dashboard-wrapper::-webkit-scrollbar {
+  display: none;
 }
 
 #boxes {
@@ -44,11 +50,16 @@ import Shortcut from "../../components/Shortcut.vue";
   position: absolute;
   bottom: 0px;
   width: 100%;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
   display: inline-flex;
   overflow: scroll;
   display: grid;
   grid-template-columns: repeat(9, 1fr);
-  // row-gap: $standard-space;
   column-gap: $standard-space;
+}
+
+#shortcuts::-webkit-scrollbar {
+  display: none;
 }
 </style>
