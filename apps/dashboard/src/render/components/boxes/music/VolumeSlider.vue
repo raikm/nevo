@@ -1,7 +1,15 @@
 <template>
   <div class="slider" aria-valuemin="0" aria-valuemax="1" aria-valuetext="0" aria-valuenow="0">
-    <input class="slider-input" type="range" min="0" max="100" v-model="sliderValue" step="1" />
-    <progress class="slider-input" min="0" max="100" :value="sliderValue" />
+    <input
+      class="slider-input"
+      id="slider-input"
+      type="range"
+      min="0"
+      max="100"
+      v-model="sliderValue"
+      step="1"
+    />
+    <progress class="slider-progress" min="0" max="100" :value="sliderValue" />
   </div>
 </template>
 
@@ -24,13 +32,15 @@ watch(() => props.sliderValue, (newValue) => {
 
 <style lang="scss" scoped>
 .slider {
-  display: grid;
   align-items: center;
-  width: 100%;
-}
+  position: relative;
+  // height: 100%;
+  // width: 100%;
 
-.slider-input {
-  width: 100%;
+  // .slider-input {
+  //   position: inherit;
+  //   width: 100%;
+  // }
 }
 
 progress {
@@ -50,6 +60,15 @@ progress {
 progress::-webkit-progress-value {
   background-color: #4168d2;
 }
+progress::-moz-progress-bar {
+  background-color: #4168d2;
+  top: 50%;
+}
+
+progress {
+  background-color: #4168d2;
+  z-index: 1;
+}
 
 progress::-webkit-progress-bar {
   background-color: #b6b6b6;
@@ -65,6 +84,7 @@ input {
   margin: 0;
   padding: 0;
   width: 92%;
+  z-index: 2;
   background-color: transparent;
 }
 

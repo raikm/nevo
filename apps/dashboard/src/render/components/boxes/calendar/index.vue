@@ -22,9 +22,12 @@
         </div>
 
         <div v-if="appointments.length > 3" class="preview-calendar-appointment">
-          <div :key="appointment.id" v-for="appointment in appointments.slice(3, 6)">
-            <div class="calendar-color-bar" :style="{ background: appointment.calendarColor }"></div>
-          </div>
+          <div
+            class="calendar-color-bar"
+            :key="appointment.id"
+            v-for="appointment in appointments.slice(3, 6)"
+            :style="{ background: appointment.calendarColor }"
+          ></div>
           <div class="preview-text">{{ appointments.length - 3 }} more events</div>
         </div>
       </div>
@@ -182,11 +185,13 @@ export default defineComponent({
 .preview-calendar-appointment {
   display: flex;
   width: 100%;
+  height: 1rem;
 }
 .preview-text {
   font-size: small;
   margin-left: 0.5vh;
   display: flex;
+  height: 1rem;
 }
 .calendar-color-bar {
   width: 3px;

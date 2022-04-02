@@ -2,8 +2,12 @@
   <div>
     <div v-if="playlists.length !== 0" class="playlist-shortcuts-container-wrapper">
       <div class="playlist-shortcuts-container">
-        <div class="playlist-cover-info-wrapper" :key="playlist.id" v-for="playlist in playlists">
-          <!-- @click="playPlaylist(playlist.uri)" -->
+        <div
+          class="playlist-cover-info-wrapper"
+          @click="playPlaylist(playlist.uri)"
+          :key="playlist.id"
+          v-for="playlist in playlists"
+        >
           <img class="playlist-cover" :src="playlist.images[0].url" alt />
           <div class="playlist-info">{{ playlist.name }}</div>
         </div>
@@ -21,158 +25,160 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
 import axios from 'axios';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import store from '../../../store';
 
 
-export default defineComponent({
-  name: "Shortcuts",
-  setup() {
-    const playlists = ref([]) // TODO Typing
+const playlists = ref([] as any) // TODO Typing
 
-    const refreshAccessToken = () => {
-      let refresh_token = localStorage.getItem("spotify_refresh_token");
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        auth: {
-          username: store.state.config.spotify.client_id,
-          password: store.state.config.spotify.client_secret,
-        },
-      };
-      const data = {
-        grant_type: "refresh_token",
-        redirect_uri: encodeURI(
-          window.location.origin + "/"
-        ),
-        // SettingsPage/Spotify/
-        refresh_token: refresh_token,
-        client_id: store.state.config.spotify.client_id,
-      };
-      // axios
-      //     .post(
-      //         "https://accounts.spotify.com/api/token",
-      //         qs.stringify(data),
-      //         headers
-      //     )
-      //     .then((response) => {
-      //         if (response.data.access_token != undefined) {
-      //             let access_token = response.data.access_token;
-      //             localStorage.setItem("spotify_access_token", access_token);
-      //         }
-      //         if (response.data.refresh_token != undefined) {
-      //             let refresh_token = response.data.refresh_token;
-      //             localStorage.setItem("spotify_refresh_token", refresh_token);
-      //         }
-      //     })
-      //     .catch((error) => {
-      //         console.log(error);
-      //     });
-    }
+const refreshAccessToken = () => {
+  let refresh_token = localStorage.getItem("spotify_refresh_token");
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+    auth: {
+      username: store.state.config.spotify.client_id,
+      password: store.state.config.spotify.client_secret,
+    },
+  };
+  const data = {
+    grant_type: "refresh_token",
+    redirect_uri: encodeURI(
+      window.location.origin + "/"
+    ),
+    // SettingsPage/Spotify/
+    refresh_token: refresh_token,
+    client_id: store.state.config.spotify.client_id,
+  };
+  // axios
+  //     .post(
+  //         "https://accounts.spotify.com/api/token",
+  //         qs.stringify(data),
+  //         headers
+  //     )
+  //     .then((response) => {
+  //         if (response.data.access_token != undefined) {
+  //             let access_token = response.data.access_token;
+  //             localStorage.setItem("spotify_access_token", access_token);
+  //         }
+  //         if (response.data.refresh_token != undefined) {
+  //             let refresh_token = response.data.refresh_token;
+  //             localStorage.setItem("spotify_refresh_token", refresh_token);
+  //         }
+  //     })
+  //     .catch((error) => {
+  //         console.log(error);
+  //     });
+}
 
-    const getAllPlaylists = () => {
-      if (localStorage.getItem("spotify_access_token") == null) return;
-      const config = {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(
-            "spotify_access_token"
-          )}`,
-          "Content-Type": "application/json",
-        },
-      };
-      axios
-        .get("https://api.spotify.com/v1/me/playlists", config)
-        .then((response) => {
-          if (response.data.items.length !== 0) {
-            playlists.value = response.data.items;
-          }
-        })
-        .catch((error: any) => {
-          if (error.status == 401) refreshAccessToken();
-          else console.error(error);
-        });
-    }
-
-    getAllPlaylists()
-
-
-
-    const requestAuthorization = () => {
-      let url = "https://accounts.spotify.com/authorize";
-      url += "?client_id=" + store.state.config.spotify.client_id;
-      url += "&response_type=code";
-      url +=
-        "&redirect_uri=" +
-        encodeURI(window.location.origin + "/");
-      // SettingsPage/Spotify/
-      url += "&show_dialog=true";
-      url += "&scope=playlist-read-private";
-      window.location.href = url;
-    }
-    const handleRedirect = () => {
-      let code = getCode();
-      authSpotifyAccount(code);
-    }
-    const getCode = () => {
-      let code = null;
-      const queryString = window.location.search;
-      if (queryString.length > 0) {
-        const urlParams = new URLSearchParams(queryString);
-        code = urlParams.get("code");
+const getAllPlaylists = () => {
+  if (localStorage.getItem("spotify_access_token") == null) return;
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem(
+        "spotify_access_token"
+      )}`,
+      "Content-Type": "application/json",
+    },
+  };
+  axios
+    .get("https://api.spotify.com/v1/me/playlists", config)
+    .then((response) => {
+      if (response.data.items.length !== 0) {
+        playlists.value = response.data.items;
       }
-      return code;
-    }
-    const authSpotifyAccount = (code: any) => {
-      const headers = {
-        Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded",
-        auth: {
-          username: store.state.config.spotify.client_id,
-          password: store.state.config.spotify.client_secret,
-        },
-      };
-      const data = {
-        grant_type: "authorization_code",
-        code: code,
-        redirect_uri: encodeURI(
-          window.location.origin + "/"
-          // SettingsPage/Spotify/
-        ),
-        client_id: store.state.config.spotify.client_id,
-        client_secret: store.state.config.spotify.client_secret,
-      };
-      //TODO: only if access token not avaible in store
-      // axios
-      //     .post(
-      //         "https://accounts.spotify.com/api/token",
-      //         qs.stringify(data),
-      //         headers
-      //     )
-      //     .then((response) => {
-      //         if (response.data.access_token != undefined) {
-      //             let access_token = response.data.access_token;
-      //             localStorage.setItem("spotify_access_token", access_token);
-      //         }
-      //         if (response.data.refresh_token != undefined) {
-      //             let refresh_token = response.data.refresh_token;
-      //             localStorage.setItem("spotify_refresh_token", refresh_token);
-      //         }
-      //     })
-      //     .catch((error) => {
-      //         console.log(error);
-      //     });
-    }
-    handleRedirect();
+    })
+    .catch((error: any) => {
+      if (error.status == 401) refreshAccessToken();
+      else console.error(error);
+    });
+}
 
-    return {
-      playlists,
-      requestAuthorization
-    }
+getAllPlaylists()
 
+
+
+const requestAuthorization = () => {
+  let url = "https://accounts.spotify.com/authorize";
+  url += "?client_id=" + store.state.config.spotify.client_id;
+  url += "&response_type=code";
+  url +=
+    "&redirect_uri=" +
+    encodeURI(window.location.origin + "/");
+  // SettingsPage/Spotify/
+  url += "&show_dialog=true";
+  url += "&scope=playlist-read-private";
+  window.location.href = url;
+}
+const handleRedirect = () => {
+  let code = getCode();
+  authSpotifyAccount(code);
+}
+const getCode = () => {
+  let code = null;
+  const queryString = window.location.search;
+  if (queryString.length > 0) {
+    const urlParams = new URLSearchParams(queryString);
+    code = urlParams.get("code");
   }
-})
+  return code;
+}
+const authSpotifyAccount = (code: any) => {
+  const headers = {
+    Accept: "application/json",
+    "Content-Type": "application/x-www-form-urlencoded",
+    auth: {
+      username: store.state.config.spotify.client_id,
+      password: store.state.config.spotify.client_secret,
+    },
+  };
+  const data = {
+    grant_type: "authorization_code",
+    code: code,
+    redirect_uri: encodeURI(
+      window.location.origin + "/"
+      // SettingsPage/Spotify/
+    ),
+    client_id: store.state.config.spotify.client_id,
+    client_secret: store.state.config.spotify.client_secret,
+  };
+  //TODO: only if access token not avaible in store
+  // axios
+  //     .post(
+  //         "https://accounts.spotify.com/api/token",
+  //         qs.stringify(data),
+  //         headers
+  //     )
+  //     .then((response) => {
+  //         if (response.data.access_token != undefined) {
+  //             let access_token = response.data.access_token;
+  //             localStorage.setItem("spotify_access_token", access_token);
+  //         }
+  //         if (response.data.refresh_token != undefined) {
+  //             let refresh_token = response.data.refresh_token;
+  //             localStorage.setItem("spotify_refresh_token", refresh_token);
+  //         }
+  //     })
+  //     .catch((error) => {
+  //         console.log(error);
+  //     });
+}
+handleRedirect();
+
+const playPlaylist = (uri: string) => {
+  axios
+    .get(
+      `${store.state.config.sonos.rest_url}/Living Room/spotify/now/spotify:user:${uri}`
+    )
+    .then(() => { })
+    .catch((error) => console.error(error.message));
+}
+
+
+
+
 </script>
 
 <style lang="scss">

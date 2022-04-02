@@ -46,7 +46,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "temperature";
       });
       if (temperatureSensor.length === 1) {
-        return `${temperatureSensor[0].state}°C`;
+        if (temperatureSensor[0].state !== 'unavailable')
+          return `${temperatureSensor[0].state}°C`;
       }
     },
     currentHumidity(sensors: Sensor[]) {
@@ -54,7 +55,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "humidity";
       });
       if (humiditySensor.length === 1) {
-        return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`;
+        if (humiditySensor[0].state !== 'unavailable')
+          return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`;
       }
     },
     currentWindStrength(sensors: Sensor[]) {
@@ -62,7 +64,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "wind_strength";
       });
       if (windSensor.length === 1) {
-        return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`;
+        if (windSensor[0].state !== 'unavailable')
+          return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`;
       }
     },
   },
