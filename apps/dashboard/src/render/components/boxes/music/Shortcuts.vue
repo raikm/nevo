@@ -45,8 +45,9 @@ export default defineComponent({
       const data = {
         grant_type: "refresh_token",
         redirect_uri: encodeURI(
-          window.location.origin + "/SettingsPage/Spotify/"
+          window.location.origin + "/"
         ),
+        // SettingsPage/Spotify/
         refresh_token: refresh_token,
         client_id: store.state.config.spotify.client_id,
       };
@@ -104,7 +105,8 @@ export default defineComponent({
       url += "&response_type=code";
       url +=
         "&redirect_uri=" +
-        encodeURI(window.location.origin + "/SettingsPage/Spotify/");
+        encodeURI(window.location.origin + "/");
+      // SettingsPage/Spotify/
       url += "&show_dialog=true";
       url += "&scope=playlist-read-private";
       window.location.href = url;
@@ -135,7 +137,8 @@ export default defineComponent({
         grant_type: "authorization_code",
         code: code,
         redirect_uri: encodeURI(
-          window.location.origin + "/SettingsPage/Spotify/"
+          window.location.origin + "/"
+          // SettingsPage/Spotify/
         ),
         client_id: store.state.config.spotify.client_id,
         client_secret: store.state.config.spotify.client_secret,
