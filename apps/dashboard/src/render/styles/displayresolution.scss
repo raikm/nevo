@@ -10,7 +10,15 @@ body {
   }
   .box-xs {
     height: 120px;
-    width: 100px;
+    // width: 100px;
+  }
+
+  .box-xs-wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 100%;
+    width: 100%;
+    column-gap: 15px;
   }
 }
 // }

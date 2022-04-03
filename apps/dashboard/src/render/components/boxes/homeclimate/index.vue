@@ -1,5 +1,5 @@
 <template>
-  <div class="homeclimate-wrapper">
+  <div class="homeclimate-wrapper box-xs-wrapper">
     <div :key="index" v-for="(sensors, index) in rooms" class="box box-xs temperature-box">
       <div class="homeclimate-info-title">{{ sensors[0].attributes.Room }}</div>
       <div class="homeclimate-info">{{ currentTemperature(sensors) }}</div>
@@ -80,15 +80,6 @@ export default defineComponent({
 <style lang="scss">
 @import "../../../../../../../libs/style/mainstyle.scss";
 
-.homeclimate-wrapper {
-  // Bug: so war just quick fix
-  height: 100%;
-  width: 350px !important;
-  display: flex;
-  column-gap: 15px;
-  row-gap: 15px;
-  flex-wrap: wrap;
-}
 .temperature-box {
   border-radius: $standard-border-radius;
   background-color: white;

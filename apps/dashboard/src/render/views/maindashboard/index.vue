@@ -1,7 +1,7 @@
 <template>
   <div id="dashboard-wrapper">
     <div id="boxes">
-      <HomeClimate class="dashboard-box box-s" />
+      <HomeClimate class="dashboard-box" />
       <WeatherBox class="box dashboard-box box-s" />
       <RoomLightController class="box dashboard-box box-s box-white" />
       <PublicTransport class="box dashboard-box box-m box-white" />
