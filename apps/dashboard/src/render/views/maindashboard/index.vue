@@ -101,6 +101,7 @@ if (window.location.search.length > 0) {
 @import "../../../../../../libs/style/mainstyle.scss";
 
 #dashboard-wrapper {
+  max-width: calc(320px * 3 + 8rem);
   position: relative;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -111,9 +112,10 @@ if (window.location.search.length > 0) {
 }
 
 #boxes {
-  display: flex;
-  column-gap: 15px;
-  row-gap: 15px;
+  display: grid;
+  column-gap: 1rem;
+  row-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;
 }
 

@@ -10,7 +10,7 @@ export default function useSonoService() {
   }
   async function resume(roomName: string) {
     axios.get(`${config.sonos.rest_url}/${roomName}/play`).catch((error) => {
-      //  TODO
+      console.error(error)
     })
   }
 

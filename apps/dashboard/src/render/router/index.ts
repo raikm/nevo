@@ -21,12 +21,12 @@ import plantdashboard from '../views/plantdashboard/index.vue'
 const routes = [
   {
     path: '/',
-    name: 'maindashboard-page',
+    name: 'maindashboard',
     component: maindashboard,
   },
   {
     path: '/plantdashboard',
-    name: 'plantdashboard-page',
+    name: 'plantdashboard',
     component: plantdashboard,
   },
 ]

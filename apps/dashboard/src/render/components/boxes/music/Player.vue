@@ -211,7 +211,7 @@ const emit = defineEmits(['update-zones', 'showPlaylists', 'standby'])
 socket.on("change", (data) => {
   let result = JSON.parse(data.toString());
 
-  // getZones() // TODO: send emit
+  // getZones()
   emit('update-zones')
   updateTimeInfos()
   if (result.type === "transport-state") {

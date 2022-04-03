@@ -93,7 +93,6 @@ export default defineComponent({
         return hour;
       });
     },
-    // TODO
     currentWeatherIconColor(weatherDescription: Description) {
       switch (weatherDescription) {
         case Description.ClearSky:

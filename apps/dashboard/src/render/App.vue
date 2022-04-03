@@ -84,13 +84,15 @@ createHomeassistantWebsocketConnection();
   background-color: #ebcbae;
 }
 #header {
-  // background: black;
+  display: grid;
+  align-items: center;
 }
 #main {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 15px;
-  margin: auto;
+  padding: 1rem;
+  // margin: auto;
+
   height: 100%;
 }
 #footer {
@@ -99,6 +101,6 @@ createHomeassistantWebsocketConnection();
 
 .content-container {
   overflow-y: auto;
-  padding: 0 15px;
+  // padding: 0 15px;
 }
 </style>
