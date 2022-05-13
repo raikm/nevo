@@ -49,7 +49,7 @@
     "vue": "^3.2.16",
     "vue-axios": "^3.2.5",
     "vue-gapi": "^2.0.0",
-    "vue-router": "4.0.9",
+    "vue-router": "4.0.15",
     "vuex": "^4.0.2"
   },
   "keywords": [
