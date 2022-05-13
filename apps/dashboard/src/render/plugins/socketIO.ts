@@ -9,7 +9,6 @@ import { App } from 'vue'
 
 export default {
   install: (app: App, options: any) => {
-    console.log(options)
     const socket = io(options.connection, { transports: ['websocket'] })
     // socket.on('connection', () => {
 

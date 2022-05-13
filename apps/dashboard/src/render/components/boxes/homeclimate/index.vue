@@ -1,5 +1,5 @@
 <template>
-  <div class="homeclimate-wrapper">
+  <div class="homeclimate-wrapper box-xs-wrapper">
     <div :key="index" v-for="(sensors, index) in rooms" class="box box-xs temperature-box">
       <div class="homeclimate-info-title">{{ sensors[0].attributes.Room }}</div>
       <div class="homeclimate-info">{{ currentTemperature(sensors) }}</div>
@@ -46,7 +46,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "temperature";
       });
       if (temperatureSensor.length === 1) {
-        return `${temperatureSensor[0].state}°C`;
+        if (temperatureSensor[0].state !== 'unavailable')
+          return `${temperatureSensor[0].state}°C`;
       }
     },
     currentHumidity(sensors: Sensor[]) {
@@ -54,7 +55,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "humidity";
       });
       if (humiditySensor.length === 1) {
-        return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`;
+        if (humiditySensor[0].state !== 'unavailable')
+          return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`;
       }
     },
     currentWindStrength(sensors: Sensor[]) {
@@ -62,7 +64,8 @@ export default defineComponent({
         return s.attributes.sensor_class === "wind_strength";
       });
       if (windSensor.length === 1) {
-        return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`;
+        if (windSensor[0].state !== 'unavailable')
+          return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`;
       }
     },
   },
@@ -77,15 +80,6 @@ export default defineComponent({
 <style lang="scss">
 @import "../../../../../../../libs/style/mainstyle.scss";
 
-.homeclimate-wrapper {
-  // Bug: so war just quick fix
-  height: 100%;
-  width: 350px !important;
-  display: flex;
-  column-gap: 15px;
-  row-gap: 15px;
-  flex-wrap: wrap;
-}
 .temperature-box {
   border-radius: $standard-border-radius;
   background-color: white;

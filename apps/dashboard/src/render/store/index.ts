@@ -8,6 +8,7 @@ export interface RootState {
   haConnection: HaConnection
   haEntities: HassEntity[]
   dayOfTheWeek: string
+  spotifyAccessToken: string
 }
 
 function getDayOfTheWeek() {
@@ -32,6 +33,7 @@ const store = createStore<RootState>({
       haEntities: [],
       dayOfTheWeek: getDayOfTheWeek(),
       haConnection: {} as HaConnection,
+      spotifyAccessToken: '',
     }
   },
   mutations: {
@@ -59,6 +61,10 @@ const store = createStore<RootState>({
     shortcutEntities: (state) =>
       state.haEntities.filter((entity: HassEntity) =>
         entity.entity_id.startsWith('script.shortcut_')
+      ),
+    persontEntities: (state) =>
+      state.haEntities.filter((entity: HassEntity) =>
+        entity.entity_id.startsWith('person.')
       ),
   },
 })

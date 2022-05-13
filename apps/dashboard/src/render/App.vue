@@ -31,7 +31,6 @@ import {
 import { computed, onMounted, onUnmounted, ref } from "vue";
 // Config
 import config from "../../../../config.json";
-import router from "./router";
 import store from "./store";
 
 const createHomeassistantWebsocketConnection = async () => {
@@ -56,24 +55,24 @@ const width = computed(() => windowWidth.value)
 
 
 const isMobile = computed(() => {
-  if (width.value <= 760) {
-    router.push('/mobile');
-    return true;
-  }
-  else {
-    // router.push('/');
-    return false;
-  }
+  // if (width.value <= 760) {
+  //   router.push('/mobile');
+  //   return true;
+  // }
+  // else {
+  //   // router.push('/');
+  //   return false;
+  // }
 })
 
 store.commit("setConfigFile", config);
 createHomeassistantWebsocketConnection();
 
-if (isMobile.value) {
-  router.push('/mobile');
-} else {
-  // router.push('/');
-}
+// if (isMobile.value) {
+//   router.push('/mobile');
+// } else {
+//   // router.push('/');
+// }
 
 </script>
 
@@ -85,13 +84,15 @@ if (isMobile.value) {
   background-color: #ebcbae;
 }
 #header {
-  // background: black;
+  display: grid;
+  align-items: center;
 }
 #main {
   display: grid;
   grid-template-columns: auto auto;
-  padding: 15px;
-  margin: auto;
+  padding: 1rem;
+  // margin: auto;
+
   height: 100%;
 }
 #footer {
@@ -100,6 +101,6 @@ if (isMobile.value) {
 
 .content-container {
   overflow-y: auto;
-  padding: 0 15px;
+  // padding: 0 15px;
 }
 </style>
