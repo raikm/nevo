@@ -3,7 +3,7 @@
     <div id="menu-pills">
       <div
         @click="changePage('maindashboard', 0)"
-        class="menu-button-new click-element"
+        class="menu-button-new"
         :class="{ 'active': activeIndex === 0 }"
       >
         <div class="menu-icon-wrapper">
@@ -25,7 +25,7 @@
       </div>
       <div
         @click="changePage('RoomDashboard', 1)"
-        class="menu-button-new click-element"
+        class="menu-button-new"
         :class="{ 'active': activeIndex === 1 }"
       >
         <div class="menu-icon-wrapper">
@@ -52,7 +52,7 @@
       </div>
       <div
         @click="changePage('plantdashboard', 2)"
-        class="menu-button-new click-element"
+        class="menu-button-new"
         :class="{ 'active': activeIndex === 2 }"
       >
         <div class="menu-icon-wrapper">
@@ -196,16 +196,4 @@ const changePage = (name: string, index: number) => {
 
 $inactive-color: $gray;
 
-.active {
-  animation: bounce-in 0.5s;
-}
-
-@keyframes bounce-in {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(0.98);
-  }
-}
 </style>
