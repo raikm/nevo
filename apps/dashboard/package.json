@@ -20,7 +20,7 @@
   "devDependencies": {
     "@capacitor/cli": "^3.4.1",
     "@vitejs/plugin-vue": "^2.0.1",
-    "electron": "17.1.0",
+    "electron": "17.2.0",
     "electron-builder": "^22.14.13",
     "typescript": "^4.4.3",
     "vite": "^2.9.13",
