@@ -35,7 +35,7 @@
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-standard": "^25.0.0",
     "typescript": "~4.5.2",
-    "vite": "^2.8.4",
+    "vite": "^2.9.13",
     "vite-svg-loader": "^2.2.0",
     "vue-tsc": "^0.33.9",
     "wait-on": "^6.0.0"
