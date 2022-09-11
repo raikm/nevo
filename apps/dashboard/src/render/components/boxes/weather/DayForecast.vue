@@ -5,13 +5,7 @@
 
 
       <div class="current-weather-icon-wrapper">
-        <!-- TODO extra component -->
-        <component v-if="currentWeather.weather[0].main ==='Clear'" :is="Clear"></component>
-        <component v-if="currentWeather.weather[0].main ==='Clouds'" :is="Clouds"></component>
-        <component v-if="currentWeather.weather[0].main ==='Rain'" :is="Rain"></component>
-        <component v-if="currentWeather.weather[0].main ==='Thunderstorm'" :is="Thunderstorm"></component>
-        <component v-if="currentWeather.weather[0].main ==='Drizzle'" :is="Drizzle"></component>
-        <component v-if="currentWeather.weather[0].main ==='Snow'" :is="Snow"></component>
+        <WeatherIcon :weather="currentWeather.weather[0]" />
       </div>
     </div>
     <div id="temperature-info-overview" v-if="todayForecast">
@@ -38,12 +32,7 @@
           }}
         </div>
         <div class="weather-icon-wrapper">
-          <component v-if="currentWeather.weather[0].main ==='Clear'" :is="Clear"></component>
-          <component v-if="currentWeather.weather[0].main ==='Clouds'" :is="Clouds"></component>
-          <component v-if="currentWeather.weather[0].main ==='Rain'" :is="Rain"></component>
-          <component v-if="currentWeather.weather[0].main ==='Thunderstorm'" :is="Thunderstorm"></component>
-          <component v-if="currentWeather.weather[0].main ==='Drizzle'" :is="Drizzle"></component>
-          <component v-if="currentWeather.weather[0].main ==='Snow'" :is="Snow"></component>
+          <WeatherIcon :weather="tempHourInfo.weather[0]" />
         </div>
         <div class="weather-hour-temperature">{{ Math.round(tempHourInfo.temp) }}°</div>
       </div>
@@ -52,16 +41,9 @@
 </template>
 
 <script lang="ts" setup>
-
 import { onMounted, ref } from "vue";
-import colors from "../../../../../../../libs/style/variables.scss";
-import Clear from "../../../assets/icons/weather/weather_clear.svg";
-import Clouds from "../../../assets/icons/weather/weather_clouds.svg";
-import Drizzle from "../../../assets/icons/weather/weather_mist.svg";
-import Rain from "../../../assets/icons/weather/weather_rain.svg";
-import Snow from "../../../assets/icons/weather/weather_snow.svg";
-import Thunderstorm from "../../../assets/icons/weather/weather_thunderstorm.svg";
-import { CurrentWeather, Daily, Description, Weatherforecast } from "../../../types/weatherforecast.interface";
+import { CurrentWeather, Daily, Weatherforecast } from "../../../types/weatherforecast.interface";
+import WeatherIcon from "./WeatherIcon.vue";
 
 const { weatherForecast } = defineProps<{ weatherForecast: Weatherforecast }>()
 const  currentWeather = ref<CurrentWeather>()
@@ -81,14 +63,6 @@ const setup6HoursForecast = () => {
   tempHourInfos.value = _weatherHour.slice(0, 6).filter((hour) => {
     return hour;
   });
-}
-const currentWeatherIconColor = (weatherDescription: Description) => {
-  switch (weatherDescription) {
-    case Description.ClearSky:
-      return colors.mainYellow;
-    default:
-      return colors.mainLightGray;
-  }
 }
 </script>
 

@@ -1,79 +1,82 @@
 <template>
   <DayForecast
-    :style="{ backgroundImage: this.backgroundImage }"
-    v-if="Object.keys(weatherForecast).length !== 0"
+    :style="{ backgroundImage: backgroundImage }"
+    v-if="weatherForecast && Object.keys(weatherForecast).length !== 0"
     class="forecast"
     :weatherForecast="weatherForecast"
   />
 </template>
 
-<script lang="ts">
-import { defineComponent } from "vue";
-import { Config } from "../../../types/config.interface";
-import { Weatherforecast } from "../../../types/weatherforecast.interface";
-import DayForecast from "./DayForecast.vue";
+<script lang="ts" setup>
+import axios from 'axios'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
+import { Config } from '../../../types/config.interface'
+import { Weatherforecast } from '../../../types/weatherforecast.interface'
+import DayForecast from './DayForecast.vue'
 
+const store = useStore()
+let refreshInterval: NodeJS.Timer
 
-export default defineComponent({
-  components: { DayForecast },
-  created() {
-    this.weatherForecastDataFromAPI();
-  },
-  data() {
-    return {
-      weatherForecast: {} as Weatherforecast,
-      backgroundImage: "linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)",
-    };
-  },
-  methods: {
-    weatherForecastDataFromAPI() {
-      const config = this.$store.state.config as Config;
-      const { api_key, open_weather_url } = config.weather;
+onMounted(async () => {
+  await weatherForecastDataFromAPI()
+  refreshInterval = setInterval(async () => {
+    await weatherForecastDataFromAPI()
+  }, 100000)
+})
 
-      this.axios
-        .get(`${open_weather_url}&appid=${api_key}`, {})
-        .then((response: any) => {
-          this.weatherForecast = response.data;
-          this.defineBackground();
-        })
-        .catch((error: any) => {
-          console.log(error.message);
-        });
-    },
-    defineBackground() {
-      const sunset = new Date(this.weatherForecast.daily[0].sunset);
-      const sunsetInMinutes = sunset.getHours() * 60 + sunset.getMinutes();
-      const now = new Date();
-      const nowInMinutes = now.getHours() * 60 + now.getMinutes();
-      //DAY
-      if (sunsetInMinutes > nowInMinutes) {
-        switch (this.weatherForecast.current.weather[0].main) {
-          case "Snow":
-            this.backgroundImage =
-              "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
-            break;
-          case "Rain":
-            this.backgroundImage =
-              "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
-            break;
-          default:
-            this.backgroundImage =
-              "linear-gradient(-150deg, #5ea5c9 100%, #2374bb 0%)";
-            break;
-        }
-      }
-      //NIGHT
-      else {
-        this.backgroundImage =
-          "linear-gradient(-150deg, #045d73 0%, #676b82 100%)";
-      }
-    },
-  },
-});
+onBeforeUnmount(() => {
+  clearInterval(refreshInterval)
+})
+
+const weatherForecast = ref<Weatherforecast>()
+const backgroundImage = ref(
+  'linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)'
+)
+
+const weatherForecastDataFromAPI = async () => {
+  const config = store.state.config as Config
+  const { api_key, open_weather_url } = config.weather
+
+  const response = await axios.get(`${open_weather_url}&appid=${api_key}`, {})
+  weatherForecast.value = response.data
+
+  defineBackground()
+}
+const defineBackground = () => {
+  if (weatherForecast.value == null) return
+  const sunset = new Date(weatherForecast.value.daily[0].sunset)
+  const sunsetInMinutes = sunset.getHours() * 60 + sunset.getMinutes()
+  const now = new Date()
+  const nowInMinutes = now.getHours() * 60 + now.getMinutes()
+  //DAY
+  if (sunsetInMinutes > nowInMinutes) {
+    store.state.sunset = false
+    switch (weatherForecast.value.current.weather[0].main) {
+      case 'Snow':
+        backgroundImage.value =
+          'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
+        break
+      case 'Rain':
+        backgroundImage.value =
+          'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
+        break
+      default:
+        backgroundImage.value =
+          'linear-gradient(-150deg, #5ea5c9 100%, #2374bb 0%)'
+        break
+    }
+  }
+  //NIGHT
+  else {
+    store.state.sunset = true
+    backgroundImage.value = 'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
+  }
+}
 </script>
 
 <style lang="scss">
-@import "../../../../../../../libs/style/variables.scss";
+@import '../../../../../../../libs/style/variables.scss';
 
 .forecast {
   height: 100%;
