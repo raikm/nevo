@@ -35,7 +35,7 @@ const store = createStore<RootState>({
       dayOfTheWeek: getDayOfTheWeek(),
       haConnection: {} as HaConnection,
       spotifyAccessToken: '',
-      sunset: undefined,
+      sunset: undefined
     }
   },
   mutations: {
@@ -47,7 +47,7 @@ const store = createStore<RootState>({
     },
     setHaConnection(state, newHaConnection) {
       state.haConnection = newHaConnection
-    },
+    }
   },
   getters: {
     homeclimateSensors: (state) => {
@@ -65,10 +65,8 @@ const store = createStore<RootState>({
         entity.entity_id.startsWith('script.shortcut_')
       ),
     persontEntities: (state) =>
-      state.haEntities.filter((entity: HassEntity) =>
-        entity.entity_id.startsWith('person.')
-      ),
-  },
+      state.haEntities.filter((entity: HassEntity) => entity.entity_id.startsWith('person.'))
+  }
 })
 
 export default store

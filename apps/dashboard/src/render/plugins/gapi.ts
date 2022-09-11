@@ -9,10 +9,10 @@ const Gapi: Plugin = {
       clientId: config.google_calendar.client_id,
       discoveryDocs: config.google_calendar.discovery_docs,
       scope: config.google_calendar.scope,
-      redirect_uri: 'localhost:8081', // TODO
+      redirect_uri: 'localhost:8081' // TODO
     }
     VueGapi.install(app, configParameter)
     app.provide('gapi', app.config.globalProperties.$gapi)
-  },
+  }
 }
 export { Gapi }

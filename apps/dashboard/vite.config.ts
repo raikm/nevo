@@ -13,16 +13,16 @@ export default defineConfig({
   base: process.env.ELECTRON == 'true' ? './' : '.',
   build: {
     outDir,
-    emptyOutDir: true,
+    emptyOutDir: true
   },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src/render'),
-      '@libs': path.resolve(__dirname, '../../libs'),
-    },
+      '@libs': path.resolve(__dirname, '../../libs')
+    }
   },
   server: {
-    port: 8081,
+    port: 8081
   },
-  plugins: [vue(), svgLoader()],
+  plugins: [vue(), svgLoader()]
 })

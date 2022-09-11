@@ -15,90 +15,77 @@
 </template>
 
 <script lang="ts" setup>
-import axios from "axios";
-import qs from "qs";
-import Calendar from "../../components/boxes/calendar/index.vue";
-import HomeClimate from "../../components/boxes/homeclimate/index.vue";
-import Music from "../../components/boxes/music/index.vue";
-import PublicTransport from "../../components/boxes/publictransport/index.vue";
-import RoomLightController from "../../components/boxes/roomlightcontroller/index.vue";
-import WeatherBox from "../../components/boxes/weather/index.vue";
-import Shortcut from "../../components/Shortcut.vue";
-import store from "../../store";
-
-
+import axios from 'axios'
+import qs from 'qs'
+import Calendar from '../../components/boxes/calendar/index.vue'
+import HomeClimate from '../../components/boxes/homeclimate/index.vue'
+import Music from '../../components/boxes/music/index.vue'
+import PublicTransport from '../../components/boxes/publictransport/index.vue'
+import RoomLightController from '../../components/boxes/roomlightcontroller/index.vue'
+import WeatherBox from '../../components/boxes/weather/index.vue'
+import Shortcut from '../../components/Shortcut.vue'
+import store from '../../store'
 
 const handleSpotifyRedirect = () => {
-  let code = getCode();
-  if (code) authSpotifyAccount(code);
+  let code = getCode()
+  if (code) authSpotifyAccount(code)
 }
 const getCode = () => {
-  let code = null;
-  const queryString = window.location.search;
+  let code = null
+  const queryString = window.location.search
   if (queryString.length > 0) {
-    const urlParams = new URLSearchParams(queryString);
-    code = urlParams.get("code");
+    const urlParams = new URLSearchParams(queryString)
+    code = urlParams.get('code')
   }
-  return code;
+  return code
 }
 
 const authSpotifyAccount = (code: string) => {
   const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
+    Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
     auth: {
       username: store.state.config.spotify.client_id,
-      password: store.state.config.spotify.client_secret,
-    },
-  };
+      password: store.state.config.spotify.client_secret
+    }
+  }
   const data = {
-    grant_type: "authorization_code",
+    grant_type: 'authorization_code',
     code: code,
-    redirect_uri: encodeURI(
-      window.location.origin + "/"
-    ),
+    redirect_uri: encodeURI(window.location.origin + '/'),
     client_id: store.state.config.spotify.client_id,
-    client_secret: store.state.config.spotify.client_secret,
-  };
-  if (store.state.spotifyAccessToken == "") {
-
-
+    client_secret: store.state.config.spotify.client_secret
+  }
+  if (store.state.spotifyAccessToken == '') {
     axios
-      .post(
-        "https://accounts.spotify.com/api/token",
-        qs.stringify(data),
-        headers
-      )
+      .post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
       .then((response) => {
         if (store.state.spotifyAccessToken.length === 0) {
           if (response.data.access_token != undefined) {
-            let access_token = response.data.access_token;
-            localStorage.setItem("spotify_access_token", access_token);
+            let access_token = response.data.access_token
+            localStorage.setItem('spotify_access_token', access_token)
           }
           if (response.data.refresh_token != undefined) {
-            let refresh_token = response.data.refresh_token;
-            localStorage.setItem("spotify_refresh_token", refresh_token);
+            let refresh_token = response.data.refresh_token
+            localStorage.setItem('spotify_refresh_token', refresh_token)
           }
         }
       })
       .catch((error) => {
-        console.log(error);
-      });
+        console.log(error)
+      })
   }
 }
-
-
 
 if (window.location.search.length > 0) {
   // console.log("handleRedirect")
 
-  handleSpotifyRedirect();
+  handleSpotifyRedirect()
 }
-
 </script>
 
 <style lang="scss" scoped>
-@import "../../../../../../libs/style/mainstyle.scss";
+@import '../../../../../../libs/style/mainstyle.scss';
 
 #dashboard-wrapper {
   max-width: calc(320px * 3 + 8rem);

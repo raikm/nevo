@@ -3,7 +3,6 @@
     <div class="main-info-title" id="weather-header">
       <div id="weather-city-name">Berlin</div>
 
-
       <div class="current-weather-icon-wrapper">
         <WeatherIcon :weather="currentWeather.weather[0]" />
       </div>
@@ -13,8 +12,7 @@
       <div id="weather-description">
         <span>{{ currentWeather.weather[0].main }}</span>
         <span>
-          H: {{ Math.round(todayForecast.temp.max) }}° L:
-          {{ Math.round(todayForecast.temp.min) }}°
+          H: {{ Math.round(todayForecast.temp.max) }}° L: {{ Math.round(todayForecast.temp.min) }}°
         </span>
       </div>
     </div>
@@ -25,11 +23,7 @@
         v-for="(tempHourInfo, index) in tempHourInfos"
       >
         <div class="weather-hour">
-          {{
-            new Date(
-              currentHour.setHours(currentHour.getHours() + 1)
-            ).getHours()
-          }}
+          {{ new Date(currentHour.setHours(currentHour.getHours() + 1)).getHours() }}
         </div>
         <div class="weather-icon-wrapper">
           <WeatherIcon :weather="tempHourInfo.weather[0]" />
@@ -41,28 +35,28 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { CurrentWeather, Daily, Weatherforecast } from "../../../types/weatherforecast.interface";
-import WeatherIcon from "./WeatherIcon.vue";
+import { onMounted, ref } from 'vue'
+import { CurrentWeather, Daily, Weatherforecast } from '../../../types/weatherforecast.interface'
+import WeatherIcon from './WeatherIcon.vue'
 
 const { weatherForecast } = defineProps<{ weatherForecast: Weatherforecast }>()
-const  currentWeather = ref<CurrentWeather>()
+const currentWeather = ref<CurrentWeather>()
 const tempHourInfos = ref<CurrentWeather[]>()
-const todayForecast = ref<Daily>();
-const currentHour = ref(new Date());
+const todayForecast = ref<Daily>()
+const currentHour = ref(new Date())
 
 onMounted(() => {
-  setup6HoursForecast();
+  setup6HoursForecast()
 })
 
 const setup6HoursForecast = () => {
-  currentWeather.value = weatherForecast.current;
-  todayForecast.value = weatherForecast.daily[0];
-  let _weatherHour = Object.values(weatherForecast.hourly);
+  currentWeather.value = weatherForecast.current
+  todayForecast.value = weatherForecast.daily[0]
+  let _weatherHour = Object.values(weatherForecast.hourly)
 
   tempHourInfos.value = _weatherHour.slice(0, 6).filter((hour) => {
-    return hour;
-  });
+    return hour
+  })
 }
 </script>
 

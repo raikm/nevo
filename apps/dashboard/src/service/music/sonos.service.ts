@@ -36,6 +36,6 @@ export default function useSonoService() {
     pauseMusic,
     nextTrack,
     previousTrack,
-    updateVolume,
+    updateVolume
   }
 }

@@ -16,5 +16,5 @@ export default {
     app.config.globalProperties.$socket = socket
 
     app.provide('socket', socket)
-  },
+  }
 }

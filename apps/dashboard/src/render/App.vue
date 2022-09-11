@@ -21,38 +21,38 @@
 
 <script lang="ts" setup>
 // Components
-import Menu from "@/components/menu/index.vue";
+import Menu from '@/components/menu/index.vue'
 // Websockets
 import {
   createConnection,
   // subscribeServices,
-  createLongLivedTokenAuth, subscribeEntities
-} from "home-assistant-js-websocket";
-import { computed, onMounted, onUnmounted, ref } from "vue";
+  createLongLivedTokenAuth,
+  subscribeEntities
+} from 'home-assistant-js-websocket'
+import { computed, onMounted, onUnmounted, ref } from 'vue'
 // Config
-import config from "../../../../config.json";
-import store from "./store";
+import config from '../../../../config.json'
+import store from './store'
 
 const createHomeassistantWebsocketConnection = async () => {
   const auth = createLongLivedTokenAuth(
     config.homeassistant.hassUrl,
     config.homeassistant.life_time_token_raik
-  );
-  let connection = await createConnection({ auth });
+  )
+  let connection = await createConnection({ auth })
   subscribeEntities(connection, (entities) => {
-    store.commit("setHaEntities", Object.values(entities));
-  });
-  store.commit("setHaConnection", connection);
+    store.commit('setHaEntities', Object.values(entities))
+  })
+  store.commit('setHaConnection', connection)
 }
 
 let windowWidth = ref(window.innerWidth)
 
-const onWidthChange = () => windowWidth.value = window.innerWidth
+const onWidthChange = () => (windowWidth.value = window.innerWidth)
 onMounted(() => window.addEventListener('resize', onWidthChange))
 onUnmounted(() => window.removeEventListener('resize', onWidthChange))
 
 const width = computed(() => windowWidth.value)
-
 
 const isMobile = computed(() => {
   // if (width.value <= 760) {
@@ -65,15 +65,14 @@ const isMobile = computed(() => {
   // }
 })
 
-store.commit("setConfigFile", config);
-createHomeassistantWebsocketConnection();
+store.commit('setConfigFile', config)
+createHomeassistantWebsocketConnection()
 
 // if (isMobile.value) {
 //   router.push('/mobile');
 // } else {
 //   // router.push('/');
 // }
-
 </script>
 
 <style lang="scss">

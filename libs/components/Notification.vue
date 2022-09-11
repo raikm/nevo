@@ -1,11 +1,11 @@
 <script lang="ts" setup>
-import { Notification as NotifactionType } from "../../libs/types/notifications";
+import { Notification as NotifactionType } from '../../libs/types/notifications'
 
 defineProps<{ notifications: NotifactionType[] }>()
 
 const timePasted = (created: Date) => {
-  let result = "25"
-  let currency = "min"
+  let result = '25'
+  let currency = 'min'
   return `${result} ${currency} ago`
 }
 
@@ -26,7 +26,7 @@ const timePasted = (created: Date) => {
 </template>
 
 <style lang="scss">
-@import "../style/mainstyle.scss";
+@import '../style/mainstyle.scss';
 
 .notification {
   margin: $standard-space;

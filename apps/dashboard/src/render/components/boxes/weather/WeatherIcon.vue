@@ -3,16 +3,10 @@
     v-if="weather.main === 'Clear' && store.state.sunset === false"
     :is="Clear"
   ></component>
-  <component
-    v-if="weather.main === 'Clear' && store.state.sunset === true"
-    :is="Moon"
-  ></component>
+  <component v-if="weather.main === 'Clear' && store.state.sunset === true" :is="Moon"></component>
   <component v-if="weather.main === 'Clouds'" :is="Clouds"></component>
   <component v-if="weather.main === 'Rain'" :is="Rain"></component>
-  <component
-    v-if="weather.main === 'Thunderstorm'"
-    :is="Thunderstorm"
-  ></component>
+  <component v-if="weather.main === 'Thunderstorm'" :is="Thunderstorm"></component>
   <component v-if="weather.main === 'Drizzle'" :is="Drizzle"></component>
   <component v-if="weather.main === 'Snow'" :is="Snow"></component>
 </template>

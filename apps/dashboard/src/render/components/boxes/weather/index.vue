@@ -30,9 +30,7 @@ onBeforeUnmount(() => {
 })
 
 const weatherForecast = ref<Weatherforecast>()
-const backgroundImage = ref(
-  'linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)'
-)
+const backgroundImage = ref('linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)')
 
 const weatherForecastDataFromAPI = async () => {
   const config = store.state.config as Config
@@ -54,16 +52,13 @@ const defineBackground = () => {
     store.state.sunset = false
     switch (weatherForecast.value.current.weather[0].main) {
       case 'Snow':
-        backgroundImage.value =
-          'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
+        backgroundImage.value = 'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
         break
       case 'Rain':
-        backgroundImage.value =
-          'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
+        backgroundImage.value = 'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
         break
       default:
-        backgroundImage.value =
-          'linear-gradient(-150deg, #5ea5c9 100%, #2374bb 0%)'
+        backgroundImage.value = 'linear-gradient(-150deg, #5ea5c9 100%, #2374bb 0%)'
         break
     }
   }

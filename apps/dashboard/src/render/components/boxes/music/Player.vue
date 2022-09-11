@@ -23,9 +23,7 @@
           <div
             id="progress-track"
             :style="{
-              width:
-                (currentTrackSeconds / currentTrack.duration) * 100 +
-                '%',
+              width: (currentTrackSeconds / currentTrack.duration) * 100 + '%',
               maxWidth: '100%'
             }"
           ></div>
@@ -164,77 +162,71 @@ import VolumeSlider from './VolumeSlider.vue'
 const sonosService = useSonoService()
 const zones = ref<Zone[]>([])
 
-const props = defineProps<{ activeGroup: Zone, latestActiveGroup: Zone }>()
-
+const props = defineProps<{ activeGroup: Zone; latestActiveGroup: Zone }>()
 
 const speakers = computed(() => {
-
   let speakers: Speaker[] = []
 
   zones.value.forEach((zone: Zone) => {
     zone.members.forEach((member: Speaker) => {
-      speakers.push(member);
-    });
-  });
+      speakers.push(member)
+    })
+  })
 
-  speakers.sort((a: Speaker, b: Speaker) =>
-    a.roomName.localeCompare(b.roomName)
-  );
+  speakers.sort((a: Speaker, b: Speaker) => a.roomName.localeCompare(b.roomName))
 
   return speakers
-});
+})
 
-const activeGroupState = computed(() => { return props.activeGroup != null ? (props.activeGroup as any).coordinator.state : null }); // TODO
-const currentTrack = computed(() => { { return activeGroupState.value != null ? (activeGroupState.value as any).currentTrack : props.latestActiveGroup.coordinator.state.currentTrack } });
-const volumeOfActiveZone = computed(() => { return activeGroupState.value != null ? (activeGroupState.value as any).volume : 0 });
+const activeGroupState = computed(() => {
+  return props.activeGroup != null ? (props.activeGroup as any).coordinator.state : null
+}) // TODO
+const currentTrack = computed(() => {
+  {
+    return activeGroupState.value != null
+      ? (activeGroupState.value as any).currentTrack
+      : props.latestActiveGroup.coordinator.state.currentTrack
+  }
+})
+const volumeOfActiveZone = computed(() => {
+  return activeGroupState.value != null ? (activeGroupState.value as any).volume : 0
+})
 
 const activeSpeakerNames = computed(() => {
-  let result = "";
-  for (
-    let index = 0;
-    index < props.activeGroup.members.length - 1;
-    index++
-  ) {
-    result += props.activeGroup.members[index].roomName + ", ";
+  let result = ''
+  for (let index = 0; index < props.activeGroup.members.length - 1; index++) {
+    result += props.activeGroup.members[index].roomName + ', '
   }
-  result += props.activeGroup.members[props.activeGroup.members.length - 1].roomName;
-  return result;
-});
-
-
-
+  result += props.activeGroup.members[props.activeGroup.members.length - 1].roomName
+  return result
+})
 
 // watch sonos changes
-const socket: Socket = inject('socket')!;
+const socket: Socket = inject('socket')!
 const emit = defineEmits(['update-zones', 'showPlaylists', 'standby'])
 
-socket.on("change", (data) => {
-  let result = JSON.parse(data.toString());
+socket.on('change', (data) => {
+  let result = JSON.parse(data.toString())
 
   // getZones()
   emit('update-zones')
   updateTimeInfos()
-  if (result.type === "transport-state") {
+  if (result.type === 'transport-state') {
     // snapshot of player
     // getZones()
-  }
-  else if (result.type === "topology-change") {
+  } else if (result.type === 'topology-change') {
     // snapshot of zones
+  } else if (result.type === 'volume-change') {
   }
-  else if (result.type === "volume-change") {
-  }
-});
-
-
+})
 
 // actions
 const resume = async () => {
   const roomName =
     props.activeGroup != null
       ? props.activeGroup.coordinator.roomName
-      : props.latestActiveGroup.coordinator.roomName;
+      : props.latestActiveGroup.coordinator.roomName
   await sonosService.resume(roomName)
-
 }
 
 const pause = () => {
@@ -255,55 +247,49 @@ const updateVolume = (newVolume: number) => {
   sonosService.updateVolume(props.activeGroup.coordinator.roomName, newVolume)
 }
 
-const currentTrackSeconds = ref(0);
-const currentTrackSecondsString = ref("")
-const endTrackTime = ref("")
-const interval = ref(0);
-
-
+const currentTrackSeconds = ref(0)
+const currentTrackSecondsString = ref('')
+const endTrackTime = ref('')
+const interval = ref(0)
 
 onMounted(() => {
   interval.value = setInterval(() => {
-    updateSecondsInCurrentTrack();
-  }, 1000);
+    updateSecondsInCurrentTrack()
+  }, 1000)
 })
 onUnmounted(() => {
-  clearInterval(interval.value);
-
+  clearInterval(interval.value)
 })
 
 //watch
 // activeGroupState.value.elapsedTime
-watch(() => activeGroupState.value, () => {
-  if (activeGroupState) currentTrackSeconds.value = activeGroupState.value.elapsedTime
-
-});
-
+watch(
+  () => activeGroupState.value,
+  () => {
+    if (activeGroupState) currentTrackSeconds.value = activeGroupState.value.elapsedTime
+  }
+)
 
 const updateSecondsInCurrentTrack = () => {
-  currentTrackSeconds.value += 1;
-  elapsedTimeToFormatedString();
-
+  currentTrackSeconds.value += 1
+  elapsedTimeToFormatedString()
 }
 
 const elapsedTimeToFormatedString = () => {
-  currentTrackSecondsString.value = getFormatedTimeString(
-    currentTrackSeconds.value
-  );
+  currentTrackSecondsString.value = getFormatedTimeString(currentTrackSeconds.value)
 }
 
 const endTimeToFormatedString = () => {
-  endTrackTime.value = getFormatedTimeString((currentTrack.value as CurrentTrack).duration);
+  endTrackTime.value = getFormatedTimeString((currentTrack.value as CurrentTrack).duration)
 }
 
 const getFormatedTimeString = (seconds: number) => {
-  let durationTime = new Date(0);
-  durationTime.setHours(0);
-  durationTime.setSeconds(seconds);
-  const durationTimeString = durationTime.toLocaleTimeString();
-  if (durationTimeString.split(":")[1][0] === "0")
-    return durationTimeString.slice(4, 8);
-  return durationTimeString.slice(3, 8);
+  let durationTime = new Date(0)
+  durationTime.setHours(0)
+  durationTime.setSeconds(seconds)
+  const durationTimeString = durationTime.toLocaleTimeString()
+  if (durationTimeString.split(':')[1][0] === '0') return durationTimeString.slice(4, 8)
+  return durationTimeString.slice(3, 8)
 }
 
 const updateTimeInfos = () => {
@@ -312,7 +298,6 @@ const updateTimeInfos = () => {
 }
 
 endTimeToFormatedString()
-
 </script>
 
 <style lang="scss">

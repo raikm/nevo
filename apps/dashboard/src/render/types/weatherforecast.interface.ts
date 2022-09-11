@@ -43,7 +43,7 @@ export enum Description {
   LightRain = 'light rain',
   ModerateRain = 'moderate rain',
   OvercastClouds = 'overcast clouds',
-  ScatteredClouds = 'scattered clouds',
+  ScatteredClouds = 'scattered clouds'
 }
 
 export interface Daily {

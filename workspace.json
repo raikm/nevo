@@ -1,7 +1,6 @@
 {
-  "version": 2,
+  "version": 1,
   "projects": {
-    "dashboard": "apps/dashboard",
-    "mobile": "apps/mobile"
+    "dashboard": "apps/dashboard"
   }
 }

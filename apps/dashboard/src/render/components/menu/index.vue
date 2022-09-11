@@ -74,9 +74,7 @@
     </div>
     <div id="settings-and-people">
       <div id="people">
-        <Person :person="person" v-for="person in persons">{{
-          person.entity_id
-        }}</Person>
+        <Person :person="person" v-for="person in persons">{{ person.entity_id }}</Person>
       </div>
       <div class="settings-wrapper">
         <svg
@@ -149,8 +147,7 @@ const changePage = (name: string, index: number) => {
       width: 8rem;
       place-items: center;
       font-size: 0.8rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
-        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
       backdrop-filter: saturate(130%) blur(20px);
       background-color: rgb(234, 234, 234);
       cursor: pointer;
