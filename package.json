@@ -41,18 +41,18 @@
     "wait-on": "^6.0.0"
   },
   "dependencies": {
-    "@capacitor/core": "^3.4.3",
-    "@types/gapi.auth2": "^0.0.55",
-    "axios": "^0.21.2",
-    "electron-devtools-installer": "^3.2.0",
+    "@capacitor/core": "^4.2.0",
+    "@types/gapi.auth2": "^0.0.56",
+    "axios": "^0.27.2",
+    "hafas-client": "^5.25.0",
     "home-assistant-js-websocket": "^5.11.1",
-    "qs": "^6.10.3",
-    "sass": "^1.45.0",
-    "socket.io-client": "^4.4.1",
-    "vue": "^3.2.31",
+    "qs": "^6.11.0",
+    "sass": "^1.54.9",
+    "socket.io-client": "^4.5.2",
+    "vue": "^3.2.39",
     "vue-axios": "^3.2.5",
-    "vue-gapi": "^2.0.0",
-    "vue-router": "4.0.15",
+    "vue-gapi": "^2.1.2",
+    "vue-router": "4.1.5",
     "vuex": "^4.0.2"
   },
   "keywords": [

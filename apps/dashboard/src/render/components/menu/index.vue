@@ -4,7 +4,7 @@
       <div
         @click="changePage('maindashboard', 0)"
         class="menu-button-new"
-        :class="{ 'active': activeIndex === 0 }"
+        :class="{ active: activeIndex === 0 }"
       >
         <div class="menu-icon-wrapper">
           <svg
@@ -26,7 +26,7 @@
       <div
         @click="changePage('RoomDashboard', 1)"
         class="menu-button-new"
-        :class="{ 'active': activeIndex === 1 }"
+        :class="{ active: activeIndex === 1 }"
       >
         <div class="menu-icon-wrapper">
           <svg
@@ -53,7 +53,7 @@
       <div
         @click="changePage('plantdashboard', 2)"
         class="menu-button-new"
-        :class="{ 'active': activeIndex === 2 }"
+        :class="{ active: activeIndex === 2 }"
       >
         <div class="menu-icon-wrapper">
           <svg
@@ -74,7 +74,9 @@
     </div>
     <div id="settings-and-people">
       <div id="people">
-        <Person :person="person" v-for="person in persons">{{ person.entity_id }}</Person>
+        <Person :person="person" v-for="person in persons">{{
+          person.entity_id
+        }}</Person>
       </div>
       <div class="settings-wrapper">
         <svg
@@ -93,27 +95,27 @@
   </div>
 </template>
 
-<script  lang="ts" setup>
-import { HassEntity } from "home-assistant-js-websocket";
-import { computed, ref } from "vue";
-import router from "../../router";
-import store from "../../store/index";
-import Person from "./Person.vue";
+<script lang="ts" setup>
+import { HassEntity } from 'home-assistant-js-websocket'
+import { computed, ref } from 'vue'
+import router from '../../router'
+import store from '../../store/index'
+import Person from './Person.vue'
 
-const activeIndex = ref(0);
-const persons = computed(() => { return store.getters.persontEntities as HassEntity[] })
+const activeIndex = ref(0)
+const persons = computed(() => {
+  return store.getters.persontEntities as HassEntity[]
+})
 
 const changePage = (name: string, index: number) => {
   activeIndex.value = index
   router.push({ name: name })
 }
-
-
 </script>
 
 <style lang="scss">
-@import "../../../../../../libs/style/mainstyle.scss";
-@import "../../../../../../libs/style/variables.scss";
+@import '../../../../../../libs/style/mainstyle.scss';
+@import '../../../../../../libs/style/variables.scss';
 
 #menu-wrapper {
   display: grid;
@@ -166,7 +168,7 @@ const changePage = (name: string, index: number) => {
   }
   #people {
     display: inline-flex;
-    column-gap: $standard-space / 3;
+    column-gap: calc($standard-space / 3);
     justify-self: right;
   }
 
@@ -175,7 +177,6 @@ const changePage = (name: string, index: number) => {
     backdrop-filter: saturate(130%) blur(20px);
     background-color: rgb(244, 244, 244);
     border-radius: 50%;
-
     width: 2rem;
     display: grid;
     justify-items: center;
@@ -195,5 +196,4 @@ const changePage = (name: string, index: number) => {
 }
 
 $inactive-color: $gray;
-
 </style>
