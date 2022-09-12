@@ -6,6 +6,7 @@ apps/dashboard/ios
 apps/mobile/dist
 apps/mobile
 config.json
+.turbo
 
 # local env files
 .env.local
