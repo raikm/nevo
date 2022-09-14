@@ -1,6 +1,6 @@
 import axios from "axios";
 import qs from "qs";
-import { useStore } from "../store";
+import { useStore } from "../../store";
 
 export class SpotifyService {
   store = useStore();

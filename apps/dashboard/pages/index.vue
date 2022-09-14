@@ -18,14 +18,14 @@
 </template>
 
 <script lang="ts" setup>
-  import { useSpotifyService } from "../services/index";
+  import { useSpotifyService } from "../services/spotify/index";
   import { useHomeAssistantStore } from "../store/homeassistant";
   const homeAssistantStore = useHomeAssistantStore();
   const spotifyService = useSpotifyService();
 
-  if (window.location.search.length > 0) {
-    spotifyService.handleSpotifyRedirect();
-  }
+  // TODO if (window.location.search.length > 0) {
+  //   spotifyService.handleSpotifyRedirect();
+  // }
 </script>
 
 <!-- <style lang="scss" scoped>

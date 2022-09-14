@@ -43,6 +43,7 @@
       console.log("error while connecting to home assistant");
     }
   };
+
   onMounted(async () => {
     await createHomeassistantWebsocketConnection();
   });
