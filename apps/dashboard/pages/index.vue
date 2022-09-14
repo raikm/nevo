@@ -18,72 +18,13 @@
 </template>
 
 <script lang="ts" setup>
-  import axios from "axios";
-  import qs from "qs";
+  import { useSpotifyService } from "../services/index";
   import { useHomeAssistantStore } from "../store/homeassistant";
-  import { useStore } from "../store/index";
-
-  const store = useStore();
   const homeAssistantStore = useHomeAssistantStore();
-
-  const handleSpotifyRedirect = () => {
-    let code = getCode();
-    if (code) authSpotifyAccount(code);
-  };
-  const getCode = () => {
-    let code: string | null = "";
-    const queryString = window.location.search;
-    if (queryString.length > 0) {
-      const urlParams = new URLSearchParams(queryString);
-      code = urlParams.get("code");
-    }
-    return code;
-  };
-
-  const authSpotifyAccount = (code: string) => {
-    const headers = {
-      Accept: "application/json",
-      "Content-Type": "application/x-www-form-urlencoded",
-      auth: {
-        username: store.config.spotify.client_id,
-        password: store.config.spotify.client_secret,
-      },
-    };
-
-    const data = {
-      grant_type: "authorization_code",
-      code: code,
-      redirect_uri: encodeURI(window.location.origin + "/"),
-      client_id: store.config.spotify.client_id,
-      client_secret: store.config.spotify.client_secret,
-    };
-    if (store.spotifyAccessToken == "") {
-      axios
-        .post(
-          "https://accounts.spotify.com/api/token",
-          qs.stringify(data),
-          headers
-        )
-        .then((response) => {
-          if (store.spotifyAccessToken.length === 0) {
-            if (response.data.access_token != undefined) {
-              let access_token = response.data.access_token;
-              localStorage.setItem("spotify_access_token", access_token);
-            }
-            if (response.data.refresh_token != undefined) {
-              let refresh_token = response.data.refresh_token;
-              localStorage.setItem("spotify_refresh_token", refresh_token);
-            }
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  };
+  const spotifyService = useSpotifyService();
 
   if (window.location.search.length > 0) {
-    handleSpotifyRedirect();
+    spotifyService.handleSpotifyRedirect();
   }
 </script>
 

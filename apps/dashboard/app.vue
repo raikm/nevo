@@ -19,9 +19,9 @@
     subscribeEntities,
   } from "home-assistant-js-websocket";
   import config from "../../config.json";
-  import { NevoConfig } from "./nevoConfig";
   import { useHomeAssistantStore } from "./store/homeassistant";
   import { useStore } from "./store/index";
+  import { NevoConfig } from "./types/nevoConfig";
 
   const homeassistantStore = useHomeAssistantStore();
   const store = useStore();

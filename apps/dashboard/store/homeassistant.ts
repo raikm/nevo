@@ -18,7 +18,7 @@ export const useHomeAssistantStore = defineStore("homeassistant", {
   },
   getters: {
     shortcutEntities: (state) => {
-      if (state.haEntities) return;
+      if (!state.haEntities) return;
       state.haEntities.filter((entity: HassEntity) =>
         entity.entity_id.startsWith("script.shortcut_")
       );
