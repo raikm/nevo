@@ -9,5 +9,14 @@
   },
   "devDependencies": {
     "nuxt": "3.0.0-rc.9"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.4.2",
+    "@types/ws": "^8.5.3",
+    "axios": "^0.27.2",
+    "home-assistant-js-websocket": "^8.0.0",
+    "qs": "^6.11.0",
+    "sass": "^1.54.9",
+    "vue": "^3.2.39"
   }
 }
