@@ -10,7 +10,7 @@ importers:
       prettier: 2.7.1
       turbo: 1.4.6
 
-  apps/nevo:
+  apps/dashboard:
     specifiers:
       nuxt: 3.0.0-rc.9
     devDependencies:
@@ -687,11 +687,11 @@ packages:
       rollup: 2.79.0
     dev: true
 
-  /@rollup/plugin-node-resolve/13.3.0_rollup@2.79.0:
-    resolution: {integrity: sha512-Lus8rbUo1eEcnS4yTFKLZrVumLPY+YayBdWXgFSHYhTT2iJbMhoaaBL3xl5NCdeRytErGr8tZ0L71BMRmnlwSw==}
+  /@rollup/plugin-node-resolve/14.1.0_rollup@2.79.0:
+    resolution: {integrity: sha512-5G2niJroNCz/1zqwXtk0t9+twOSDlG00k1Wfd7bkbbXmwg8H8dvgHdIWAun53Ps/rckfvOC7scDBjuGFg5OaWw==}
     engines: {node: '>= 10.0.0'}
     peerDependencies:
-      rollup: ^2.42.0
+      rollup: ^2.78.0
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.79.0
       '@types/resolve': 1.17.1
@@ -3025,8 +3025,8 @@ packages:
     hasBin: true
     dev: true
 
-  /nitropack/0.5.1:
-    resolution: {integrity: sha512-mPDcj1lmbjZLtXJjE4EXkXsq2S+DnbBNHYOs1SNBeFiBIlOYqhyHipJR5zx/m/SuR9ELd9DyBIVm/ulQDipUhg==}
+  /nitropack/0.5.2:
+    resolution: {integrity: sha512-VXLxM5e6Fnkj8XPT9WHIPAKo1PRFr9zlLtE1Rhu8N1p9BCyTtFvXXQpOJeeTXrjYYUsFqlBlzQof+tCc0TfeTg==}
     engines: {node: ^14.16.0 || ^16.11.0 || ^17.0.0 || ^18.0.0}
     hasBin: true
     dependencies:
@@ -3036,7 +3036,7 @@ packages:
       '@rollup/plugin-commonjs': 22.0.2_rollup@2.79.0
       '@rollup/plugin-inject': 4.0.4_rollup@2.79.0
       '@rollup/plugin-json': 4.1.0_rollup@2.79.0
-      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.79.0
+      '@rollup/plugin-node-resolve': 14.1.0_rollup@2.79.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.79.0
       '@rollup/plugin-wasm': 5.2.0_rollup@2.79.0
       '@rollup/pluginutils': 4.2.1
@@ -3222,7 +3222,7 @@ packages:
       knitwork: 0.1.2
       magic-string: 0.26.3
       mlly: 0.5.14
-      nitropack: 0.5.1
+      nitropack: 0.5.2
       nuxi: 3.0.0-rc.9
       ohash: 0.1.5
       ohmyfetch: 0.4.18
