@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { NevoConfig } from "~~/types/nevoConfig";
+import { NevoConfig } from "../types/nevoConfig";
 export interface State {
   config: NevoConfig | undefined;
   spotifyAccessToken: string;

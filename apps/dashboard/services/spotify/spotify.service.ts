@@ -1,9 +1,14 @@
 import axios from "axios";
+import { Store } from "pinia";
 import qs from "qs";
-import { useStore } from "../../store";
+import { State } from "../../store";
 
 export class SpotifyService {
-  store = useStore();
+  store: Store<"store", State, {}, {}>;
+
+  constructor(store: Store<"store", State, {}, {}>) {
+    this.store = store;
+  }
 
   handleSpotifyRedirect = () => {
     let code = this.getCode();
@@ -20,6 +25,11 @@ export class SpotifyService {
   };
 
   authSpotifyAccount = (code: string) => {
+    if (this.store.config == null) {
+      console.error("error while reading config from store");
+      return;
+    }
+
     const headers = {
       Accept: "application/json",
       "Content-Type": "application/x-www-form-urlencoded",

@@ -20,8 +20,11 @@
 <script lang="ts" setup>
   import { useSpotifyService } from "../services/spotify/index";
   import { useHomeAssistantStore } from "../store/homeassistant";
+  import { useStore } from "../store/index";
+
   const homeAssistantStore = useHomeAssistantStore();
-  const spotifyService = useSpotifyService();
+  const store = useStore();
+  const spotifyService = useSpotifyService(store);
 
   // TODO if (window.location.search.length > 0) {
   //   spotifyService.handleSpotifyRedirect();

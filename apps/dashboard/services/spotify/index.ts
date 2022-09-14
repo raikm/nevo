@@ -1,5 +1,4 @@
+import { Store } from "pinia";
 import { SpotifyService } from "./spotify.service";
 
-const service = new SpotifyService();
-
-export const useSpotifyService = () => service;
+export const useSpotifyService = (store: Store) => new SpotifyService(store);
