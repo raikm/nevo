@@ -1,82 +1,100 @@
 <template>
-  <div id="menu-wrapper">
-    <div id="menu-pills">
-      <div
-        @click="changePage('maindashboard', 0)"
-        class="menu-button-new"
-        :class="{ active: activeIndex === 0 }"
-      >
-        <div class="menu-icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Layer_1"
-            data-name="Layer 1"
-            viewBox="0 0 24 24"
-            width="512"
-            height="512"
-          >
-            <path d="M15,0H3A3,3,0,0,0,0,3v8H15V0Z" />
-            <path d="M21,0H17V11h7V3a3,3,0,0,0-3-3Z" />
-            <path d="M7,13H0v8a3,3,0,0,0,3,3H7V13Z" />
-            <path d="M24,13H9V24H21a3,3,0,0,0,3-3V13Z" />
-          </svg>
+  <div id="menu-main-wrapper">
+    <div id="menu-main">
+      <Transition name="slide-fade">
+        <div
+          v-if="!showMenu"
+          class="menu-trigger menu-open"
+          @click="showMenu = true"
+        >
+          <span>◠</span>
         </div>
-        <div class="menu-text">Dashboard</div>
-      </div>
-      <div
-        @click="changePage('RoomDashboard', 1)"
-        class="menu-button-new"
-        :class="{ active: activeIndex === 1 }"
-      >
-        <div class="menu-icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Layer_1"
-            data-name="Layer 1"
-            viewBox="0 0 24 24"
-            width="512"
-            height="512"
+      </Transition>
+      <Transition name="slide-fade">
+        <div v-if="showMenu" id="menu-pills">
+          <div
+            @click="changePage('index', 0)"
+            class="menu-button-new"
+            :class="{ active: activeIndex === 0 }"
           >
-            <path
-              d="M14.762,11.587A5.5,5.5,0,0,1,13,12.223V23.874a4.922,4.922,0,0,0,1.5-.557l6.027-3.479a5.016,5.016,0,0,0,2.5-4.331V8.547a4.959,4.959,0,0,0-.265-1.57Z"
-            />
-            <path
-              d="M10.242,9.857a3.531,3.531,0,0,0,3.521,0l8-4.61a4.983,4.983,0,0,0-1.238-1.027L14.5.737a5.015,5.015,0,0,0-5,0L3.473,4.217a4.974,4.974,0,0,0-1.2.983Z"
-            />
-            <path
-              d="M11,12.223a5.493,5.493,0,0,1-1.763-.636L1.257,6.923A4.956,4.956,0,0,0,.973,8.547v6.96a5.016,5.016,0,0,0,2.5,4.331L9.5,23.317a4.922,4.922,0,0,0,1.5.557Z"
-            />
-          </svg>
-        </div>
-        <div class="menu-text">Rooms</div>
-      </div>
-      <div
-        @click="changePage('plantdashboard', 2)"
-        class="menu-button-new"
-        :class="{ active: activeIndex === 2 }"
-      >
-        <div class="menu-icon-wrapper">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            id="Layer_1"
-            data-name="Layer 1"
-            viewBox="0 0 24 24"
-            width="512"
-            height="512"
+            <div class="menu-icon-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Layer_1"
+                data-name="Layer 1"
+                viewBox="0 0 24 24"
+                width="512"
+                height="512"
+              >
+                <path d="M15,0H3A3,3,0,0,0,0,3v8H15V0Z" />
+                <path d="M21,0H17V11h7V3a3,3,0,0,0-3-3Z" />
+                <path d="M7,13H0v8a3,3,0,0,0,3,3H7V13Z" />
+                <path d="M24,13H9V24H21a3,3,0,0,0,3-3V13Z" />
+              </svg>
+            </div>
+            <div class="menu-text">Dashboard</div>
+          </div>
+          <div
+            @click="changePage('rooms', 1)"
+            class="menu-button-new"
+            :class="{ active: activeIndex === 1 }"
           >
-            <path
-              d="M23.263,14.759a2.427,2.427,0,0,0-2-.748A12.49,12.49,0,0,0,13.5,17.337V14.818a6.506,6.506,0,0,0,5-6.318c0-2.973-2.016-5.43-3.987-7.441a3.592,3.592,0,0,0-5.026,0C7.516,3.07,5.5,5.527,5.5,8.5a6.506,6.506,0,0,0,5,6.318v2.519a12.493,12.493,0,0,0-7.763-3.326,2.432,2.432,0,0,0-2,.748,2.665,2.665,0,0,0-.687,2.2c.811,5.673,6.6,7.108,10.559,7.108,5.012.143,12.1-.157,13.341-7.108A2.669,2.669,0,0,0,23.263,14.759ZM8.5,8.5a7.04,7.04,0,0,1,2-4.118V7.5a1.5,1.5,0,0,0,3,0V4.382a7.04,7.04,0,0,1,2,4.118,3.5,3.5,0,0,1-7,0ZM3.127,17.077a8.953,8.953,0,0,1,6.561,3.956C7.369,20.9,3.917,20.162,3.127,17.077Zm11.185,3.956a8.955,8.955,0,0,1,6.561-3.956C20.084,20.162,16.631,20.9,14.312,21.033Z"
-            />
-          </svg>
+            <div class="menu-icon-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Layer_1"
+                data-name="Layer 1"
+                viewBox="0 0 24 24"
+                width="512"
+                height="512"
+              >
+                <path
+                  d="M14.762,11.587A5.5,5.5,0,0,1,13,12.223V23.874a4.922,4.922,0,0,0,1.5-.557l6.027-3.479a5.016,5.016,0,0,0,2.5-4.331V8.547a4.959,4.959,0,0,0-.265-1.57Z"
+                />
+                <path
+                  d="M10.242,9.857a3.531,3.531,0,0,0,3.521,0l8-4.61a4.983,4.983,0,0,0-1.238-1.027L14.5.737a5.015,5.015,0,0,0-5,0L3.473,4.217a4.974,4.974,0,0,0-1.2.983Z"
+                />
+                <path
+                  d="M11,12.223a5.493,5.493,0,0,1-1.763-.636L1.257,6.923A4.956,4.956,0,0,0,.973,8.547v6.96a5.016,5.016,0,0,0,2.5,4.331L9.5,23.317a4.922,4.922,0,0,0,1.5.557Z"
+                />
+              </svg>
+            </div>
+            <div class="menu-text">Rooms</div>
+          </div>
+          <div
+            @click="changePage('plants', 2)"
+            class="menu-button-new"
+            :class="{ active: activeIndex === 2 }"
+          >
+            <div class="menu-icon-wrapper">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Layer_1"
+                data-name="Layer 1"
+                viewBox="0 0 24 24"
+                width="512"
+                height="512"
+              >
+                <path
+                  d="M23.263,14.759a2.427,2.427,0,0,0-2-.748A12.49,12.49,0,0,0,13.5,17.337V14.818a6.506,6.506,0,0,0,5-6.318c0-2.973-2.016-5.43-3.987-7.441a3.592,3.592,0,0,0-5.026,0C7.516,3.07,5.5,5.527,5.5,8.5a6.506,6.506,0,0,0,5,6.318v2.519a12.493,12.493,0,0,0-7.763-3.326,2.432,2.432,0,0,0-2,.748,2.665,2.665,0,0,0-.687,2.2c.811,5.673,6.6,7.108,10.559,7.108,5.012.143,12.1-.157,13.341-7.108A2.669,2.669,0,0,0,23.263,14.759ZM8.5,8.5a7.04,7.04,0,0,1,2-4.118V7.5a1.5,1.5,0,0,0,3,0V4.382a7.04,7.04,0,0,1,2,4.118,3.5,3.5,0,0,1-7,0ZM3.127,17.077a8.953,8.953,0,0,1,6.561,3.956C7.369,20.9,3.917,20.162,3.127,17.077Zm11.185,3.956a8.955,8.955,0,0,1,6.561-3.956C20.084,20.162,16.631,20.9,14.312,21.033Z"
+                />
+              </svg>
+            </div>
+            <div class="menu-text">Plants</div>
+          </div>
+          <div class="menu-trigger menu-close" @click="showMenu = false">
+            <span>⨵</span>
+          </div>
         </div>
-        <div class="menu-text">Plants</div>
-      </div>
+      </Transition>
     </div>
-    <div id="settings-and-people">
-      <div id="people">
-        <Person :person="person" v-for="person in persons">{{ person.entity_id }}</Person>
-      </div>
-      <div class="settings-wrapper">
+    <!-- v-slot for persons -->
+    <div id="settings">
+      <div
+        class="settings-wrapper"
+        :class="{ active: activeIndex === 100 }"
+        @click="changePage('settings', 100)"
+      >
         <svg
           fill="#000000"
           xmlns="http://www.w3.org/2000/svg"
@@ -94,37 +112,45 @@
 </template>
 
 <script lang="ts" setup>
-import { HassEntity } from 'home-assistant-js-websocket'
-import { computed, ref } from 'vue'
-import router from '../../router'
-import store from '../../store/index'
-import Person from './Person.vue'
+  import { ref } from "vue";
 
-const activeIndex = ref(0)
-const persons = computed(() => {
-  return store.getters.persontEntities as HassEntity[]
-})
+  const activeIndex = ref(0);
+  const showMenu = ref(false);
 
-const changePage = (name: string, index: number) => {
-  activeIndex.value = index
-  router.push({ name: name })
-}
+  const changePage = async (name: string, index: number) => {
+    activeIndex.value = index;
+    await navigateTo({
+      name: name,
+    });
+  };
 </script>
 
 <style lang="scss">
-@import '../../../../../../libs/style/mainstyle.scss';
-@import '../../../../../../libs/style/variables.scss';
+  @import "../../../../packages/style/main.scss";
+  @import "../../../../packages/style/variables.scss";
 
-#menu-wrapper {
-  display: grid;
-  grid-template-columns: auto 20%;
-  align-items: center;
-  // margin: calc($standard-space * 2) 0;
-  margin: 0 1rem;
+  #menu-main-wrapper {
+    display: grid;
+    grid-template-columns: auto 20%;
+    align-items: center;
+    // margin: calc($standard-space * 2) 0;
+    margin: 0 1rem;
+    position: relative;
+    #menu-main {
+      height: 100%;
+    }
 
-  #menu-pills {
-    display: inline-flex;
-    column-gap: $standard-space;
+    #menu-pills {
+      display: flex;
+      column-gap: $standard-space;
+      position: absolute;
+      z-index: 3;
+    }
+
+    .menu-open {
+      position: absolute;
+      z-index: 1;
+    }
 
     .menu-icon-wrapper > svg {
       height: 0.8rem;
@@ -138,59 +164,109 @@ const changePage = (name: string, index: number) => {
       justify-self: left;
       padding-left: 0.8rem;
     }
+
+    .menu-trigger {
+      width: 2rem;
+    }
+
+    .menu-trigger > span {
+      font-size: large;
+    }
+
+    .menu-close {
+      background-color: rgb(234, 234, 234);
+    }
+
+    .menu-close:hover {
+      background-color: white;
+    }
+
+    .menu-close > span {
+      transform: rotate(180deg);
+      margin-left: -3px;
+    }
+    .menu-trigger,
     .menu-button-new {
-      margin: 1rem 1px;
       border-radius: 99px;
       height: 2rem;
       display: grid;
       grid-template-columns: 2rem auto;
-      width: 8rem;
+
       place-items: center;
       font-size: 0.8rem;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
       backdrop-filter: saturate(130%) blur(20px);
-      background-color: rgb(234, 234, 234);
+
       cursor: pointer;
     }
-    .active {
-      background-color: white;
+
+    .menu-button-new {
+      width: 8rem;
+      background-color: rgb(234, 234, 234);
     }
+
     .menu-button-new:hover {
       background-color: white;
     }
-  }
-  #settings-and-people {
-    display: grid;
-    grid-template-columns: auto 2.5rem;
-  }
-  #people {
-    display: inline-flex;
-    column-gap: calc($standard-space / 3);
-    justify-self: right;
+
+    #settings {
+      display: grid;
+      grid-template-columns: auto 2.5rem;
+    }
+    #people {
+      display: inline-flex;
+      column-gap: calc($standard-space / 3);
+      justify-self: right;
+    }
+
+    .settings-wrapper {
+      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1),
+        0 1px 2px 0 rgba(0, 0, 0, 0.06);
+      backdrop-filter: saturate(130%) blur(20px);
+      background-color: rgb(244, 244, 244);
+      border-radius: 50%;
+      width: 2rem;
+      display: grid;
+      justify-items: center;
+      align-items: center;
+      justify-self: right;
+    }
+    .settings-wrapper > svg {
+      padding: 0.2rem;
+      height: 1.6rem;
+      width: 1.6rem;
+      fill: rgba(0, 0, 0, 0.479);
+    }
+    .settings-wrapper:hover {
+      background-color: white;
+      cursor: pointer;
+    }
   }
 
-  .settings-wrapper {
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-    backdrop-filter: saturate(130%) blur(20px);
-    background-color: rgb(244, 244, 244);
-    border-radius: 50%;
-    width: 2rem;
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    justify-self: right;
+  #menu-pills::-webkit-scrollbar {
+    display: none;
   }
-  .settings-wrapper > svg {
-    padding: 0.2rem;
-    height: 1.6rem;
-    width: 1.6rem;
-    fill: rgba(0, 0, 0, 0.479);
+
+  .active,
+  .menu-open {
+    background-color: white !important;
   }
-}
 
-#menu-pills::-webkit-scrollbar {
-  display: none;
-}
+  $inactive-color: $gray;
 
-$inactive-color: $gray;
+  .slide-fade-enter-active,
+  .slide-fade-leave-active {
+    transition: all 0.1s cubic-bezier(1, 0.5, 0.8, 1);
+  }
+
+  // .slide-fade-leave-active {
+  //   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+  // }
+
+  .slide-fade-enter-from,
+  .slide-fade-leave-to {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
 </style>

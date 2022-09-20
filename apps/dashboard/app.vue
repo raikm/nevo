@@ -1,15 +1,15 @@
 <template>
   <div id="header">
-    <!-- TODO logo / icon -->
+    <Menu />
     <!-- TODO Show People at home -->
     <!-- TODO Show Date and Time -->
-    <!-- <Menu /> -->
   </div>
+
   <div id="main">
     <NuxtPage class="content-container" />
   </div>
 
-  <div id="footer"></div>
+  <!-- <div id="footer"></div> -->
 </template>
 
 <script lang="ts" setup>
@@ -18,6 +18,7 @@
     createLongLivedTokenAuth,
     subscribeEntities,
   } from "home-assistant-js-websocket";
+  import { onMounted } from "vue";
   import config from "../../config.json";
   import { useHomeAssistantStore } from "./store/homeassistant";
   import { useStore } from "./store/index";
@@ -50,11 +51,18 @@
 </script>
 
 <style lang="scss">
-  #app {
+  html,
+  body {
+    height: 100%;
+    margin: 0;
+  }
+  body {
+    background: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+  }
+  #__nuxt {
     display: grid;
     grid-template-rows: 10% 85% 5%;
     height: 100%;
-    background-color: #ebcbae;
   }
   #header {
     display: grid;

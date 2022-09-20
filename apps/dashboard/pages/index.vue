@@ -25,7 +25,6 @@
   const homeAssistantStore = useHomeAssistantStore();
   const store = useStore();
   const spotifyService = useSpotifyService(store);
-
   // TODO if (window.location.search.length > 0) {
   //   spotifyService.handleSpotifyRedirect();
   // }
