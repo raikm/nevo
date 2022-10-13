@@ -14,15 +14,15 @@
 
 <script lang="ts" setup>
   import {
-    createConnection,
-    createLongLivedTokenAuth,
-    subscribeEntities,
-  } from "home-assistant-js-websocket";
-  import { onMounted } from "vue";
-  import config from "../../config.json";
-  import { useHomeAssistantStore } from "./store/homeassistant";
-  import { useStore } from "./store/index";
-  import { NevoConfig } from "./types/nevoConfig";
+createConnection,
+createLongLivedTokenAuth,
+subscribeEntities
+} from "home-assistant-js-websocket";
+import { onMounted } from "vue";
+import config from "../../config.json";
+import { useHomeAssistantStore } from "./store/homeassistant";
+import { useStore } from "./store/index";
+import { NevoConfig } from "./types/nevoConfig";
 
   const homeassistantStore = useHomeAssistantStore();
   const store = useStore();
@@ -70,7 +70,7 @@
   }
   #main {
     display: grid;
-    grid-template-columns: auto auto;
+    // grid-template-columns: auto auto;
     padding: 1rem;
     // margin: auto;
 

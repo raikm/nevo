@@ -5,8 +5,8 @@
       <WeatherBox class="box dashboard-box box-s" />
       <RoomLightController class="box dashboard-box box-s box-white" />
       <PublicTransport class="box dashboard-box box-m box-white" />
-      <Calendar class="box dashboard-box box-m box-white" />
       <Music class="box dashboard-box box-m box-white" /> -->
+      <Calendar class="box dashboard-box box-m box-white" />
     </div>
     <div id="shortcuts">
       <!-- <Shortcut
@@ -18,9 +18,10 @@
 </template>
 
 <script lang="ts" setup>
-  import { useSpotifyService } from "../services/spotify/index";
-  import { useHomeAssistantStore } from "../store/homeassistant";
-  import { useStore } from "../store/index";
+import Calendar from "../components/dashboard-widgets/calendar/index.vue";
+import { useSpotifyService } from "../services/spotify/index";
+import { useHomeAssistantStore } from "../store/homeassistant";
+import { useStore } from "../store/index";
 
   const homeAssistantStore = useHomeAssistantStore();
   const store = useStore();
@@ -30,8 +31,8 @@
   // }
 </script>
 
-<!-- <style lang="scss" scoped>
-  @import "../../../../../../libs/style/mainstyle.scss";
+<style lang="scss" scoped>
+  @import "../../../packages/style/main.scss";
 
   #dashboard-wrapper {
     max-width: calc(320px * 3 + 8rem);
@@ -68,4 +69,4 @@
   #shortcuts::-webkit-scrollbar {
     display: none;
   }
-</style> -->
+</style>
