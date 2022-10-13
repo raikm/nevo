@@ -26,108 +26,86 @@
 </template>
 
 <script lang="ts" setup>
-import axios from 'axios';
-import { ref } from 'vue';
-import store from '../../../store';
-
+import axios from 'axios'
+import { ref } from 'vue'
+import store from '../../../store'
 
 const playlists = ref([] as any) // TODO Typing
 
 const refreshAccessToken = () => {
-  let refresh_token = localStorage.getItem("spotify_refresh_token");
+  let refresh_token = localStorage.getItem('spotify_refresh_token')
   const headers = {
-    Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded",
+    Accept: 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
     auth: {
       username: store.state.config.spotify.client_id,
-      password: store.state.config.spotify.client_secret,
-    },
-  };
+      password: store.state.config.spotify.client_secret
+    }
+  }
   const data = {
-    grant_type: "refresh_token",
-    redirect_uri: encodeURI(
-      window.location.origin + "/"
-    ),
+    grant_type: 'refresh_token',
+    redirect_uri: encodeURI(window.location.origin + '/'),
     // SettingsPage/Spotify/
     refresh_token: refresh_token,
-    client_id: store.state.config.spotify.client_id,
-  };
+    client_id: store.state.config.spotify.client_id
+  }
   axios
-    .post(
-      "https://accounts.spotify.com/api/token",
-      qs.stringify(data),
-      headers
-    )
+    .post('https://accounts.spotify.com/api/token', qs.stringify(data), headers)
     .then((response) => {
       if (response.data.access_token != undefined) {
-        let access_token = response.data.access_token;
-        localStorage.setItem("spotify_access_token", access_token);
+        let access_token = response.data.access_token
+        localStorage.setItem('spotify_access_token', access_token)
       }
       if (response.data.refresh_token != undefined) {
-        let refresh_token = response.data.refresh_token;
-        localStorage.setItem("spotify_refresh_token", refresh_token);
+        let refresh_token = response.data.refresh_token
+        localStorage.setItem('spotify_refresh_token', refresh_token)
       }
     })
     .catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
 }
 
 const getAllPlaylists = () => {
-  if (localStorage.getItem("spotify_access_token") == null) return;
+  if (localStorage.getItem('spotify_access_token') == null) return
   const config = {
     headers: {
-      Authorization: `Bearer ${localStorage.getItem(
-        "spotify_access_token"
-      )}`,
-      "Content-Type": "application/json",
-    },
-  };
+      Authorization: `Bearer ${localStorage.getItem('spotify_access_token')}`,
+      'Content-Type': 'application/json'
+    }
+  }
   axios
-    .get("https://api.spotify.com/v1/me/playlists", config)
+    .get('https://api.spotify.com/v1/me/playlists', config)
     .then((response) => {
       if (response.data.items.length !== 0) {
-        playlists.value = response.data.items;
+        playlists.value = response.data.items
       }
     })
     .catch((error: any) => {
-      if (error.status == 401) refreshAccessToken();
-      else console.error(error);
-    });
+      if (error.status == 401) refreshAccessToken()
+      else console.error(error)
+    })
 }
 
 getAllPlaylists()
 
-
-
 const requestAuthorization = () => {
-  let url = "https://accounts.spotify.com/authorize";
-  url += "?client_id=" + store.state.config.spotify.client_id;
-  url += "&response_type=code";
-  url +=
-    "&redirect_uri=" +
-    encodeURI(window.location.origin + "/");
+  let url = 'https://accounts.spotify.com/authorize'
+  url += '?client_id=' + store.state.config.spotify.client_id
+  url += '&response_type=code'
+  url += '&redirect_uri=' + encodeURI(window.location.origin + '/')
   // SettingsPage/Spotify/
-  url += "&show_dialog=true";
-  url += "&scope=playlist-read-private";
-  window.location.href = url;
+  url += '&show_dialog=true'
+  url += '&scope=playlist-read-private'
+  window.location.href = url
 }
-
-
-
 
 const playPlaylist = (uri: string) => {
   axios
-    .get(
-      `${store.state.config.sonos.rest_url}/Living Room/spotify/now/spotify:user:${uri}`
-    )
-    .then(() => { })
-    .catch((error) => console.error(error.message));
+    .get(`${store.state.config.sonos.rest_url}/Living Room/spotify/now/spotify:user:${uri}`)
+    .then(() => {})
+    .catch((error) => console.error(error.message))
 }
-
-
-
-
 </script>
 
 <style lang="scss">

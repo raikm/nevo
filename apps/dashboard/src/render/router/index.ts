@@ -22,17 +22,17 @@ const routes = [
   {
     path: '/',
     name: 'maindashboard',
-    component: maindashboard,
+    component: maindashboard
   },
   {
     path: '/plantdashboard',
     name: 'plantdashboard',
-    component: plantdashboard,
-  },
+    component: plantdashboard
+  }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
+  routes
 })
 export default router

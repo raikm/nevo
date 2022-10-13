@@ -1,15 +1,13 @@
 <template>
-  <div
-    v-if="person.state === 'home'"
-    class="person-circle"
-  >{{ person.attributes.friendly_name?.slice(0, 1).toUpperCase() }}</div>
+  <div v-if="person.state === 'home'" class="person-circle">
+    {{ person.attributes.friendly_name?.slice(0, 1).toUpperCase() }}
+  </div>
 </template>
 
 <script lang="ts" setup>
-import { HassEntity } from 'home-assistant-js-websocket';
+import { HassEntity } from 'home-assistant-js-websocket'
 
 defineProps<{ person: HassEntity }>()
-
 </script>
 
 <style lang="scss">

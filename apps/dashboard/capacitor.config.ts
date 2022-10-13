@@ -4,7 +4,7 @@ const config: CapacitorConfig = {
   appId: 'com.nevo.app',
   appName: 'nevo',
   webDir: 'dist/render',
-  bundledWebRuntime: false,
+  bundledWebRuntime: false
 }
 
 export default config

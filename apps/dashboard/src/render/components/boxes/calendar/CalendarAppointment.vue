@@ -1,75 +1,75 @@
 <template>
-    <div class="appointment-entry">
-        <div class="left-appointment-entry">
-            <div class="calendar-color" :style="{ background: appointment.calendarColor }"></div>
-        </div>
-
-        <div class="right-appointment-entry">
-            <div class="appointment-summary">{{ appointment.summary }}</div>
-
-            <div class="appointment-time">
-                {{
-                    new Date(appointment.start.dateTime).toLocaleTimeString("de-DE", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    })
-                }}
-                -
-                {{
-                    new Date(appointment.end.dateTime).toLocaleTimeString("de-DE", {
-                        hour: "2-digit",
-                        minute: "2-digit",
-                    })
-                }}
-            </div>
-        </div>
+  <div class="appointment-entry">
+    <div class="left-appointment-entry">
+      <div class="calendar-color" :style="{ background: appointment.calendarColor }"></div>
     </div>
+
+    <div class="right-appointment-entry">
+      <div class="appointment-summary">{{ appointment.summary }}</div>
+
+      <div class="appointment-time">
+        {{
+          new Date(appointment.start.dateTime).toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+        }}
+        -
+        {{
+          new Date(appointment.end.dateTime).toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit'
+          })
+        }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
-import { Entry } from '../../../types/gapiResult';
+import { defineComponent, PropType } from 'vue'
+import { Entry } from '../../../types/gapiResult'
 
 export default defineComponent({
-    props: {
-        appointment: {
-            type: Object as PropType<Entry>,
-            required: true,
-        },
-    },
-});
+  props: {
+    appointment: {
+      type: Object as PropType<Entry>,
+      required: true
+    }
+  }
+})
 </script>
 
 <style lang="scss">
 .left-appointment-entry {
-    float: left;
-    width: 2%;
-    height: 100%;
-    margin-right: 3%;
+  float: left;
+  width: 2%;
+  height: 100%;
+  margin-right: 3%;
 }
 .right-appointment-entry {
-    font-size: medium;
-    overflow: hidden;
-    display: grid;
-    grid-template-rows: 1fr 1fr;
+  font-size: medium;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
 }
 .calendar-color {
-    height: 100%;
-    width: 100%;
-    border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
 }
 .appointment-entry {
-    margin-bottom: 2.5%;
+  margin-bottom: 2.5%;
 }
 .appointment-summary {
-    font-size: medium;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    align-self: center;
+  font-size: medium;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  align-self: center;
 }
 .appointment-time {
-    align-self: center;
+  align-self: center;
 }
 </style>

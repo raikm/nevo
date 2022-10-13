@@ -3,5 +3,5 @@ export default function useModuleCatalogService() {
   // https://www.zweitag.de/blog/vue-composition-api-introduction/
   return {
     // return function
-  };
+  }
 }

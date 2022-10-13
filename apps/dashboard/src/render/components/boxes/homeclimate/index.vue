@@ -12,73 +12,69 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { mapGetters } from "vuex";
-import { Sensor } from "../../../types/haEntities.interface";
+import { defineComponent } from 'vue'
+import { mapGetters } from 'vuex'
+import { Sensor } from '../../../types/haEntities.interface'
 
 export default defineComponent({
   created() {
-    this.grouphomeclimateSensors();
+    this.grouphomeclimateSensors()
   },
   computed: {
-    ...mapGetters(["homeclimateSensors"]),
+    ...mapGetters(['homeclimateSensors'])
   },
   watch: {
     homeclimateSensors() {
-      this.grouphomeclimateSensors();
-    },
+      this.grouphomeclimateSensors()
+    }
   },
   methods: {
     grouphomeclimateSensors(): any {
-      const groups = this.homeclimateSensors.reduce(
-        (groups: any, item: any) => {
-          const group = groups[item.attributes.Room] || [];
-          group.push(item);
-          groups[item.attributes.Room] = group;
-          return groups;
-        },
-        {}
-      );
-      this.rooms = groups;
+      const groups = this.homeclimateSensors.reduce((groups: any, item: any) => {
+        const group = groups[item.attributes.Room] || []
+        group.push(item)
+        groups[item.attributes.Room] = group
+        return groups
+      }, {})
+      this.rooms = groups
     },
     currentTemperature(sensors: Sensor[]) {
       let temperatureSensor = sensors.filter((s: Sensor) => {
-        return s.attributes.sensor_class === "temperature";
-      });
+        return s.attributes.sensor_class === 'temperature'
+      })
       if (temperatureSensor.length === 1) {
-        if (temperatureSensor[0].state !== 'unavailable')
-          return `${temperatureSensor[0].state}°C`;
+        if (temperatureSensor[0].state !== 'unavailable') return `${temperatureSensor[0].state}°C`
       }
     },
     currentHumidity(sensors: Sensor[]) {
       let humiditySensor = sensors.filter((s: Sensor) => {
-        return s.attributes.sensor_class === "humidity";
-      });
+        return s.attributes.sensor_class === 'humidity'
+      })
       if (humiditySensor.length === 1) {
         if (humiditySensor[0].state !== 'unavailable')
-          return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`;
+          return `${humiditySensor[0].state}${humiditySensor[0].attributes.unit_of_measurement}`
       }
     },
     currentWindStrength(sensors: Sensor[]) {
       let windSensor = sensors.filter((s: Sensor) => {
-        return s.attributes.sensor_class === "wind_strength";
-      });
+        return s.attributes.sensor_class === 'wind_strength'
+      })
       if (windSensor.length === 1) {
         if (windSensor[0].state !== 'unavailable')
-          return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`;
+          return `${windSensor[0].state}${windSensor[0].attributes.unit_of_measurement}`
       }
-    },
+    }
   },
   data() {
     return {
-      rooms: [],
-    };
-  },
-});
+      rooms: []
+    }
+  }
+})
 </script>
 
 <style lang="scss">
-@import "../../../../../../../libs/style/mainstyle.scss";
+@import '../../../../../../../libs/style/mainstyle.scss';
 
 .temperature-box {
   border-radius: $standard-border-radius;

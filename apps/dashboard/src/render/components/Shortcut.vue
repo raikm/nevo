@@ -4,11 +4,10 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
-import axios from 'axios';
-import { HassEntityBase } from 'home-assistant-js-websocket';
-import { useStore } from 'vuex';
+import axios from 'axios'
+import { HassEntityBase } from 'home-assistant-js-websocket'
+import { useStore } from 'vuex'
 
 const props = defineProps<{
   shortcut: HassEntityBase
@@ -18,29 +17,26 @@ const store = useStore()
 
 const config = {
   headers: {
-    Authorization: `Bearer ${store.state.config.homeassistant.life_time_token_raik}`,
-  },
+    Authorization: `Bearer ${store.state.config.homeassistant.life_time_token_raik}`
+  }
 }
 
 const triggerShortcut = () => {
   var bodyParameters = {
-    entity_id: props.shortcut.entity_id,
-  };
+    entity_id: props.shortcut.entity_id
+  }
   axios
     .post(
       `${store.state.config.homeassistant.hassUrl}/api/services/script/turn_on`,
       bodyParameters,
       config
     )
-    .catch((error) => console.error(error));
+    .catch((error) => console.error(error))
 }
-
-
 </script>
 
-
 <style lang="scss">
-@import "../../../../../libs/style/mainstyle.scss";
+@import '../../../../../libs/style/mainstyle.scss';
 
 .shortcut-pill {
   margin: 1rem 1px;

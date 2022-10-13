@@ -18,35 +18,31 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, onMounted, ref } from 'vue';
-import useSonoService from '../../../../service/music/sonos.service';
-import { Zone } from '../../../types/sonosTypes';
-import Player from './Player.vue';
-import Shortcuts from './Shortcuts.vue';
+import { computed, onMounted, ref } from 'vue'
+import useSonoService from '../../../../service/music/sonos.service'
+import { Zone } from '../../../types/sonosTypes'
+import Player from './Player.vue'
+import Shortcuts from './Shortcuts.vue'
 
 const sonosService = useSonoService()
 
-
 const zones = ref<Zone[]>([])
-
 
 const musicPlaying = computed(() => {
   return activeGroup.value == null ? false : true
 })
 
 const activeGroup = computed(() => {
-  return zones.value.filter((zone: Zone) =>
-    zone.coordinator.state != null
-      ? zone.coordinator.state.playbackState === "PLAYING"
-      : []
-  )[0] || null;
-});
+  return (
+    zones.value.filter((zone: Zone) =>
+      zone.coordinator.state != null ? zone.coordinator.state.playbackState === 'PLAYING' : []
+    )[0] || null
+  )
+})
 
 const latestActiveGroup = ref<Zone>()
 
-const showStandbyScreen = () => {
-
-}
+const showStandbyScreen = () => {}
 
 const updateZones = async () => {
   latestActiveGroup.value = activeGroup.value
@@ -56,8 +52,6 @@ const updateZones = async () => {
 onMounted(async () => {
   await updateZones()
 })
-
-
 </script>
 
 <style lang="scss">

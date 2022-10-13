@@ -15,66 +15,66 @@
           <div :class="transport.line?.product">{{ transport.line?.name }}</div>
         </div>
         <div class="public-transport-header-direction-info">{{ transport.direction }}</div>
-        <div class="public-transport-header-time-info">{{ mapETATime(transport.plannedWhen) }} min</div>
+        <div class="public-transport-header-time-info">
+          {{ mapETATime(transport.plannedWhen) }} min
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Alternative } from "hafas-client";
-import { defineComponent } from "vue";
-import { mapState } from "vuex";
+import { Alternative } from 'hafas-client'
+import { defineComponent } from 'vue'
+import { mapState } from 'vuex'
 
 export default defineComponent({
-  name: "PublicTransport",
+  name: 'PublicTransport',
   computed: {
-    ...mapState(["config"]),
+    ...mapState(['config'])
   },
   created() {
-    this.connectToHafasWebSocket();
+    this.connectToHafasWebSocket()
   },
   data() {
     return {
       hafasConnection: {} as WebSocket,
-      departuresFromHome: [] as Alternative[],
-    };
+      departuresFromHome: [] as Alternative[]
+    }
   },
   methods: {
     connectToHafasWebSocket() {
-      this.hafasConnection = new WebSocket(
-        `ws://${this.config.public_transport.websocketUrl}`
-      );
+      this.hafasConnection = new WebSocket(`ws://${this.config.public_transport.websocketUrl}`)
 
       this.hafasConnection.onmessage = (event) => {
-        let trips: Array<Alternative> = [];
-        let stationInformations: Array<Alternative[]> = JSON.parse(event.data);
+        let trips: Array<Alternative> = []
+        let stationInformations: Array<Alternative[]> = JSON.parse(event.data)
         stationInformations.forEach((stationElment) => {
           stationElment.forEach((element) => {
-            trips.push(element);
-          });
-        });
+            trips.push(element)
+          })
+        })
         this.departuresFromHome = trips.sort((a: Alternative, b: Alternative) =>
           new Date(a.plannedWhen!) > new Date(b.plannedWhen!) ? 1 : -1
-        );
-      };
+        )
+      }
     },
     mapETATime(timeString: string) {
-      let plannedTime = new Date(timeString);
-      let difference = (plannedTime.getTime() - new Date().getTime()) / 1000;
-      difference /= 60;
-      return Math.abs(Math.round(difference));
-    },
+      let plannedTime = new Date(timeString)
+      let difference = (plannedTime.getTime() - new Date().getTime()) / 1000
+      difference /= 60
+      return Math.abs(Math.round(difference))
+    }
   },
   unmounted() {
-    this.hafasConnection.close();
-  },
-});
+    this.hafasConnection.close()
+  }
+})
 </script>
 
 <style lang="scss">
-@import "../../../../../../../libs/style/variables.scss";
-@import "../../../styles/publictransport.scss";
+@import '../../../../../../../libs/style/variables.scss';
+@import '../../../styles/publictransport.scss';
 .public-transport-content-wrapper {
   overflow: scroll;
   scrollbar-width: 0;

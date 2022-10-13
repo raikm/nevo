@@ -12,7 +12,7 @@ import store from './store'
 
 const app = createApp(App)
 app.use(Socketio, {
-  connection: config.sonos.websocket_url,
+  connection: config.sonos.websocket_url
 })
 
 // app.use(Socketio, {

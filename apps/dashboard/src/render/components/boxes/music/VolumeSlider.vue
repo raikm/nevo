@@ -13,21 +13,19 @@
   </div>
 </template>
 
-<script lang="ts" setup>import { watch } from 'vue';
-
-
+<script lang="ts" setup>
+import { watch } from 'vue'
 
 const props = defineProps<{ sliderValue: number }>()
 
 const emit = defineEmits(['change-slider-value'])
 
-watch(() => props.sliderValue, (newValue) => {
-  emit('change-slider-value', newValue)
-
-});
-
-
-
+watch(
+  () => props.sliderValue,
+  (newValue) => {
+    emit('change-slider-value', newValue)
+  }
+)
 </script>
 
 <style lang="scss" scoped>
