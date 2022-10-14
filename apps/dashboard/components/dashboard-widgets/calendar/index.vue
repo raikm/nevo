@@ -37,12 +37,13 @@
 </template>
 
 <script lang="ts" setup>
+import { useCalendarService } from '~~/services/calendar'
 
-
-
-
+const calendarService = useCalendarService()
+onMounted(async () => {
+  await calendarService.getGoogleCalendarEvents()
+})
 </script>
-
 
 <style lang="scss">
 // @import '../../../../../../../libs/style/variables.scss';
