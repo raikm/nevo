@@ -131,7 +131,7 @@ export interface StateClass {
   'light.plantlight_monstera': LightDiningLamp1
   'remote.broadlink_rm3_pro_remote': LightDiningLamp1
   'switch.movie_mode': LightDiningLamp1
-  'persistent_notification.config_entry_discovery': PersistentNotification
+  'persistent_notification.config_Event_discovery': PersistentNotification
   'persistent_notification.1f86a2ce80c289bf9ce2d1736184316f': PersistentNotification
   'persistent_notification.http_login': PersistentNotification
 }
