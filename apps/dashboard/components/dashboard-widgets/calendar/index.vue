@@ -58,6 +58,7 @@ onMounted(async () => {
 
 const refreshCalendars = async () => {
   loading.value = true
+
   if (isReady) {
     calendarEvents.value = await calendarService.getTodayGoogleCalendarEvents()
   } else {
