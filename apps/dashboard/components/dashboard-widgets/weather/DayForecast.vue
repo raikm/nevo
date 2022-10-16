@@ -4,7 +4,7 @@
       <div id="weather-city-name">Berlin</div>
 
       <div class="current-weather-icon-wrapper">
-        <WeatherIcon :weather="currentWeather.weather[0]" />
+        <WeatherIcon :weather="currentWeather.weather[0]" :sunset="sunset" />
       </div>
     </div>
     <div id="temperature-info-overview" v-if="todayForecast">
@@ -26,7 +26,7 @@
           {{ new Date(currentHour.setHours(currentHour.getHours() + 1)).getHours() }}
         </div>
         <div class="weather-icon-wrapper">
-          <WeatherIcon :weather="tempHourInfo.weather[0]" />
+          <WeatherIcon :weather="tempHourInfo.weather[0]" :sunset="sunset" />
         </div>
         <div class="weather-hour-temperature">{{ Math.round(tempHourInfo.temp) }}°</div>
       </div>
@@ -35,17 +35,24 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
-import { CurrentWeather, Daily, Weatherforecast } from '../../../types/weatherForecast.ts'
+import { ref } from 'vue'
+import { CurrentWeather, Daily, WeatherForecast } from '../../../types/weatherForecast'
 import WeatherIcon from './WeatherIcon.vue'
-const { weatherForecast } = defineProps<{ weatherForecast: Weatherforecast }>()
+
+const { weatherForecast, sunset } = defineProps<{
+  weatherForecast: WeatherForecast
+  sunset: boolean
+}>()
+
 const currentWeather = ref<CurrentWeather>()
 const tempHourInfos = ref<CurrentWeather[]>()
 const todayForecast = ref<Daily>()
 const currentHour = ref(new Date())
+
 onMounted(() => {
   setup6HoursForecast()
 })
+
 const setup6HoursForecast = () => {
   currentWeather.value = weatherForecast.current
   todayForecast.value = weatherForecast.daily[0]
@@ -70,7 +77,6 @@ const setup6HoursForecast = () => {
   margin: 5% 0;
   width: 90%;
   height: 90%;
-  fill: lightgray;
 }
 .weather-icon-wrapper {
   justify-self: center;
@@ -82,6 +88,5 @@ const setup6HoursForecast = () => {
   margin: 10% 0;
   width: 80%;
   height: 80%;
-  fill: lightgray;
 }
 </style>

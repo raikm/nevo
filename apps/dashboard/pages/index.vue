@@ -3,8 +3,8 @@
     <div id="boxes">
       <!-- <HomeClimate class="dashboard-box" />
         <RoomLightController class="box dashboard-box box-s box-white" />
-        <PublicTransport class="box dashboard-box box-m box-white" />
         <Music class="box dashboard-box box-m box-white" /> -->
+      <PublicTransport class="box dashboard-box box-m box-white" />
       <Weather class="box dashboard-box box-s" />
       <Calendar class="box dashboard-box box-m box-white" />
     </div>
@@ -19,6 +19,7 @@
 
 <script lang="ts" setup>
 import Calendar from '../components/dashboard-widgets/calendar/index.vue'
+import PublicTransport from '../components/dashboard-widgets/public-transport/index.vue'
 import Weather from '../components/dashboard-widgets/weather/index.vue'
 import { useSpotifyService } from '../services/spotify/index'
 import { useHomeAssistantStore } from '../store/homeassistant'

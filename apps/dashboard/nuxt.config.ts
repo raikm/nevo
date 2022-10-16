@@ -1,5 +1,5 @@
 import { defineNuxtConfig } from 'nuxt'
-import { resolve } from 'path'
+import svgLoader from 'vite-svg-loader'
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
@@ -12,7 +12,9 @@ export default defineNuxtConfig({
   },
   watch: ['pages'],
   alias: {
-    icons: resolve(__dirname, './assets/icons')
     // TODO: styles: resolve(__dirname, '../../packages/style')
+  },
+  vite: {
+    plugins: [svgLoader()]
   }
 })

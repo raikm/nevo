@@ -21,6 +21,7 @@ importers:
       nuxt-vue3-google-signin: ^0.0.5
       qs: ^6.11.0
       sass: ^1.54.9
+      vite-svg-loader: ^3.6.0
       vue: ^3.2.39
     dependencies:
       '@pinia/nuxt': 0.4.2_vue@3.2.39
@@ -34,6 +35,7 @@ importers:
       vue: 3.2.39
     devDependencies:
       nuxt: 3.0.0-rc.11_sass@1.54.9
+      vite-svg-loader: 3.6.0
 
   packages/tsconfig:
     specifiers: {}
@@ -4786,6 +4788,13 @@ packages:
       vscode-languageserver: 7.0.0
       vscode-languageserver-textdocument: 1.0.7
       vscode-uri: 3.0.3
+    dev: true
+
+  /vite-svg-loader/3.6.0:
+    resolution: {integrity: sha512-bZJffcgCREW57kNkgMhuNqeDznWXyQwJ3wKrRhHLMMzwDnP5jr3vXW3cqsmquRR7VTP5mLdKj1/zzPPooGUuPw==}
+    dependencies:
+      '@vue/compiler-sfc': 3.2.39
+      svgo: 2.8.0
     dev: true
 
   /vite/3.1.8_sass@1.54.9:

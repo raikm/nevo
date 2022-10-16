@@ -3,6 +3,7 @@
     :style="{ backgroundImage: backgroundImage }"
     v-if="weatherForecast && Object.keys(weatherForecast).length !== 0"
     class="forecast"
+    :sunset="sunset"
     :weatherForecast="weatherForecast"
   />
 </template>
@@ -11,23 +12,25 @@
 import axios from 'axios'
 import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useStore } from '~~/store'
-import { Weatherforecast } from '../../../types/weatherForecast.ts'
+import { WeatherForecast } from '../../../types/weatherForecast'
 import DayForecast from './DayForecast.vue'
 
 const store = useStore()
 let refreshInterval: NodeJS.Timer
+const sunset = ref<boolean>()
+
 onMounted(async () => {
-  await weatherForecastDataFromAPI()
+  await getWeatherForecastDataFromAPI()
   refreshInterval = setInterval(async () => {
-    await weatherForecastDataFromAPI()
-  }, 100000)
+    await getWeatherForecastDataFromAPI()
+  }, 600000) // every 10 minutes
 })
 onBeforeUnmount(() => {
   clearInterval(refreshInterval)
 })
-const weatherForecast = ref<Weatherforecast>()
+const weatherForecast = ref<WeatherForecast>()
 const backgroundImage = ref('linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)')
-const weatherForecastDataFromAPI = async () => {
+const getWeatherForecastDataFromAPI = async () => {
   const config = store.config
   const { api_key, open_weather_url } = config.weather
   const response = await axios.get(`${open_weather_url}&appid=${api_key}`, {})
@@ -36,13 +39,14 @@ const weatherForecastDataFromAPI = async () => {
 }
 const defineBackground = () => {
   if (weatherForecast.value == null) return
-  const sunset = new Date(weatherForecast.value.daily[0].sunset)
-  const sunsetInMinutes = sunset.getHours() * 60 + sunset.getMinutes()
+  const sunsetTime = new Date(weatherForecast.value.daily[0].sunset * 1000)
+  const sunsetInMinutes = sunsetTime.getHours() * 60 + sunsetTime.getMinutes()
   const now = new Date()
   const nowInMinutes = now.getHours() * 60 + now.getMinutes()
   //DAY
+
   if (sunsetInMinutes > nowInMinutes) {
-    // TODO store.sunset = false
+    sunset.value = false
     switch (weatherForecast.value.current.weather[0].main) {
       case 'Snow':
         backgroundImage.value = 'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
@@ -57,7 +61,7 @@ const defineBackground = () => {
   }
   //NIGHT
   else {
-    // TODO store.state.sunset = true
+    sunset.value = true
     backgroundImage.value = 'linear-gradient(-150deg, #045d73 0%, #676b82 100%)'
   }
 }
