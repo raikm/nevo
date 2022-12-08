@@ -2,9 +2,6 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
-
-<a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
-
 ![March 2022](https://user-images.githubusercontent.com/23355792/161422535-27648b90-c179-4d45-b839-f111c7f298ac.png)
 
 ---
