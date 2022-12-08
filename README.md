@@ -2,15 +2,6 @@
 
 The aim of this project is to create a delightful, intiutive home dashbarod rich of information.
 
-### 🧗🏼 Short Update (Status: 25.02.2022)
-
-```
-This is still an ongoing project but since I started my first fulltime-job
-in July 2021 after finishing my master studies, I have limited time.
-
-The 🛫 Nextup Section shows the work packages I am currently working on.
-
-```
 
 <a href="https://www.buymeacoffee.com/RaikMueller" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 40px !important;width: 140px !important;" ></a>
 
@@ -23,19 +14,16 @@ The 🛫 Nextup Section shows the work packages I am currently working on.
 ### 🛫 Next Up
 
 ```
- 📦 Split into two frontend apps (incl. mobile)
- 📦 Capacity Stability
- 📦 Ready to use: Light Page V1
- 📦 Plant Settings: show nearby sensors
- 📦 Unit Testing
+ 📦 From Prototype to real iPad App: Version 1 (robust)
+ 📦 more refactoring to vue3 and composition api
+ 📦 refactor Plant Dashboard with npm packages (no python)
 ```
 ---
 ### 🛬 Latest Updates
 
 ```
- 🎉 NX Integration -> Mono repository
- 🎉 Capacity Integration for iOS development
- 🎉 Boxes from Main Pages ready for production in Vue3 and Typescript
+ 🎉 Turbo Repo Integration -> Mono repository
+ 🎉 Capacitor Integration for iOS development
  🎉 First tests with health data export from the iPhone (HealthExport App)
  🎉 Bugfixes - Music Player
 ```
