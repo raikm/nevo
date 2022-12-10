@@ -3,7 +3,10 @@
     <div id="boxes">
       <!--   <Music class="box dashboard-box box-m box-white" /> -->
       <HomeClimate class="box dashboard-box box-white" />
-      <RoomLightController class="box dashboard-box box-s box-white" />
+      <RoomLightController
+        v-if="homeAssistantStore.haConnection"
+        class="box dashboard-box box-s box-white"
+      />
       <PublicTransport class="box dashboard-box box-m box-white" />
       <Weather class="box dashboard-box box-s" />
       <Calendar class="box dashboard-box box-m box-white" />

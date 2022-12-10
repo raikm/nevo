@@ -32,6 +32,10 @@ let publicTransportService: PublicTransportService
 
 const departuresFromHome = ref<Departure[]>()
 
+const OFFSET_IN_MINUTES = 2
+
+let refreshInterval: NodeJS.Timer
+
 onMounted(async () => {
   const selectedProvider = localStorage.getItem(
     'public-transport-selected-provider'
@@ -40,6 +44,14 @@ onMounted(async () => {
   publicTransportService = usePublicTransportService(selectedProvider)
 
   await refreshDepartures()
+
+  refreshInterval = setInterval(async () => {
+    await refreshDepartures()
+  }, 10000) // every 10 seconds
+})
+
+onBeforeUnmount(() => {
+  clearInterval(refreshInterval)
 })
 
 const refreshDepartures = async () => {
@@ -48,11 +60,9 @@ const refreshDepartures = async () => {
   const stopIdsString = localStorage.getItem('public-transport-selected-stops')
   const stopIds = stopIdsString.split(',')
 
-  const departures = await publicTransportService.getDeparturesFromMultipleStops(stopIds)
-
-  departuresFromHome.value = [...departuresFromHome.value, ...departures]
-
-  // TODO: sort by minute before add to departuresFromHome
+  let departures = await publicTransportService.getDeparturesFromMultipleStops(stopIds)
+  departures = departures.filter((d) => mapETATime(d.plannedWhen) > OFFSET_IN_MINUTES)
+  departuresFromHome.value = [...departures]
 }
 
 const mapETATime = (timeString: string) => {
@@ -79,7 +89,9 @@ const mapETATime = (timeString: string) => {
 }
 
 .public-transport-header {
-  font-weight: 500;
+  font-size: medium;
+  height: 15%;
+  font-weight: bold;
 }
 
 .public-transport-header,
@@ -88,12 +100,11 @@ const mapETATime = (timeString: string) => {
   grid-template-columns: 2fr 8fr 4fr;
   // height: 22px;
   column-gap: 5px;
-  font-size: $standard-text-medium;
+  // font-size: $standard-text-medium;
 }
 
 .public-transport-header-title-line {
   text-align: center;
-  font-weight: bold;
 }
 .public-transport-header-title-line-info {
   color: white;

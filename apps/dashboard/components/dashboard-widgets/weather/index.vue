@@ -25,11 +25,14 @@ onMounted(async () => {
     await getWeatherForecastDataFromAPI()
   }, 600000) // every 10 minutes
 })
+
 onBeforeUnmount(() => {
   clearInterval(refreshInterval)
 })
+
 const weatherForecast = ref<WeatherForecast>()
 const backgroundImage = ref('linear-gradient(-150deg, #7de2fc 0%, #b6bee5 100%)')
+
 const getWeatherForecastDataFromAPI = async () => {
   const config = store.config
   const { api_key, open_weather_url } = config.weather
@@ -37,6 +40,7 @@ const getWeatherForecastDataFromAPI = async () => {
   weatherForecast.value = response.data
   defineBackground()
 }
+
 const defineBackground = () => {
   if (weatherForecast.value == null) return
   const sunsetTime = new Date(weatherForecast.value.daily[0].sunset * 1000)
