@@ -23,6 +23,7 @@ importers:
       sass: ^1.54.9
       vite-svg-loader: ^3.6.0
       vue: ^3.2.39
+      vue3-google-signin: ^1.1.0
     dependencies:
       '@pinia/nuxt': 0.4.2_vue@3.2.39
       '@types/ws': 8.5.3
@@ -33,6 +34,7 @@ importers:
       qs: 6.11.0
       sass: 1.54.9
       vue: 3.2.39
+      vue3-google-signin: 1.1.0_vue@3.2.39
     devDependencies:
       nuxt: 3.0.0-rc.11_sass@1.54.9
       vite-svg-loader: 3.6.0

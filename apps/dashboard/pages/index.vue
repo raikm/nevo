@@ -1,9 +1,9 @@
 <template>
   <div id="dashboard-wrapper">
     <div id="boxes">
-      <!-- <HomeClimate class="dashboard-box" />
-        <RoomLightController class="box dashboard-box box-s box-white" />
-        <Music class="box dashboard-box box-m box-white" /> -->
+      <!--   <Music class="box dashboard-box box-m box-white" /> -->
+      <HomeClimate class="box dashboard-box box-white" />
+      <RoomLightController class="box dashboard-box box-s box-white" />
       <PublicTransport class="box dashboard-box box-m box-white" />
       <Weather class="box dashboard-box box-s" />
       <Calendar class="box dashboard-box box-m box-white" />
@@ -19,7 +19,9 @@
 
 <script lang="ts" setup>
 import Calendar from '../components/dashboard-widgets/calendar/index.vue'
+import HomeClimate from '../components/dashboard-widgets/home-climate/index.vue'
 import PublicTransport from '../components/dashboard-widgets/public-transport/index.vue'
+import RoomLightController from '../components/dashboard-widgets/room-light-controller/index.vue'
 import Weather from '../components/dashboard-widgets/weather/index.vue'
 import { useSpotifyService } from '../services/spotify/index'
 import { useHomeAssistantStore } from '../store/homeassistant'
@@ -70,5 +72,13 @@ const spotifyService = useSpotifyService(store)
 
 #shortcuts::-webkit-scrollbar {
   display: none;
+}
+
+#__nuxt {
+  display: grid;
+  grid-template-rows: 10% 85% 5%;
+  height: 100%;
+  max-width: 100rem;
+  margin: auto;
 }
 </style>
