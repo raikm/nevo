@@ -19,6 +19,7 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ### 🛬 Latest Updates
 
 ```
+ 🎉 Nuxt 3 Integration
  🎉 Turbo Repo Integration -> Mono repository
  🎉 Capacitor Integration for iOS development
  🎉 First tests with health data export from the iPhone (HealthExport App)
