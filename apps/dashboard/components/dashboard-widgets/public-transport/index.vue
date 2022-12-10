@@ -12,7 +12,12 @@
         class="public-transport-content"
       >
         <div class="public-transport-header-title-line-info">
-          <div :class="transport.line?.product">{{ transport.line?.name }}</div>
+          <div
+            class="public-transport-header-title-line-info-text"
+            :class="transport.line?.product"
+          >
+            {{ transport.line?.name }}
+          </div>
         </div>
         <div class="public-transport-header-direction-info">{{ transport.direction }}</div>
         <div class="public-transport-header-time-info">
@@ -106,12 +111,17 @@ const mapETATime = (timeString: string) => {
 .public-transport-header-title-line {
   text-align: center;
 }
+
+.public-transport-header-title-line-info-text {
+  text-align: center;
+}
+
 .public-transport-header-title-line-info {
   color: white;
   margin: 2px 0;
   display: grid;
-  align-content: center;
-  justify-content: center;
+  align-content: left;
+  // justify-content: center;
 }
 
 .public-transport-header-direction,

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { Event, Item } from '~~/types/googleCalendarResults'
+import config from '../../../../config.json'
 
 export class CalendarService {
   // TODO wrap in try catch
@@ -8,10 +9,19 @@ export class CalendarService {
     const config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('google_access_token')}` }
     }
-    const response = await axios.get(
-      'https://www.googleapis.com/calendar/v3/users/me/calendarList',
-      config
-    )
+    const response = await axios
+      .get('https://www.googleapis.com/calendar/v3/users/me/calendarList', config)
+      .catch((error: any) => {
+        if (!axios.isAxiosError(error)) {
+          return Promise.reject(error)
+        }
+        if (error.response?.status === 401) {
+          this.getGoogleRefreshToken()
+        }
+
+        // TODO try refresh token
+        // if not working then logout and delet all tokens
+      })
 
     return response.data.items
   }
@@ -69,5 +79,41 @@ export class CalendarService {
     )
 
     return response.data.backgroundColor
+  }
+
+  async getGoogleToken() {
+    const configuration = {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      params: {
+        client_id: encodeURI(config.google_calendar.client_id),
+        client_secret: encodeURI(config.google_calendar.client_secret),
+        code: encodeURI(localStorage.getItem('google_access_code')),
+        grant_type: 'authorization_code',
+        redirect_uri: encodeURI('http://localhost:3000')
+      }
+    }
+
+    const response = await axios.post('https://oauth2.googleapis.com/token', null, configuration)
+    localStorage.setItem('google_access_token', response['access_token'])
+    localStorage.setItem('google_refresh_token', response['refresh_token'])
+  }
+
+  async getGoogleRefreshToken() {
+    const configuration = {
+      headers: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      params: {
+        client_id: encodeURI(config.google_calendar.client_id),
+        client_secret: encodeURI(config.google_calendar.client_secret),
+        refresh_token: encodeURI(localStorage.getItem('google_refresh_token')),
+        grant_type: 'refresh_token'
+      }
+    }
+
+    const response = await axios.post('https://oauth2.googleapis.com/token', null, configuration)
+    localStorage.setItem('google_access_token', response['access_token'])
   }
 }

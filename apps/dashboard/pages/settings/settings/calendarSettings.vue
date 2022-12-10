@@ -1,24 +1,24 @@
 <template>
-    <button :disabled="!isReady" @click="() => login()">Login with Google</button>
+  <button :disabled="!isReady" @click="() => login()">Login with Google</button>
 </template>
 
 <script lang="ts" setup>
 import {
-useTokenClient, type AuthCodeFlowErrorResponse, type AuthCodeFlowSuccessResponse
-} from "vue3-google-signin";
+  useCodeClient,
+  type ImplicitFlowErrorResponse,
+  type ImplicitFlowSuccessResponse
+} from 'vue3-google-signin'
 
+const handleOnSuccess = async (response: ImplicitFlowSuccessResponse) => {
+  localStorage.setItem('google_access_code', response.code)
+}
 
-const handleOnSuccess = (response: AuthCodeFlowSuccessResponse) => {
-    localStorage.setItem("google_access_token", response.access_token)
-};
+const handleOnError = (errorResponse: ImplicitFlowErrorResponse) => {
+  console.log('Error: ', errorResponse)
+}
 
-const handleOnError = (errorResponse: AuthCodeFlowErrorResponse) => {
-  console.log("Error: ", errorResponse);
-};
-
-const { isReady, login } = useTokenClient({
+const { isReady, login } = useCodeClient({
   onSuccess: handleOnSuccess,
-  onError: handleOnError,
-});
-
+  onError: handleOnError
+})
 </script>

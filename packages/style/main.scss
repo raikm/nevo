@@ -46,10 +46,9 @@ body {
 
 .box {
   border-radius: $standard-border-radius;
-  overflow: hidden;
   padding: 15px;
-  overflow: hidden;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
 }
 
 .box-white {
@@ -101,7 +100,6 @@ body {
   height: 20%;
   // margin-bottom: 1.6%;
 
-  // overflow: hidden;
 }
 
 .main-info-title {
@@ -218,7 +216,7 @@ body {
 .service-info {
   display: grid;
   place-items: center;
-  gap: 1rem;
+  height: 50%;
 }
 
 .widget-regular-header{

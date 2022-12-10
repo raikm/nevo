@@ -7,9 +7,9 @@
       </div>
     </div>
     <div class="calendar-body-wrapper" v-if="!loading">
-      <div v-if="!isReady" class="calendar-body service-info">
-        Service not available
-        <button @click="navigateTo({ name: 'settings' })">Settings</button>
+      <div v-if="error != undefined" class="calendar-body service-info">
+        Service is not available
+        <button @click="navigateTo({ name: 'settings' })">Go to Settings</button>
       </div>
 
       <div v-else-if="calendarEvents.length === 0" class="calendar-body no-events-info">
@@ -43,14 +43,16 @@
 </template>
 
 <script lang="ts" setup>
+import axios from 'axios'
 import { useCalendarService } from '~~/services/calendar'
 import { Event } from '~~/types/googleCalendarResults'
 import CalendarEvent from './CalendarEvent.vue'
-const { isReady } = useTokenClient()
+const { isReady } = useCodeClient()
 
 const calendarService = useCalendarService()
 const calendarEvents = ref<Event[]>([])
 const loading = ref(false)
+const error = ref()
 
 onMounted(async () => {
   refreshCalendars()
@@ -60,7 +62,13 @@ const refreshCalendars = async () => {
   loading.value = true
 
   if (isReady) {
-    calendarEvents.value = await calendarService.getTodayGoogleCalendarEvents()
+    try {
+      calendarEvents.value = await calendarService.getTodayGoogleCalendarEvents()
+    } catch (err: any) {
+      if (axios.isAxiosError(err)) {
+      }
+      error.value = err
+    }
   } else {
     // refreshToken: https://developers.google.com/identity/protocols/oauth2/web-server#sample-oauth-2.0-server-response
   }
@@ -81,6 +89,12 @@ const calendarTitle = computed(() => {
 
 <style lang="scss">
 @import '../../../../../packages/style/variables.scss';
+
+.calendar-body-wrapper {
+  height: 85%;
+  display: grid;
+  place-items: center;
+}
 
 #calendar-header {
   height: 15%;
