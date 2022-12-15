@@ -12,28 +12,36 @@
         <button @click="navigateTo({ name: 'settings' })">Go to Settings</button>
       </div>
 
-      <div v-else-if="calendarEvents.length === 0" class="calendar-body no-events-info">
-        No events today
+      <div
+        v-else-if="calendarEvents.length === 0 && calendarDayEvents.length === 0"
+        class="calendar-body no-events-info"
+      >
+        <div>⛰️ No events today</div>
       </div>
 
       <div v-else class="calendar-body">
         <div class="calendar-events">
+          <div v-if="calendarDayEvents.length > 0" class="calendar-day-events">
+            <CalendarDayEvent
+              v-for="calendarDayEvent in calendarDayEvents"
+              :event="calendarDayEvent"
+            />
+          </div>
           <div class="calendar-next-events">
             <CalendarEvent
               v-for="event in calendarEvents.slice(0, 3)"
               :key="event.id"
               :event="event"
             />
-          </div>
-
-          <div v-if="calendarEvents.length > 3" class="preview-calendar-event">
-            <div
-              class="calendar-color-bar"
-              :key="event.id"
-              v-for="event in calendarEvents.slice(3, 6)"
-              :style="{ background: event.calendarColor }"
-            ></div>
-            <div class="preview-text">{{ calendarEvents.length - 3 }} more events</div>
+            <div v-if="calendarEvents.length > 3" class="preview-calendar-event">
+              <div
+                class="calendar-color-bar"
+                :key="event.id"
+                v-for="event in calendarEvents.slice(3, 6)"
+                :style="{ background: event.calendarColor }"
+              ></div>
+              <div class="preview-text">{{ calendarEvents.length - 3 }} more events</div>
+            </div>
           </div>
         </div>
       </div>
@@ -46,11 +54,13 @@
 import axios from 'axios'
 import { useCalendarService } from '~~/services/calendar'
 import { Event } from '~~/types/googleCalendarResults'
+import CalendarDayEvent from './CalendarDayEvent.vue'
 import CalendarEvent from './CalendarEvent.vue'
 const { isReady } = useCodeClient()
 
 const calendarService = useCalendarService()
 const calendarEvents = ref<Event[]>([])
+const calendarDayEvents = ref<Event[]>([])
 const loading = ref(false)
 const error = ref()
 
@@ -63,15 +73,18 @@ const refreshCalendars = async () => {
 
   if (isReady) {
     try {
-      calendarEvents.value = await calendarService.getTodayGoogleCalendarEvents()
+      const allEvents = await calendarService.getTodayGoogleCalendarEvents()
+      calendarDayEvents.value = allEvents.filter((e) => e.start.date)
+      calendarEvents.value = allEvents
+        .filter((e) => e.start.dateTime)
+        .sort((a, b) => Date.parse(a.start.dateTime) - Date.parse(b.start.dateTime))
     } catch (err: any) {
       if (axios.isAxiosError(err)) {
       }
       error.value = err
     }
-  } else {
-    // refreshToken: https://developers.google.com/identity/protocols/oauth2/web-server#sample-oauth-2.0-server-response
   }
+
   loading.value = false
 }
 
@@ -107,14 +120,15 @@ const calendarTitle = computed(() => {
     font-size: medium;
   }
 }
-#calendar-body {
+.calendar-body {
   height: 85%;
   width: 100%;
 }
 .calendar-events {
   height: 100%;
   display: grid;
-  grid-template-rows: 90% auto;
+  grid-template-columns: 47.5% 47.5%;
+  gap: 5%;
   .calendar-next-events {
     display: flex;
     flex-direction: column;
@@ -137,5 +151,16 @@ const calendarTitle = computed(() => {
   border-radius: 20px;
   height: 100%;
   margin-right: 2px;
+}
+
+.calendar-day-events {
+  display: flex;
+  flex-direction: column;
+}
+
+.no-events-info {
+  font-size: large;
+  display: grid;
+  place-items: center;
 }
 </style>

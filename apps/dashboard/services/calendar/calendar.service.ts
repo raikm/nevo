@@ -15,7 +15,10 @@ export class CalendarService {
         if (!axios.isAxiosError(error)) {
           return Promise.reject(error)
         }
-        if (error.response?.status === 401) {
+        if (
+          error.response?.status === 401 &&
+          localStorage.getItem('google_refresh_token').length > 0
+        ) {
           this.getGoogleRefreshToken()
         }
 
@@ -57,13 +60,15 @@ export class CalendarService {
   async getTodayGoogleCalendarEvents(): Promise<Event[]> {
     const calendars = await this.getGoogleCalendars()
 
-    const startDay = new Date(new Date().setHours(0, 0, 0, 0)).toISOString()
+    const startDay = new Date(new Date()).toISOString()
     const endDay = new Date(new Date().setHours(23, 59, 59, 999)).toISOString()
+
     const params = {
       showDeleted: false,
       timeMin: startDay,
       timeMax: endDay
     }
+
     const dayEvents = await this.getGoogleCalendarEvents(calendars, params)
     return dayEvents
   }
@@ -96,8 +101,9 @@ export class CalendarService {
     }
 
     const response = await axios.post('https://oauth2.googleapis.com/token', null, configuration)
-    localStorage.setItem('google_access_token', response['access_token'])
-    localStorage.setItem('google_refresh_token', response['refresh_token'])
+
+    localStorage.setItem('google_access_token', response.data['access_token'])
+    localStorage.setItem('google_refresh_token', response.data['refresh_token'])
   }
 
   async getGoogleRefreshToken() {

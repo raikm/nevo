@@ -8,9 +8,13 @@ import {
   type ImplicitFlowErrorResponse,
   type ImplicitFlowSuccessResponse
 } from 'vue3-google-signin'
+import { useCalendarService } from '~~/services/calendar'
+
+const calendarService = useCalendarService()
 
 const handleOnSuccess = async (response: ImplicitFlowSuccessResponse) => {
   localStorage.setItem('google_access_code', response.code)
+  await calendarService.getGoogleToken()
 }
 
 const handleOnError = (errorResponse: ImplicitFlowErrorResponse) => {

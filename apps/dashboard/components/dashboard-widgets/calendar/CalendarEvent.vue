@@ -50,11 +50,12 @@ const { event } = defineProps<{ event: Event }>()
   border-radius: 5px;
 }
 .event-entry {
+  width: 100%;
   margin-bottom: 2.5%;
 }
 .event-summary {
   font-size: medium;
-  font-weight: bold;
+  font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
