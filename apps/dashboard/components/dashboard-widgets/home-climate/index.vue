@@ -32,4 +32,15 @@ const homeclimateSensorsForEachRoom = computed((): Rooms => {
 .room-climate-wrapper {
   overflow-y: scroll;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.room-climate-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.room-climate-wrapper {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
 </style>

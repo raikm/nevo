@@ -3,12 +3,12 @@
     <div id="boxes">
       <!--   <Music class="box dashboard-box box-m box-white" /> -->
       <HomeClimate class="box dashboard-box box-white" />
+      <Weather class="box dashboard-box box-s" />
       <RoomLightController
         v-if="homeAssistantStore.haConnection"
         class="box dashboard-box box-s box-white"
       />
       <PublicTransport class="box dashboard-box box-m box-white" />
-      <Weather class="box dashboard-box box-s" />
       <Calendar class="box dashboard-box box-m box-white" />
     </div>
     <div id="shortcuts">
@@ -42,7 +42,8 @@ const spotifyService = useSpotifyService(store)
 @import '../../../packages/style/main.scss';
 
 #dashboard-wrapper {
-  max-width: calc(320px * 3 + 8rem);
+  // 22rem is one box
+  max-width: calc(66rem + 8rem);
   position: relative;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
@@ -55,6 +56,7 @@ const spotifyService = useSpotifyService(store)
 #boxes {
   display: grid;
   column-gap: 1rem;
+  row-gap: 1rem;
   row-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;

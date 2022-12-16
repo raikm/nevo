@@ -46,7 +46,7 @@ const triggerGroupState = (entity_id: string, state: string) => {
   grid-auto-flow: column;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
+  // width: 100%;
   height: 100%;
   &::-webkit-scrollbar {
     display: none;
