@@ -12,15 +12,13 @@
       <Calendar class="box dashboard-box box-m box-white" />
     </div>
     <div id="shortcuts">
-      <!-- <Shortcut
-        :shortcut="shortcut"
-        v-for="shortcut in homeAssistantStore.shortcutEntities"
-      /> -->
+      <Shortcut :shortcut="shortcut" v-for="shortcut in homeAssistantStore.shortcutEntities" />
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import Shortcut from '~~/components/Shortcut.vue'
 import Calendar from '../components/dashboard-widgets/calendar/index.vue'
 import HomeClimate from '../components/dashboard-widgets/home-climate/index.vue'
 import PublicTransport from '../components/dashboard-widgets/public-transport/index.vue'
