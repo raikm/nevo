@@ -9,7 +9,7 @@ assignees: ''
 
 **Short description**
 
-**Steps to consider*
+**Steps to consider**
 - [ ]
 
 **Helpful Links**
