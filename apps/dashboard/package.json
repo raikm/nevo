@@ -20,6 +20,7 @@
     "nuxt-vue3-google-signin": "^0.0.5",
     "qs": "^6.11.0",
     "sass": "^1.54.9",
+    "socket.io-client": "^4.5.4",
     "vue": "^3.2.39",
     "vue3-google-signin": "^1.2.1"
   }

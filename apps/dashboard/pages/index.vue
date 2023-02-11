@@ -1,15 +1,15 @@
 <template>
   <div id="dashboard-wrapper">
     <div id="boxes">
-      <!--   <Music class="box dashboard-box box-m box-white" /> -->
-      <HomeClimate class="box dashboard-box box-white" />
-      <Weather class="box dashboard-box box-s" />
-      <RoomLightController
+      <DashboardWidgetsHomeClimate class="box dashboard-box box-white" />
+      <DashboardWidgetsWeather class="box dashboard-box box-s" />
+      <DashboardWidgetsRoomLightController
         v-if="homeAssistantStore.haConnection"
         class="box dashboard-box box-s box-white"
       />
-      <PublicTransport class="box dashboard-box box-m box-white" />
-      <Calendar class="box dashboard-box box-m box-white" />
+      <DashboardWidgetsPublicTransport class="box dashboard-box box-m box-white" />
+      <DashboardWidgetsCalendar class="box dashboard-box box-m box-white" />
+      <DashboardWidgetsMusic class="box dashboard-box box-m box-white" />
     </div>
     <div id="shortcuts">
       <Shortcut :shortcut="shortcut" v-for="shortcut in homeAssistantStore.shortcutEntities" />
@@ -19,11 +19,6 @@
 
 <script lang="ts" setup>
 import Shortcut from '~~/components/Shortcut.vue'
-import Calendar from '../components/dashboard-widgets/calendar/index.vue'
-import HomeClimate from '../components/dashboard-widgets/home-climate/index.vue'
-import PublicTransport from '../components/dashboard-widgets/public-transport/index.vue'
-import RoomLightController from '../components/dashboard-widgets/room-light-controller/index.vue'
-import Weather from '../components/dashboard-widgets/weather/index.vue'
 import { useSpotifyService } from '../services/spotify/index'
 import { useHomeAssistantStore } from '../store/homeassistant'
 import { useStore } from '../store/index'

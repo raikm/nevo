@@ -16,5 +16,6 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [svgLoader()]
-  }
+  },
+  plugins: ['~/plugins/socketIO.ts']
 })
