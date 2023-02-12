@@ -126,3 +126,4 @@ typings/
 
 
 .output/
+apps/api/db/sqlite.db
