@@ -5,5 +5,6 @@ import * as plantRoutes from './plant.routes.ts'
 const router: Router = new Router()
 
 router.get('/plants', ...plantRoutes.getAllPlants)
+router.put('/plantMeasurement', ...plantRoutes.putPlantMeasurements)
 
 export { router }

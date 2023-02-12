@@ -1,9 +1,10 @@
 import { Application } from 'https://deno.land/x/oak@v11.1.0/mod.ts'
+import db from './db/db.ts'
 import { router } from './routes/routes.ts'
 
 const app = new Application()
 
-const PORT = 8000
+const PORT = 8001
 
 app.addEventListener('listen', () => {
   console.log(`App is running on http://localhost:${PORT}`)
@@ -17,4 +18,15 @@ app.addEventListener('listen', () => {
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-await app.listen({ port: 8000 })
+// ? drop?
+await db.sync({ drop: true })
+
+// TODO if Loactions are empty:
+// await db.transaction(async () => {
+//   await Location.create({ id: crypto.randomUUID(), name: 'Living Room', floor: 1 })
+//   await Location.create({ id: crypto.randomUUID(), name: 'Kitchen', floor: 1 })
+// })
+
+console.log('Database Connected!!')
+
+await app.listen({ port: PORT })
