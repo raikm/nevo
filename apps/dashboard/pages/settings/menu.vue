@@ -1,0 +1,1 @@
+<template><div class="box box-white"></div></template>

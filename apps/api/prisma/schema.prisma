@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["deno"]
+  output          = "../generated/client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../db/sqlite.db"
+}
+
+model Plant {
+  id               Int                @id @default(autoincrement())
+  name             String
+  version          String
+  address          String             @unique
+  Measurement      Measurement[]
+  Location         Location?
+  MeasurementRange MeasurementRange[]
+
+  @@map("plants")
+}
+
+model Measurement {
+  id            Int      @id @default(autoincrement())
+  battery       Int
+  soilFertility Int
+  soilMositure  Int
+  sunlight      Int
+  temperature   Int
+  timestamp     DateTime @default(now())
+  plant         Plant    @relation(fields: [plantId], references: [id])
+  plantId       Int      @unique
+
+  @@map("measurements")
+}
+
+model Location {
+  id      Int    @id @default(autoincrement())
+  name    String @unique
+  floor   Int
+  plant   Plant  @relation(fields: [plantId], references: [id])
+  plantId Int    @unique
+
+  @@map("locations")
+}
+
+model MeasurementRange {
+  id      Int    @id @default(autoincrement())
+  unit    String
+  min     Int
+  max     Int
+  plant   Plant  @relation(fields: [plantId], references: [id])
+  plantId Int    @unique
+
+  @@map("measurement_ranges")
+}
