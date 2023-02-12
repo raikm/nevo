@@ -1,5 +1,4 @@
 import { Application } from 'https://deno.land/x/oak@v11.1.0/mod.ts'
-import db from './db/db.ts'
 import { router } from './routes/routes.ts'
 
 const app = new Application()
@@ -18,8 +17,7 @@ app.addEventListener('listen', () => {
 app.use(router.routes())
 app.use(router.allowedMethods())
 
-// ? drop?
-await db.sync({ drop: true })
+// await db.sync()
 
 // TODO if Loactions are empty:
 // await db.transaction(async () => {

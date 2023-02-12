@@ -4,50 +4,53 @@ import Plant from '../models/Plant.ts'
 import { PlantMeasurement } from '../types/plant.interface.ts'
 
 export const getAllPlantMetadata = async () => {
-  return await Plant.join(Location, Location.field('id'), Plant.field('locationId')).all()
+  console.log(Location.field('id'))
+  console.log(Plant.field('location_id'))
+  console.log(Plant)
+  return await Plant.join(Location, Location.field('id'), Plant.field('location_id')).all()
 }
 
-export const getLastPlantValues = async (plantId: string) => {
+export const getLastPlantValues = async (plant_id: string) => {
   const battery = <Measurement>(
-    await Plant.join(Plant, Plant.field('id'), Measurement.field('plantId'))
+    await Plant.join(Plant, Plant.field('id'), Measurement.field('plant_id'))
       .where(Measurement.field('type'), 'battery')
-      .where(Measurement.field('plant_id'), plantId)
+      .where(Measurement.field('plant_id'), plant_id)
       .orderBy('created_at', 'desc')
       .select('value')
       .first()
   )
 
   const soilfertility = <Measurement>(
-    await Plant.join(Plant, Plant.field('id'), Measurement.field('plantId'))
+    await Plant.join(Plant, Plant.field('id'), Measurement.field('plant_id'))
       .where(Measurement.field('type'), 'soilfertility')
-      .where(Measurement.field('plant_id'), plantId)
+      .where(Measurement.field('plant_id'), plant_id)
       .orderBy('created_at', 'desc')
       .select('value')
       .first()
   )
 
   const soilMoisture = <Measurement>(
-    await Plant.join(Plant, Plant.field('id'), Measurement.field('plantId'))
+    await Plant.join(Plant, Plant.field('id'), Measurement.field('plant_id'))
       .where(Measurement.field('type'), 'soilmoisture')
-      .where(Measurement.field('plant_id'), plantId)
+      .where(Measurement.field('plant_id'), plant_id)
       .orderBy('created_at', 'desc')
       .select('value')
       .first()
   )
 
   const sunlight = <Measurement>(
-    await Plant.join(Plant, Plant.field('id'), Measurement.field('plantId'))
+    await Plant.join(Plant, Plant.field('id'), Measurement.field('plant_id'))
       .where(Measurement.field('type'), 'sunlight')
-      .where(Measurement.field('plant_id'), plantId)
+      .where(Measurement.field('plant_id'), plant_id)
       .orderBy('created_at', 'desc')
       .select('value')
       .first()
   )
 
   const temperature = <Measurement>(
-    await Plant.join(Plant, Plant.field('id'), Measurement.field('plantId'))
+    await Plant.join(Plant, Plant.field('id'), Measurement.field('plant_id'))
       .where(Measurement.field('type'), 'temperature')
-      .where(Measurement.field('plant_id'), plantId)
+      .where(Measurement.field('plant_id'), plant_id)
       .orderBy('created_at', 'desc')
       .select('value')
       .first()
@@ -66,8 +69,14 @@ export const getLastPlantValues = async (plantId: string) => {
 // * TODO GET historical data from plant x including requested timespam
 
 export const putPlantMeasurements = async (measurements: PlantMeasurement): Promise<void> => {
+  console.log('search for plant with id: ' + measurements.id)
   // TODO add current sun data on top of old data from *today* & reset if day is over
   const plant: Plant = await Plant.where('id', measurements.id).first()
+
+  if (!plant) {
+    console.warn('no plant in db found')
+    return
+  }
 
   await Measurement.create([
     {

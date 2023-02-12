@@ -17,6 +17,7 @@ export const putPlantMeasurements = [
       if (!ctx.request.hasBody) {
         ctx.throw(415)
       }
+
       await plantService.putPlantMeasurements(await ctx.request.body().value)
       ctx.response.status = 200
     } catch {
