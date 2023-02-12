@@ -8,16 +8,17 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "nuxt": "3.0.0-rc.11",
+    "nuxt": "3.2.0",
     "vite-svg-loader": "^3.6.0"
   },
   "dependencies": {
-    "@pinia/nuxt": "^0.4.2",
+    "@pinia/nuxt": "^0.4.6",
     "@types/ws": "^8.5.3",
     "axios": "^0.27.2",
     "googleapis": "^108.0.0",
     "home-assistant-js-websocket": "^8.0.0",
     "nuxt-vue3-google-signin": "^0.0.5",
+    "pinia": "^2.0.30",
     "qs": "^6.11.0",
     "sass": "^1.54.9",
     "socket.io-client": "^4.5.4",

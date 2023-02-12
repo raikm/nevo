@@ -1,4 +1,14 @@
 {
-  "name": "nevo-api",
-  "version": "1.0.0"
+  "name": "deno-api",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "4.10.1"
+  },
+  "devDependencies": {
+    "prisma": "^4.10.1"
+  }
 }
