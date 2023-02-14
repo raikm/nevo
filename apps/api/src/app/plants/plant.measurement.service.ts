@@ -4,15 +4,15 @@ import { Injectable, NotImplementedException } from '@nestjs/common';
 export class MeasurementService {
   // TODO constructor() {}
 
-  async getLastMeasurements(plantId: string) {
+  async getLastMeasurements(id: string) {
     throw new NotImplementedException();
   }
 
-  async putNewMeasurements(plantId: string, measurements: any) {
+  async putNewMeasurements(id: string, measurements: any) {
     throw new NotImplementedException();
   }
 
-  async getPlantMeasurmentsHistory(plantId: string, timespan: any) {
+  async getPlantMeasurmentsHistory(id: string, timespan: any) {
     throw new NotImplementedException();
   }
 }

@@ -14,6 +14,11 @@ export class LocationService {
     throw new NotImplementedException();
   }
 
+  async delete(id: string) {
+    // name, address, location, borders for each measurement
+    throw new NotImplementedException();
+  }
+
   async getAll() {
     throw new NotImplementedException();
   }
