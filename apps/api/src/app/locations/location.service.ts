@@ -1,25 +1,61 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { LocationUpdateParameters } from '@nevo/domain-types';
+import { randomUUID } from 'crypto';
+import { Repository } from 'typeorm';
+import { LocationCreationParameters } from './dto/location.create.js';
+import { Location } from './dto/location.dto.js';
+import { LocationEntity } from './entities/location.entity.js';
 
 @Injectable()
 export class LocationService {
-  // TODO constructor() {}
+  constructor(
+    @InjectRepository(LocationEntity)
+    private readonly locationRepository: Repository<LocationEntity>,
+  ) {}
 
-  async create(LocationCreationParameters: any) {
-    // name, floor
-    throw new NotImplementedException();
+  async create(
+    parameters: LocationCreationParameters,
+  ): Promise<Location | null> {
+    const existingLocation = await this.locationRepository.findOneBy({
+      name: parameters.name,
+    });
+    if (existingLocation) {
+      return null;
+    }
+
+    let location = this.locationRepository.create({
+      id: randomUUID(),
+      name: parameters.name,
+      floor: parameters.floor,
+    });
+
+    location = await this.locationRepository.save(location);
+
+    return location;
   }
 
-  async update(LocationUpdateParameters: any) {
-    // name, floor
-    throw new NotImplementedException();
+  async update(
+    id: string,
+    parameters: LocationUpdateParameters,
+  ): Promise<Location | null> {
+    const existingLocation = await this.locationRepository.findOneBy({
+      id: id,
+    });
+
+    if (!existingLocation) {
+      return null;
+    }
+
+    const updatedLocation = Object.assign({}, existingLocation, parameters);
+    return updatedLocation;
   }
 
-  async delete(id: string) {
-    // name, address, location, borders for each measurement
-    throw new NotImplementedException();
+  async findAll(): Promise<Location[]> {
+    return await this.locationRepository.find();
   }
 
-  async getAll() {
-    throw new NotImplementedException();
+  async remove(id: string): Promise<void> {
+    await this.locationRepository.delete(id);
   }
 }
