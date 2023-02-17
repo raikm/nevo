@@ -4,10 +4,10 @@ import { IsNotEmpty, IsNumber, IsUUID } from 'class-validator';
 export class Location implements ILocation {
   @IsUUID()
   id!: string;
-    
+
   @IsNotEmpty()
   name!: string;
-    
+
   @IsNotEmpty()
   @IsNumber()
   floor!: number;
@@ -16,4 +16,3 @@ export class Location implements ILocation {
     Object.assign(this, init);
   }
 }
-‚

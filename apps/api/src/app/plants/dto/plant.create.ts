@@ -1,12 +1,19 @@
-// import {
-//   type PlantCreationParameters as IHostCreationParameters,
-// } from '@nevo/domain-types';
-// import {
-//   IsNotEmpty,
-//   IsNotEmptyObject,
-//   IsUUID,
-//   MaxLength,
-//   MinLength,
-// } from 'class-validator';
+import type {
+  Location,
+  PlantCreationParameters as IPlantCreationParameters,
+} from '@nevo/domain-types';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
-// export class PlantCreationParameters implements IPlantCreationParameters {}
+export class PlantCreationParameters implements IPlantCreationParameters {
+  @IsNotEmpty()
+  name!: string;
+
+  @IsNotEmpty()
+  address!: string;
+
+  @IsNotEmpty()
+  version!: string;
+
+  @IsOptional()
+  location?: Location;
+}

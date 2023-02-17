@@ -8,10 +8,11 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import type {
+import {
   LocationCreationParameters,
   LocationUpdateParameters,
-} from '@nevo/domain-types';
+} from './dto/index.js';
+
 import { Location } from './dto/location.dto.js';
 import { LocationService } from './location.service.js';
 

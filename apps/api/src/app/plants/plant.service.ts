@@ -1,13 +1,15 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+
+import { randomUUID } from 'crypto';
+import { Repository } from 'typeorm';
+import { LocationEntity } from '../locations/entities/location.entity.js';
 import {
   Plant,
   PlantCreationParameters,
   PlantUpdateParameters,
-} from '@nevo/domain-types';
-import { randomUUID } from 'crypto';
-import { Repository } from 'typeorm';
-import { LocationEntity } from '../locations/entities/location.entity.js';
+} from './dto/index.js';
+
 import { PlantEntity } from './entities/plant.entity.js';
 
 @Injectable()
@@ -15,11 +17,12 @@ export class PlantService {
   constructor(
     @InjectRepository(LocationEntity)
     private readonly locationRepository: Repository<LocationEntity>,
+    @InjectRepository(PlantEntity)
     private readonly plantRepository: Repository<PlantEntity>,
   ) {}
   async create(parameters: PlantCreationParameters): Promise<Plant | null> {
     const location = await this.locationRepository.findOneBy({
-      id: parameters.location.id,
+      id: parameters.location?.id,
     });
 
     let plant = this.plantRepository.create({

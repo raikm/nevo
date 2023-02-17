@@ -8,11 +8,12 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import type {
+import {
   Plant,
   PlantCreationParameters,
   PlantUpdateParameters,
-} from '@nevo/domain-types';
+} from './dto/index.js';
+
 import { PlantService } from './plant.service.js';
 
 @Controller({

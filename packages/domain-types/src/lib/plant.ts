@@ -12,13 +12,13 @@ export interface PlantCreationParameters {
   name: string
   address: string
   version: string
-  location: Location
+  location?: Location
 }
 
 export interface PlantUpdateParameters {
   name: string
   version: string
-  location: Location
+  location?: Location
 }
 
 export interface Measurement {
@@ -34,4 +34,9 @@ export interface MeasurementBorders {
   currency: string
   min: number
   max: number
+}
+
+export interface PlantMeasurementHistoryParameters {
+  start: Date
+  end: Date
 }
