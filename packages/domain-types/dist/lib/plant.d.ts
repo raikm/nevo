@@ -4,7 +4,7 @@ export interface Plant {
     name: string;
     address: string;
     version: string;
-    location: Location;
+    location?: Location;
 }
 export interface PlantCreationParameters {
     name: string;

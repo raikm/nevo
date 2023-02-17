@@ -22,9 +22,9 @@ export class LocationController {
   @Post()
   @HttpCode(204)
   async create(
-    @Body() locationCreationParameters: LocationCreationParameters,
+    @Body() parameters: LocationCreationParameters,
   ): Promise<Location | null> {
-    return await this.locationService.create(locationCreationParameters);
+    return await this.locationService.create(parameters);
   }
 
   @Get()
