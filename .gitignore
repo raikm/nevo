@@ -126,5 +126,4 @@ typings/
 .output/
 apps/api/db/sqlite.db
 apps/api/database.sqlite
-packages/domain-types/dist/*
-packages/domain-types/dist
+packages/domain-types/dist/
