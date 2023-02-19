@@ -8,6 +8,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
+import { MiFloraDevice } from '@nevo/domain-types';
 import {
   Plant,
   PlantCreationParameters,
@@ -36,8 +37,8 @@ export class PlantController {
     return await this.plantService.findAll();
   }
 
-  @Get()
-  async findNewNearbySensors(): Promise<Plant[]> {
+  @Get('discover')
+  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
     return await this.plantService.findNewNearbySensors();
   }
 

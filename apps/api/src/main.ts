@@ -1,8 +1,4 @@
-import {
-  ValidationPipe,
-  VersioningType,
-  VERSION_NEUTRAL,
-} from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
@@ -24,15 +20,17 @@ async function bootstrap() {
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
 
-  app.enableVersioning({
-    type: VersioningType.URI,
-    defaultVersion: VERSION_NEUTRAL,
-  });
+  // app.enableVersioning({
+  //   type: VersioningType.URI,
+  //   defaultVersion: VERSION_NEUTRAL,
+  // });
 
   const port = 5001;
 
   await app.listen(port);
-
+  console.log(
+    `🚀 API Application is running on: http://localhost:${port}/${globalPrefix}`,
+  );
   // logger.log(
   //   `🚀 API Application is running on: http://localhost:${port}/${globalPrefix}`,
   // );

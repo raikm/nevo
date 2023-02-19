@@ -7,8 +7,10 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "incremental": true,
+    "baseUrl": "./",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",
+    "noImplicitAny": true,
     "isolatedModules": true,
     "outDir": "./dist",
     "removeComments": true,
@@ -17,5 +19,7 @@
     "strict": true,
     "target": "ESNext",
     "types": ["node"]
-  }
+  },
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules"]
 }

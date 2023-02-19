@@ -1,0 +1,13 @@
+{
+  "name": "plant_client",
+  "version": "1.0.0",
+  "description": "client to connect to plant sensors from miflora",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "miflora": "^1.0.6"
+  }
+}

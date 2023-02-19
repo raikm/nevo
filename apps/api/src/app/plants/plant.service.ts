@@ -1,4 +1,4 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 
 import { randomUUID } from 'crypto';
@@ -10,6 +10,10 @@ import {
   PlantUpdateParameters,
 } from './dto/index.js';
 
+import { MiFloraDevice } from '@nevo/domain-types';
+// @ts-ignore
+
+import miflora from 'miflora';
 import { PlantEntity } from './entities/plant.entity.js';
 
 @Injectable()
@@ -64,9 +68,15 @@ export class PlantService {
     return await this.plantRepository.find();
   }
 
-  async findNewNearbySensors(): Promise<Plant[]> {
-    // sensor must be near server to get find my the miflora search function
-    // compare existing mac adreses in db with found miflora sensors
-    throw new NotImplementedException();
+  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
+    const plants = await this.plantRepository.find();
+    const plantAddresses = plants.map((p) => p.address);
+    const opts = {
+      duration: 15000,
+      ignoreUnknown: true,
+      addresses: plantAddresses,
+    };
+
+    return (await miflora.discover(opts)) as MiFloraDevice[];
   }
 }
