@@ -6,7 +6,9 @@
   </div>
 
   <div id="main">
-    <NuxtPage class="content-container" />
+    <NuxtLayout name="main">
+      <NuxtPage class="content-container" />
+    </NuxtLayout>
   </div>
 
   <!-- <div id="footer"></div> -->

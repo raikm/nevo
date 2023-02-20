@@ -1,12 +1,11 @@
 <template>
   <div class="settings-container">
     <Menu />
-    <Details />
+    <slot />
   </div>
 </template>
 
 <script lang="ts" setup>
-import Details from './details.vue'
 import Menu from './menu.vue'
 </script>
 

@@ -1,1 +1,5 @@
-<template><div class="box box-white"></div></template>
+<template>
+  <div class="menu box-white">
+    <NuxtLink to="settings/details/plants"> Plants </NuxtLink>
+  </div>
+</template>

@@ -8,7 +8,7 @@ import {
   type ImplicitFlowErrorResponse,
   type ImplicitFlowSuccessResponse
 } from 'vue3-google-signin'
-import { useCalendarService } from '~~/services/calendar'
+import { useCalendarService } from '../../../services/calendar/index'
 
 const calendarService = useCalendarService()
 

@@ -95,6 +95,7 @@ importers:
 
   apps/dashboard:
     specifiers:
+      '@nevo/domain-types': workspace:*
       '@pinia/nuxt': ^0.4.6
       '@types/ws': ^8.5.3
       axios: ^0.27.2
@@ -110,6 +111,7 @@ importers:
       vue: ^3.2.39
       vue3-google-signin: ^1.2.1
     dependencies:
+      '@nevo/domain-types': link:../../packages/domain-types
       '@pinia/nuxt': 0.4.6_vue@3.2.47
       '@types/ws': 8.5.4
       axios: 0.27.2
