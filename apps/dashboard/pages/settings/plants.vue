@@ -37,7 +37,8 @@ const plants = ref<Plant[]>([
       </div>
       <div class="plant-row-details-icon">〉</div>
     </div>
-    <div id="add-new-plant-row">+ Add new Plant</div>
+
+    <div id="add-new-plant-row"><NuxtLink to="addPlant">+ Add new Plant</NuxtLink></div>
   </div>
 </template>
 
@@ -87,8 +88,10 @@ const plants = ref<Plant[]>([
 #add-new-plant-row {
   display: grid;
   align-content: center;
-  color: #9604ff8a;
 
-  // TODO bring to style library
+  a {
+    text-decoration: none;
+    color: #9604ff8a;
+  }
 }
 </style>
