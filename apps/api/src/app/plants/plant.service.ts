@@ -57,6 +57,7 @@ export class PlantService {
     }
     //FIXME: doesnt work
     const updatedPlant = Object.assign({}, existingPlant, parameters);
+    const plant = this.plantRepository.save(updatedPlant);
     return updatedPlant;
   }
 

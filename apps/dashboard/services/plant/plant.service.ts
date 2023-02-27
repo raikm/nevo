@@ -54,6 +54,14 @@ export class PlantService {
     return reponse.data
   }
 
+  async delete(id: string): Promise<void> {
+    const reponse = await axios
+      .delete(`${config.api.baseUrl}/api/plants/${id}`)
+      .catch((error: any) => {
+        return Promise.reject(error)
+      })
+  }
+
   async getAllLocations(): Promise<Location[]> {
     const reponse = await axios
       .get<Location[]>(`${config.api.baseUrl}/api/location/`)

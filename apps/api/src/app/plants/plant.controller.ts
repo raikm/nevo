@@ -17,7 +17,7 @@ import {
 import { PlantService } from './plant.service.js';
 
 @Controller({
-  path: '/plants',
+  path: 'plants',
   version: '1',
 })
 export class PlantController {
@@ -31,6 +31,12 @@ export class PlantController {
     return await this.plantService.create(parameters);
   }
 
+  // order is important to catch
+  @Get('/discover')
+  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
+    return await this.plantService.findNewNearbySensors();
+  }
+
   @Get()
   async findAll(): Promise<Plant[]> {
     return await this.plantService.findAll();
@@ -39,11 +45,6 @@ export class PlantController {
   @Get(':id')
   async find(@Param('id') id: string): Promise<Plant | null> {
     return await this.plantService.find(id);
-  }
-
-  @Get('discover')
-  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
-    return await this.plantService.findNewNearbySensors();
   }
 
   @Patch(':id')

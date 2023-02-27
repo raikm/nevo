@@ -14,6 +14,11 @@ const save = async () => {
   router.back()
 }
 
+const remove = async () => {
+  await plantService.delete(route.params.id.toString())
+  router.back()
+}
+
 onMounted(async () => {
   locations.value = await plantService.getAllLocations()
 
@@ -26,7 +31,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div v-if="plantUpdateParameters" class="add-new-plant-sensor-form">
+  <div v-if="plantUpdateParameters" class="edit-new-plant-sensor-form">
     <input v-model="plantUpdateParameters.name" type="text" />
     <!-- location selector -->
     <select v-model="plantUpdateParameters.location">
@@ -34,5 +39,15 @@ onMounted(async () => {
     </select>
 
     <button @click="save">Save</button>
+    <button @click="remove">Delete</button>
   </div>
 </template>
+
+<style lang="scss">
+.edit-new-plant-sensor-form {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: auto 20% 10%;
+  gap: 1rem;
+}
+</style>
