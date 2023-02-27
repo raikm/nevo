@@ -55,7 +55,7 @@ export class PlantService {
     if (!existingPlant) {
       return null;
     }
-
+    //FIXME: doesnt work
     const updatedPlant = Object.assign({}, existingPlant, parameters);
     return updatedPlant;
   }
@@ -64,8 +64,17 @@ export class PlantService {
     await this.plantRepository.delete(id);
   }
 
+  async find(id: string): Promise<Plant | null> {
+    return await this.plantRepository.findOne({
+      where: { id },
+      relations: ['location'],
+    });
+  }
+
   async findAll(): Promise<Plant[]> {
-    return await this.plantRepository.find();
+    return await this.plantRepository.find({
+      relations: ['location'],
+    });
   }
 
   async findNewNearbySensors(): Promise<MiFloraDevice[]> {
@@ -73,10 +82,15 @@ export class PlantService {
     const plantAddresses = plants.map((p) => p.address);
     const opts = {
       duration: 15000,
-      ignoreUnknown: true,
-      addresses: plantAddresses,
+      ignoreUnknown: false,
+      // addresses: plantAddresses,
     };
 
-    return (await miflora.discover(opts)) as MiFloraDevice[];
+    const result = (await miflora.discover(opts)) as MiFloraDevice[];
+    const test = result.map((d) => {
+      const { name, address, lastDiscovery, isConnected, type } = d;
+      return { name, address, lastDiscovery, isConnected, type };
+    });
+    return test;
   }
 }

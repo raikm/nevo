@@ -34,8 +34,8 @@ const spotifyService = useSpotifyService(store)
 <style lang="scss" scoped>
 @import '../../../packages/style/main.scss';
 
+// 22rem is one box
 #dashboard-wrapper {
-  // 22rem is one box
   max-width: calc(66rem + 8rem);
   position: relative;
   -ms-overflow-style: none; /* IE and Edge */

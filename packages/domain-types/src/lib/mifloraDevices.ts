@@ -13,11 +13,11 @@ export interface Peripheral {
 }
 
 export interface MiFloraDevice {
-  _peripheral: Peripheral
-  _service: any
-  _firmwareCharacteristic: any
-  _modeCharacteristic: any
-  _dataCharacteristic: any
+  // _peripheral: Peripheral
+  // _service: any
+  // _firmwareCharacteristic: any
+  // _modeCharacteristic: any
+  // _dataCharacteristic: any
   name?: any
   address: string
   lastDiscovery: number

@@ -14,7 +14,6 @@ import {
   PlantCreationParameters,
   PlantUpdateParameters,
 } from './dto/index.js';
-
 import { PlantService } from './plant.service.js';
 
 @Controller({
@@ -35,6 +34,11 @@ export class PlantController {
   @Get()
   async findAll(): Promise<Plant[]> {
     return await this.plantService.findAll();
+  }
+
+  @Get(':id')
+  async find(@Param('id') id: string): Promise<Plant | null> {
+    return await this.plantService.find(id);
   }
 
   @Get('discover')

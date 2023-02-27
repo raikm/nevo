@@ -28,6 +28,7 @@ importers:
       '@typescript-eslint/eslint-plugin': ^5.0.0
       '@typescript-eslint/parser': ^5.0.0
       better-sqlite3: ^8.1.0
+      circular-json: ^0.5.9
       class-transformer: ^0.5.1
       class-validator: ^0.14.0
       cookie-parser: ^1.4.6
@@ -59,6 +60,7 @@ importers:
       '@nevo/domain-types': link:../../packages/domain-types
       '@types/cookie-parser': 1.4.3
       better-sqlite3: 8.1.0
+      circular-json: 0.5.9
       class-transformer: 0.5.1
       class-validator: 0.14.0
       cookie-parser: 1.4.6
@@ -3443,6 +3445,11 @@ packages:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
     engines: {node: '>=8'}
     dev: true
+
+  /circular-json/0.5.9:
+    resolution: {integrity: sha512-4ivwqHpIFJZBuhN3g/pEcdbnGUywkBblloGbkglyloVjjR3uT6tieI89MVOfbP2tHX5sgb01FuLgAOzebNlJNQ==}
+    deprecated: CircularJSON is in maintenance only, flatted is its successor.
+    dev: false
 
   /cjs-module-lexer/1.2.2:
     resolution: {integrity: sha512-cOU9usZw8/dXIXKtwa8pM0OTJQuJkxMN6w30csNRUerHfeQ5R6U3kkU/FtJeIf3M202OHfY2U8ccInBG7/xogA==}

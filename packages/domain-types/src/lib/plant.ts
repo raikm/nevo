@@ -17,7 +17,6 @@ export interface PlantCreationParameters {
 
 export interface PlantUpdateParameters {
   name: string
-  version: string
   location?: Location
 }
 

@@ -8,12 +8,6 @@ export class PlantUpdateParameters implements IPlantUpdateParameters {
   @IsNotEmpty()
   name!: string;
 
-  @IsNotEmpty()
-  address!: string;
-
-  @IsNotEmpty()
-  version!: string;
-
   @IsOptional()
   location?: Location;
 }
