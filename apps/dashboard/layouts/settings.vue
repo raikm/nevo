@@ -39,7 +39,7 @@
 }
 
 .menu-container > div {
-  border-bottom: 1px solid lightgray;
+  // border-bottom: 1px solid lightgray;
   padding-left: 15px;
   height: 4vh;
 }
@@ -49,9 +49,14 @@
   align-content: center;
 }
 
-.menu-container > div:last-child {
-  border: none;
+.menu-link:hover {
+  background-color: rgba(202, 173, 230, 0.309);
+  border-radius: 10px;
 }
+
+// .menu-container > div:last-child {
+//   border: none;
+// }
 .menu-link {
   a {
     color: black;

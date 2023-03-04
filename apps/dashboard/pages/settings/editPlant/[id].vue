@@ -31,6 +31,13 @@ onMounted(async () => {
 </script>
 
 <template>
+  <div class="plant-img-header-wrapper">
+    <img
+      class="plant-img-header"
+      src="https://m.media-amazon.com/images/I/711pclXMNyL._AC_SL1500_.jpg"
+      alt="W3Schools.com"
+    />
+  </div>
   <div v-if="plantUpdateParameters" class="edit-new-plant-sensor-form">
     <input v-model="plantUpdateParameters.name" type="text" />
     <!-- location selector -->
@@ -39,15 +46,31 @@ onMounted(async () => {
     </select>
 
     <button @click="save">Save</button>
-    <button @click="remove">Delete</button>
+    <button class="blinking-button">⏺</button>
+    <button class="delete-button" @click="remove">✕</button>
   </div>
 </template>
 
 <style lang="scss">
+.plant-img-header-wrapper {
+  height: 22rem;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.plant-img-header {
+  width: 100%;
+  object-fit: contain;
+}
+
 .edit-new-plant-sensor-form {
   margin: 1rem 0;
   display: grid;
-  grid-template-columns: auto 20% 10%;
+  grid-template-columns: auto 20% 10% 3rem 3rem;
   gap: 1rem;
+}
+
+.blinking-button {
+  color: rgb(172, 204, 215);
 }
 </style>
