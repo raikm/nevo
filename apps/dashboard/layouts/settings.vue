@@ -2,13 +2,13 @@
   <div class="settings-container">
     <div class="menu box-white menu-container">
       <div class="menu-link">
-        <NuxtLink to="settings/calendar"> Calendar </NuxtLink>
+        <NuxtLink :to="{ path: '/settings/calendar' }"> Calendar </NuxtLink>
       </div>
       <div class="menu-link">
-        <NuxtLink to="settings/publicTransport"> Public Transport </NuxtLink>
+        <NuxtLink :to="{ path: '/settings/publicTransport' }"> Public Transport </NuxtLink>
       </div>
       <div class="menu-link">
-        <NuxtLink to="settings/plants"> Plants </NuxtLink>
+        <NuxtLink :to="{ path: '/settings/plants' }"> Plants </NuxtLink>
       </div>
     </div>
     <div class="menu box-white details">
