@@ -1,8 +1,10 @@
 <template>
+  <NevoButton>Hello</NevoButton>
   <button :disabled="!isReady" @click="() => login()">Login with Google</button>
 </template>
 
 <script lang="ts" setup>
+import { NevoButton } from '@nevo/ui'
 import {
   useCodeClient,
   type ImplicitFlowErrorResponse,

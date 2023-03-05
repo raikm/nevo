@@ -1,4 +1,10 @@
-"use strict";Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _viteSvgLoader = _interopRequireDefault(require("vite-svg-loader"));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+'use strict'
+Object.defineProperty(exports, '__esModule', { value: true })
+exports.default = void 0
+var _viteSvgLoader = _interopRequireDefault(require('vite-svg-loader'))
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { default: obj }
+}
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 var _default = {
@@ -10,11 +16,10 @@ var _default = {
     proxy: true
   },
   watch: ['pages'],
-  alias: {
-
-    // TODO: styles: resolve(__dirname, '../../packages/style')
-  }, vite: {
+  alias: {},
+  vite: {
     plugins: [(0, _viteSvgLoader.default)()]
   },
   plugins: ['~/plugins/socketIO.ts']
-};exports.default = _default; /* v7-55123cc4b475353a */
+}
+exports.default = _default /* v7-55123cc4b475353a */

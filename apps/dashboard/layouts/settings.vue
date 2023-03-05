@@ -20,7 +20,7 @@
 <script lang="ts" setup></script>
 
 <style lang="scss">
-@import '../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 
 .menu {
   border-radius: $standard-border-radius;

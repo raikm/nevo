@@ -92,7 +92,7 @@ const triggerGroupState = (entity_id: string, state: string) => {
 </script>
 
 <style lang="scss">
-@import '../../../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 
 .room-light-controller {
   display: grid;

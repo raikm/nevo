@@ -10,9 +10,7 @@ export default {
     proxy: true
   },
   watch: ['pages'],
-  alias: {
-    // TODO: styles: resolve(__dirname, '../../packages/style')
-  },
+  alias: {},
   vite: {
     plugins: [svgLoader()]
   },

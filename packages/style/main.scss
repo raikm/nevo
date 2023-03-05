@@ -163,35 +163,6 @@ body {
   height: 65%;
 }
 
-.hover-button {
-  background-color: rgba(255, 255, 255, 0.2);
-  height: 3vh;
-  width: 3vh;
-  padding: 0.5vh;
-  display: grid;
-  border-width: 0;
-  border-style: solid;
-  border-radius: 8px;
-  place-items: center;
-  overflow: hidden;
-}
-
-.hover-button:hover {
-  background-color: rgb(255, 255, 255);
-  // cursor: none;
-}
-
-.main-button {
-  border-width: 0;
-  border-radius: 10x;
-  display: grid;
-  place-items: center;
-  height: 1.5rem;
-  font-size: 0.8rem;
-  height: 1.5rem;
-  fill: rgb(64, 64, 64);
-}
-
 .title-1 {
   font-weight: bold;
   font-size: 2.8vh;
@@ -341,22 +312,6 @@ body {
     align-self: center;
     color: rgba(115, 115, 115, 0.615);
   }
-}
-
-button {
-  border-radius: 10px;
-  border-style: none;
-  background-color: white;
-  padding: 5px 10px;
-  font-weight: bold;
-  a {
-    text-decoration: none;
-    color: #9604ff8a;
-  }
-}
-
-button:hover {
-  background-color: rgb(245, 220, 243);
 }
 
 input {

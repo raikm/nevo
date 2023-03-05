@@ -48,7 +48,7 @@ const showShakeAnimation = () => {
 </script>
 
 <style lang="scss">
-@import '../../../packages/style/main.scss';
+@import '@nevo/style/main.scss';
 .shortcut-pill {
   margin: 1rem 1px;
   background-color: white;

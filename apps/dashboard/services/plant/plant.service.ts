@@ -38,6 +38,15 @@ export class PlantService {
     return reponse.data
   }
 
+  async blinking(id: string): Promise<void> {
+    const reponse = await axios
+      .get<void>(`${config.api.baseUrl}/api/plants/blinking/${id}`)
+      .catch((error: any) => {
+        return Promise.reject(error)
+      })
+    console.log(reponse)
+  }
+
   async getAll(): Promise<Plant[]> {
     const reponse = await axios.get(`${config.api.baseUrl}/api/plants`).catch((error: any) => {
       return Promise.reject(error)

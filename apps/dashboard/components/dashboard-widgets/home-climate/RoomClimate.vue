@@ -19,7 +19,7 @@ const sensors = roomClimate[1]
 </script>
 
 <style lang="scss">
-@import '../../../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 
 .room-climate-container {
   margin-bottom: 1rem;

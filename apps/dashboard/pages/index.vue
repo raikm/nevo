@@ -32,7 +32,7 @@ const spotifyService = useSpotifyService(store)
 </script>
 
 <style lang="scss" scoped>
-@import '../../../packages/style/main.scss';
+@import '@nevo/style/main.scss';
 
 // 22rem is one box
 #dashboard-wrapper {

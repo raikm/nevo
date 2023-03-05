@@ -14,6 +14,10 @@ const save = async () => {
   router.back()
 }
 
+const blinking = async () => {
+  await plantService.blinking(route.params.id.toString())
+}
+
 const remove = async () => {
   await plantService.delete(route.params.id.toString())
   router.back()
@@ -46,7 +50,7 @@ onMounted(async () => {
     </select>
 
     <button @click="save">Save</button>
-    <button class="blinking-button">⏺</button>
+    <button @click="blinking">Blink</button>
     <button class="delete-button" @click="remove">✕</button>
   </div>
 </template>
@@ -66,7 +70,7 @@ onMounted(async () => {
 .edit-new-plant-sensor-form {
   margin: 1rem 0;
   display: grid;
-  grid-template-columns: auto 20% 10% 3rem 3rem;
+  grid-template-columns: auto 20% 5rem 5rem 3rem;
   gap: 1rem;
 }
 

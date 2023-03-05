@@ -122,8 +122,8 @@ const changePage = async (name: string, index: number) => {
 </script>
 
 <style lang="scss">
-@import '../../../../packages/style/main.scss';
-@import '../../../../packages/style/variables.scss';
+@import '@nevo/style//main.scss';
+@import '@nevo/style/variables.scss';
 
 #menu-main-wrapper {
   display: grid;

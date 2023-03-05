@@ -72,7 +72,7 @@ const defineBackground = () => {
 </script>
 
 <style lang="scss">
-@import '../../../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 .forecast {
   height: 100%;
 }

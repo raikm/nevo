@@ -79,7 +79,7 @@ const mapETATime = (timeString: string) => {
 </script>
 
 <style lang="scss">
-@import '../../../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 
 .public-transport-content-wrapper {
   overflow: scroll;

@@ -9,7 +9,7 @@
     <div class="calendar-body-wrapper" v-if="!loading">
       <div v-if="error != undefined" class="calendar-body service-info">
         Service is not available
-        <button @click="navigateTo({ name: 'settings' })">Go to Settings</button>
+        <nv-button @click="navigateTo({ name: 'settings' })">Go to Settings</nv-button>
       </div>
 
       <div
@@ -51,6 +51,7 @@
 </template>
 
 <script lang="ts" setup>
+import { nvButton } from '@nevo/ui'
 import axios from 'axios'
 import { useCalendarService } from '~~/services/calendar'
 import { Event } from '~~/types/googleCalendarResults'
@@ -101,7 +102,7 @@ const calendarTitle = computed(() => {
 </script>
 
 <style lang="scss">
-@import '../../../../../packages/style/variables.scss';
+@import '@nevo/style/variables.scss';
 
 .calendar-body-wrapper {
   height: 85%;
