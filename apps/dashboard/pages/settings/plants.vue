@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { Plant } from '@nevo/domain-types'
+import { nvButton } from '@nevo/ui'
 import { ref } from 'vue'
 import { usePlantService } from '~~/services/plant'
-
 const plantService = usePlantService()
 const plants = ref<Plant[]>([])
 
@@ -33,7 +33,7 @@ onMounted(async () => {
   <div class="empty-list-container" v-else>
     <div class="empty-list-info">
       <h3>No plants added yet</h3>
-      <button><NuxtLink to="addPlant">+ Add new Plant</NuxtLink></button>
+      <nv-button><NuxtLink to="addPlant">+ Add new Plant</NuxtLink></nv-button>
     </div>
   </div>
 </template>

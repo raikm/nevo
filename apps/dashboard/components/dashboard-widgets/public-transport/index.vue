@@ -1,5 +1,5 @@
 <template>
-  <div class="public-transport-box">
+  <div v-if="stopsSelected" class="public-transport-box">
     <div class="public-transport-header">
       <div class="public-transport-header-title public-transport-header-title-line">Line</div>
       <div class="public-transport-header-title public-transport-header-direction">Direction</div>
@@ -32,7 +32,6 @@
 import { usePublicTransportService } from '~~/services/public-transport'
 import { PublicTransportService } from '~~/services/public-transport/publicTransport.service'
 import { Departure, PublicTransportProvider } from '~~/types/public-transport'
-
 let publicTransportService: PublicTransportService
 
 const departuresFromHome = ref<Departure[]>()
@@ -41,7 +40,13 @@ const OFFSET_IN_MINUTES = 2
 
 let refreshInterval: NodeJS.Timer
 
+const stopsSelected = ref(false)
+
 onMounted(async () => {
+  const selectedStopsString = localStorage.getItem('public-transport-selected-stops')
+  console.log(selectedStopsString)
+  stopsSelected.value = selectedStopsString?.length !== 0 ? false : false
+
   const selectedProvider = localStorage.getItem(
     'public-transport-selected-provider'
   ) as PublicTransportProvider
@@ -87,6 +92,10 @@ const mapETATime = (timeString: string) => {
   height: 85%;
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+}
+
+.public-transport-wrapper {
+  height: 85%;
 }
 
 .public-transport-content-wrapper::-webkit-scrollbar {

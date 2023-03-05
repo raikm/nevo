@@ -9,7 +9,9 @@
     <div class="calendar-body-wrapper" v-if="!loading">
       <div v-if="error != undefined" class="calendar-body service-info">
         Service is not available
-        <nv-button @click="navigateTo({ name: 'settings' })">Go to Settings</nv-button>
+        <nv-button>
+          <NuxtLink :to="{ path: '/settings/calendar' }">Go to Settings</NuxtLink>
+        </nv-button>
       </div>
 
       <div
