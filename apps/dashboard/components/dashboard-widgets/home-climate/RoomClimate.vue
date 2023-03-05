@@ -35,10 +35,8 @@ const sensors = roomClimate[1]
   width: 4rem;
   display: grid;
   place-items: center;
-  background-color: rgb(247, 247, 247);
+  background-color: $light-gray;
   padding: 2px;
-
-  //   color: white;
 }
 
 // .temperature {

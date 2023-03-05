@@ -33,7 +33,7 @@ const spotifyService = useSpotifyService(store)
 
 <style lang="scss" scoped>
 @import '@nevo/style/main.scss';
-
+@import '@nevo/style/variables.scss';
 // 22rem is one box
 #dashboard-wrapper {
   max-width: calc(66rem + 8rem);
@@ -49,7 +49,7 @@ const spotifyService = useSpotifyService(store)
 #boxes {
   display: grid;
   column-gap: 1rem;
-  row-gap: 1rem;
+  row-gap: $box-gap;
   row-gap: 1rem;
   grid-template-columns: 1fr 1fr 1fr;
   flex-wrap: wrap;

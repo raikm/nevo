@@ -129,8 +129,6 @@ const changePage = async (name: string, index: number) => {
   display: grid;
   grid-template-columns: auto 20%;
   align-items: center;
-  // margin: calc($standard-space * 2) 0;
-  margin: 0 1rem;
   position: relative;
   #menu-main {
     height: 100%;
@@ -170,7 +168,7 @@ const changePage = async (name: string, index: number) => {
   }
 
   .menu-close {
-    background-color: rgb(234, 234, 234);
+    background-color: $light-gray;
   }
 
   .menu-close:hover {
@@ -198,7 +196,7 @@ const changePage = async (name: string, index: number) => {
 
   .menu-button-new {
     width: 8rem;
-    background-color: rgb(234, 234, 234);
+    background-color: $light-gray;
   }
 
   .menu-button-new:hover {
@@ -207,7 +205,6 @@ const changePage = async (name: string, index: number) => {
 
   #settings {
     display: grid;
-    grid-template-columns: auto 2.5rem;
   }
   #people {
     display: inline-flex;
@@ -218,7 +215,7 @@ const changePage = async (name: string, index: number) => {
   .settings-wrapper {
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
     backdrop-filter: saturate(130%) blur(20px);
-    background-color: rgb(244, 244, 244);
+    background-color: $light-gray;
     border-radius: 50%;
     width: 2rem;
     display: grid;

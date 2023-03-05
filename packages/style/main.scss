@@ -46,10 +46,10 @@ body {
 
 .box {
   border-radius: $standard-border-radius;
-  padding: 15px;
+  padding: $box-padding;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
   height: 12rem;
-  width: 22rem;
+  width: $box-width;
 }
 
 .box-white {
@@ -278,40 +278,6 @@ body {
 
 .plants-sensor-list-container > div:last-child {
   border: none;
-}
-
-.plant-sensor-row {
-  display: grid;
-  grid-template-columns: 90% auto auto;
-  padding: 0.3rem 1rem;
-
-  a {
-    text-decoration: none;
-    color: black;
-  }
-
-  .plant-sensor-row-left {
-    .plant-sensor-row-room {
-      font-size: small;
-      color: rgb(115, 115, 115);
-    }
-  }
-
-  .plant-sensor-row-right {
-    justify-self: right;
-    align-self: center;
-
-    .plant-sensor-row-version {
-      font-size: medium;
-      color: rgba(115, 115, 115, 0.615);
-    }
-  }
-
-  .plant-sensor-row-details-icon {
-    justify-self: right;
-    align-self: center;
-    color: rgba(115, 115, 115, 0.615);
-  }
 }
 
 input {

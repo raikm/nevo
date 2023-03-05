@@ -53,6 +53,10 @@ onMounted(async () => {
 </script>
 
 <style lang="scss">
+@import '@nevo/style/variables.scss';
+
+$total-width: calc(#{$box-width} * 3 + #{$box-gap} * 2 + #{$box-gap} * 6);
+
 html,
 body {
   height: 100%;
@@ -60,31 +64,28 @@ body {
 }
 body {
   // TODO default production background: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
-  background: linear-gradient(to top, #9604ff 0%, #fbc8c8 100%);
+  background: linear-gradient(to top, $nevo-primary-color 0%, $nevo-secondary-color 100%);
 }
 #__nuxt {
   display: grid;
   grid-template-rows: 10% 85% 5%;
   height: 100%;
+  place-items: center;
 }
 #header {
+  width: $total-width;
   display: grid;
+  padding: 1rem;
   align-items: center;
 }
 #main {
   display: grid;
   // grid-template-columns: auto auto;
   padding: 1rem;
-  // margin: auto;
-
   height: 100%;
+  min-width: $total-width;
 }
 #footer {
   // background: black;
-}
-
-.content-container {
-  overflow-y: auto;
-  // padding: 0 15px;
 }
 </style>

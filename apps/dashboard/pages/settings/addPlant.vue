@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { Location, MiFloraDevice, PlantCreationParameters } from '@nevo/domain-types'
+import { nvButton } from '@nevo/ui'
 import { usePlantService } from '~~/services/plant'
-
 const router = useRouter()
 const plantService = usePlantService()
-
 const sensors = ref<MiFloraDevice[]>()
 const locations = ref<Location[]>()
 const requestingSensors = ref(false)
@@ -99,12 +98,14 @@ const save = async () => {
         <option v-for="location in locations" :value="location">{{ location.name }}</option>
       </select>
 
-      <button @click="save">Save</button>
+      <nv-button @click="save">Save</nv-button>
     </div>
   </div>
 </template>
 
 <style lang="scss">
+@import '@nevo/style/variables.scss';
+
 .plant-list-header {
   display: grid;
   justify-items: right;
@@ -165,7 +166,7 @@ const save = async () => {
 }
 
 .selected-sensor {
-  color: blue;
+  color: $nevo-primary-color-light;
 }
 
 .add-new-plant-sensor-form {

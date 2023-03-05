@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { Location, PlantUpdateParameters } from '@nevo/domain-types'
+import { nvButton } from '@nevo/ui'
 import { usePlantService } from '~~/services/plant'
-
 const router = useRouter()
 const route = useRoute()
 const plantService = usePlantService()
@@ -49,8 +49,8 @@ onMounted(async () => {
       <option v-for="location in locations" :value="location">{{ location.name }}</option>
     </select>
 
-    <button @click="save">Save</button>
-    <button @click="blinking">Blink</button>
+    <nv-button @click="save">Save</nv-button>
+    <nv-button @click="blinking">Blink</nv-button>
     <button class="delete-button" @click="remove">✕</button>
   </div>
 </template>

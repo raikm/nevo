@@ -11,7 +11,7 @@
         <NuxtLink :to="{ path: '/settings/plants' }"> Plants </NuxtLink>
       </div>
     </div>
-    <div class="menu box-white details">
+    <div class="menu box-white settings-details">
       <slot />
     </div>
   </div>
@@ -26,16 +26,19 @@
   border-radius: $standard-border-radius;
   padding: 15px;
   box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+  background-color: $light-gray;
 }
 
 .settings-container {
   display: grid;
+  width: 100%;
   grid-template-columns: 20% auto;
   gap: 1rem;
 }
 
-.details {
-  background-color: rgb(236, 236, 236);
+.settings-details {
+  background-color: $light-gray;
+  align-items: center;
 }
 
 .menu-container > div {
@@ -50,8 +53,9 @@
 }
 
 .menu-link:hover {
-  background-color: rgba(202, 173, 230, 0.309);
+  background-color: $nevo-primary-color-light;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 // .menu-container > div:last-child {
