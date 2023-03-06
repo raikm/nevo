@@ -41,6 +41,21 @@
   align-items: center;
 }
 
+.settings-detail-container {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  .settings-detail-sub {
+    margin-top: 1rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+
 .menu-container > div {
   // border-bottom: 1px solid lightgray;
   padding-left: 15px;

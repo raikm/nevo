@@ -22,6 +22,7 @@ import {
 } from 'home-assistant-js-websocket'
 import { onMounted } from 'vue'
 import config from '../../config.json'
+import { useInterceptor } from './axios/axios.interceptors'
 import { useHomeAssistantStore } from './store/homeassistant'
 import { useStore } from './store/index'
 import { NevoConfig } from './types/nevoConfig'
@@ -50,6 +51,8 @@ const createHomeassistantWebsocketConnection = async () => {
 onMounted(async () => {
   await createHomeassistantWebsocketConnection()
 })
+
+useInterceptor()
 </script>
 
 <style lang="scss">

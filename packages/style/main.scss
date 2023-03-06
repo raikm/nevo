@@ -264,36 +264,75 @@ body {
   cursor: none;
 }
 
-.plants-sensor-list-container {
+//
+
+.list-container {
   padding: 0.8rem;
-  border-radius: 15px;
+  border-radius: $standard-border-radius;
   background-color: white;
 }
 
-.plants-sensor-list-container > div {
+.list-container > div,
+.list-container > a {
   border-bottom: 1px solid lightgray;
   padding-left: 15px;
   height: 4vh;
 }
 
-.plants-sensor-list-container > div:last-child {
+.list-container > div:last-child,
+.list-container > a:last-child {
   border: none;
 }
 
-input {
-  border-radius: 10px;
-  border-style: none;
+.list-row {
+  display: grid;
+  grid-template-columns: 90% auto auto;
 
-  padding: 5px 10px;
+  text-decoration: none;
+  color: $nevo-primary-text-color;
+  min-height: 2.8rem;
+  padding: 0.3rem 1rem;
+  .list-row-left {
+    .plant-sensor-row-room {
+      font-size: small;
+      color: $nevo-primary-text-color;
+    }
+  }
+
+  .list-row-right {
+    justify-self: right;
+    align-self: center;
+
+    .list-row-version {
+      font-size: medium;
+      color: $nevo-primary-text-color;
+    }
+  }
+
+  .list-row-details-icon {
+    justify-self: right;
+    align-self: center;
+    color: $nevo-primary-text-color;
+  }
 }
 
-select {
-  padding: 5px 10px;
-  border-radius: 10px;
-  border-style: none;
+.add-new-entry-row {
+  display: grid;
+  align-content: center;
+  min-height: 2rem;
+  a {
+    text-decoration: none;
+    color: $nevo-primary-color-light;
+  }
 }
 
-.delete-button {
-  background-color: rgb(248, 64, 64);
-  color: white;
+.empty-list-container {
+  display: grid;
+  height: 100%;
+  place-items: center;
+}
+
+.empty-list-info {
+  display: grid;
+  place-items: center;
 }

@@ -27,9 +27,9 @@ export class PlantController {
   }
 
   // order is important to catch
-  @Get('/discover')
-  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
-    return await this.plantService.findNewNearbySensors()
+  @Get('/discover/:duration')
+  async findNewNearbySensors(@Param('duration') duration: number): Promise<MiFloraDevice[]> {
+    return await this.plantService.findNewNearbySensors(duration)
   }
 
   @Get()

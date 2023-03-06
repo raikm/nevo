@@ -48,10 +48,9 @@ export class PlantService {
     if (!existingPlant) {
       return null
     }
-    //FIXME: doesnt work
     const updatedPlant = Object.assign({}, existingPlant, parameters)
     const plant = this.plantRepository.save(updatedPlant)
-    return updatedPlant
+    return plant
   }
 
   async remove(id: string): Promise<void> {
@@ -71,27 +70,33 @@ export class PlantService {
     })
   }
 
-  async findNewNearbySensors(): Promise<MiFloraDevice[]> {
-    const plants = await this.plantRepository.find()
-    const plantAddresses = plants.map((p) => p.address)
-    const opts = {
-      duration: 15000,
-      ignoreUnknown: false,
-      addresses: plantAddresses
-    }
+  async findNewNearbySensors(duration: number): Promise<MiFloraDevice[]> {
+    throw new Error('help')
+    // const plants = await this.plantRepository.find()
+    // const plantAddressesAlreadyAdded = plants.map((p) => p.address)
+    // const opts = {
+    //   duration: duration,
+    //   ignoreUnknown: false
+    //   // addresses: plantAddresses
+    // }
+    // console.log(opts)
+    // let result = (await miflora.discover(opts)) as MiFloraDevice[]
+    // console.log(result)
 
-    const result = (await miflora.discover(opts)) as MiFloraDevice[]
-    const test = result.map((d) => {
-      const { name, address, lastDiscovery, isConnected, type } = d
-      return { name, address, lastDiscovery, isConnected, type }
-    })
-    return test
+    // result = result.map((d) => {
+    //   const { name, address, lastDiscovery, isConnected, type } = d
+    //   return { name, address, lastDiscovery, isConnected, type }
+    // })
+    // // only non added ones
+    // result = result.filter((d) => !plantAddressesAlreadyAdded.find((a) => a === d.address))
+
+    // return result
   }
 
   async blinking(address: string): Promise<void> {
     const discoverOptions = {
       addresses: [address],
-      ignoreUnknown: true,
+      ignoreUnknown: false,
       duration: 10000
     }
 

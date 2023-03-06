@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { Location, PlantUpdateParameters } from '@nevo/domain-types'
-import { nvButton } from '@nevo/ui'
+import { nvButton, nvInput, nvSelect } from '@nevo/ui'
 import { usePlantService } from '~~/services/plant'
 const router = useRouter()
 const route = useRoute()
@@ -8,15 +8,28 @@ const plantService = usePlantService()
 
 const plantUpdateParameters = ref<PlantUpdateParameters>({ name: '' })
 const locations = ref<Location[]>()
+const requestBlinking = ref(false)
+const blinkingInProgress = ref(false)
 
 const save = async () => {
   await plantService.update(route.params.id.toString(), plantUpdateParameters.value)
-  router.back()
 }
 
 const blinking = async () => {
+  requestBlinking.value = true
+
   await plantService.blinking(route.params.id.toString())
+
+  requestBlinking.value = false
+  blinkingInProgress.value = true
+  setTimeout(() => {
+    blinkingInProgress.value = false
+  }, 5000)
 }
+
+watch(plantUpdateParameters.value, () => {
+  save()
+})
 
 const remove = async () => {
   await plantService.delete(route.params.id.toString())
@@ -42,16 +55,22 @@ onMounted(async () => {
       alt="W3Schools.com"
     />
   </div>
-  <div v-if="plantUpdateParameters" class="edit-new-plant-sensor-form">
-    <input v-model="plantUpdateParameters.name" type="text" />
+  <div v-if="plantUpdateParameters" class="settings-detail-container">
+    <nv-input label="Name" v-model="plantUpdateParameters.name" />
     <!-- location selector -->
-    <select v-model="plantUpdateParameters.location">
+    <nv-select label="Room" v-model="plantUpdateParameters.location">
       <option v-for="location in locations" :value="location">{{ location.name }}</option>
-    </select>
-
-    <nv-button @click="save">Save</nv-button>
-    <nv-button @click="blinking">Blink</nv-button>
-    <button class="delete-button" @click="remove">✕</button>
+    </nv-select>
+    <div class="settings-detail-sub">
+      <nv-button @click="blinking">
+        <template v-if="!requestBlinking && !blinkingInProgress">Blink</template>
+        <template v-else-if="requestBlinking && !blinkingInProgress"><Loading /></template>
+        <template v-else-if="!requestBlinking && blinkingInProgress">blinking</template>
+      </nv-button>
+    </div>
+    <div class="settings-detail-sub">
+      <nv-button type="danger" @click="remove">Delete</nv-button>
+    </div>
   </div>
 </template>
 
@@ -65,16 +84,5 @@ onMounted(async () => {
 .plant-img-header {
   width: 100%;
   object-fit: contain;
-}
-
-.edit-new-plant-sensor-form {
-  margin: 1rem 0;
-  display: grid;
-  grid-template-columns: auto 20% 5rem 5rem 3rem;
-  gap: 1rem;
-}
-
-.blinking-button {
-  color: rgb(172, 204, 215);
 }
 </style>

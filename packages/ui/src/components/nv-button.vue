@@ -1,12 +1,15 @@
 <template>
-  <button :class="{ 'hover-button': hoverable, 'standard-button': !hoverable }">
+  <button
+    :class="{ 'hover-button': hoverable, 'standard-button': !hoverable, danger: type === 'danger' }"
+  >
     <slot></slot>
   </button>
 </template>
 
 <script lang="ts" setup>
 defineProps({
-  hoverable: { type: Boolean, required: false, default: false }
+  hoverable: { type: Boolean, required: false, default: false },
+  type: { type: String, required: false, default: 'standard' }
 })
 </script>
 
@@ -15,13 +18,14 @@ defineProps({
 @import '@nevo/style/variables.scss';
 
 .standard-button {
+  min-height: 2rem;
   display: grid;
   place-items: center;
   border-radius: 6px;
   border-style: none;
   background-color: white;
   padding: 5px 10px;
-  font-weight: bold;
+  font-weight: 550;
   font-size: 0.8rem;
   color: $nevo-primary-color-light;
 
@@ -58,6 +62,10 @@ button:focus-visible {
   background-color: rgb(255, 255, 255);
   cursor: none;
   // TODO ZOOM
+}
+
+.danger {
+  color: $red;
 }
 
 @media (prefers-color-scheme: light) {
