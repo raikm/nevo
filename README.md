@@ -31,7 +31,6 @@ The aim of this project is to create a delightful, intiutive home dashbarod rich
 ```
  🎉 Transform to Vite
  🎉 Vue3 + Typescript for Main Pages
- 🎉 Plant Dashboard Page V1
  🎉 Websocket-connection to back-end (homeassistant)
  🎉 Calendar Data (Google API) V1
  🎉 Public Transport (Hafas API) V1
