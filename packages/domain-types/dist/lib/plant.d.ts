@@ -23,6 +23,7 @@ export interface Measurement {
     soilMoisture: number;
     sunlight: number;
     temperature: number;
+    time: Date;
 }
 export interface MeasurementBorders {
     currency: string;

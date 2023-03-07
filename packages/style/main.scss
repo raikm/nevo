@@ -31,6 +31,13 @@ body {
   overflow: hidden;
 }
 
+h6 {
+  margin: 0;
+  font-weight: 400;
+  color: $nevo-primary-text-color;
+  opacity: 70%;
+}
+
 .page-header,
 .page-footer {
   display: flex;
