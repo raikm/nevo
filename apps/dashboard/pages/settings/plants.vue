@@ -12,7 +12,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <!--  -->
+  <h3>Plant Sensors</h3>
   <div v-if="plants.length > 0" class="list-container">
     <NuxtLink v-for="plant in plants" class="list-row" :to="`editPlant/${plant.id}`">
       <div class="list-row-left">

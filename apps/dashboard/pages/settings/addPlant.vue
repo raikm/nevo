@@ -41,10 +41,12 @@ const blinking = async () => {
 
 const getNearbySensors = async (duration: number) => {
   requestingSensors.value = true
-  sensors.value = await plantService.discover(duration)
-  if (sensors.value.length === 0) {
-    await getNearbySensors(10000)
-  }
+  try {
+    sensors.value = await plantService.discover(duration)
+    if (sensors.value.length === 0) {
+      await getNearbySensors(10000)
+    }
+  } catch (err: any) {}
   requestingSensors.value = false
 }
 
@@ -67,22 +69,23 @@ const save = async () => {
 
 <template>
   <div>
+    <h3>Adding plant sensors</h3>
     <div class="plant-list-header">
       <template v-if="requestingSensors">
         <loading />
       </template>
     </div>
     <!--  -->
-    <div class="list-container">
+    <div v-if="requestingSensors || sensors != null" class="list-container">
       <div
         v-if="requestingSensors && (sensors == null || sensors?.values.length === 0)"
-        class="plant-sensor-searching-placehnolder"
+        class="plant-sensor-searching-placeholder"
       >
         Searching for nearby Sensors ...
       </div>
       <div
         v-if="!requestingSensors && sensors?.length == 0"
-        class="plant-sensor-searching-placehnolder"
+        class="plant-sensor-searching-placeholder"
       >
         No Sensors found
       </div>
@@ -176,7 +179,7 @@ const save = async () => {
   animation: rotating 1s linear infinite;
 }
 
-.plant-sensor-searching-placehnolder {
+.plant-sensor-searching-placeholder {
   display: grid;
   align-items: center;
 }

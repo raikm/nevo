@@ -48,6 +48,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h3>Edit plant sensor</h3>
   <div class="plant-img-header-wrapper">
     <img
       class="plant-img-header"

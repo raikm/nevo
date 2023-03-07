@@ -71,26 +71,22 @@ export class PlantService {
   }
 
   async findNewNearbySensors(duration: number): Promise<MiFloraDevice[]> {
-    throw new Error('help')
-    // const plants = await this.plantRepository.find()
-    // const plantAddressesAlreadyAdded = plants.map((p) => p.address)
-    // const opts = {
-    //   duration: duration,
-    //   ignoreUnknown: false
-    //   // addresses: plantAddresses
-    // }
-    // console.log(opts)
-    // let result = (await miflora.discover(opts)) as MiFloraDevice[]
-    // console.log(result)
+    const plants = await this.plantRepository.find()
+    const plantAddressesAlreadyAdded = plants.map((p) => p.address)
+    const opts = {
+      duration: duration,
+      ignoreUnknown: false
+    }
+    let result = (await miflora.discover(opts)) as MiFloraDevice[]
 
-    // result = result.map((d) => {
-    //   const { name, address, lastDiscovery, isConnected, type } = d
-    //   return { name, address, lastDiscovery, isConnected, type }
-    // })
-    // // only non added ones
-    // result = result.filter((d) => !plantAddressesAlreadyAdded.find((a) => a === d.address))
+    result = result.map((d) => {
+      const { name, address, lastDiscovery, isConnected, type } = d
+      return { name, address, lastDiscovery, isConnected, type }
+    })
+    // only non added ones
+    result = result.filter((d) => !plantAddressesAlreadyAdded.find((a) => a === d.address))
 
-    // return result
+    return result
   }
 
   async blinking(address: string): Promise<void> {

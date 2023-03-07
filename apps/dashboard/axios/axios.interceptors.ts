@@ -1,6 +1,8 @@
 import axios from 'axios'
+import { useStore } from '~~/store'
 
 export const useInterceptor = () => {
+  const store = useStore()
   /**
    * Configure axios with error handling
    */
@@ -13,26 +15,29 @@ export const useInterceptor = () => {
         return Promise.reject(error)
       }
 
+      store.toastType = 'danger'
       if (error.response?.status === 404) {
-        const message =
+        store.toastMessage =
           error.response.data &&
           error.response.data === typeof 'object' &&
           (error.response.data as Error).message != null
             ? (error.response.data as Error).message
             : error.message
-
-        // TODO show error
       }
 
       if (error.response && error.response.status >= 500) {
-        const message =
+        store.toastMessage =
           error.response.data &&
           error.response.data === typeof 'object' &&
           (error.response.data as Error).message != null
             ? (error.response.data as Error).message
             : error.message
-        // TODO show error
       }
+
+      setTimeout(() => {
+        store.toastType = undefined
+        store.toastMessage = undefined
+      }, 5000)
     }
   )
 }

@@ -11,10 +11,17 @@
     </NuxtLayout>
   </div>
 
-  <!-- <div id="footer"></div> -->
+  <div id="footer">
+    <nv-toast
+      v-if="store.toastMessage != null"
+      :type="store.toastType"
+      :message="store.toastMessage"
+    ></nv-toast>
+  </div>
 </template>
 
 <script lang="ts" setup>
+import { nvToast } from '@nevo/ui'
 import {
   createConnection,
   createLongLivedTokenAuth,
