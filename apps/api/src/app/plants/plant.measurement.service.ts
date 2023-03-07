@@ -4,7 +4,8 @@ import { randomUUID } from 'crypto'
 import { Between, Repository } from 'typeorm'
 import { Measurement } from './dto/index.js'
 import { PlantMeasurementHistoryParameters } from './dto/plant.measurement.history.js'
-import { MeasurementEntity, PlantEntity } from './entities/plant.entity.js'
+import { MeasurementRange } from './dto/plant.measurementRange.dto.js'
+import { MeasurementEntity, MeasurementRangeEntity, PlantEntity } from './entities/plant.entity.js'
 
 enum MeasurementType {
   BATTERY = 'BATTERY',
@@ -27,7 +28,9 @@ export class MeasurementService {
     @InjectRepository(PlantEntity)
     private readonly plantRepository: Repository<PlantEntity>,
     @InjectRepository(MeasurementEntity)
-    private readonly measurementRepository: Repository<MeasurementEntity>
+    private readonly measurementRepository: Repository<MeasurementEntity>,
+    @InjectRepository(MeasurementRangeEntity)
+    private readonly measurementRangeRepository: Repository<MeasurementRangeEntity>
   ) {}
 
   async getLastMeasurements(plantId: string): Promise<Measurement> {
@@ -222,6 +225,35 @@ export class MeasurementService {
       plant: plant
     })
 
-    measurement = await this.measurementRepository.save(measurement)
+    await this.measurementRepository.save(measurement)
+  }
+
+  async putNewMeasurementRange(plantId: string, measurementRange: MeasurementRange): Promise<void> {
+    const plant = await this.plantRepository.findOneBy({
+      id: plantId
+    })
+
+    if (!plant) {
+      throw new BadRequestException()
+    }
+
+    const exisitngMeasurementRange = this.measurementRangeRepository.findOne({
+      where: { type: measurementRange.type, plant: plant }
+    })
+
+    if (exisitngMeasurementRange == null) {
+      const _measurementRange = this.measurementRangeRepository.create({
+        id: randomUUID(),
+        type: measurementRange.type,
+        min: measurementRange.min,
+        max: measurementRange.max,
+        unit: measurementRange.unit,
+        plant: plant
+      })
+      await this.measurementRangeRepository.save(_measurementRange)
+    } else {
+      const updatedMeasurementRange = Object.assign({}, exisitngMeasurementRange, measurementRange)
+      await this.measurementRangeRepository.save(updatedMeasurementRange)
+    }
   }
 }

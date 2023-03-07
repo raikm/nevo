@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { Location, PlantUpdateParameters } from '@nevo/domain-types'
+import { Location, MeasurementRange, PlantUpdateParameters } from '@nevo/domain-types'
 import { nvButton, nvInput, nvSelect } from '@nevo/ui'
 import { usePlantService } from '~~/services/plant'
 const router = useRouter()
@@ -7,6 +7,30 @@ const route = useRoute()
 const plantService = usePlantService()
 
 const plantUpdateParameters = ref<PlantUpdateParameters>({ name: '' })
+
+// TODO move to domain-types
+enum MeasurementType {
+  BATTERY = 'BATTERY',
+  SOILFERTILITY = 'SOILFERTILITY',
+  SOILMOISTURE = 'SOILMOISTURE',
+  TEMPERATURE = 'TEMPERATURE',
+  SUNLIGHT = 'SUNLIGHT'
+}
+
+enum MeasurementUnit {
+  PERCENTAGE = '%',
+  CONDUCTIVITY = 'µS/cm',
+  CELSIUS = '°C',
+  LUX = 'Lux'
+}
+
+const mostureRanges = ref<MeasurementRange>({
+  type: MeasurementType.SOILMOISTURE,
+  unit: MeasurementUnit.PERCENTAGE,
+  min: 0,
+  max: 0
+})
+
 const locations = ref<Location[]>()
 const requestBlinking = ref(false)
 const blinkingInProgress = ref(false)
@@ -62,6 +86,9 @@ onMounted(async () => {
     <nv-select label="Room" v-model="plantUpdateParameters.location">
       <option v-for="location in locations" :value="location">{{ location.name }}</option>
     </nv-select>
+    <div class="nv-input-headline">Moisture Borders</div>
+    <nv-input label="Minimum" type="number" v-model="mostureRanges.min" />
+    <nv-input label="Maximum" type="number" v-model="mostureRanges.max" />
     <div class="settings-detail-sub">
       <nv-button @click="blinking">
         <template v-if="!requestBlinking && !blinkingInProgress">Blink</template>
@@ -80,6 +107,7 @@ onMounted(async () => {
   height: 22rem;
   overflow: hidden;
   border-radius: 10px;
+  width: 100%;
 }
 
 .plant-img-header {

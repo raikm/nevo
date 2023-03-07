@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
+defineProps({
   barColor: { type: String, required: true },
   valueMinBorder: { type: Number, required: true },
   valueMaxBorder: { type: Number, required: true },
@@ -30,8 +30,9 @@ const props = defineProps({
 
 .progress-bar-container {
   width: 100%;
-  height: 0.5rem;
+  height: 0.3rem;
   margin: 0.2rem 0;
+  align-self: center;
 }
 
 .progress-bar {

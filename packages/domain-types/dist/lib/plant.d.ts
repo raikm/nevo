@@ -25,8 +25,9 @@ export interface Measurement {
     temperature: number;
     time: Date;
 }
-export interface MeasurementBorders {
-    currency: string;
+export interface MeasurementRange {
+    type: string;
+    unit: string;
     min: number;
     max: number;
 }

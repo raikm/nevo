@@ -1,57 +1,57 @@
 <template>
-  <div v-if="measurements" class="box plant-card-wrapper">
+  <div v-if="measurements" class="plant-card-wrapper">
     <div class="plant-card-header">
       <div class="plant-card-name">{{ name }}</div>
-      <div v-if="!measurementsOld" class="plant-card-battery"></div>
       <div v-if="measurementsOld" class="plant-card-status">⏺</div>
     </div>
     <div class="plant-card-parameter">
       <div class="plant-card-parameter-humidity">
         <h6>Moisture</h6>
-        <PlantCardProgressBar
-          barColor="#007bffcc"
-          :valueMinBorder="50"
-          :valueMaxBorder="300"
-          :value="measurements.soilMoisture"
-        ></PlantCardProgressBar>
+        <div class="bar-text">
+          <PlantCardProgressBar
+            barColor="#448cdb"
+            :valueMinBorder="50"
+            :valueMaxBorder="300"
+            :value="measurements.soilMoisture"
+          ></PlantCardProgressBar>
+
+          <div class="value-in-text">30%</div>
+        </div>
       </div>
       <div class="plant-card-parameter-fertility">
         <h6>Fertility</h6>
-        <PlantCardProgressBar
-          barColor="#4a7277"
-          :valueMinBorder="50"
-          :valueMaxBorder="300"
-          :value="measurements.soilFertility"
-        ></PlantCardProgressBar>
-      </div>
-      <div class="plant-card-parameter-sun">
-        <h6>Sunlight</h6>
-        <PlantCardProgressBar
-          barColor="#ffe17d"
-          :valueMinBorder="50"
-          :valueMaxBorder="300"
-          :value="measurements.sunlight"
-        ></PlantCardProgressBar>
+        <div class="bar-text">
+          <PlantCardProgressBar
+            barColor="#d07561"
+            :valueMinBorder="50"
+            :valueMaxBorder="300"
+            :value="measurements.soilFertility"
+          ></PlantCardProgressBar>
+          <div class="value-in-text">80%</div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { Measurement, MeasurementBorders } from '@nevo/domain-types'
+import { Measurement, MeasurementRanges } from '@nevo/domain-types'
 import PlantCardProgressBar from './PlantCardProgressBar.vue'
 
-const name = ref('Strelizia')
+defineProps({
+  id: { type: String, required: true },
+  name: { type: String, required: true }
+})
 const measurements = ref<Measurement>()
 
-const measurementFertilityBorders = ref<MeasurementBorders>()
-const measurementMoistureBorders = ref<MeasurementBorders>()
-const measurementSunlightBorders = ref<MeasurementBorders>()
+const measurementFertilityBorders = ref<MeasurementRanges>()
+const measurementMoistureBorders = ref<MeasurementRanges>()
+const measurementSunlightBorders = ref<MeasurementRanges>()
 
 measurements.value = {
   plantId: '1',
   battery: 100,
-  soilFertility: 300,
+  soilFertility: 200,
   soilMoisture: 200,
   sunlight: 80,
   temperature: 19,
@@ -68,30 +68,32 @@ const measurementsOld = ref(false)
 
 .plant-card-wrapper {
   width: $box-width / 2;
-  height: 8rem;
+  height: 4rem;
   background-color: $white;
   border-radius: $standard-border-radius;
   display: flex;
   flex-direction: column;
   padding: 8px;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
 }
 
 .plant-card-header {
   height: 2rem;
   display: grid;
   grid-template-columns: 85% auto;
+  margin-bottom: 0.25rem;
 }
 
 .plant-card-name {
-  font-size: large;
   font-weight: bold;
 }
 
 .plant-card-battery {
-  width: 1.3rem;
-  height: 0.5rem;
+  width: 1rem;
+  height: 0.3rem;
   background-color: rgb(32, 190, 32);
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
+  align-self: center;
 }
 
 .plant-card-status {
@@ -101,6 +103,21 @@ const measurementsOld = ref(false)
 
 .plant-card-parameter {
   border-radius: $standard-border-radius / 2;
-  height: 8rem;
+  height: 4rem;
+  display: grid;
+  grid-template-columns: 49% 49%;
+  gap: 2%;
+}
+
+.bar-text {
+  display: flex;
+  gap: 2px;
+}
+
+.value-in-text {
+  font-size: xx-small;
+  padding: 2px;
+  display: grid;
+  place-items: center;
 }
 </style>

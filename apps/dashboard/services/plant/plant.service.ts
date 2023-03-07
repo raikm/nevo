@@ -1,5 +1,6 @@
 import {
   Location,
+  MeasurementRange,
   MiFloraDevice,
   Plant,
   PlantCreationParameters,
@@ -26,6 +27,10 @@ export class PlantService {
     )
 
     return response.data
+  }
+
+  async updateMeasurementRange(id: string, parameters: MeasurementRange): Promise<void | null> {
+    await axios.patch(`${config.api.baseUrl}/api/plants/${id}/addMeasurementRange`, parameters)
   }
 
   async blinking(address: string): Promise<void> {

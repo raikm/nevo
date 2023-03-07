@@ -7,8 +7,8 @@ import { LocationEntity } from '../locations/entities/location.entity.js'
 import { Plant, PlantCreationParameters, PlantUpdateParameters } from './dto/index.js'
 
 import { MiFloraDevice } from '@nevo/domain-types'
-// @ts-ignore
 
+// @ts-ignore
 import miflora from 'miflora'
 import { PlantEntity } from './entities/plant.entity.js'
 

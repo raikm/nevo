@@ -1,9 +1,9 @@
 <template>
   <div class="nv-input-wrapper">
-    <label class="nv-label-input">
+    <div class="nv-label-input">
       {{ label }}
-    </label>
-    <input class="nv-input" v-model="inputValue" type="text" />
+    </div>
+    <input class="nv-input" v-model="inputValue" :type="type" />
   </div>
 </template>
 
@@ -13,8 +13,9 @@ import { defineEmits, ref, watch } from 'vue'
 const emit = defineEmits(['update:modelValue'])
 
 const props = defineProps({
-  modelValue: { type: String, required: true },
-  label: { type: String, required: true }
+  modelValue: { required: true },
+  label: { type: String, required: true },
+  type: { type: String, required: false, default: 'text' }
 })
 const inputValue = ref(props.modelValue)
 
@@ -35,18 +36,26 @@ watch(
 </script>
 
 <style lang="scss">
+@import '@nevo/style/variables.scss';
+
 .nv-input-wrapper {
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 10px;
 }
 
 .nv-label-input {
-  padding: 3px;
+  padding: 5px 8px;
+  width: 7rem;
+  font-weight: 450;
 }
 
 .nv-label-input {
-  font-size: 0.8rem;
+  font-size: 1rem;
+  display: grid;
+  align-items: center;
 }
 .nv-input {
   padding: 5px 10px;
