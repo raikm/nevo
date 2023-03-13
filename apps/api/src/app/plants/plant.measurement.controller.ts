@@ -1,6 +1,8 @@
 import { Body, Controller, Get, HttpCode, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common'
+import { MeasurementType } from '@nevo/domain-types'
 import { Measurement } from './dto/plant.measurement.dto.js'
 import { PlantMeasurementHistoryParameters } from './dto/plant.measurement.history.js'
+import { MeasurementRangeCreationParameters } from './dto/plant.measurementRange.create.js'
 import { MeasurementRange } from './dto/plant.measurementRange.dto.js'
 import { MeasurementService } from './plant.measurement.service.js'
 
@@ -20,10 +22,18 @@ export class MeasurementController {
     return await this.measurementService.putNewMeasurements(id, parameters)
   }
 
+  @Get('/:id/getMeasurementRange/:type')
+  async getMeasurementRange(
+    @Param('id', ParseUUIDPipe) id: string,
+    @Param('type') type: MeasurementType
+  ): Promise<MeasurementRange | null> {
+    return await this.measurementService.getMeasurementRange(id, type)
+  }
+
   @Patch('/:id/addMeasurementRange')
   async updateMeasurementRange(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() parameters: MeasurementRange
+    @Body() parameters: MeasurementRangeCreationParameters
   ): Promise<void> {
     return await this.measurementService.putNewMeasurementRange(id, parameters)
   }

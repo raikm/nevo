@@ -1,26 +1,13 @@
 import { BadRequestException, Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
+import { MeasurementType, MeasurementUnit } from '@nevo/domain-types'
 import { randomUUID } from 'crypto'
 import { Between, Repository } from 'typeorm'
 import { Measurement } from './dto/index.js'
 import { PlantMeasurementHistoryParameters } from './dto/plant.measurement.history.js'
+import { MeasurementRangeCreationParameters } from './dto/plant.measurementRange.create.js'
 import { MeasurementRange } from './dto/plant.measurementRange.dto.js'
 import { MeasurementEntity, MeasurementRangeEntity, PlantEntity } from './entities/plant.entity.js'
-
-enum MeasurementType {
-  BATTERY = 'BATTERY',
-  SOILFERTILITY = 'SOILFERTILITY',
-  SOILMOISTURE = 'SOILMOISTURE',
-  TEMPERATURE = 'TEMPERATURE',
-  SUNLIGHT = 'SUNLIGHT'
-}
-
-enum MeasurementUnit {
-  PERCENTAGE = '%',
-  CONDUCTIVITY = 'µS/cm',
-  CELSIUS = '°C',
-  LUX = 'Lux'
-}
 
 @Injectable()
 export class MeasurementService {
@@ -228,7 +215,40 @@ export class MeasurementService {
     await this.measurementRepository.save(measurement)
   }
 
-  async putNewMeasurementRange(plantId: string, measurementRange: MeasurementRange): Promise<void> {
+  async getMeasurementRange(
+    plantId: string,
+    type: MeasurementType
+  ): Promise<MeasurementRange | null> {
+    const plant = await this.plantRepository.findOneBy({
+      id: plantId
+    })
+
+    if (!plant) {
+      throw new BadRequestException()
+    }
+
+    const measurementRangeEntity = await this.measurementRangeRepository.findOne({
+      where: { type: type, plant: plant }
+    })
+
+    if (measurementRangeEntity == null) {
+      throw new BadRequestException()
+    }
+
+    return new MeasurementRange({
+      id: measurementRangeEntity.id,
+      type: measurementRangeEntity.type,
+      unit: measurementRangeEntity.unit,
+      min: measurementRangeEntity.min,
+      max: measurementRangeEntity.max,
+      plantId: measurementRangeEntity.plant!.id
+    })
+  }
+
+  async putNewMeasurementRange(
+    plantId: string,
+    measurementRange: MeasurementRangeCreationParameters
+  ): Promise<void> {
     const plant = await this.plantRepository.findOneBy({
       id: plantId
     })

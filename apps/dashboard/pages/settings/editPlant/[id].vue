@@ -1,5 +1,11 @@
 <script lang="ts" setup>
-import { Location, MeasurementRange, PlantUpdateParameters } from '@nevo/domain-types'
+import {
+  Location,
+  MeasurementRange,
+  MeasurementType,
+  MeasurementUnit,
+  PlantUpdateParameters
+} from '@nevo/domain-types'
 import { nvButton, nvInput, nvSelect } from '@nevo/ui'
 import { usePlantService } from '~~/services/plant'
 const router = useRouter()
@@ -7,37 +13,42 @@ const route = useRoute()
 const plantService = usePlantService()
 
 const plantUpdateParameters = ref<PlantUpdateParameters>({ name: '' })
+watch(plantUpdateParameters.value, () => {
+  savePlantDetails()
+})
 
-// TODO move to domain-types
-enum MeasurementType {
-  BATTERY = 'BATTERY',
-  SOILFERTILITY = 'SOILFERTILITY',
-  SOILMOISTURE = 'SOILMOISTURE',
-  TEMPERATURE = 'TEMPERATURE',
-  SUNLIGHT = 'SUNLIGHT'
-}
-
-enum MeasurementUnit {
-  PERCENTAGE = '%',
-  CONDUCTIVITY = 'µS/cm',
-  CELSIUS = '°C',
-  LUX = 'Lux'
-}
-
-const mostureRanges = ref<MeasurementRange>({
+const moistureRanges = ref<MeasurementRange>({
   type: MeasurementType.SOILMOISTURE,
   unit: MeasurementUnit.PERCENTAGE,
   min: 0,
   max: 0
 })
+watch(moistureRanges.value, (newValues) => {
+  savePlantMeasurementRange(newValues)
+})
 
-const locations = ref<Location[]>()
+const fertilityRanges = ref<MeasurementRange>({
+  type: MeasurementType.SOILFERTILITY,
+  unit: MeasurementUnit.CONDUCTIVITY,
+  min: 0,
+  max: 0
+})
+watch(fertilityRanges.value, (newValues) => {
+  savePlantMeasurementRange(newValues)
+})
+
+const sunlightRanges = ref<MeasurementRange>({
+  type: MeasurementType.SUNLIGHT,
+  unit: MeasurementUnit.LUX,
+  min: 0,
+  max: 0
+})
+watch(sunlightRanges.value, (newValues) => {
+  savePlantMeasurementRange(newValues)
+})
+
 const requestBlinking = ref(false)
 const blinkingInProgress = ref(false)
-
-const save = async () => {
-  await plantService.update(route.params.id.toString(), plantUpdateParameters.value)
-}
 
 const blinking = async () => {
   requestBlinking.value = true
@@ -51,14 +62,20 @@ const blinking = async () => {
   }, 5000)
 }
 
-watch(plantUpdateParameters.value, () => {
-  save()
-})
+const savePlantDetails = async () => {
+  await plantService.update(route.params.id.toString(), plantUpdateParameters.value)
+}
+
+const savePlantMeasurementRange = async (measurementRange: MeasurementRange) => {
+  await plantService.updateMeasurementRange(route.params.id.toString(), measurementRange)
+}
 
 const remove = async () => {
   await plantService.delete(route.params.id.toString())
   router.back()
 }
+
+const locations = ref<Location[]>()
 
 onMounted(async () => {
   locations.value = await plantService.getAllLocations()
@@ -87,8 +104,8 @@ onMounted(async () => {
       <option v-for="location in locations" :value="location">{{ location.name }}</option>
     </nv-select>
     <div class="nv-input-headline">Moisture Borders</div>
-    <nv-input label="Minimum" type="number" v-model="mostureRanges.min" />
-    <nv-input label="Maximum" type="number" v-model="mostureRanges.max" />
+    <nv-input label="Minimum" type="number" v-model="moistureRanges.min" />
+    <nv-input label="Maximum" type="number" v-model="moistureRanges.max" />
     <div class="settings-detail-sub">
       <nv-button @click="blinking">
         <template v-if="!requestBlinking && !blinkingInProgress">Blink</template>

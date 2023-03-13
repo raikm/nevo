@@ -1,13 +1,12 @@
-import type { MeasurementRange as IMeasurementRange } from '@nevo/domain-types'
+import type { MeasurementRange as IMeasurementRange, MeasurementType } from '@nevo/domain-types'
 import { IsNotEmpty, IsUUID } from 'class-validator'
 
 export class MeasurementRange implements IMeasurementRange {
-  @IsNotEmpty()
   @IsUUID()
-  plantId!: string
+  id!: string
 
   @IsNotEmpty()
-  type!: string
+  type!: MeasurementType
 
   @IsNotEmpty()
   unit!: string
@@ -17,6 +16,10 @@ export class MeasurementRange implements IMeasurementRange {
 
   @IsNotEmpty()
   max!: number
+
+  @IsNotEmpty()
+  @IsUUID()
+  plantId!: string
 
   constructor(init?: MeasurementRange) {
     Object.assign(this, init)

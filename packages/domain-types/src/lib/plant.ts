@@ -31,13 +31,38 @@ export interface Measurement {
 }
 
 export interface MeasurementRange {
+  id: string
   type: string
   unit: string
   min: number
   max: number
+  plantId: string
+}
+
+export interface MeasurementRangeCreationParameters {
+  type: string
+  unit: string
+  min: number
+  max: number
+  plantId: string
 }
 
 export interface PlantMeasurementHistoryParameters {
   start: Date
   end: Date
+}
+
+export enum MeasurementType {
+  BATTERY = 'BATTERY',
+  SOILFERTILITY = 'SOILFERTILITY',
+  SOILMOISTURE = 'SOILMOISTURE',
+  TEMPERATURE = 'TEMPERATURE',
+  SUNLIGHT = 'SUNLIGHT'
+}
+
+export enum MeasurementUnit {
+  PERCENTAGE = '%',
+  CONDUCTIVITY = 'µS/cm',
+  CELSIUS = '°C',
+  LUX = 'Lux'
 }
