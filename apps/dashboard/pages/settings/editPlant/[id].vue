@@ -89,7 +89,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <h3>Edit plant sensor</h3>
+  <div class="settings-header">
+    <GlasButton @click="router.back()">‹</GlasButton>
+    <h3>Edit plant sensor</h3>
+  </div>
   <div class="plant-img-header-wrapper">
     <img
       class="plant-img-header"
@@ -106,6 +109,9 @@ onMounted(async () => {
     <div class="nv-input-headline">Moisture Borders</div>
     <nv-input label="Minimum" type="number" v-model="moistureRanges.min" />
     <nv-input label="Maximum" type="number" v-model="moistureRanges.max" />
+
+    <!-- TODO other borders-->
+
     <div class="settings-detail-sub">
       <nv-button @click="blinking">
         <template v-if="!requestBlinking && !blinkingInProgress">Blink</template>

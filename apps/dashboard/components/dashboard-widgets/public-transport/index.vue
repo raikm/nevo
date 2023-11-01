@@ -1,31 +1,33 @@
 <template>
-  <div v-if="stopsSelected" class="public-transport-box">
-    <div class="public-transport-header">
-      <div class="public-transport-header-title public-transport-header-title-line">Line</div>
-      <div class="public-transport-header-title public-transport-header-direction">Direction</div>
-      <div class="public-transport-header-title public-transport-header-time">Time</div>
-    </div>
-    <div class="public-transport-content-wrapper">
-      <div
-        :key="transport.tripId"
-        v-for="transport in departuresFromHome"
-        class="public-transport-content"
-      >
-        <div class="public-transport-header-title-line-info">
-          <div
-            class="public-transport-header-title-line-info-text"
-            :class="transport.line?.product"
-          >
-            {{ transport.line?.name }}
+  <Transition>
+    <div v-if="stopsSelected" class="public-transport-box">
+      <div class="public-transport-header">
+        <div class="public-transport-header-title public-transport-header-title-line">Line</div>
+        <div class="public-transport-header-title public-transport-header-direction">Direction</div>
+        <div class="public-transport-header-title public-transport-header-time">Time</div>
+      </div>
+      <div class="public-transport-content-wrapper">
+        <div
+          :key="transport.tripId"
+          v-for="transport in departuresFromHome"
+          class="public-transport-content"
+        >
+          <div class="public-transport-header-title-line-info">
+            <div
+              class="public-transport-header-title-line-info-text"
+              :class="transport.line?.product"
+            >
+              {{ transport.line?.name }}
+            </div>
           </div>
-        </div>
-        <div class="public-transport-header-direction-info">{{ transport.direction }}</div>
-        <div class="public-transport-header-time-info">
-          {{ mapETATime(transport.plannedWhen) }} min
+          <div class="public-transport-header-direction-info">{{ transport.direction }}</div>
+          <div class="public-transport-header-time-info">
+            {{ mapETATime(transport.plannedWhen) }} min
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>

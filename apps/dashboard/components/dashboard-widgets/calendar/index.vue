@@ -1,55 +1,57 @@
 <template>
-  <div>
-    <div id="calendar-header">
-      <div id="calendar-info" v-if="calendarTitle">
-        <div id="calendar-day-info">{{ calendarTitle.title }}</div>
-        <div id="calendar-month-info">, {{ calendarTitle.dateMonth }}</div>
+  <Transition>
+    <div v-if="error.length != 0">
+      <div id="calendar-header">
+        <div id="calendar-info" v-if="calendarTitle">
+          <div id="calendar-day-info">{{ calendarTitle.title }}</div>
+          <div id="calendar-month-info">, {{ calendarTitle.dateMonth }}</div>
+        </div>
       </div>
-    </div>
-    <div class="calendar-body-wrapper" v-if="!loading">
-      <div v-if="error != undefined" class="calendar-body service-info">
-        Service is not available
-        <nv-button>
-          <NuxtLink :to="{ path: '/settings/calendar' }">Go to Settings</NuxtLink>
-        </nv-button>
-      </div>
+      <div class="calendar-body-wrapper" v-if="!loading">
+        <div v-if="error != undefined" class="calendar-body service-info">
+          Service is not available
+          <nv-button>
+            <NuxtLink :to="{ path: '/settings/calendar' }">Go to Settings</NuxtLink>
+          </nv-button>
+        </div>
 
-      <div
-        v-else-if="calendarEvents.length === 0 && calendarDayEvents.length === 0"
-        class="calendar-body no-events-info"
-      >
-        <div>⛰️ No events today</div>
-      </div>
+        <div
+          v-else-if="calendarEvents.length === 0 && calendarDayEvents.length === 0"
+          class="calendar-body no-events-info"
+        >
+          <div>⛰️ No events today</div>
+        </div>
 
-      <div v-else class="calendar-body">
-        <div class="calendar-events">
-          <div v-if="calendarDayEvents.length > 0" class="calendar-day-events">
-            <CalendarDayEvent
-              v-for="calendarDayEvent in calendarDayEvents"
-              :event="calendarDayEvent"
-            />
-          </div>
-          <div class="calendar-next-events">
-            <CalendarEvent
-              v-for="event in calendarEvents.slice(0, 3)"
-              :key="event.id"
-              :event="event"
-            />
-            <div v-if="calendarEvents.length > 3" class="preview-calendar-event">
-              <div
-                class="calendar-color-bar"
+        <div v-else class="calendar-body">
+          <div class="calendar-events">
+            <div v-if="calendarDayEvents.length > 0" class="calendar-day-events">
+              <CalendarDayEvent
+                v-for="calendarDayEvent in calendarDayEvents"
+                :event="calendarDayEvent"
+              />
+            </div>
+            <div class="calendar-next-events">
+              <CalendarEvent
+                v-for="event in calendarEvents.slice(0, 3)"
                 :key="event.id"
-                v-for="event in calendarEvents.slice(3, 6)"
-                :style="{ background: event.calendarColor }"
-              ></div>
-              <div class="preview-text">{{ calendarEvents.length - 3 }} more events</div>
+                :event="event"
+              />
+              <div v-if="calendarEvents.length > 3" class="preview-calendar-event">
+                <div
+                  class="calendar-color-bar"
+                  :key="event.id"
+                  v-for="event in calendarEvents.slice(3, 6)"
+                  :style="{ background: event.calendarColor }"
+                ></div>
+                <div class="preview-text">{{ calendarEvents.length - 3 }} more events</div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <Loading v-else />
     </div>
-    <Loading v-else />
-  </div>
+  </Transition>
 </template>
 
 <script lang="ts" setup>
@@ -65,7 +67,7 @@ const calendarService = useCalendarService()
 const calendarEvents = ref<Event[]>([])
 const calendarDayEvents = ref<Event[]>([])
 const loading = ref(false)
-const error = ref()
+const error = ref<string>('')
 
 onMounted(async () => {
   refreshCalendars()

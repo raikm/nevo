@@ -64,6 +64,7 @@ useInterceptor()
 
 <style lang="scss">
 @import '@nevo/style/variables.scss';
+@import '@nevo/style/dark.scss';
 
 $total-width: calc(#{$box-width} * 3 + #{$box-gap} * 2 + #{$box-gap} * 6);
 
@@ -72,10 +73,19 @@ body {
   height: 100%;
   margin: 0;
 }
-body {
-  // TODO default production background: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
-  background: linear-gradient(to top, $nevo-primary-color 0%, $nevo-secondary-color 100%);
+@media (prefers-color-scheme: light) {
+  body {
+    // TODO default production background: linear-gradient(to top, #9795f0 0%, #fbc8d4 100%);
+    background: linear-gradient(to top, $nevo-primary-color 0%, $nevo-secondary-color 100%);
+  }
 }
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: black;
+  }
+}
+
 #__nuxt {
   display: grid;
   grid-template-rows: 10% 85% 5%;
@@ -97,5 +107,15 @@ body {
 }
 #footer {
   // background: black;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 1s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

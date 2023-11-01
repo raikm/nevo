@@ -1,6 +1,6 @@
 <template>
   <div class="settings-container">
-    <div class="menu box-white menu-container">
+    <div class="menu main-box menu-container">
       <div class="menu-link">
         <NuxtLink :to="{ path: '/settings/calendar' }"> Calendar </NuxtLink>
       </div>
@@ -11,7 +11,7 @@
         <NuxtLink :to="{ path: '/settings/plants' }"> Plants </NuxtLink>
       </div>
     </div>
-    <div class="menu box-white settings-details">
+    <div class="menu main-box settings-details">
       <slot />
     </div>
   </div>

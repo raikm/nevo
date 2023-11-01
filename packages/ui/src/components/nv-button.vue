@@ -1,6 +1,7 @@
 <template>
   <button
     :class="{ 'hover-button': hoverable, 'standard-button': !hoverable, danger: type === 'danger' }"
+    class="bounce-button"
   >
     <slot></slot>
   </button>
@@ -33,6 +34,18 @@ defineProps({
   a {
     text-decoration: none;
     color: $nevo-primary-color-light;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .standard-button {
+    background-color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .standard-button {
+    background-color: black;
   }
 }
 

@@ -2,16 +2,16 @@
   <div id="menu-main-wrapper">
     <div id="menu-main">
       <Transition name="slide-fade">
-        <div v-if="!showMenu" class="menu-trigger menu-open" @click="showMenu = true">
-          <span>◠</span>
+        <div v-if="!showMenu" class="menu-trigger menu-open bounce-button" @click="showMenu = true">
+          <div>◌</div>
         </div>
       </Transition>
       <Transition name="slide-fade">
         <div v-if="showMenu" id="menu-pills">
           <div
             @click="changePage('index', 0)"
-            class="menu-button-new"
-            :class="{ active: activeIndex === 0 }"
+            class="menu-button-new bounce-button"
+            :class="{ activeMenu: activeIndex === 0 }"
           >
             <div class="menu-icon-wrapper">
               <svg
@@ -32,8 +32,8 @@
           </div>
           <div
             @click="changePage('rooms', 1)"
-            class="menu-button-new"
-            :class="{ active: activeIndex === 1 }"
+            class="menu-button-new bounce-button"
+            :class="{ activeMenu: activeIndex === 1 }"
           >
             <div class="menu-icon-wrapper">
               <svg
@@ -59,8 +59,8 @@
           </div>
           <div
             @click="changePage('plants', 2)"
-            class="menu-button-new"
-            :class="{ active: activeIndex === 2 }"
+            class="menu-button-new bounce-button"
+            :class="{ activeMenu: activeIndex === 2 }"
           >
             <div class="menu-icon-wrapper">
               <svg
@@ -78,8 +78,8 @@
             </div>
             <div class="menu-text">Plants</div>
           </div>
-          <div class="menu-trigger menu-close" @click="showMenu = false">
-            <span>⨵</span>
+          <div class="menu-trigger menu-close bounce-button" @click="showMenu = false">
+            <div>✕</div>
           </div>
         </div>
       </Transition>
@@ -87,8 +87,8 @@
     <!-- v-slot for persons -->
     <div id="settings">
       <div
-        class="settings-wrapper"
-        :class="{ active: activeIndex === 100 }"
+        class="settings-wrapper bounce-button"
+        :class="{ activeMenu: activeIndex === 100 }"
         @click="changePage('settings', 100)"
       >
         <svg
@@ -163,8 +163,12 @@ const changePage = async (name: string, index: number) => {
     width: 2rem;
   }
 
-  .menu-trigger > span {
-    font-size: large;
+  .menu-trigger:hover {
+    background-color: white;
+  }
+
+  .menu-trigger > div {
+    font-size: medium;
   }
 
   .menu-close {
@@ -239,9 +243,19 @@ const changePage = async (name: string, index: number) => {
   display: none;
 }
 
-.active,
-.menu-open {
-  background-color: white !important;
+@media (prefers-color-scheme: light) {
+  .activeMenu,
+  .menu-open {
+    background-color: white !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .activeMenu,
+  .menu-open {
+    background-color: $black !important;
+    color: white;
+  }
 }
 
 $inactive-color: $gray;

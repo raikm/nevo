@@ -13,7 +13,8 @@ body {
   /* Internet Explorer/Edge */
   user-select: none;
   /* Non-prefixed version, currently supported by Chrome, Edge, Opera and Firefox */
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
 
   // height: 100vh;
@@ -59,12 +60,11 @@ h6 {
   width: $box-width;
 }
 
-.box-white {
-  background-color: rgb(255, 255, 255);
-  backdrop-filter: blur(10px);
-}
-
-.box-xs-wrapper {
+@media (prefers-color-scheme: light) {
+  .main-box {
+    background-color: rgb(255, 255, 255);
+    backdrop-filter: blur(10px);
+  }
 }
 
 .main-info-content {
@@ -94,14 +94,6 @@ h6 {
     justify-content: center;
     align-items: center;
   }
-}
-
-// .main-info-icon {
-//   float: left;
-//   height: 3vh;
-// }
-
-.large-widget {
 }
 
 .main-info-header {
@@ -276,7 +268,18 @@ h6 {
 .list-container {
   padding: 0.8rem;
   border-radius: $standard-border-radius;
-  background-color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  .list-container {
+    background-color: white;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .list-container {
+    background-color: black;
+  }
 }
 
 .list-container > div,
@@ -347,4 +350,27 @@ h6 {
 .nv-input-headline {
   font-size: 0.8rem;
   margin-left: 10px;
+}
+
+.bounce-button:active {
+  transition: 0s;
+  animation: press 0.4s 1 linear;
+}
+
+@keyframes press {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.92);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.settings-header {
+  display: inline-flex;
+  gap: 1rem;
+  align-items: center;
 }

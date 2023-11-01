@@ -1,15 +1,15 @@
 <template>
   <div id="dashboard-wrapper">
     <div id="boxes">
-      <DashboardWidgetsHomeClimate class="box dashboard-box box-white" />
+      <DashboardWidgetsHomeClimate class="box dashboard-box main-box" />
       <DashboardWidgetsWeather class="box dashboard-box box-s" />
       <DashboardWidgetsRoomLightController
         v-if="homeAssistantStore.haConnection"
-        class="box dashboard-box box-s box-white"
+        class="box dashboard-box box-s main-box"
       />
-      <DashboardWidgetsPublicTransport class="box dashboard-box box-m box-white" />
-      <DashboardWidgetsCalendar class="box dashboard-box box-m box-white" />
-      <DashboardWidgetsMusic class="box dashboard-box box-m box-white" />
+      <DashboardWidgetsPublicTransport class="box dashboard-box box-m main-box" />
+      <DashboardWidgetsCalendar class="box dashboard-box box-m main-box" />
+      <!-- <DashboardWidgetsMusic class="box dashboard-box box-m main-box" /> -->
     </div>
     <div id="shortcuts">
       <Shortcut :shortcut="shortcut" v-for="shortcut in homeAssistantStore.shortcutEntities" />
@@ -51,7 +51,7 @@ const spotifyService = useSpotifyService(store)
   column-gap: 1rem;
   row-gap: $box-gap;
   row-gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: $box-width $box-width $box-width;
   flex-wrap: wrap;
 }
 
@@ -63,8 +63,7 @@ const spotifyService = useSpotifyService(store)
   scrollbar-width: none; /* Firefox */
   display: inline-flex;
   overflow: scroll;
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
+  display: inline-flex;
   column-gap: $standard-space;
 }
 
