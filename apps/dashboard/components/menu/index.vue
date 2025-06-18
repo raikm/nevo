@@ -7,9 +7,8 @@
           class="menu-button-new bounce-button"
           :class="{ activeMenu: activeIndex === 0 }"
         >
-          <div class="text-center">Dashboard</div>
+          <div class="text-center">Home</div>
         </div>
-
         <div
           @click="changePage('plants', 2)"
           class="menu-button-new bounce-button"
@@ -30,10 +29,9 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 
-const activeIndex = ref(0)
-const showMenu = ref(false)
+const activeIndex = ref()
 
 const changePage = async (name: string, index: number) => {
   activeIndex.value = index
@@ -41,6 +39,37 @@ const changePage = async (name: string, index: number) => {
     name: name
   })
 }
+
+onMounted(() => {
+  switch (route.name) {
+    case 'index':
+      activeIndex.value = 0
+      break
+    case 'plants':
+      activeIndex.value = 2
+      break
+    case 'settings':
+      activeIndex.value = 3
+      break
+  }
+})
+
+const route = useRoute()
+
+watch(route, async (newRoute, oldRoute) => {
+  console.log('newRoute', newRoute.name)
+  switch (newRoute.name) {
+    case 'plants':
+      activeIndex.value = 2
+      break
+    case 'index':
+      activeIndex.value = 0
+      break
+    case 'settings':
+      activeIndex.value = 3
+      break
+  }
+})
 </script>
 
 <style lang="scss">

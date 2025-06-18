@@ -6,7 +6,7 @@
     <div class="plant-card-header">
       <div class="font-bold hyphens-auto" lang="de">{{ name }}</div>
       <div v-if="measurementsOld" class="plant-card-status text-red-500">⬤</div>
-      <div v-if="measurementsOlderThen15m" class="plant-card-status text-yellow-100">⬤</div>
+      <div v-else-if="measurementsOlderThen15m" class="plant-card-status text-yellow-100">⬤</div>
     </div>
     <div class="plant-card-parameter content-end">
       <div class="plant-card-parameter-humidity">
